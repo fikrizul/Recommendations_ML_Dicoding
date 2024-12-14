@@ -1229,7 +1229,7 @@ Jika memperhitungkan jumlah game yang dirilis di setiap platform, malah linux ya
 ### **1. Content Based Filtering**
 
 Kolom tag yang berisi list tag apa saja yang ada di sebuah game, dipecah menjadi kumpulan string yang bisa diterima sebagai corpus oleh TfidfVectorizer.
-rating di-encode agar dapat dimengerti oleh cosine similarity dengan map seperti berikut:
+Rating di-encode agar dapat dimengerti oleh cosine similarity dengan map seperti berikut:
 
 
 ```python
@@ -2443,13 +2443,13 @@ Digunakan data `is_recommended` dan `hours` sebagai parameter untuk model deep l
 
 Data "hours" disesuaikan berdasarkan data game direkomendasikan atau tidak. Jika game direkomendasikan (is_recommended bernilai True), maka nilai  "hours" dengan dikalikan 1.25, dan jika tidak direkomendasikan, maka dikalikan dengan 0.75. Kemudian, data dinormalisasi sebagai "adjusted_hours" menggunakan MinMaxScaler untuk mengubah nilai-nya ke dalam rentang 0 hingga 1. Terakhir, kolom "adjusted_hours" yang telah dinormalisasi ditambahkan ke dalam dataset.
 
-$
-\text{adjusted\_hours} = 
+```math
+\text{adjusted\_hours} =
 \begin{cases} 
 \text{hours} \times 1.25 & \text{jika } \text{is\_recommended} = \text{True} \\
 \text{hours} \times 0.75 & \text{jika } \text{is\_recommended} = \text{False}
 \end{cases}
-$
+```
 
 #### **Train Test Split**
 
@@ -3106,47 +3106,48 @@ Sekilas tentang `Confusion Matrix`, `Akurasi`, dan Metrik Evaluasi
 
 1. **Precision@k**  
    Precision@k mengukur seberapa banyak rekomendasi yang relevan dalam top-k rekomendasi. Ini dihitung dengan rumus:
-   $
+   ```math
    \text{Precision@k} = \frac{\text{Jumlah item relevan dalam top-k}}{k}
-   $
+   ```
    Di mana:
    - `k` adalah jumlah rekomendasi teratas yang diberikan oleh model.
 
 2. **Recall@k**  
    Recall@k mengukur seberapa baik model dalam menemukan semua item relevan dalam top-k rekomendasi dibandingkan dengan total item relevan yang ada. Rumusnya adalah:
-   $
+   ```math
    \text{Recall@k} = \frac{\text{Jumlah item relevan dalam top-k}}{\text{Total item relevan yang tersedia}}
-   $
+   ```
 
 3. **F1@k**  
    F1@k adalah rata-rata harmonik antara Precision@k dan Recall@k, yang memberikan keseimbangan antara keduanya. Rumusnya adalah:
-   $
+   ```math
    F1@k = 2 \cdot \frac{\text{Precision@k} \cdot \text{Recall@k}}{\text{Precision@k} + \text{Recall@k}}
-   $
+   ```
 
 4. **Accuracy@k**  
    Accuracy@k adalah metrik yang digunakan untuk mengukur seberapa akurat model dalam memberikan rekomendasi terbaik. Metrik ini mengukur proporsi item relevan yang muncul dalam top-k rekomendasi dibandingkan dengan seluruh rekomendasi yang diprediksi oleh model. Accuracy@k memberi gambaran tentang seberapa sering item relevan muncul dalam daftar teratas rekomendasi.  
    Rumus untuk menghitung Accuracy@k adalah:
-   $
+   ```math
    \text{Accuracy@k} = \frac{\text{Jumlah item relevan dalam top-k}}{k}
-   $
+   ```
    Di mana:
    - `k` adalah jumlah rekomendasi teratas yang diberikan oleh model.
    - Jumlah item relevan dalam **top-k** adalah jumlah item yang benar-benar relevan dan ada di dalam urutan rekomendasi teratas.
 
 5. **MRR@k (Mean Reciprocal Rank)**  
    MRR@k mengukur kualitas urutan rekomendasi berdasarkan posisi item relevan pertama yang ditemukan dalam top-k rekomendasi. Metrik ini sangat berguna ketika urutan rekomendasi memiliki peran penting, dan kita hanya tertarik pada posisi pertama dari item relevan yang ditemukan oleh model. Rumus MRR@k adalah:
-   $
+   ```math
    \text{MRR@k} = \frac{1}{Q} \sum_{i=1}^Q \frac{1}{\text{Rank}_i}
-   $
+   ```
    Di mana:
    - `Q` adalah jumlah total query atau pengguna.
    - `Rank_i` adalah posisi relevan pertama untuk pengguna ke-i.
 
    Reciprocal Rank (RR) dihitung dengan rumus:
-   $
+   ```math
    \text{RR} = \frac{1}{\text{Rank of first relevant item}}
-   $
+   ```
+
 
 Di dunia nyata, pengguna jarang melihat semua rekomendasi, biasanya hanya top-k (misalnya, 5 atau 10 teratas). Dengan menggunakan @k, fokus evaluasi dapat diarahkan pada rekomendasi terbaik yang diberikan model. Nilai k juga dapat disesuaikan dengan jumlah rekomendasi yang relevan untuk aplikasi tertentu. Selain itu, MRR@k memberikan perhatian khusus pada posisi item relevan pertama dalam urutan rekomendasi, yang penting dalam sistem yang mengutamakan urutan penyajian rekomendasi kepada pengguna.
 
@@ -3298,8 +3299,8 @@ $$
 $$
 
 Keterangan:
-- $y_i$: Nilai aktual pada observasi ke-$i$
-- $\hat{y}_i$: Nilai prediksi pada observasi ke-$i$
+- $y_i$: Nilai aktual pada observasi ke-`i`
+- $\hat{y}_i$: Nilai prediksi pada observasi ke-`i`
 - $N$: Jumlah observasi
 
 Jika nilai prediksi mendekati nilai sesungguhnya, maka selisih antara $(y_i - \hat{y}_i)$ akan semakin kecil. Artinya, semakin kecil nilai RMSE atau semakin mendekati nol, maka model yang digunakan semakin akurat dan baik.
