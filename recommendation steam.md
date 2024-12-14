@@ -1063,27 +1063,6 @@ Setiap tahun jumlah game yang dirilis cenderung selalu meningkat kecuali di tahu
 #### **Top Games**
 
 
-
-
-    <ipython-input-70-0228dc84a540>:18: UserWarning: Glyph 39740 (\N{CJK UNIFIED IDEOGRAPH-9B3C}) missing from current font.
-      plt.tight_layout()
-    <ipython-input-70-0228dc84a540>:18: UserWarning: Glyph 35895 (\N{CJK UNIFIED IDEOGRAPH-8C37}) missing from current font.
-      plt.tight_layout()
-    <ipython-input-70-0228dc84a540>:18: UserWarning: Glyph 20843 (\N{CJK UNIFIED IDEOGRAPH-516B}) missing from current font.
-      plt.tight_layout()
-    <ipython-input-70-0228dc84a540>:18: UserWarning: Glyph 33618 (\N{CJK UNIFIED IDEOGRAPH-8352}) missing from current font.
-      plt.tight_layout()
-    /usr/local/lib/python3.10/dist-packages/IPython/core/pylabtools.py:151: UserWarning: Glyph 39740 (\N{CJK UNIFIED IDEOGRAPH-9B3C}) missing from current font.
-      fig.canvas.print_figure(bytes_io, **kw)
-    /usr/local/lib/python3.10/dist-packages/IPython/core/pylabtools.py:151: UserWarning: Glyph 35895 (\N{CJK UNIFIED IDEOGRAPH-8C37}) missing from current font.
-      fig.canvas.print_figure(bytes_io, **kw)
-    /usr/local/lib/python3.10/dist-packages/IPython/core/pylabtools.py:151: UserWarning: Glyph 20843 (\N{CJK UNIFIED IDEOGRAPH-516B}) missing from current font.
-      fig.canvas.print_figure(bytes_io, **kw)
-    /usr/local/lib/python3.10/dist-packages/IPython/core/pylabtools.py:151: UserWarning: Glyph 33618 (\N{CJK UNIFIED IDEOGRAPH-8352}) missing from current font.
-      fig.canvas.print_figure(bytes_io, **kw)
-
-
-
     
 ![png](gambar_files/gambar_66_1.png)
     
@@ -1286,12 +1265,11 @@ Digunakan GridSearch untuk mngoptimalkan proses vektorisasi TF-IDF dari deskrips
 
     Best parameters found:  {'kmeans__init': 'random', 'kmeans__max_iter': 300, 'kmeans__n_clusters': 4, 'tfidf__max_df': 1.0, 'tfidf__max_features': 100, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 2)}
 
+Parameter paling optimal adalah 'max_df' = 1.0, 'max_features'= 100, 'min_df'= 5, 'ngram_range'= (1, 2) atau bigrams.
 
 #### **Vectorizer**
 
 Digunakan TF-IDF dengan nilai dari 0 hingga 1 untuk data berupa teks yaitu deskripsi dan tags. Khusus untuk data deskripsi digunakan parameter hasil parameter tuning sedangkan untuk data tags tidak menggunakan parameter tuning karena data tags masing-masing berdiri sendiri tanpa konteks yang berkaitan. Data numerikal di-vektorisasi menggunakan min-max scaler yang menghasilkan nilai dari 0 hingga 1.
-
-
 
 
 #### **Feature Engineering**
@@ -2465,13 +2443,13 @@ Digunakan data `is_recommended` dan `hours` sebagai parameter untuk model deep l
 
 Data "hours" disesuaikan berdasarkan data game direkomendasikan atau tidak. Jika game direkomendasikan (is_recommended bernilai True), maka nilai  "hours" dengan dikalikan 1.25, dan jika tidak direkomendasikan, maka dikalikan dengan 0.75. Kemudian, data dinormalisasi sebagai "adjusted_hours" menggunakan MinMaxScaler untuk mengubah nilai-nya ke dalam rentang 0 hingga 1. Terakhir, kolom "adjusted_hours" yang telah dinormalisasi ditambahkan ke dalam dataset.
 
-\[
+$
 \text{adjusted\_hours} = 
 \begin{cases} 
 \text{hours} \times 1.25 & \text{jika } \text{is\_recommended} = \text{True} \\
 \text{hours} \times 0.75 & \text{jika } \text{is\_recommended} = \text{False}
 \end{cases}
-\]
+$
 
 #### **Train Test Split**
 
