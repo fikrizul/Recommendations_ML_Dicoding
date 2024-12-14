@@ -46,17 +46,6 @@ platform Steam?
    - Menyelidiki hubungan antara rating game dengan waktu bermain untuk memberikan wawasan terhadap tingkat keterlibatan pengguna.  
 
 
-## **Import Library**
-
-
-
-
-    Collecting tabulate
-      Downloading tabulate-0.9.0-py3-none-any.whl.metadata (34 kB)
-    Downloading tabulate-0.9.0-py3-none-any.whl (35 kB)
-    Installing collected packages: tabulate
-    Successfully installed tabulate-0.9.0
-
 
 ## **Data Understanding**
 
@@ -65,42 +54,9 @@ platform Steam?
 ## **Data Loading**
 
 Dataset ini berasal dari "https://www.kaggle.com/datasets/antonkozyriev/game-recommendations-on-steam" repositori Kaggle milik Anton Kozyriev, kemungkinan besar menggunakan data dari Steam API atau metode scraping untuk tujuan analisis rekomendasi game. Dengan 71K dilihat dan jumlah unduhan (10.9K entri) serta usability 10.00/10.00, dataset ini cukup populer dan dapat diandalkan.
-
-
-
-
-    Downloading from https://www.kaggle.com/api/v1/datasets/download/antonkozyriev/game-recommendations-on-steam?dataset_version_number=28...
-
-
-    100%|██████████| 660M/660M [00:15<00:00, 43.8MB/s]
-
-    Extracting files...
-
-
-    
-
-
-    Path to dataset files: /root/.cache/kagglehub/datasets/antonkozyriev/game-recommendations-on-steam/versions/28
-
-
-
-
-
-    Mounted at /content/drive
-
-
-
-
-
 Terdapat 4 file csv namun disini hanya digunakan 3 file yaitu `games.csv`, `games_metadata.json`, dan `recommendations.csv` ke dalam 2 DataFrame berbeda. Hal ini dilakukakan karena terdapat perbedaan struktur data.
 
-
-
-
-
-
-
-
+Dataframe `games_metadata`
  
 <table border="1" class="dataframe">
   <thead>
@@ -145,18 +101,7 @@ Terdapat 4 file csv namun disini hanya digunakan 3 file yaitu `games.csv`, `game
   </tbody>
 </table>
 
-
-
-
-
-
-
-
-
-
-
-  
-    
+Dataframe `games`    
 
 <table border="1" class="dataframe">
   <thead>
@@ -261,43 +206,9 @@ Terdapat 4 file csv namun disini hanya digunakan 3 file yaitu `games.csv`, `game
   </tbody>
 </table>
 
-    
-
-  
-    
-
-  
-
-    
-  
-
-
-
-  
-
-
-
-  
-
-
-    
-  
-
-
-
-
 File `games.csv` dan `games_metadata.json` digabung kedalam 1 dataframe yaitu `games_data`.
 
-
-
-
-
-
-
-
-  
-    
-
+Dataframe `games_data`
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -413,43 +324,9 @@ File `games.csv` dan `games_metadata.json` digabung kedalam 1 dataframe yaitu `g
   </tbody>
 </table>
 
-    
-
-  
-    
-
-  
-
-    
-  
-
-
-
-  
-
-
-
-  
-
-
-    
-  
-
-
-
-
 Data `recommendations.csv` dibuat dataframe terpisah yaitu `recommendations` karena memiliki dimensi data yang berbeda.
 
-
-
-
-
-
-
-
-  
-    
-
+Dataframe `recommendations`
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -523,30 +400,6 @@ Data `recommendations.csv` dibuat dataframe terpisah yaitu `recommendations` kar
   </tbody>
 </table>
 
-    
-
-  
-    
-
-  
-
-    
-  
-
-
-
-  
-
-
-
-  
-
-
-    
-  
-
-
-
 
 ### **Variable Description**
 
@@ -588,9 +441,6 @@ penjelasan variabel pada dataframe `recommendations`
 
 ### **Statistic Data**
 
-
-
-
     <class 'pandas.core.frame.DataFrame'>
     RangeIndex: 50872 entries, 0 to 50871
     Data columns (total 15 columns):
@@ -613,14 +463,6 @@ penjelasan variabel pada dataframe `recommendations`
      14  steam_deck      50872 non-null  bool   
     dtypes: bool(4), float64(3), int64(3), object(5)
     memory usage: 4.5+ MB
-
-
-
-
-
-
-  
-    
 
 <table border="1" class="dataframe">
   <thead>
@@ -710,35 +552,9 @@ penjelasan variabel pada dataframe `recommendations`
   </tbody>
 </table>
 
-    
-
-  
-    
-
-  
-
-    
-  
-
-
-
-  
-
-
-
-  
-
-
-    
-  
-
-
-
+   
 
 Dataframe games_data memiliki 50872 entri rekod dan 15 kolom dengan 5 kolom numerik.
-
-
-
 
     <class 'pandas.core.frame.DataFrame'>
     RangeIndex: 41154794 entries, 0 to 41154793
@@ -755,14 +571,6 @@ Dataframe games_data memiliki 50872 entri rekod dan 15 kolom dengan 5 kolom nume
      7   review_id       int64  
     dtypes: bool(1), float64(1), int64(5), object(1)
     memory usage: 2.2+ GB
-
-
-
-
-
-
-  
-    
 
 <table border="1" class="dataframe">
   <thead>
@@ -852,49 +660,12 @@ Dataframe games_data memiliki 50872 entri rekod dan 15 kolom dengan 5 kolom nume
   </tbody>
 </table>
 
-    
-
-  
-    
-
-  
-
-    
-  
-
-
-
-  
-
-
-
-  
-
-
-    
-  
-
-
-
 
 Dataframe recommendations memiliki 41154794  entri data dan 8 kolom dengan 3 kolom numerik.
 
 ## **Data Cleaning**
 
 ### **Missing Value & Duplicate**
-
-
-
-
-    <ipython-input-18-2e4b781efb55>:2: FutureWarning: DataFrame.applymap has been deprecated. Use DataFrame.map instead.
-      games_data = games_data.applymap(lambda x: None if isinstance(x, list) and len(x) == 0 else x)
-
-
-
-
-
-
-  
     
 
 <table border="1" class="dataframe">
@@ -969,46 +740,9 @@ Dataframe recommendations memiliki 41154794  entri data dan 8 kolom dengan 3 kol
 </table>
 
     
-
-  
-    
-
-  
-
-    
-  
-
-
-
-  
-
-
-
-  
-
-
-    
-  
-
-
-
-
-
-
-
     Total of rows: 40484
     Total of column: 15
 
-
-
-
-
-
-
-
-
-  
-    
 
 <table border="1" class="dataframe">
   <thead>
@@ -1082,46 +816,10 @@ Dataframe recommendations memiliki 41154794  entri data dan 8 kolom dengan 3 kol
 </table>
 
     
-
-  
-    
-
-  
-
-    
-  
-
-
-
-  
-
-
-
-  
-
-
-    
-  
-
-
-
-
-
-
-
     Total of rows: 32685
     Total of column: 15
 
 
-
-
-
-
-
-
-
-  
-    
 
 <table border="1" class="dataframe">
   <thead>
@@ -1168,35 +866,7 @@ Dataframe recommendations memiliki 41154794  entri data dan 8 kolom dengan 3 kol
 
     
 
-  
-    
-
-  
-
-    
-  
-
-
-
-  
-
-
-
-  
-
-
-    
-  
-
-
-
-
-
-
-
     Number of duplicates (excluding 'tags' column): 0
-
-
 
 
 
@@ -1232,23 +902,11 @@ melakukan filter game yang dianggap relevan di dataframe `recommendations` denga
 Karena ukuran data yang terlalu besar maka dilakukan sampling dengan kriteria seperti berikut: data tidak lebih lama dari tahun 2020, setiap interval dari total waktu dimainkan dari setiap game akan diambil 200 game relevan, setiap user relevan memiliki minimal 5 review game.
 
 
-
-
     Number of rows after date filtering: 9024102
-
-
-
-
-
-    <ipython-input-14-b2e898be2be6>:12: DeprecationWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
-      sampled_games_by_bin = game_counts.groupby('hours_bin').apply(lambda x: x.sample(n=200, random_state=42) if len(x) >= 100 else x)
 
 
     Number of sampled games: 2000
     Number of rows in the filtered dataset: 675275
-
-
-
 
 
     Number of user with min reviews: 4235
@@ -1266,10 +924,6 @@ Jumlah entri data `games_data` setelah dibersihkan adalah 32685 dan jumlah baris
 
 #### **Price**
 
-
-
-
-
     
 ![png](gambar_files/gambar_51_0.png)
     
@@ -1285,23 +939,11 @@ Distribusi harga dari sebuah game ternyata sangat terjal ke kanan. Artinya sebag
 #### **Rating**
 
 
-
-
-
     
 ![png](gambar_files/gambar_54_0.png)
     
 
-
-
-<html>
-<head><meta charset="utf-8" /></head>
-<body>
-                                
-                                            
-</body>
-</html>
-
+![png](gambar_files/gambar_177_0.png)
 
 Sebagian besar `rating` berada ada kategori positive dengan berbagai derajatnya kecuali `overwhelmingly positive`.
 
