@@ -2362,7 +2362,7 @@ Vector Combined Features = Vector Tf-idf Descriptions  + Vactor Tf-idf Tags + Ve
 
 ### **2. Collaborative Filtering**
 
-    
+Berikut ini dataframe dari `recommendations` yang dianalisis kolomnya untuk ditemukan data mana yang dapat digunakan untuk melatih model deep learning `RecommenderNet`.
 
 <table border="1" class="dataframe">
   <thead>
@@ -2437,7 +2437,7 @@ Vector Combined Features = Vector Tf-idf Descriptions  + Vactor Tf-idf Tags + Ve
   </tbody>
 </table>
   
-Digunakan data `is_recommended` dan `hours` sebagai parameter untuk model deep learning.Data User dan App dilakukan ordinal encoding agar dapat diterima oleh model.
+Digunakan data `is_recommended` dan `hours` sebagai parameter untuk model deep learning. Data `user_id` dan `app_id` dilakukan ordinal encoding untuk penyederhanaan agar dapat diterima oleh model dengan baik.
 
 #### **Feature Engineering**
 
