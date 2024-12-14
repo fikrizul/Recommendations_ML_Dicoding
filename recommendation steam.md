@@ -49,36 +49,7 @@ platform Steam?
 ## **Import Library**
 
 
-```python
-import kagglehub
-import textwrap
-import numpy as np
-import pandas as pd
-import seaborn as sns
-import matplotlib.pyplot as plt
-import tensorflow as tf
-from tensorflow import keras
-from tensorflow.keras import layers
-from keras.models import Model
-from keras.layers import Input, Embedding, Flatten, Dot, Dense
-from keras.optimizers import Adam
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics.pairwise import cosine_similarity
-from sklearn.preprocessing import MinMaxScaler, MultiLabelBinarizer
-from sklearn.model_selection import GridSearchCV, train_test_split
-from sklearn.cluster import KMeans
-from sklearn.pipeline import Pipeline
-from sklearn.metrics import ConfusionMatrixDisplay, accuracy_score, classification_report, confusion_matrix
-from scipy.sparse import csr_matrix, hstack
-from matplotlib.ticker import FuncFormatter
-import matplotlib.ticker as ticker
-!pip install tabulate
-from tabulate import tabulate
-import plotly.express as px
-from google.colab import drive
-import shutil
 
-```
 
     Collecting tabulate
       Downloading tabulate-0.9.0-py3-none-any.whl.metadata (34 kB)
@@ -96,10 +67,7 @@ import shutil
 Dataset ini berasal dari "https://www.kaggle.com/datasets/antonkozyriev/game-recommendations-on-steam" repositori Kaggle milik Anton Kozyriev, kemungkinan besar menggunakan data dari Steam API atau metode scraping untuk tujuan analisis rekomendasi game. Dengan 71K dilihat dan jumlah unduhan (10.9K entri) serta usability 10.00/10.00, dataset ini cukup populer dan dapat diandalkan.
 
 
-```python
-path = kagglehub.dataset_download("antonkozyriev/game-recommendations-on-steam")
-print("Path to dataset files:" , path)
-```
+
 
     Downloading from https://www.kaggle.com/api/v1/datasets/download/antonkozyriev/game-recommendations-on-steam?dataset_version_number=28...
 
@@ -116,54 +84,24 @@ print("Path to dataset files:" , path)
 
 
 
-```python
-drive.mount('/content/drive')
-```
+
 
     Mounted at /content/drive
 
 
 
-```python
-source_paths = ['/root/.cache/kagglehub/datasets/antonkozyriev/game-recommendations-on-steam/versions/28/games.csv',
-               '/root/.cache/kagglehub/datasets/antonkozyriev/game-recommendations-on-steam/versions/28/games_metadata.json',
-               '/root/.cache/kagglehub/datasets/antonkozyriev/game-recommendations-on-steam/versions/28/recommendations.csv',
-               '/root/.cache/kagglehub/datasets/antonkozyriev/game-recommendations-on-steam/versions/28/users.csv']
-destination_path = '/content/drive/MyDrive/Recommendation/'
-for path in source_paths:
-    shutil.copy(path, destination_path)
-```
+
 
 Terdapat 4 file csv namun disini hanya digunakan 3 file yaitu `games.csv`, `games_metadata.json`, dan `recommendations.csv` ke dalam 2 DataFrame berbeda. Hal ini dilakukakan karena terdapat perbedaan struktur data.
 
 
-```python
-# Load JSON from a file
-games_metadata = pd.read_json('/content/drive/MyDrive/Recommendation/games_metadata.json', lines=True)
-
-# Display the DataFrame
-games_metadata.head()
-```
 
 
 
 
 
-  <div id="df-c1744788-8b24-43a6-b486-bf8d7fbe8da0" class="colab-df-container">
-    <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
+ 
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -206,229 +144,12 @@ games_metadata.head()
     </tr>
   </tbody>
 </table>
-</div>
-    <div class="colab-df-buttons">
-
-  <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-c1744788-8b24-43a6-b486-bf8d7fbe8da0')"
-            title="Convert this dataframe to an interactive table."
-            style="display:none;">
-
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
-    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
-  </svg>
-    </button>
-
-  <style>
-    .colab-df-container {
-      display:flex;
-      gap: 12px;
-    }
-
-    .colab-df-convert {
-      background-color: #E8F0FE;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      fill: #1967D2;
-      height: 32px;
-      padding: 0 0 0 0;
-      width: 32px;
-    }
-
-    .colab-df-convert:hover {
-      background-color: #E2EBFA;
-      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-      fill: #174EA6;
-    }
-
-    .colab-df-buttons div {
-      margin-bottom: 4px;
-    }
-
-    [theme=dark] .colab-df-convert {
-      background-color: #3B4455;
-      fill: #D2E3FC;
-    }
-
-    [theme=dark] .colab-df-convert:hover {
-      background-color: #434B5C;
-      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-      fill: #FFFFFF;
-    }
-  </style>
-
-    <script>
-      const buttonEl =
-        document.querySelector('#df-c1744788-8b24-43a6-b486-bf8d7fbe8da0 button.colab-df-convert');
-      buttonEl.style.display =
-        google.colab.kernel.accessAllowed ? 'block' : 'none';
-
-      async function convertToInteractive(key) {
-        const element = document.querySelector('#df-c1744788-8b24-43a6-b486-bf8d7fbe8da0');
-        const dataTable =
-          await google.colab.kernel.invokeFunction('convertToInteractive',
-                                                    [key], {});
-        if (!dataTable) return;
-
-        const docLinkHtml = 'Like what you see? Visit the ' +
-          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
-          + ' to learn more about interactive tables.';
-        element.innerHTML = '';
-        dataTable['output_type'] = 'display_data';
-        await google.colab.output.renderOutput(dataTable, element);
-        const docLink = document.createElement('div');
-        docLink.innerHTML = docLinkHtml;
-        element.appendChild(docLink);
-      }
-    </script>
-  </div>
-
-
-<div id="df-06e25bc8-9855-4aa9-9679-87bca98b1220">
-  <button class="colab-df-quickchart" onclick="quickchart('df-06e25bc8-9855-4aa9-9679-87bca98b1220')"
-            title="Suggest charts"
-            style="display:none;">
-
-<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-     width="24px">
-    <g>
-        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
-    </g>
-</svg>
-  </button>
-
-<style>
-  .colab-df-quickchart {
-      --bg-color: #E8F0FE;
-      --fill-color: #1967D2;
-      --hover-bg-color: #E2EBFA;
-      --hover-fill-color: #174EA6;
-      --disabled-fill-color: #AAA;
-      --disabled-bg-color: #DDD;
-  }
-
-  [theme=dark] .colab-df-quickchart {
-      --bg-color: #3B4455;
-      --fill-color: #D2E3FC;
-      --hover-bg-color: #434B5C;
-      --hover-fill-color: #FFFFFF;
-      --disabled-bg-color: #3B4455;
-      --disabled-fill-color: #666;
-  }
-
-  .colab-df-quickchart {
-    background-color: var(--bg-color);
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    display: none;
-    fill: var(--fill-color);
-    height: 32px;
-    padding: 0;
-    width: 32px;
-  }
-
-  .colab-df-quickchart:hover {
-    background-color: var(--hover-bg-color);
-    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
-    fill: var(--button-hover-fill-color);
-  }
-
-  .colab-df-quickchart-complete:disabled,
-  .colab-df-quickchart-complete:disabled:hover {
-    background-color: var(--disabled-bg-color);
-    fill: var(--disabled-fill-color);
-    box-shadow: none;
-  }
-
-  .colab-df-spinner {
-    border: 2px solid var(--fill-color);
-    border-color: transparent;
-    border-bottom-color: var(--fill-color);
-    animation:
-      spin 1s steps(1) infinite;
-  }
-
-  @keyframes spin {
-    0% {
-      border-color: transparent;
-      border-bottom-color: var(--fill-color);
-      border-left-color: var(--fill-color);
-    }
-    20% {
-      border-color: transparent;
-      border-left-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-    }
-    30% {
-      border-color: transparent;
-      border-left-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-      border-right-color: var(--fill-color);
-    }
-    40% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-    }
-    60% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-    }
-    80% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-      border-bottom-color: var(--fill-color);
-    }
-    90% {
-      border-color: transparent;
-      border-bottom-color: var(--fill-color);
-    }
-  }
-</style>
-
-  <script>
-    async function quickchart(key) {
-      const quickchartButtonEl =
-        document.querySelector('#' + key + ' button');
-      quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
-      quickchartButtonEl.classList.add('colab-df-spinner');
-      try {
-        const charts = await google.colab.kernel.invokeFunction(
-            'suggestCharts', [key], {});
-      } catch (error) {
-        console.error('Error during call to suggestCharts:', error);
-      }
-      quickchartButtonEl.classList.remove('colab-df-spinner');
-      quickchartButtonEl.classList.add('colab-df-quickchart-complete');
-    }
-    (() => {
-      let quickchartButtonEl =
-        document.querySelector('#df-06e25bc8-9855-4aa9-9679-87bca98b1220 button');
-      quickchartButtonEl.style.display =
-        google.colab.kernel.accessAllowed ? 'block' : 'none';
-    })();
-  </script>
-</div>
-
-    </div>
-  </div>
 
 
 
 
 
-```python
-# Load CSV data (replace 'file_path' with the actual CSV file path)
-games = pd.read_csv('/content/drive/MyDrive/Recommendation/games.csv')
 
-# Display the first few rows of the CSV data
-games.head()
-
-```
 
 
 
@@ -564,71 +285,9 @@ games.head()
   </svg>
     </button>
 
-  <style>
-    .colab-df-container {
-      display:flex;
-      gap: 12px;
-    }
+  
 
-    .colab-df-convert {
-      background-color: #E8F0FE;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      fill: #1967D2;
-      height: 32px;
-      padding: 0 0 0 0;
-      width: 32px;
-    }
-
-    .colab-df-convert:hover {
-      background-color: #E2EBFA;
-      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-      fill: #174EA6;
-    }
-
-    .colab-df-buttons div {
-      margin-bottom: 4px;
-    }
-
-    [theme=dark] .colab-df-convert {
-      background-color: #3B4455;
-      fill: #D2E3FC;
-    }
-
-    [theme=dark] .colab-df-convert:hover {
-      background-color: #434B5C;
-      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-      fill: #FFFFFF;
-    }
-  </style>
-
-    <script>
-      const buttonEl =
-        document.querySelector('#df-c152e370-81b1-4882-ac3f-3152cd4cd7f6 button.colab-df-convert');
-      buttonEl.style.display =
-        google.colab.kernel.accessAllowed ? 'block' : 'none';
-
-      async function convertToInteractive(key) {
-        const element = document.querySelector('#df-c152e370-81b1-4882-ac3f-3152cd4cd7f6');
-        const dataTable =
-          await google.colab.kernel.invokeFunction('convertToInteractive',
-                                                    [key], {});
-        if (!dataTable) return;
-
-        const docLinkHtml = 'Like what you see? Visit the ' +
-          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
-          + ' to learn more about interactive tables.';
-        element.innerHTML = '';
-        dataTable['output_type'] = 'display_data';
-        await google.colab.output.renderOutput(dataTable, element);
-        const docLink = document.createElement('div');
-        docLink.innerHTML = docLinkHtml;
-        element.appendChild(docLink);
-      }
-    </script>
+    
   </div>
 
 
@@ -645,118 +304,9 @@ games.head()
 </svg>
   </button>
 
-<style>
-  .colab-df-quickchart {
-      --bg-color: #E8F0FE;
-      --fill-color: #1967D2;
-      --hover-bg-color: #E2EBFA;
-      --hover-fill-color: #174EA6;
-      --disabled-fill-color: #AAA;
-      --disabled-bg-color: #DDD;
-  }
 
-  [theme=dark] .colab-df-quickchart {
-      --bg-color: #3B4455;
-      --fill-color: #D2E3FC;
-      --hover-bg-color: #434B5C;
-      --hover-fill-color: #FFFFFF;
-      --disabled-bg-color: #3B4455;
-      --disabled-fill-color: #666;
-  }
 
-  .colab-df-quickchart {
-    background-color: var(--bg-color);
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    display: none;
-    fill: var(--fill-color);
-    height: 32px;
-    padding: 0;
-    width: 32px;
-  }
-
-  .colab-df-quickchart:hover {
-    background-color: var(--hover-bg-color);
-    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
-    fill: var(--button-hover-fill-color);
-  }
-
-  .colab-df-quickchart-complete:disabled,
-  .colab-df-quickchart-complete:disabled:hover {
-    background-color: var(--disabled-bg-color);
-    fill: var(--disabled-fill-color);
-    box-shadow: none;
-  }
-
-  .colab-df-spinner {
-    border: 2px solid var(--fill-color);
-    border-color: transparent;
-    border-bottom-color: var(--fill-color);
-    animation:
-      spin 1s steps(1) infinite;
-  }
-
-  @keyframes spin {
-    0% {
-      border-color: transparent;
-      border-bottom-color: var(--fill-color);
-      border-left-color: var(--fill-color);
-    }
-    20% {
-      border-color: transparent;
-      border-left-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-    }
-    30% {
-      border-color: transparent;
-      border-left-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-      border-right-color: var(--fill-color);
-    }
-    40% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-    }
-    60% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-    }
-    80% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-      border-bottom-color: var(--fill-color);
-    }
-    90% {
-      border-color: transparent;
-      border-bottom-color: var(--fill-color);
-    }
-  }
-</style>
-
-  <script>
-    async function quickchart(key) {
-      const quickchartButtonEl =
-        document.querySelector('#' + key + ' button');
-      quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
-      quickchartButtonEl.classList.add('colab-df-spinner');
-      try {
-        const charts = await google.colab.kernel.invokeFunction(
-            'suggestCharts', [key], {});
-      } catch (error) {
-        console.error('Error during call to suggestCharts:', error);
-      }
-      quickchartButtonEl.classList.remove('colab-df-spinner');
-      quickchartButtonEl.classList.add('colab-df-quickchart-complete');
-    }
-    (() => {
-      let quickchartButtonEl =
-        document.querySelector('#df-09fc5824-cb06-4eed-aed2-b44c74f00b42 button');
-      quickchartButtonEl.style.display =
-        google.colab.kernel.accessAllowed ? 'block' : 'none';
-    })();
-  </script>
+  
 </div>
 
     </div>
@@ -768,14 +318,7 @@ games.head()
 File `games.csv` dan `games_metadata.json` digabung kedalam 1 dataframe yaitu `games_data`.
 
 
-```python
-# Merge the two DataFrames on 'app_id'
-games_data = pd.merge(games_metadata, games, on='app_id', how='inner')
 
-# Display the merged DataFrame
-games_data.head()
-
-```
 
 
 
@@ -923,71 +466,9 @@ games_data.head()
   </svg>
     </button>
 
-  <style>
-    .colab-df-container {
-      display:flex;
-      gap: 12px;
-    }
+  
 
-    .colab-df-convert {
-      background-color: #E8F0FE;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      fill: #1967D2;
-      height: 32px;
-      padding: 0 0 0 0;
-      width: 32px;
-    }
-
-    .colab-df-convert:hover {
-      background-color: #E2EBFA;
-      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-      fill: #174EA6;
-    }
-
-    .colab-df-buttons div {
-      margin-bottom: 4px;
-    }
-
-    [theme=dark] .colab-df-convert {
-      background-color: #3B4455;
-      fill: #D2E3FC;
-    }
-
-    [theme=dark] .colab-df-convert:hover {
-      background-color: #434B5C;
-      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-      fill: #FFFFFF;
-    }
-  </style>
-
-    <script>
-      const buttonEl =
-        document.querySelector('#df-d7110459-8e61-452e-b5f3-ccaa2f777067 button.colab-df-convert');
-      buttonEl.style.display =
-        google.colab.kernel.accessAllowed ? 'block' : 'none';
-
-      async function convertToInteractive(key) {
-        const element = document.querySelector('#df-d7110459-8e61-452e-b5f3-ccaa2f777067');
-        const dataTable =
-          await google.colab.kernel.invokeFunction('convertToInteractive',
-                                                    [key], {});
-        if (!dataTable) return;
-
-        const docLinkHtml = 'Like what you see? Visit the ' +
-          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
-          + ' to learn more about interactive tables.';
-        element.innerHTML = '';
-        dataTable['output_type'] = 'display_data';
-        await google.colab.output.renderOutput(dataTable, element);
-        const docLink = document.createElement('div');
-        docLink.innerHTML = docLinkHtml;
-        element.appendChild(docLink);
-      }
-    </script>
+    
   </div>
 
 
@@ -1004,118 +485,9 @@ games_data.head()
 </svg>
   </button>
 
-<style>
-  .colab-df-quickchart {
-      --bg-color: #E8F0FE;
-      --fill-color: #1967D2;
-      --hover-bg-color: #E2EBFA;
-      --hover-fill-color: #174EA6;
-      --disabled-fill-color: #AAA;
-      --disabled-bg-color: #DDD;
-  }
 
-  [theme=dark] .colab-df-quickchart {
-      --bg-color: #3B4455;
-      --fill-color: #D2E3FC;
-      --hover-bg-color: #434B5C;
-      --hover-fill-color: #FFFFFF;
-      --disabled-bg-color: #3B4455;
-      --disabled-fill-color: #666;
-  }
 
-  .colab-df-quickchart {
-    background-color: var(--bg-color);
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    display: none;
-    fill: var(--fill-color);
-    height: 32px;
-    padding: 0;
-    width: 32px;
-  }
-
-  .colab-df-quickchart:hover {
-    background-color: var(--hover-bg-color);
-    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
-    fill: var(--button-hover-fill-color);
-  }
-
-  .colab-df-quickchart-complete:disabled,
-  .colab-df-quickchart-complete:disabled:hover {
-    background-color: var(--disabled-bg-color);
-    fill: var(--disabled-fill-color);
-    box-shadow: none;
-  }
-
-  .colab-df-spinner {
-    border: 2px solid var(--fill-color);
-    border-color: transparent;
-    border-bottom-color: var(--fill-color);
-    animation:
-      spin 1s steps(1) infinite;
-  }
-
-  @keyframes spin {
-    0% {
-      border-color: transparent;
-      border-bottom-color: var(--fill-color);
-      border-left-color: var(--fill-color);
-    }
-    20% {
-      border-color: transparent;
-      border-left-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-    }
-    30% {
-      border-color: transparent;
-      border-left-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-      border-right-color: var(--fill-color);
-    }
-    40% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-    }
-    60% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-    }
-    80% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-      border-bottom-color: var(--fill-color);
-    }
-    90% {
-      border-color: transparent;
-      border-bottom-color: var(--fill-color);
-    }
-  }
-</style>
-
-  <script>
-    async function quickchart(key) {
-      const quickchartButtonEl =
-        document.querySelector('#' + key + ' button');
-      quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
-      quickchartButtonEl.classList.add('colab-df-spinner');
-      try {
-        const charts = await google.colab.kernel.invokeFunction(
-            'suggestCharts', [key], {});
-      } catch (error) {
-        console.error('Error during call to suggestCharts:', error);
-      }
-      quickchartButtonEl.classList.remove('colab-df-spinner');
-      quickchartButtonEl.classList.add('colab-df-quickchart-complete');
-    }
-    (() => {
-      let quickchartButtonEl =
-        document.querySelector('#df-4e3f3bfd-0c71-4ee8-bea4-1de9118fe1d0 button');
-      quickchartButtonEl.style.display =
-        google.colab.kernel.accessAllowed ? 'block' : 'none';
-    })();
-  </script>
+  
 </div>
 
     </div>
@@ -1127,14 +499,7 @@ games_data.head()
 Data `recommendations.csv` dibuat dataframe terpisah yaitu `recommendations` karena memiliki dimensi data yang berbeda.
 
 
-```python
-# Load CSV data (replace 'file_path' with the actual CSV file path)
-recommendations = pd.read_csv('/content/drive/MyDrive/Recommendation/recommendations.csv')
 
-# Display the first few rows of the CSV data
-recommendations.head()
-
-```
 
 
 
@@ -1240,71 +605,9 @@ recommendations.head()
   </svg>
     </button>
 
-  <style>
-    .colab-df-container {
-      display:flex;
-      gap: 12px;
-    }
+  
 
-    .colab-df-convert {
-      background-color: #E8F0FE;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      fill: #1967D2;
-      height: 32px;
-      padding: 0 0 0 0;
-      width: 32px;
-    }
-
-    .colab-df-convert:hover {
-      background-color: #E2EBFA;
-      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-      fill: #174EA6;
-    }
-
-    .colab-df-buttons div {
-      margin-bottom: 4px;
-    }
-
-    [theme=dark] .colab-df-convert {
-      background-color: #3B4455;
-      fill: #D2E3FC;
-    }
-
-    [theme=dark] .colab-df-convert:hover {
-      background-color: #434B5C;
-      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-      fill: #FFFFFF;
-    }
-  </style>
-
-    <script>
-      const buttonEl =
-        document.querySelector('#df-35686626-b327-4a23-86c2-2df7682eb6cd button.colab-df-convert');
-      buttonEl.style.display =
-        google.colab.kernel.accessAllowed ? 'block' : 'none';
-
-      async function convertToInteractive(key) {
-        const element = document.querySelector('#df-35686626-b327-4a23-86c2-2df7682eb6cd');
-        const dataTable =
-          await google.colab.kernel.invokeFunction('convertToInteractive',
-                                                    [key], {});
-        if (!dataTable) return;
-
-        const docLinkHtml = 'Like what you see? Visit the ' +
-          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
-          + ' to learn more about interactive tables.';
-        element.innerHTML = '';
-        dataTable['output_type'] = 'display_data';
-        await google.colab.output.renderOutput(dataTable, element);
-        const docLink = document.createElement('div');
-        docLink.innerHTML = docLinkHtml;
-        element.appendChild(docLink);
-      }
-    </script>
+    
   </div>
 
 
@@ -1321,118 +624,9 @@ recommendations.head()
 </svg>
   </button>
 
-<style>
-  .colab-df-quickchart {
-      --bg-color: #E8F0FE;
-      --fill-color: #1967D2;
-      --hover-bg-color: #E2EBFA;
-      --hover-fill-color: #174EA6;
-      --disabled-fill-color: #AAA;
-      --disabled-bg-color: #DDD;
-  }
 
-  [theme=dark] .colab-df-quickchart {
-      --bg-color: #3B4455;
-      --fill-color: #D2E3FC;
-      --hover-bg-color: #434B5C;
-      --hover-fill-color: #FFFFFF;
-      --disabled-bg-color: #3B4455;
-      --disabled-fill-color: #666;
-  }
 
-  .colab-df-quickchart {
-    background-color: var(--bg-color);
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    display: none;
-    fill: var(--fill-color);
-    height: 32px;
-    padding: 0;
-    width: 32px;
-  }
-
-  .colab-df-quickchart:hover {
-    background-color: var(--hover-bg-color);
-    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
-    fill: var(--button-hover-fill-color);
-  }
-
-  .colab-df-quickchart-complete:disabled,
-  .colab-df-quickchart-complete:disabled:hover {
-    background-color: var(--disabled-bg-color);
-    fill: var(--disabled-fill-color);
-    box-shadow: none;
-  }
-
-  .colab-df-spinner {
-    border: 2px solid var(--fill-color);
-    border-color: transparent;
-    border-bottom-color: var(--fill-color);
-    animation:
-      spin 1s steps(1) infinite;
-  }
-
-  @keyframes spin {
-    0% {
-      border-color: transparent;
-      border-bottom-color: var(--fill-color);
-      border-left-color: var(--fill-color);
-    }
-    20% {
-      border-color: transparent;
-      border-left-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-    }
-    30% {
-      border-color: transparent;
-      border-left-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-      border-right-color: var(--fill-color);
-    }
-    40% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-    }
-    60% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-    }
-    80% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-      border-bottom-color: var(--fill-color);
-    }
-    90% {
-      border-color: transparent;
-      border-bottom-color: var(--fill-color);
-    }
-  }
-</style>
-
-  <script>
-    async function quickchart(key) {
-      const quickchartButtonEl =
-        document.querySelector('#' + key + ' button');
-      quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
-      quickchartButtonEl.classList.add('colab-df-spinner');
-      try {
-        const charts = await google.colab.kernel.invokeFunction(
-            'suggestCharts', [key], {});
-      } catch (error) {
-        console.error('Error during call to suggestCharts:', error);
-      }
-      quickchartButtonEl.classList.remove('colab-df-spinner');
-      quickchartButtonEl.classList.add('colab-df-quickchart-complete');
-    }
-    (() => {
-      let quickchartButtonEl =
-        document.querySelector('#df-9a540bb1-40b0-4b7d-9dfa-a8f8c3056850 button');
-      quickchartButtonEl.style.display =
-        google.colab.kernel.accessAllowed ? 'block' : 'none';
-    })();
-  </script>
+  
 </div>
 
     </div>
@@ -1482,10 +676,7 @@ penjelasan variabel pada dataframe `recommendations`
 ### **Statistic Data**
 
 
-```python
-games_data.info()
-games_data.describe()
-```
+
 
     <class 'pandas.core.frame.DataFrame'>
     RangeIndex: 50872 entries, 0 to 50871
@@ -1630,71 +821,9 @@ games_data.describe()
   </svg>
     </button>
 
-  <style>
-    .colab-df-container {
-      display:flex;
-      gap: 12px;
-    }
+  
 
-    .colab-df-convert {
-      background-color: #E8F0FE;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      fill: #1967D2;
-      height: 32px;
-      padding: 0 0 0 0;
-      width: 32px;
-    }
-
-    .colab-df-convert:hover {
-      background-color: #E2EBFA;
-      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-      fill: #174EA6;
-    }
-
-    .colab-df-buttons div {
-      margin-bottom: 4px;
-    }
-
-    [theme=dark] .colab-df-convert {
-      background-color: #3B4455;
-      fill: #D2E3FC;
-    }
-
-    [theme=dark] .colab-df-convert:hover {
-      background-color: #434B5C;
-      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-      fill: #FFFFFF;
-    }
-  </style>
-
-    <script>
-      const buttonEl =
-        document.querySelector('#df-d2511b58-1f50-4439-9209-1116ef08024b button.colab-df-convert');
-      buttonEl.style.display =
-        google.colab.kernel.accessAllowed ? 'block' : 'none';
-
-      async function convertToInteractive(key) {
-        const element = document.querySelector('#df-d2511b58-1f50-4439-9209-1116ef08024b');
-        const dataTable =
-          await google.colab.kernel.invokeFunction('convertToInteractive',
-                                                    [key], {});
-        if (!dataTable) return;
-
-        const docLinkHtml = 'Like what you see? Visit the ' +
-          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
-          + ' to learn more about interactive tables.';
-        element.innerHTML = '';
-        dataTable['output_type'] = 'display_data';
-        await google.colab.output.renderOutput(dataTable, element);
-        const docLink = document.createElement('div');
-        docLink.innerHTML = docLinkHtml;
-        element.appendChild(docLink);
-      }
-    </script>
+    
   </div>
 
 
@@ -1711,118 +840,9 @@ games_data.describe()
 </svg>
   </button>
 
-<style>
-  .colab-df-quickchart {
-      --bg-color: #E8F0FE;
-      --fill-color: #1967D2;
-      --hover-bg-color: #E2EBFA;
-      --hover-fill-color: #174EA6;
-      --disabled-fill-color: #AAA;
-      --disabled-bg-color: #DDD;
-  }
 
-  [theme=dark] .colab-df-quickchart {
-      --bg-color: #3B4455;
-      --fill-color: #D2E3FC;
-      --hover-bg-color: #434B5C;
-      --hover-fill-color: #FFFFFF;
-      --disabled-bg-color: #3B4455;
-      --disabled-fill-color: #666;
-  }
 
-  .colab-df-quickchart {
-    background-color: var(--bg-color);
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    display: none;
-    fill: var(--fill-color);
-    height: 32px;
-    padding: 0;
-    width: 32px;
-  }
-
-  .colab-df-quickchart:hover {
-    background-color: var(--hover-bg-color);
-    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
-    fill: var(--button-hover-fill-color);
-  }
-
-  .colab-df-quickchart-complete:disabled,
-  .colab-df-quickchart-complete:disabled:hover {
-    background-color: var(--disabled-bg-color);
-    fill: var(--disabled-fill-color);
-    box-shadow: none;
-  }
-
-  .colab-df-spinner {
-    border: 2px solid var(--fill-color);
-    border-color: transparent;
-    border-bottom-color: var(--fill-color);
-    animation:
-      spin 1s steps(1) infinite;
-  }
-
-  @keyframes spin {
-    0% {
-      border-color: transparent;
-      border-bottom-color: var(--fill-color);
-      border-left-color: var(--fill-color);
-    }
-    20% {
-      border-color: transparent;
-      border-left-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-    }
-    30% {
-      border-color: transparent;
-      border-left-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-      border-right-color: var(--fill-color);
-    }
-    40% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-    }
-    60% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-    }
-    80% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-      border-bottom-color: var(--fill-color);
-    }
-    90% {
-      border-color: transparent;
-      border-bottom-color: var(--fill-color);
-    }
-  }
-</style>
-
-  <script>
-    async function quickchart(key) {
-      const quickchartButtonEl =
-        document.querySelector('#' + key + ' button');
-      quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
-      quickchartButtonEl.classList.add('colab-df-spinner');
-      try {
-        const charts = await google.colab.kernel.invokeFunction(
-            'suggestCharts', [key], {});
-      } catch (error) {
-        console.error('Error during call to suggestCharts:', error);
-      }
-      quickchartButtonEl.classList.remove('colab-df-spinner');
-      quickchartButtonEl.classList.add('colab-df-quickchart-complete');
-    }
-    (() => {
-      let quickchartButtonEl =
-        document.querySelector('#df-731804c7-ed64-489a-93b9-e83b5a34051d button');
-      quickchartButtonEl.style.display =
-        google.colab.kernel.accessAllowed ? 'block' : 'none';
-    })();
-  </script>
+  
 </div>
 
     </div>
@@ -1834,10 +854,7 @@ games_data.describe()
 Dataframe games_data memiliki 50872 entri rekod dan 15 kolom dengan 5 kolom numerik.
 
 
-```python
-recommendations.info()
-recommendations.describe()
-```
+
 
     <class 'pandas.core.frame.DataFrame'>
     RangeIndex: 41154794 entries, 0 to 41154793
@@ -1975,71 +992,9 @@ recommendations.describe()
   </svg>
     </button>
 
-  <style>
-    .colab-df-container {
-      display:flex;
-      gap: 12px;
-    }
+  
 
-    .colab-df-convert {
-      background-color: #E8F0FE;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      fill: #1967D2;
-      height: 32px;
-      padding: 0 0 0 0;
-      width: 32px;
-    }
-
-    .colab-df-convert:hover {
-      background-color: #E2EBFA;
-      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-      fill: #174EA6;
-    }
-
-    .colab-df-buttons div {
-      margin-bottom: 4px;
-    }
-
-    [theme=dark] .colab-df-convert {
-      background-color: #3B4455;
-      fill: #D2E3FC;
-    }
-
-    [theme=dark] .colab-df-convert:hover {
-      background-color: #434B5C;
-      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-      fill: #FFFFFF;
-    }
-  </style>
-
-    <script>
-      const buttonEl =
-        document.querySelector('#df-ef65c961-92a5-46b7-94e8-a0b0513aad27 button.colab-df-convert');
-      buttonEl.style.display =
-        google.colab.kernel.accessAllowed ? 'block' : 'none';
-
-      async function convertToInteractive(key) {
-        const element = document.querySelector('#df-ef65c961-92a5-46b7-94e8-a0b0513aad27');
-        const dataTable =
-          await google.colab.kernel.invokeFunction('convertToInteractive',
-                                                    [key], {});
-        if (!dataTable) return;
-
-        const docLinkHtml = 'Like what you see? Visit the ' +
-          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
-          + ' to learn more about interactive tables.';
-        element.innerHTML = '';
-        dataTable['output_type'] = 'display_data';
-        await google.colab.output.renderOutput(dataTable, element);
-        const docLink = document.createElement('div');
-        docLink.innerHTML = docLinkHtml;
-        element.appendChild(docLink);
-      }
-    </script>
+    
   </div>
 
 
@@ -2056,118 +1011,9 @@ recommendations.describe()
 </svg>
   </button>
 
-<style>
-  .colab-df-quickchart {
-      --bg-color: #E8F0FE;
-      --fill-color: #1967D2;
-      --hover-bg-color: #E2EBFA;
-      --hover-fill-color: #174EA6;
-      --disabled-fill-color: #AAA;
-      --disabled-bg-color: #DDD;
-  }
 
-  [theme=dark] .colab-df-quickchart {
-      --bg-color: #3B4455;
-      --fill-color: #D2E3FC;
-      --hover-bg-color: #434B5C;
-      --hover-fill-color: #FFFFFF;
-      --disabled-bg-color: #3B4455;
-      --disabled-fill-color: #666;
-  }
 
-  .colab-df-quickchart {
-    background-color: var(--bg-color);
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    display: none;
-    fill: var(--fill-color);
-    height: 32px;
-    padding: 0;
-    width: 32px;
-  }
-
-  .colab-df-quickchart:hover {
-    background-color: var(--hover-bg-color);
-    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
-    fill: var(--button-hover-fill-color);
-  }
-
-  .colab-df-quickchart-complete:disabled,
-  .colab-df-quickchart-complete:disabled:hover {
-    background-color: var(--disabled-bg-color);
-    fill: var(--disabled-fill-color);
-    box-shadow: none;
-  }
-
-  .colab-df-spinner {
-    border: 2px solid var(--fill-color);
-    border-color: transparent;
-    border-bottom-color: var(--fill-color);
-    animation:
-      spin 1s steps(1) infinite;
-  }
-
-  @keyframes spin {
-    0% {
-      border-color: transparent;
-      border-bottom-color: var(--fill-color);
-      border-left-color: var(--fill-color);
-    }
-    20% {
-      border-color: transparent;
-      border-left-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-    }
-    30% {
-      border-color: transparent;
-      border-left-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-      border-right-color: var(--fill-color);
-    }
-    40% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-    }
-    60% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-    }
-    80% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-      border-bottom-color: var(--fill-color);
-    }
-    90% {
-      border-color: transparent;
-      border-bottom-color: var(--fill-color);
-    }
-  }
-</style>
-
-  <script>
-    async function quickchart(key) {
-      const quickchartButtonEl =
-        document.querySelector('#' + key + ' button');
-      quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
-      quickchartButtonEl.classList.add('colab-df-spinner');
-      try {
-        const charts = await google.colab.kernel.invokeFunction(
-            'suggestCharts', [key], {});
-      } catch (error) {
-        console.error('Error during call to suggestCharts:', error);
-      }
-      quickchartButtonEl.classList.remove('colab-df-spinner');
-      quickchartButtonEl.classList.add('colab-df-quickchart-complete');
-    }
-    (() => {
-      let quickchartButtonEl =
-        document.querySelector('#df-8b0e1679-8d48-4d5e-aacf-99f93fd3ed38 button');
-      quickchartButtonEl.style.display =
-        google.colab.kernel.accessAllowed ? 'block' : 'none';
-    })();
-  </script>
+  
 </div>
 
     </div>
@@ -2183,11 +1029,7 @@ Dataframe recommendations memiliki 41154794  entri data dan 8 kolom dengan 3 kol
 ### **Missing Value & Duplicate**
 
 
-```python
-games_data.replace('', None, inplace=True)
-games_data = games_data.applymap(lambda x: None if isinstance(x, list) and len(x) == 0 else x)
-pd.DataFrame({'Nilai yang Kosong':games_data.isna().sum()})
-```
+
 
     <ipython-input-18-2e4b781efb55>:2: FutureWarning: DataFrame.applymap has been deprecated. Use DataFrame.map instead.
       games_data = games_data.applymap(lambda x: None if isinstance(x, list) and len(x) == 0 else x)
@@ -2295,71 +1137,9 @@ pd.DataFrame({'Nilai yang Kosong':games_data.isna().sum()})
   </svg>
     </button>
 
-  <style>
-    .colab-df-container {
-      display:flex;
-      gap: 12px;
-    }
+  
 
-    .colab-df-convert {
-      background-color: #E8F0FE;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      fill: #1967D2;
-      height: 32px;
-      padding: 0 0 0 0;
-      width: 32px;
-    }
-
-    .colab-df-convert:hover {
-      background-color: #E2EBFA;
-      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-      fill: #174EA6;
-    }
-
-    .colab-df-buttons div {
-      margin-bottom: 4px;
-    }
-
-    [theme=dark] .colab-df-convert {
-      background-color: #3B4455;
-      fill: #D2E3FC;
-    }
-
-    [theme=dark] .colab-df-convert:hover {
-      background-color: #434B5C;
-      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-      fill: #FFFFFF;
-    }
-  </style>
-
-    <script>
-      const buttonEl =
-        document.querySelector('#df-87600cc6-621b-40ea-9948-03fcc9561f86 button.colab-df-convert');
-      buttonEl.style.display =
-        google.colab.kernel.accessAllowed ? 'block' : 'none';
-
-      async function convertToInteractive(key) {
-        const element = document.querySelector('#df-87600cc6-621b-40ea-9948-03fcc9561f86');
-        const dataTable =
-          await google.colab.kernel.invokeFunction('convertToInteractive',
-                                                    [key], {});
-        if (!dataTable) return;
-
-        const docLinkHtml = 'Like what you see? Visit the ' +
-          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
-          + ' to learn more about interactive tables.';
-        element.innerHTML = '';
-        dataTable['output_type'] = 'display_data';
-        await google.colab.output.renderOutput(dataTable, element);
-        const docLink = document.createElement('div');
-        docLink.innerHTML = docLinkHtml;
-        element.appendChild(docLink);
-      }
-    </script>
+    
   </div>
 
 
@@ -2376,118 +1156,9 @@ pd.DataFrame({'Nilai yang Kosong':games_data.isna().sum()})
 </svg>
   </button>
 
-<style>
-  .colab-df-quickchart {
-      --bg-color: #E8F0FE;
-      --fill-color: #1967D2;
-      --hover-bg-color: #E2EBFA;
-      --hover-fill-color: #174EA6;
-      --disabled-fill-color: #AAA;
-      --disabled-bg-color: #DDD;
-  }
 
-  [theme=dark] .colab-df-quickchart {
-      --bg-color: #3B4455;
-      --fill-color: #D2E3FC;
-      --hover-bg-color: #434B5C;
-      --hover-fill-color: #FFFFFF;
-      --disabled-bg-color: #3B4455;
-      --disabled-fill-color: #666;
-  }
 
-  .colab-df-quickchart {
-    background-color: var(--bg-color);
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    display: none;
-    fill: var(--fill-color);
-    height: 32px;
-    padding: 0;
-    width: 32px;
-  }
-
-  .colab-df-quickchart:hover {
-    background-color: var(--hover-bg-color);
-    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
-    fill: var(--button-hover-fill-color);
-  }
-
-  .colab-df-quickchart-complete:disabled,
-  .colab-df-quickchart-complete:disabled:hover {
-    background-color: var(--disabled-bg-color);
-    fill: var(--disabled-fill-color);
-    box-shadow: none;
-  }
-
-  .colab-df-spinner {
-    border: 2px solid var(--fill-color);
-    border-color: transparent;
-    border-bottom-color: var(--fill-color);
-    animation:
-      spin 1s steps(1) infinite;
-  }
-
-  @keyframes spin {
-    0% {
-      border-color: transparent;
-      border-bottom-color: var(--fill-color);
-      border-left-color: var(--fill-color);
-    }
-    20% {
-      border-color: transparent;
-      border-left-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-    }
-    30% {
-      border-color: transparent;
-      border-left-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-      border-right-color: var(--fill-color);
-    }
-    40% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-    }
-    60% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-    }
-    80% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-      border-bottom-color: var(--fill-color);
-    }
-    90% {
-      border-color: transparent;
-      border-bottom-color: var(--fill-color);
-    }
-  }
-</style>
-
-  <script>
-    async function quickchart(key) {
-      const quickchartButtonEl =
-        document.querySelector('#' + key + ' button');
-      quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
-      quickchartButtonEl.classList.add('colab-df-spinner');
-      try {
-        const charts = await google.colab.kernel.invokeFunction(
-            'suggestCharts', [key], {});
-      } catch (error) {
-        console.error('Error during call to suggestCharts:', error);
-      }
-      quickchartButtonEl.classList.remove('colab-df-spinner');
-      quickchartButtonEl.classList.add('colab-df-quickchart-complete');
-    }
-    (() => {
-      let quickchartButtonEl =
-        document.querySelector('#df-b04df083-ced0-4802-aa36-484e91038793 button');
-      quickchartButtonEl.style.display =
-        google.colab.kernel.accessAllowed ? 'block' : 'none';
-    })();
-  </script>
+  
 </div>
 
     </div>
@@ -2497,33 +1168,14 @@ pd.DataFrame({'Nilai yang Kosong':games_data.isna().sum()})
 
 
 
-```python
-# Menghapus baris yang memiliki nilai null pada data
-games_data.drop(games_data[games_data.isna().any(axis = 1)].index, inplace = True)
 
-# Menampilkan jumlah baris dan kolom pada data setelah menghapus baris dengan nilai null
-total_row, total_column = games_data.shape
-print(f"Total of rows: {total_row}")
-print(f"Total of column: {total_column}")
-```
 
     Total of rows: 40484
     Total of column: 15
 
 
 
-```python
-# Count the occurrences of 0.0 in each column
-zero_counts = games_data.apply(lambda col: col.apply(lambda x: isinstance(x, float) and x == 0.0).sum())
 
-# Convert to a table format
-zero_count_table = zero_counts.reset_index()
-zero_count_table.columns = ["Column", "Count of 0.0"]
-
-pd.DataFrame({'Nilai yang bernilai 0':zero_counts})
-
-
-```
 
 
 
@@ -2627,71 +1279,9 @@ pd.DataFrame({'Nilai yang bernilai 0':zero_counts})
   </svg>
     </button>
 
-  <style>
-    .colab-df-container {
-      display:flex;
-      gap: 12px;
-    }
+  
 
-    .colab-df-convert {
-      background-color: #E8F0FE;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      fill: #1967D2;
-      height: 32px;
-      padding: 0 0 0 0;
-      width: 32px;
-    }
-
-    .colab-df-convert:hover {
-      background-color: #E2EBFA;
-      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-      fill: #174EA6;
-    }
-
-    .colab-df-buttons div {
-      margin-bottom: 4px;
-    }
-
-    [theme=dark] .colab-df-convert {
-      background-color: #3B4455;
-      fill: #D2E3FC;
-    }
-
-    [theme=dark] .colab-df-convert:hover {
-      background-color: #434B5C;
-      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-      fill: #FFFFFF;
-    }
-  </style>
-
-    <script>
-      const buttonEl =
-        document.querySelector('#df-7887c1a3-1fa6-4e0d-a5ad-8ef8f34b1046 button.colab-df-convert');
-      buttonEl.style.display =
-        google.colab.kernel.accessAllowed ? 'block' : 'none';
-
-      async function convertToInteractive(key) {
-        const element = document.querySelector('#df-7887c1a3-1fa6-4e0d-a5ad-8ef8f34b1046');
-        const dataTable =
-          await google.colab.kernel.invokeFunction('convertToInteractive',
-                                                    [key], {});
-        if (!dataTable) return;
-
-        const docLinkHtml = 'Like what you see? Visit the ' +
-          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
-          + ' to learn more about interactive tables.';
-        element.innerHTML = '';
-        dataTable['output_type'] = 'display_data';
-        await google.colab.output.renderOutput(dataTable, element);
-        const docLink = document.createElement('div');
-        docLink.innerHTML = docLinkHtml;
-        element.appendChild(docLink);
-      }
-    </script>
+    
   </div>
 
 
@@ -2708,118 +1298,9 @@ pd.DataFrame({'Nilai yang bernilai 0':zero_counts})
 </svg>
   </button>
 
-<style>
-  .colab-df-quickchart {
-      --bg-color: #E8F0FE;
-      --fill-color: #1967D2;
-      --hover-bg-color: #E2EBFA;
-      --hover-fill-color: #174EA6;
-      --disabled-fill-color: #AAA;
-      --disabled-bg-color: #DDD;
-  }
 
-  [theme=dark] .colab-df-quickchart {
-      --bg-color: #3B4455;
-      --fill-color: #D2E3FC;
-      --hover-bg-color: #434B5C;
-      --hover-fill-color: #FFFFFF;
-      --disabled-bg-color: #3B4455;
-      --disabled-fill-color: #666;
-  }
 
-  .colab-df-quickchart {
-    background-color: var(--bg-color);
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    display: none;
-    fill: var(--fill-color);
-    height: 32px;
-    padding: 0;
-    width: 32px;
-  }
-
-  .colab-df-quickchart:hover {
-    background-color: var(--hover-bg-color);
-    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
-    fill: var(--button-hover-fill-color);
-  }
-
-  .colab-df-quickchart-complete:disabled,
-  .colab-df-quickchart-complete:disabled:hover {
-    background-color: var(--disabled-bg-color);
-    fill: var(--disabled-fill-color);
-    box-shadow: none;
-  }
-
-  .colab-df-spinner {
-    border: 2px solid var(--fill-color);
-    border-color: transparent;
-    border-bottom-color: var(--fill-color);
-    animation:
-      spin 1s steps(1) infinite;
-  }
-
-  @keyframes spin {
-    0% {
-      border-color: transparent;
-      border-bottom-color: var(--fill-color);
-      border-left-color: var(--fill-color);
-    }
-    20% {
-      border-color: transparent;
-      border-left-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-    }
-    30% {
-      border-color: transparent;
-      border-left-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-      border-right-color: var(--fill-color);
-    }
-    40% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-    }
-    60% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-    }
-    80% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-      border-bottom-color: var(--fill-color);
-    }
-    90% {
-      border-color: transparent;
-      border-bottom-color: var(--fill-color);
-    }
-  }
-</style>
-
-  <script>
-    async function quickchart(key) {
-      const quickchartButtonEl =
-        document.querySelector('#' + key + ' button');
-      quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
-      quickchartButtonEl.classList.add('colab-df-spinner');
-      try {
-        const charts = await google.colab.kernel.invokeFunction(
-            'suggestCharts', [key], {});
-      } catch (error) {
-        console.error('Error during call to suggestCharts:', error);
-      }
-      quickchartButtonEl.classList.remove('colab-df-spinner');
-      quickchartButtonEl.classList.add('colab-df-quickchart-complete');
-    }
-    (() => {
-      let quickchartButtonEl =
-        document.querySelector('#df-5ce34186-c2ad-4edf-8609-80cee02d7752 button');
-      quickchartButtonEl.style.display =
-        google.colab.kernel.accessAllowed ? 'block' : 'none';
-    })();
-  </script>
+  
 </div>
 
     </div>
@@ -2829,25 +1310,14 @@ pd.DataFrame({'Nilai yang bernilai 0':zero_counts})
 
 
 
-```python
-games_data.drop(index=games_data[games_data['price_final'] == 0.0].index, inplace=True)
 
-total_row, total_column = games_data.shape
-print(f"Total of rows: {total_row}")
-print(f"Total of column: {total_column}")
-
-```
 
     Total of rows: 32685
     Total of column: 15
 
 
 
-```python
-recommendations.replace('', None, inplace=True)
-# recommendations = recommendations.applymap(lambda x: None if isinstance(x, list) and len(x) == 0 else x)
-pd.DataFrame({'Nilai yang Kosong':recommendations.isna().sum()})
-```
+
 
 
 
@@ -2923,71 +1393,9 @@ pd.DataFrame({'Nilai yang Kosong':recommendations.isna().sum()})
   </svg>
     </button>
 
-  <style>
-    .colab-df-container {
-      display:flex;
-      gap: 12px;
-    }
+  
 
-    .colab-df-convert {
-      background-color: #E8F0FE;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      fill: #1967D2;
-      height: 32px;
-      padding: 0 0 0 0;
-      width: 32px;
-    }
-
-    .colab-df-convert:hover {
-      background-color: #E2EBFA;
-      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-      fill: #174EA6;
-    }
-
-    .colab-df-buttons div {
-      margin-bottom: 4px;
-    }
-
-    [theme=dark] .colab-df-convert {
-      background-color: #3B4455;
-      fill: #D2E3FC;
-    }
-
-    [theme=dark] .colab-df-convert:hover {
-      background-color: #434B5C;
-      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-      fill: #FFFFFF;
-    }
-  </style>
-
-    <script>
-      const buttonEl =
-        document.querySelector('#df-369c64f3-9757-4d77-9d34-12474edeec6d button.colab-df-convert');
-      buttonEl.style.display =
-        google.colab.kernel.accessAllowed ? 'block' : 'none';
-
-      async function convertToInteractive(key) {
-        const element = document.querySelector('#df-369c64f3-9757-4d77-9d34-12474edeec6d');
-        const dataTable =
-          await google.colab.kernel.invokeFunction('convertToInteractive',
-                                                    [key], {});
-        if (!dataTable) return;
-
-        const docLinkHtml = 'Like what you see? Visit the ' +
-          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
-          + ' to learn more about interactive tables.';
-        element.innerHTML = '';
-        dataTable['output_type'] = 'display_data';
-        await google.colab.output.renderOutput(dataTable, element);
-        const docLink = document.createElement('div');
-        docLink.innerHTML = docLinkHtml;
-        element.appendChild(docLink);
-      }
-    </script>
+    
   </div>
 
 
@@ -3004,118 +1412,9 @@ pd.DataFrame({'Nilai yang Kosong':recommendations.isna().sum()})
 </svg>
   </button>
 
-<style>
-  .colab-df-quickchart {
-      --bg-color: #E8F0FE;
-      --fill-color: #1967D2;
-      --hover-bg-color: #E2EBFA;
-      --hover-fill-color: #174EA6;
-      --disabled-fill-color: #AAA;
-      --disabled-bg-color: #DDD;
-  }
 
-  [theme=dark] .colab-df-quickchart {
-      --bg-color: #3B4455;
-      --fill-color: #D2E3FC;
-      --hover-bg-color: #434B5C;
-      --hover-fill-color: #FFFFFF;
-      --disabled-bg-color: #3B4455;
-      --disabled-fill-color: #666;
-  }
 
-  .colab-df-quickchart {
-    background-color: var(--bg-color);
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    display: none;
-    fill: var(--fill-color);
-    height: 32px;
-    padding: 0;
-    width: 32px;
-  }
-
-  .colab-df-quickchart:hover {
-    background-color: var(--hover-bg-color);
-    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
-    fill: var(--button-hover-fill-color);
-  }
-
-  .colab-df-quickchart-complete:disabled,
-  .colab-df-quickchart-complete:disabled:hover {
-    background-color: var(--disabled-bg-color);
-    fill: var(--disabled-fill-color);
-    box-shadow: none;
-  }
-
-  .colab-df-spinner {
-    border: 2px solid var(--fill-color);
-    border-color: transparent;
-    border-bottom-color: var(--fill-color);
-    animation:
-      spin 1s steps(1) infinite;
-  }
-
-  @keyframes spin {
-    0% {
-      border-color: transparent;
-      border-bottom-color: var(--fill-color);
-      border-left-color: var(--fill-color);
-    }
-    20% {
-      border-color: transparent;
-      border-left-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-    }
-    30% {
-      border-color: transparent;
-      border-left-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-      border-right-color: var(--fill-color);
-    }
-    40% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-    }
-    60% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-    }
-    80% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-      border-bottom-color: var(--fill-color);
-    }
-    90% {
-      border-color: transparent;
-      border-bottom-color: var(--fill-color);
-    }
-  }
-</style>
-
-  <script>
-    async function quickchart(key) {
-      const quickchartButtonEl =
-        document.querySelector('#' + key + ' button');
-      quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
-      quickchartButtonEl.classList.add('colab-df-spinner');
-      try {
-        const charts = await google.colab.kernel.invokeFunction(
-            'suggestCharts', [key], {});
-      } catch (error) {
-        console.error('Error during call to suggestCharts:', error);
-      }
-      quickchartButtonEl.classList.remove('colab-df-spinner');
-      quickchartButtonEl.classList.add('colab-df-quickchart-complete');
-    }
-    (() => {
-      let quickchartButtonEl =
-        document.querySelector('#df-bfb259c4-1e0d-4093-b671-adaf6aecf77c button');
-      quickchartButtonEl.style.display =
-        google.colab.kernel.accessAllowed ? 'block' : 'none';
-    })();
-  </script>
+  
 </div>
 
     </div>
@@ -3125,26 +1424,13 @@ pd.DataFrame({'Nilai yang Kosong':recommendations.isna().sum()})
 
 
 
-```python
-# Get a list of columns excluding the one with lists
-columns_to_check = [col for col in games_data.columns if col != 'tags']
 
-# Check for duplicates only in the specified subset of columns
-duplicates = games_data.duplicated(subset=columns_to_check).sum()
-
-print(f"Number of duplicates (excluding 'tags' column): {duplicates}")
-```
 
     Number of duplicates (excluding 'tags' column): 0
 
 
 
-```python
-# Check for duplicates only in the specified subset of columns
-duplicates = recommendations.duplicated(subset='review_id').sum()
 
-print(f"Number of duplicates : {duplicates}")
-```
 
     Number of duplicates : 0
 
@@ -3154,17 +1440,7 @@ print(f"Number of duplicates : {duplicates}")
 melakukan filter game yang dianggap relevan di dataframe `recommendations` dengan menggunakan data dari dataframe `games_data` yang telah dihilangkan *missing value*-nya
 
 
-```python
-games_list = games_data['app_id'].unique()
-recommendations = recommendations[recommendations['app_id'].isin(games_list)]
 
-total_row, total_column = recommendations.shape
-print(f"Total of rows: {total_row}")
-print(f"Total of column: {total_column}")
-recommendations.head()
-recommendations.info()
-
-```
 
     Total of rows: 16337800
     Total of column: 8
@@ -3188,41 +1464,13 @@ recommendations.info()
 Karena ukuran data yang terlalu besar maka dilakukan sampling dengan kriteria seperti berikut: data tidak lebih lama dari tahun 2020, setiap interval dari total waktu dimainkan dari setiap game akan diambil 200 game relevan, setiap user relevan memiliki minimal 5 review game.
 
 
-```python
-start_date = '2020-01-01'
-filtered_data = recommendations[(recommendations['date'] >= start_date) ]
 
-print(f"Number of rows after date filtering: {filtered_data.shape[0]}")
-```
 
     Number of rows after date filtering: 9024102
 
 
 
-```python
-# Calculate review count per total game hours
-game_counts = filtered_data.groupby('app_id')['hours'].count().reset_index()
-game_counts.columns = ['app_id', 'hours_count']
 
-# Create bins for stratification
-num_bins = 10  # Example: 5 bins
-game_counts['hours_bin'] = pd.qcut(game_counts['hours_count'], q=num_bins, labels=False)
-
-# Sample exactly 100 games from each review_bin
-sampled_games_by_bin = game_counts.groupby('hours_bin').apply(lambda x: x.sample(n=200, random_state=42) if len(x) >= 100 else x)
-
-# Extract the unique app_ids from the sampled games
-sampled_app_ids = sampled_games_by_bin['app_id'].unique()
-
-# Filter filtered_data to include only reviews for sampled app_ids
-filtered_sampled_data = filtered_data[filtered_data['app_id'].isin(sampled_app_ids)]
-
-# Step 3: Print the number of rows in the resulting dataset
-print(f"Number of sampled games: {len(sampled_app_ids)}")
-print(f"Number of rows in the filtered dataset: {len(filtered_sampled_data)}")
-
-
-```
 
     <ipython-input-14-b2e898be2be6>:12: DeprecationWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
       sampled_games_by_bin = game_counts.groupby('hours_bin').apply(lambda x: x.sample(n=200, random_state=42) if len(x) >= 100 else x)
@@ -3233,23 +1481,7 @@ print(f"Number of rows in the filtered dataset: {len(filtered_sampled_data)}")
 
 
 
-```python
-# Filter out users with fewer than 5 games
-user_review_counts = filtered_sampled_data.groupby('user_id')['app_id'].count().reset_index()
-user_review_counts.columns = ['user_id', 'app_count']
 
-# Filter users who have 5 or more reviews
-users_with_min_reviews = user_review_counts[user_review_counts['app_count'] >= 5]['user_id']
-
-# Filter the main dataset to include only users with at least 5 reviews
-filtered_min_reviews = filtered_sampled_data[filtered_sampled_data['user_id'].isin(users_with_min_reviews)]
-
-print(f"Number of user with min reviews: {len(users_with_min_reviews)}")
-print(f"Number of rows in the filtered dataset: {len(filtered_min_reviews)}")
-
-recommendations= pd.DataFrame(filtered_min_reviews)
-
-```
 
     Number of user with min reviews: 4235
     Number of rows in the filtered dataset: 34586
@@ -3258,10 +1490,7 @@ recommendations= pd.DataFrame(filtered_min_reviews)
 Jumlah entri data `games_data` setelah dibersihkan adalah 32685 dan jumlah baris setelah reduksi dari data `recommendations` adalah 34586
 
 
-```python
-games_data = games_data.reset_index(drop=True)
-recommendations = recommendations.reset_index(drop=True)
-```
+
 
 ## **Exploratory Data Analysis**
 
@@ -3270,27 +1499,7 @@ recommendations = recommendations.reset_index(drop=True)
 #### **Price**
 
 
-```python
-# Plot histogram and boxplot for price_final
-plt.figure(figsize=(10, 5))
-plt.subplot(1, 2, 1)
-sns.histplot(games_data['price_final'], kde=True, bins=30, color='blue')
-plt.title('Price Distribution')
-plt.xlabel('Price (USD)')
 
-plt.subplot(1, 2, 2)
-sns.boxplot(x=games_data['price_final'], color='orange')
-plt.title('Price Boxplot')
-
-plt.tight_layout()
-plt.show()
-
-# Central tendencies
-print(f"Mean Price: {games_data['price_final'].mean()}")
-print(f"Median Price: {games_data['price_final'].median()}")
-print(f"Mode Price: {games_data['price_final'].mode()[0]}")
-
-```
 
 
     
@@ -3308,56 +1517,7 @@ Distribusi harga dari sebuah game ternyata sangat terjal ke kanan. Artinya sebag
 #### **Rating**
 
 
-```python
-# Simulating the data
-rating_order = ["Overwhelmingly Positive", "Very Positive", "Positive", "Mostly Positive", "Mixed",
-                "Mostly Negative", "Negative", "Very Negative", "Overwhelmingly Negative"]
 
-
-
-# Convert 'rating' to a Categorical type with the custom order
-rating_data = pd.Categorical(games_data['rating'], categories=rating_order, ordered=True)
-
-# Count the occurrences of each rating
-rating_counts = rating_data.value_counts()
-
-# Reorder the counts according to the custom order
-rating_counts = rating_counts[rating_order]
-
-# Plot horizontal bar chart using Matplotlib
-plt.figure(figsize=(8, 6))
-rating_counts.plot(kind='barh', color='skyblue')
-plt.title('Distribution of Ratings (Bar Chart)')
-plt.xlabel('Count')
-plt.ylabel('Rating')
-plt.xticks(rotation=45)
-plt.tight_layout()
-
-# Show the bar chart
-plt.show()
-
-# Create the pie chart using Plotly
-df_pie = pd.DataFrame({
-    'rating': rating_counts.index,
-    'count': rating_counts.values
-})
-
-# Plot the pie chart using Plotly
-fig_pie = px.pie(df_pie, values='count', names='rating', title='Distribution of Ratings (Pie Chart)')
-
-# Update pie chart to display both count and percentage beside each other, and remove the legend
-fig_pie.update_traces(
-    textposition='outside',
-    textinfo='percent+label',  # Show percentage and label
-    marker=dict(line=dict(color='black', width=1)),
-    showlegend=False  # Remove the legend
-)
-
-# Show the pie chart
-fig_pie.show()
-
-
-```
 
 
     
@@ -3404,20 +1564,7 @@ Sebagian besar `rating` berada ada kategori positive dengan berbagai derajatnya 
 #### **Positive Ratio**
 
 
-```python
-# Plot histogram and density plot for positive_ratio
-plt.figure(figsize=(8, 5))
-sns.histplot(games_data['positive_ratio'], kde=True, color='green', bins=30)
-plt.title('Positive Feedback Ratio Frequency')
-plt.xlabel('Positive Ratio')
-plt.ylabel('Frequency')
-plt.show()
 
-# Identify games with positive_ratio > 90%
-top_rated_games = games_data[games_data['positive_ratio'] > 90]
-print(f"Top-rated games (positive_ratio > 90%):\n{top_rated_games[['title', 'positive_ratio']]}")
-
-```
 
 
     
@@ -3447,39 +1594,7 @@ Distribusi `Rasio Ulasan Positif` adalah normal dengan miring ke kiri. Sebagian 
 #### **User Reviews**
 
 
-```python
-# Sort the 'user_reviews' column and select the top 100 games
-top_100_reviews = games_data.sort_values(by='user_reviews', ascending=False).head(100)
 
-# Create a ranking column (1-based index) for the top 100 games
-top_100_reviews['ranking'] = range(1, len(top_100_reviews) + 1)
-
-def format_ticks(x, pos):
-    if x >= 1_000_000:
-        return f'{x*1e-6:.1f}M'  # Format as millions
-    elif x >= 1_000:
-        return f'{x*1e-3:.1f}K'  # Format as thousands
-    else:
-        return f'{x:.0f}'  # Show the number as is
-
-
-
-# Plot the ranking vs user reviews as a continuous line plot
-plt.figure(figsize=(10, 6))
-plt.plot(top_100_reviews['ranking'], top_100_reviews['user_reviews'], color='purple', linestyle='-', markersize=5)
-plt.title('Number of User Reviews (Top 100 Games)')
-plt.xlabel('Games')
-plt.ylabel('Number of User Reviews')
-
-
-# Apply the formatter to the y-axis
-plt.gca().yaxis.set_major_formatter(FuncFormatter(format_ticks))
-
-plt.tight_layout()  # Adjust layout to fit everything
-plt.show()
-print(f"Top-rated games (positive_ratio > 90%):\n{top_100_reviews[['title', 'user_reviews']]}")
-
-```
 
 
     
@@ -3509,31 +1624,7 @@ Jumlah review seluruh game diurutkan dari yang terbesar dan ternyata distribusi 
 #### **Date Release**
 
 
-```python
-# Extract release year
-release_year = pd.to_datetime(games_data['date_release']).dt.year
 
-# Get the range of years
-years_range = range(release_year.min(), release_year.max() + 1)
-
-# Plot histogram for game releases by year
-plt.figure(figsize=(10, 5))
-sns.histplot(release_year, bins=len(years_range), kde=False, color='steelblue')
-
-# Adjust the x-axis to show every year
-plt.xticks(years_range, rotation=45)
-
-# Add titles and labels
-plt.title('Game Releases Over Time')
-plt.xlabel('Year')
-plt.ylabel('Count')
-plt.show()
-
-# Analyze production trend
-release_trend = release_year.value_counts().sort_index()
-print(release_trend)
-
-```
 
 
     
@@ -3577,27 +1668,7 @@ Setiap tahun jumlah game yang dirilis cenderung selalu meningkat kecuali di tahu
 #### **Top Games**
 
 
-```python
-game_hours = colab_based_data.groupby('app_id')['hours'].sum().reset_index()
 
-# Merge with game metadata to get titles
-game_hours = pd.merge(game_hours, games_data[['app_id', 'title']], on='app_id', how='left')
-
-# Sort by hours played in descending order
-game_hours = game_hours.sort_values(by='hours', ascending=False)
-
-# Select the top N games (e.g., top 20)
-top_games = game_hours.head(20)  # Adjust N as needed
-
-plt.figure(figsize=(12, 6))  # Adjust figure size as needed
-plt.barh(top_games['title'], top_games['hours'], color='skyblue')
-plt.xlabel('Total Hours Played')
-plt.ylabel('Game Title')
-plt.title('Top Games by Total Hours Played')
-plt.gca().invert_yaxis()  # Invert y-axis to show the most played game at the top
-plt.tight_layout()
-plt.show()
-```
 
     <ipython-input-70-0228dc84a540>:18: UserWarning: Glyph 39740 (\N{CJK UNIFIED IDEOGRAPH-9B3C}) missing from current font.
       plt.tight_layout()
@@ -3626,29 +1697,7 @@ plt.show()
 Game yang memiliki Total Waktu Dimainkan tertinggi adalah Persona 4 Golden.
 
 
-```python
-# Assuming your DataFrame is named 'recommendations'
-game_recommendations_count = colab_based_data.groupby('app_id')['is_recommended'].count().reset_index()
-game_recommendations_count.columns = ['app_id', 'recommendation_count']
 
-# Sort by recommendation count in descending order
-game_recommendations_count = game_recommendations_count.sort_values(by='recommendation_count', ascending=False)
-
-# Select the top N games (e.g., top 10)
-top_recommended_games = game_recommendations_count.head(20)  # Adjust N as needed
-
-# Merge with games_data to get titles
-top_recommended_games = pd.merge(top_recommended_games, games_data[['app_id', 'title']], on='app_id', how='left')
-
-plt.figure(figsize=(12, 6))  # Adjust figure size as needed
-plt.barh(top_recommended_games['title'], top_recommended_games['recommendation_count'], color='skyblue')
-plt.xlabel('Total Recommendations')
-plt.ylabel('Game Title')
-plt.title('Top Games by Recommendations Count')
-plt.gca().invert_yaxis()  # Invert y-axis to show the most played game at the top
-plt.tight_layout()
-plt.show()
-```
 
     <ipython-input-74-2b6400b088da>:22: UserWarning: Glyph 39740 (\N{CJK UNIFIED IDEOGRAPH-9B3C}) missing from current font.
       plt.tight_layout()
@@ -3677,21 +1726,7 @@ plt.show()
 Game yang paling banyak direkomendasikan adalah Far Cry 3.
 
 
-```python
-# Hitung jumlah ulasan untuk setiap game
-game_review_counts = games_data.groupby('title')['user_reviews'].sum().reset_index()
 
-# Urutkan game berdasarkan jumlah ulasan, dari yang terbanyak hingga terkecil
-top_games = game_review_counts.sort_values(by='user_reviews', ascending=False).head(20)  # Pilih top 20 game
-
-# Buat plot batang horizontal
-plt.figure(figsize=(12, 6))  # Atur ukuran gambar
-plt.barh(top_games['title'], top_games['user_reviews'], color='skyblue')
-plt.xlabel('Reviews Count')
-plt.ylabel('Game Title')
-plt.title('Top 20 Games By Reviews Count')
-plt.gca().invert_yaxis()  # Balikkan sumbu y agar game dengan ulasan terbanyak
-```
 
     /usr/local/lib/python3.10/dist-packages/IPython/core/events.py:89: UserWarning: Glyph 39740 (\N{CJK UNIFIED IDEOGRAPH-9B3C}) missing from current font.
       func(*args, **kwargs)
@@ -3724,30 +1759,7 @@ Game yang paling banyak di-review adalah Tale of Immortal.
 #### **Average Price vs Positive Feedback Ratio**
 
 
-```python
-# 1. Filter for Integer Positive Feedback Ratios:
-integer_feedback_data = games_data[games_data['positive_ratio'].astype(int) == games_data['positive_ratio']]
 
-# 2. Calculate Average Price per Integer Feedback Ratio:
-avg_price_per_int_feedback = integer_feedback_data.groupby('positive_ratio')['price_final'].mean()
-
-# 3. Create Line Plot with Tidy Ticks:
-fig, ax = plt.subplots(figsize=(10, 6))  # Create figure and axes object
-
-ax.plot(avg_price_per_int_feedback.index, avg_price_per_int_feedback.values, linestyle='-')
-ax.set_title('Average Price vs. Positive Feedback Ratio')
-ax.set_xlabel('Positive Feedback Ratio ')
-ax.set_ylabel('Average Price')
-
-# Set x-axis ticks with custom formatting
-ax.xaxis.set_major_locator(ticker.MultipleLocator(5))  # Set ticks every 5 units
-ax.xaxis.set_major_formatter(ticker.FormatStrFormatter('%d'))  # Format as integers
-
-
-plt.grid(alpha=0.3)
-plt.tight_layout()
-plt.show()
-```
 
 
     
@@ -3760,30 +1772,7 @@ plt.show()
 #### **Median Positive Feedback Ratio by Price Intervals**
 
 
-```python
-# Define price bins with $50 intervals
-bin_edges = range(0, int(games_data['price_final'].max()) + 50, 50)  # Adjust range as needed
-price_bins = pd.cut(games_data['price_final'], bins=bin_edges, right=False)  # Create intervals
 
-# Create readable labels for the bins
-price_labels = [f"${int(interval.left)}–${int(interval.right-1)}" for interval in price_bins.cat.categories]
-price_bins = price_bins.cat.rename_categories(price_labels)
-
-# Calculate the median positive feedback for each price range
-median_feedback = games_data.groupby(price_bins)['positive_ratio'].median()
-
-# Plot the median positive feedback for each $50 price range
-plt.figure(figsize=(12, 6))
-median_feedback.plot(kind='bar', color='skyblue', edgecolor='black', width=0.8)
-plt.title('Median Positive Feedback Ratio by Price Intervals', fontsize=16)
-plt.xlabel('Price Range ($)', fontsize=14)
-plt.ylabel('Median Positive Feedback Ratio', fontsize=14)
-plt.xticks(rotation=45, ha='right')
-plt.grid(alpha=0.3, linestyle='--')
-plt.tight_layout()
-plt.show()
-
-```
 
     <ipython-input-78-d3f871d19562>:13: FutureWarning: The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.
       median_feedback = games_data.groupby(price_bins)['positive_ratio'].median()
@@ -3800,37 +1789,7 @@ Sejauh ini tidak signifikan pengaruh `harga game` terhadap `Rasio Ulasan Positif
 #### **Average Positive Ratio by Tag**
 
 
-```python
-# One-hot encode tags
-tags_one_hot = games_data['tags'].apply(lambda tags: pd.Series(1, index=tags)).fillna(0)
 
-# Calculate the average positive_ratio for each tag without concatenating
-tag_scores = tags_one_hot.mul(games_data['positive_ratio'], axis=0).mean().sort_values(ascending=False)
-
-# Separate top 10 tags and aggregate the rest into "Other"
-top_10_tags = tag_scores.head(10)
-other_score = tag_scores.iloc[10:].mean()
-
-# Create a new Series for plotting
-aggregated_scores = pd.concat([top_10_tags, pd.Series({'Other': other_score})])
-
-# Bar chart for comparison
-plt.figure(figsize=(12, 6))
-aggregated_scores.plot(kind='bar', color='skyblue', edgecolor='black')
-plt.title('Average Positive Ratio by Tag')
-plt.xlabel('Tag')
-plt.ylabel('Average Positive Ratio')
-plt.xticks(rotation=45)
-plt.grid(axis='y', linestyle='--', alpha=0.7)
-plt.tight_layout()
-plt.show()
-
-# Print the top 10 tags and the aggregated score
-print("Top 10 Tags by Average Positive Ratio:")
-print(top_10_tags)
-print(f"\nOther tags aggregated average positive ratio: {other_score:.2f}")
-
-```
 
 
     
@@ -3859,50 +1818,7 @@ Tags yang memiliki Rasio Ulasan Positif paling tinggi adalah Indie. Game indie b
 #### **Average Price by Tag**
 
 
-```python
-# Assuming 'tags_one_hot' is a DataFrame with one-hot encoded tags and 'games_data' contains the relevant columns.
-tags_one_hot = games_data['tags'].apply(lambda tags: pd.Series(1, index=tags)).fillna(0)
-# Select only the 'tags_one_hot' and the 'price_final' column from games_data
-tags_columns = tags_one_hot.columns  # One-hot encoded tag columns
-price_column = 'price_final'
 
-# Create a new dictionary to store average prices by tag
-avg_price_by_tag = {}
-
-# For each tag column, calculate the mean price where the tag is present (i.e., column value is 1).
-for tag in tags_columns:
-    avg_price_by_tag[tag] = games_data[tags_one_hot[tag] == 1][price_column].mean()
-
-# Convert the dictionary to a pandas Series for easier plotting
-avg_price_by_tag = pd.Series(avg_price_by_tag).sort_values(ascending=False)
-
-# Select the top 10 and bottom 10 tags
-top_10_tags = avg_price_by_tag.head(10)
-bottom_10_tags = avg_price_by_tag.tail(10)
-
-# Average the rest as 'Other' (the tags between the top 10 and bottom 10)
-other_tags = avg_price_by_tag.iloc[10:-10].mean()
-final_avg_price_by_tag = pd.concat([ top_10_tags , pd.Series({'Other': other_tags}), bottom_10_tags ])
-
-# Plot the average price by tag as a bar chart.
-plt.figure(figsize=(12, 6))
-final_avg_price_by_tag.plot(kind='bar', color='skyblue', edgecolor='black')
-
-# Customize the plot
-plt.title('Average Price by Tag', fontsize=16)
-plt.xlabel('Tag', fontsize=12)
-plt.ylabel('Average Price (USD)', fontsize=12)
-plt.xticks(rotation=45, ha='right', fontsize=10)
-plt.tight_layout()
-
-# Show the plot
-plt.show()
-
-# Print the result of top 10, bottom 10, and 'Other'
-print("Top 10 and Bottom 10 Genres:")
-print(final_avg_price_by_tag)
-
-```
 
 
     
@@ -3940,32 +1856,7 @@ Tag game yang memiliki Harga rata-rata tertinggi adalah Musou. Game Musou banyak
 #### **Distribution of Total Hours Played per Rating Category**
 
 
-```python
-# Gabungkan DataFrame 'recommendations' dan 'games_data'
-merged_data = pd.merge(recommendations, games_data[['app_id', 'rating']], on='app_id', how='left')
 
-# Hitung total hours played untuk setiap game dan rating
-game_hours_by_rating = merged_data.groupby(['app_id', 'rating'])['hours'].sum().reset_index()
-game_hours_by_rating.columns = ['app_id', 'rating', 'total_hours_played']
-
-
-import seaborn as sns
-import matplotlib.pyplot as plt
-
-# Urutkan rating agar ditampilkan secara berurutan di plot
-rating_order = ["Overwhelmingly Positive", "Very Positive", "Positive", "Mostly Positive", "Mixed",
-                "Mostly Negative", "Negative", "Very Negative", "Overwhelmingly Negative"]
-
-
-# Buat strip plot menggunakan Seaborn
-plt.figure(figsize=(12, 6))
-sns.stripplot(x='total_hours_played', y='rating', data=game_hours_by_rating, order=rating_order, jitter=0.3, size=4, alpha=0.7) #jitter dan size bisa dimodifikasi sesuai kebutuhan
-plt.title('Distribution of Total Hours Played per Rating Category')
-plt.xlabel('Total Hours Played')
-plt.ylabel('Rating')
-plt.tight_layout()
-plt.show()
-```
 
 
     
@@ -3978,22 +1869,7 @@ Game yang memiliki ulasan rating yang positif dimainkan lebih banyak daripada ya
 #### **Percentage of Games per OS**
 
 
-```python
-# Count games per OS
-os_counts = games_data[['win', 'mac', 'linux']].sum()
 
-# Create labels and data for pie chart
-labels = ['Windows', 'Mac', 'Linux']
-sizes = [os_counts['win'], os_counts['mac'], os_counts['linux']]
-
-# Create pie chart
-plt.figure(figsize=(8, 8))
-plt.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=90, colors=['skyblue', 'lightgreen', 'lightcoral'])
-plt.title('Percentage of Games per OS')
-plt.axis('equal')  # Make the pie chart circular
-
-plt.show()
-```
 
 
     
@@ -4006,55 +1882,7 @@ Jumlah Game yang rilis di platform windows mendominasi dengan 69.1%.
 #### **Game Popularity per OS**
 
 
-```python
-# --- Data Preparation ---
-platform_hours = pd.merge(games_data[['app_id', 'win', 'mac', 'linux','user_reviews']], recommendations, on='app_id', how='inner')
 
-# Total Hours Played per OS
-windows_hours = platform_hours[platform_hours['win'] == True]['hours'].sum()
-mac_hours = platform_hours[platform_hours['mac'] == True]['hours'].sum()
-linux_hours = platform_hours[platform_hours['linux'] == True]['hours'].sum()
-os_hours_data = pd.DataFrame({'OS': ['Windows', 'Mac', 'Linux'], 'Total Hours Played': [windows_hours, mac_hours, linux_hours]})
-
-# Number of Recommendations per OS (Approximation - using game popularity as a proxy)
-# Assuming more popular games are recommended more
-windows_recommendations = platform_hours[platform_hours['win'] == True]['is_recommended'].count()
-mac_recommendations = platform_hours[platform_hours['mac'] == True]['is_recommended'].count()
-linux_recommendations = platform_hours[platform_hours['linux'] == True]['is_recommended'].count()
-os_recommendations_data = pd.DataFrame({'OS': ['Windows', 'Mac', 'Linux'], 'Number of Recommendations': [windows_recommendations, mac_recommendations, linux_recommendations]})
-
-# Number of Reviews per OS (Approximation - similar to recommendations)
-windows_reviews = platform_hours[platform_hours['win'] == True]['user_reviews'].sum()
-mac_reviews = platform_hours[platform_hours['mac'] == True]['user_reviews'].sum()
-linux_reviews = platform_hours[platform_hours['linux'] == True]['user_reviews'].sum()
-os_reviews_data = pd.DataFrame({'OS': ['Windows', 'Mac', 'Linux'], 'Number of Reviews': [windows_reviews, mac_reviews, linux_reviews]})
-
-
-# --- Plotting ---
-
-fig, axes = plt.subplots(1, 3, figsize=(20, 6))
-
-# Plot 1: Total Hours Played
-axes[0].bar(os_hours_data['OS'], os_hours_data['Total Hours Played'], color='skyblue')
-axes[0].set_xlabel('OS')
-axes[0].set_ylabel('Total Hours Played')
-axes[0].set_title('Total Hours Played per OS')
-
-# Plot 2: Number of Recommendations
-axes[1].bar(os_recommendations_data['OS'], os_recommendations_data['Number of Recommendations'], color='lightgreen')
-axes[1].set_xlabel('OS')
-axes[1].set_ylabel('Number of Recommendations')
-axes[1].set_title('Number of Recommendations per OS')
-
-# Plot 3: Number of Reviews
-axes[2].bar(os_reviews_data['OS'], os_reviews_data['Number of Reviews'], color='lightcoral')
-axes[2].set_xlabel('OS')
-axes[2].set_ylabel('Number of Reviews')
-axes[2].set_title('Number of Reviews per OS')
-
-plt.tight_layout()
-plt.show()
-```
 
 
     
@@ -4065,84 +1893,7 @@ plt.show()
 Terlihat ternyata game yang rilis di platform windows jauh lebih populer dari os lainnya. Namun ini bisa disebabkan juga karena lebih banyak game yang rilis di platform windows.
 
 
-```python
-# Merging DataFrames
-platform_hours = pd.merge(games_data[['app_id', 'win', 'mac', 'linux', 'user_reviews']],
-                          recommendations[['app_id', 'is_recommended', 'hours']],
-                          on='app_id', how='inner')
 
-# --- Total Hours Played per OS ---
-windows_hours = platform_hours[platform_hours['win'] == True]['hours'].sum()
-mac_hours = platform_hours[platform_hours['mac'] == True]['hours'].sum()
-linux_hours = platform_hours[platform_hours['linux'] == True]['hours'].sum()
-
-# --- Number of Games per OS ---
-windows_games = platform_hours[platform_hours['win'] == True]['app_id'].nunique()
-mac_games = platform_hours[platform_hours['mac'] == True]['app_id'].nunique()
-linux_games = platform_hours[platform_hours['linux'] == True]['app_id'].nunique()
-
-# --- Number of Recommendations per OS ---
-windows_recommendations = platform_hours[platform_hours['win'] == True]['is_recommended'].count()
-mac_recommendations = platform_hours[platform_hours['mac'] == True]['is_recommended'].count()
-linux_recommendations = platform_hours[platform_hours['linux'] == True]['is_recommended'].count()
-
-# --- Number of Reviews per OS ---
-windows_reviews = platform_hours[platform_hours['win'] == True]['user_reviews'].sum()
-mac_reviews = platform_hours[platform_hours['mac'] == True]['user_reviews'].sum()
-linux_reviews = platform_hours[platform_hours['linux'] == True]['user_reviews'].sum()
-
-# --- Normalization ---
-# Divide metrics by the number of games per OS
-windows_hours_per_game = windows_hours / windows_games
-mac_hours_per_game = mac_hours / mac_games
-linux_hours_per_game = linux_hours / linux_games
-
-
-windows_recommendations_per_game = windows_recommendations / windows_games
-mac_recommendations_per_game = mac_recommendations / mac_games
-linux_recommendations_per_game = linux_recommendations / linux_games
-
-
-windows_reviews_per_game = windows_reviews / windows_games
-mac_reviews_per_game = mac_reviews / mac_games
-linux_reviews_per_game = linux_reviews / linux_games
-
-
-# --- Create DataFrame for plotting ---
-os_data = pd.DataFrame({
-    'OS': ['Windows', 'Mac', 'Linux'],
-    'Avg. Hours Played': [windows_hours_per_game, mac_hours_per_game, linux_hours_per_game],
-    'Avg. Recommendations': [windows_recommendations_per_game, mac_recommendations_per_game, linux_recommendations_per_game],
-    'Avg. Reviews': [windows_reviews_per_game, mac_reviews_per_game, linux_reviews_per_game]
-})
-
-# --- Plotting ---
-# --- Plotting ---
-
-fig, axes = plt.subplots(1, 3, figsize=(20, 6))
-
-# Plot 1: Total Hours Played
-axes[0].bar(os_data['OS'], os_data['Avg. Hours Played'], color='skyblue')
-axes[0].set_xlabel('OS')
-axes[0].set_ylabel('Total Hours Played')
-axes[0].set_title('Total Hours Played per Game per OS')
-
-# Plot 2: Number of Recommendations
-axes[1].bar(os_data['OS'], os_data['Avg. Recommendations'], color='lightgreen')
-axes[1].set_xlabel('OS')
-axes[1].set_ylabel('Number of Recommendations')
-axes[1].set_title('Number of Recommendations per Game per OS')
-
-# Plot 3: Number of Reviews
-axes[2].bar(os_data['OS'], os_data['Avg. Reviews'], color='lightcoral')
-axes[2].set_xlabel('OS')
-axes[2].set_ylabel('Number of Reviews')
-axes[2].set_title('Number of Reviews per Game per OS')
-
-plt.tight_layout()
-plt.show()
-
-```
 
 
     
@@ -4159,60 +1910,20 @@ Jika memperhitungkan jumlah game yang dirilis di setiap platform, malah linux ya
 
 
 
-```python
-# Create a copy of games_data to ensure the original DataFrame remains unchanged
-content_based_data = games_data.copy()
 
-# Drop unnecessary columns
-content_based_data = content_based_data[['app_id', 'description', 'tags', 'title', 'rating', 'positive_ratio', 'user_reviews', 'price_final']]
-```
 
 Kolom tag yang berisi list tag apa saja yang ada di sebuah game, dipecah menjadi kumpulan string yang bisa diterima sebagai corpus oleh TfidfVectorizer.
 
 
-```python
-# Replace spaces within multi-word tags with underscores
-content_based_data['tags'] = content_based_data['tags'].apply(
-    lambda x: [tag.strip().replace(' ', '_') for tag in x]
-)
 
-# Join tags into a single string for each game
-content_based_data['tags'] = content_based_data['tags'].apply(lambda x: ' '.join(x))
-```
 
 rating di-encode agar dapat dimengerti oleh cosine similarity
 
 
-```python
-# Convert the rating column (text to numeric)
-rating_mapping = {
-    'Overwhelmingly Positive': 5,
-    'Very Positive': 4,
-    'Positive': 3,
-    'Mildly Positive': 2,
-    'Mixed': 1,
-    'Mildly Negative': -1,
-    'Negative': -2,
-    'Very Negative': -3,
-    'Overwhelmingly Negative': -4
-}
-
-content_based_data['rating'] = content_based_data['rating'].map(rating_mapping)
-```
 
 
-```python
-# Handle non-numeric values in numeric columns by coercing them into NaN
-content_based_data[['positive_ratio', 'user_reviews', 'price_final']] = \
-    content_based_data[['positive_ratio', 'user_reviews', 'price_final']].apply(pd.to_numeric, errors='coerce')
-
-# Drop rows with NaN values in critical columns after conversion
-content_based_data = content_based_data.dropna(subset=['rating', 'positive_ratio', 'user_reviews', 'price_final'])
 
 
-content_based_data = content_based_data.reset_index(drop=True)
-
-```
 
 #### **Hyper-Parameter Tuning**
 
@@ -4221,40 +1932,7 @@ content_based_data = content_based_data.reset_index(drop=True)
 Digunakan GridSearch untuk mngoptimalkan proses vektorisasi TF-IDF dari deskripsi game yang memiliki deretan string yang panjang. Yaitu dengan optimasi parameter sebagai berikut: max_features yaitu berapa variasi kata yang akan digunakan model, ngram yaitu jenis urutan kata yang digunakan apakah unigrams (1 kata) atau bigrams (2 kata), max_df adalah jumlah maksimal persentase sebuah kata muncul yaitu jika sebuah kata muncul terlalu banyak maka maknanya hilang, min_df yaitu sebaliknya jika sebuah kata hanya muncul dalam sedikit dokumen maka tidak relevan maka nilai ini adalah jumlah dokumen minimal sebuah kata muncul. Parameter pengujian digunakan KNN karena algoritma tersebut adalah clustering yang sesuai dengan tujuan vektorisasi TF-IDF.
 
 
-```python
-# Corpus of text data (no labels)
-corpus = content_based_data['description'].values
 
-# Set up a pipeline with TfidfVectorizer and KMeans
-pipeline = Pipeline([
-    ('tfidf', TfidfVectorizer(stop_words='english')),
-    ('kmeans', KMeans())
-])
-
-# Define the parameter grid for GridSearchCV
-param_grid = {
-    # TfidfVectorizer parameters
-    'tfidf__max_features': [100, 500, 1000, 5000],
-    'tfidf__ngram_range': [(1, 1), (1, 2)],  # Unigrams, Bigrams
-    'tfidf__max_df': [0.75, 0.85, 1.0],  # Words appearing in up to 75%, 85%, or 100% of documents
-    'tfidf__min_df': [1, 2, 5],  # Words appearing in at least 1, 2, or 5 documents
-
-    # KMeans clustering parameters
-    'kmeans__n_clusters': [2, 3, 4],  # Number of clusters for KMeans
-    'kmeans__init': ['k-means++', 'random'],  # Initialization method for KMeans
-    'kmeans__max_iter': [100, 300]  # Maximum number of iterations for KMeans
-}
-
-# Set up GridSearchCV
-grid_search = GridSearchCV(pipeline, param_grid, cv=3, n_jobs=-1, verbose=1)
-
-# Fit the grid search to the data (no labels)
-grid_search.fit(corpus)
-
-# Output the best parameters and score (in this case, no labels, so we just show the best combination)
-print("Best parameters found: ", grid_search.best_params_)
-
-```
 
     Fitting 3 folds for each of 864 candidates, totalling 2592 fits
 
@@ -4271,46 +1949,21 @@ print("Best parameters found: ", grid_search.best_params_)
 Digunakan TF-IDF dengan nilai dari 0 hingga 1 untuk data berupa teks yaitu deskripsi dan tags. Khusus untuk data deskripsi digunakan parameter hasil parameter tuning sedangkan untuk data tags tidak menggunakan parameter tuning karena data tags masing-masing berdiri sendiri tanpa konteks yang berkaitan. Data numerikal di-vektorisasi menggunakan min-max scaler yang menghasilkan nilai dari 0 hingga 1.
 
 
-```python
-#description tfidf
-tfidf_desc = TfidfVectorizer(stop_words='english', max_df= 1.0, max_features= 100, min_df= 5, ngram_range=(1, 2))
-description_tfidf = tfidf_desc.fit_transform(content_based_data['description'])
 
-#tags tfdf
-tfidf_tags = TfidfVectorizer()
-tags_tfidf = tfidf_tags.fit_transform(content_based_data['tags'])
-
-# Extract numerical features and create a sparse matrix
-num_features = ['rating', 'positive_ratio', 'user_reviews', 'price_final']
-numerical_features_array = content_based_data[num_features].values
-
-# Scale the sparse matrix
-scaler = MinMaxScaler()
-scaled_num_features = scaler.fit_transform(numerical_features_array)
-sparse_num_features = csr_matrix(numerical_features_array)
-```
 
 #### **Feature Engineering**
 
 Tiga vektor yang telah dibuat digabungkan seluruh kolomnya menghasilkan data vektor gabungan tf-idf dan numerikal yaitu Combined Features. Hal ini dilakukan untuk melihat keterkaitan yang lebih kompleks dari data yang ada.
 
 
-```python
-combined_feature= hstack([description_tfidf, tags_tfidf,sparse_num_features])
-```
+
 
 #### **Data Vector**
 
 **Vector TF-IDF Descriptions**
 
 
-```python
-pd.DataFrame(
-    description_tfidf.todense(),
-    columns = tfidf_desc.get_feature_names_out(),
-    index = content_based_data.title
-)
-```
+
 
 
 
@@ -4663,71 +2316,9 @@ pd.DataFrame(
   </svg>
     </button>
 
-  <style>
-    .colab-df-container {
-      display:flex;
-      gap: 12px;
-    }
+  
 
-    .colab-df-convert {
-      background-color: #E8F0FE;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      fill: #1967D2;
-      height: 32px;
-      padding: 0 0 0 0;
-      width: 32px;
-    }
-
-    .colab-df-convert:hover {
-      background-color: #E2EBFA;
-      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-      fill: #174EA6;
-    }
-
-    .colab-df-buttons div {
-      margin-bottom: 4px;
-    }
-
-    [theme=dark] .colab-df-convert {
-      background-color: #3B4455;
-      fill: #D2E3FC;
-    }
-
-    [theme=dark] .colab-df-convert:hover {
-      background-color: #434B5C;
-      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-      fill: #FFFFFF;
-    }
-  </style>
-
-    <script>
-      const buttonEl =
-        document.querySelector('#df-76509d52-fdec-4e03-aec4-4f48ee0bbbe7 button.colab-df-convert');
-      buttonEl.style.display =
-        google.colab.kernel.accessAllowed ? 'block' : 'none';
-
-      async function convertToInteractive(key) {
-        const element = document.querySelector('#df-76509d52-fdec-4e03-aec4-4f48ee0bbbe7');
-        const dataTable =
-          await google.colab.kernel.invokeFunction('convertToInteractive',
-                                                    [key], {});
-        if (!dataTable) return;
-
-        const docLinkHtml = 'Like what you see? Visit the ' +
-          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
-          + ' to learn more about interactive tables.';
-        element.innerHTML = '';
-        dataTable['output_type'] = 'display_data';
-        await google.colab.output.renderOutput(dataTable, element);
-        const docLink = document.createElement('div');
-        docLink.innerHTML = docLinkHtml;
-        element.appendChild(docLink);
-      }
-    </script>
+    
   </div>
 
 
@@ -4744,118 +2335,9 @@ pd.DataFrame(
 </svg>
   </button>
 
-<style>
-  .colab-df-quickchart {
-      --bg-color: #E8F0FE;
-      --fill-color: #1967D2;
-      --hover-bg-color: #E2EBFA;
-      --hover-fill-color: #174EA6;
-      --disabled-fill-color: #AAA;
-      --disabled-bg-color: #DDD;
-  }
 
-  [theme=dark] .colab-df-quickchart {
-      --bg-color: #3B4455;
-      --fill-color: #D2E3FC;
-      --hover-bg-color: #434B5C;
-      --hover-fill-color: #FFFFFF;
-      --disabled-bg-color: #3B4455;
-      --disabled-fill-color: #666;
-  }
 
-  .colab-df-quickchart {
-    background-color: var(--bg-color);
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    display: none;
-    fill: var(--fill-color);
-    height: 32px;
-    padding: 0;
-    width: 32px;
-  }
-
-  .colab-df-quickchart:hover {
-    background-color: var(--hover-bg-color);
-    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
-    fill: var(--button-hover-fill-color);
-  }
-
-  .colab-df-quickchart-complete:disabled,
-  .colab-df-quickchart-complete:disabled:hover {
-    background-color: var(--disabled-bg-color);
-    fill: var(--disabled-fill-color);
-    box-shadow: none;
-  }
-
-  .colab-df-spinner {
-    border: 2px solid var(--fill-color);
-    border-color: transparent;
-    border-bottom-color: var(--fill-color);
-    animation:
-      spin 1s steps(1) infinite;
-  }
-
-  @keyframes spin {
-    0% {
-      border-color: transparent;
-      border-bottom-color: var(--fill-color);
-      border-left-color: var(--fill-color);
-    }
-    20% {
-      border-color: transparent;
-      border-left-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-    }
-    30% {
-      border-color: transparent;
-      border-left-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-      border-right-color: var(--fill-color);
-    }
-    40% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-    }
-    60% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-    }
-    80% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-      border-bottom-color: var(--fill-color);
-    }
-    90% {
-      border-color: transparent;
-      border-bottom-color: var(--fill-color);
-    }
-  }
-</style>
-
-  <script>
-    async function quickchart(key) {
-      const quickchartButtonEl =
-        document.querySelector('#' + key + ' button');
-      quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
-      quickchartButtonEl.classList.add('colab-df-spinner');
-      try {
-        const charts = await google.colab.kernel.invokeFunction(
-            'suggestCharts', [key], {});
-      } catch (error) {
-        console.error('Error during call to suggestCharts:', error);
-      }
-      quickchartButtonEl.classList.remove('colab-df-spinner');
-      quickchartButtonEl.classList.add('colab-df-quickchart-complete');
-    }
-    (() => {
-      let quickchartButtonEl =
-        document.querySelector('#df-dc7c86df-7f74-40da-9427-b67e0e80a67e button');
-      quickchartButtonEl.style.display =
-        google.colab.kernel.accessAllowed ? 'block' : 'none';
-    })();
-  </script>
+  
 </div>
 
     </div>
@@ -4867,13 +2349,7 @@ pd.DataFrame(
 **Vector TF-IDF Tags**
 
 
-```python
-pd.DataFrame(
-    tags_tfidf.todense(),
-    columns = tfidf_tags.get_feature_names_out(),
-    index = content_based_data.title
-)
-```
+
 
 
 
@@ -5226,71 +2702,9 @@ pd.DataFrame(
   </svg>
     </button>
 
-  <style>
-    .colab-df-container {
-      display:flex;
-      gap: 12px;
-    }
+  
 
-    .colab-df-convert {
-      background-color: #E8F0FE;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      fill: #1967D2;
-      height: 32px;
-      padding: 0 0 0 0;
-      width: 32px;
-    }
-
-    .colab-df-convert:hover {
-      background-color: #E2EBFA;
-      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-      fill: #174EA6;
-    }
-
-    .colab-df-buttons div {
-      margin-bottom: 4px;
-    }
-
-    [theme=dark] .colab-df-convert {
-      background-color: #3B4455;
-      fill: #D2E3FC;
-    }
-
-    [theme=dark] .colab-df-convert:hover {
-      background-color: #434B5C;
-      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-      fill: #FFFFFF;
-    }
-  </style>
-
-    <script>
-      const buttonEl =
-        document.querySelector('#df-5d420ee3-c4b8-469d-a871-dde09d16da44 button.colab-df-convert');
-      buttonEl.style.display =
-        google.colab.kernel.accessAllowed ? 'block' : 'none';
-
-      async function convertToInteractive(key) {
-        const element = document.querySelector('#df-5d420ee3-c4b8-469d-a871-dde09d16da44');
-        const dataTable =
-          await google.colab.kernel.invokeFunction('convertToInteractive',
-                                                    [key], {});
-        if (!dataTable) return;
-
-        const docLinkHtml = 'Like what you see? Visit the ' +
-          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
-          + ' to learn more about interactive tables.';
-        element.innerHTML = '';
-        dataTable['output_type'] = 'display_data';
-        await google.colab.output.renderOutput(dataTable, element);
-        const docLink = document.createElement('div');
-        docLink.innerHTML = docLinkHtml;
-        element.appendChild(docLink);
-      }
-    </script>
+    
   </div>
 
 
@@ -5307,118 +2721,9 @@ pd.DataFrame(
 </svg>
   </button>
 
-<style>
-  .colab-df-quickchart {
-      --bg-color: #E8F0FE;
-      --fill-color: #1967D2;
-      --hover-bg-color: #E2EBFA;
-      --hover-fill-color: #174EA6;
-      --disabled-fill-color: #AAA;
-      --disabled-bg-color: #DDD;
-  }
 
-  [theme=dark] .colab-df-quickchart {
-      --bg-color: #3B4455;
-      --fill-color: #D2E3FC;
-      --hover-bg-color: #434B5C;
-      --hover-fill-color: #FFFFFF;
-      --disabled-bg-color: #3B4455;
-      --disabled-fill-color: #666;
-  }
 
-  .colab-df-quickchart {
-    background-color: var(--bg-color);
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    display: none;
-    fill: var(--fill-color);
-    height: 32px;
-    padding: 0;
-    width: 32px;
-  }
-
-  .colab-df-quickchart:hover {
-    background-color: var(--hover-bg-color);
-    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
-    fill: var(--button-hover-fill-color);
-  }
-
-  .colab-df-quickchart-complete:disabled,
-  .colab-df-quickchart-complete:disabled:hover {
-    background-color: var(--disabled-bg-color);
-    fill: var(--disabled-fill-color);
-    box-shadow: none;
-  }
-
-  .colab-df-spinner {
-    border: 2px solid var(--fill-color);
-    border-color: transparent;
-    border-bottom-color: var(--fill-color);
-    animation:
-      spin 1s steps(1) infinite;
-  }
-
-  @keyframes spin {
-    0% {
-      border-color: transparent;
-      border-bottom-color: var(--fill-color);
-      border-left-color: var(--fill-color);
-    }
-    20% {
-      border-color: transparent;
-      border-left-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-    }
-    30% {
-      border-color: transparent;
-      border-left-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-      border-right-color: var(--fill-color);
-    }
-    40% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-    }
-    60% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-    }
-    80% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-      border-bottom-color: var(--fill-color);
-    }
-    90% {
-      border-color: transparent;
-      border-bottom-color: var(--fill-color);
-    }
-  }
-</style>
-
-  <script>
-    async function quickchart(key) {
-      const quickchartButtonEl =
-        document.querySelector('#' + key + ' button');
-      quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
-      quickchartButtonEl.classList.add('colab-df-spinner');
-      try {
-        const charts = await google.colab.kernel.invokeFunction(
-            'suggestCharts', [key], {});
-      } catch (error) {
-        console.error('Error during call to suggestCharts:', error);
-      }
-      quickchartButtonEl.classList.remove('colab-df-spinner');
-      quickchartButtonEl.classList.add('colab-df-quickchart-complete');
-    }
-    (() => {
-      let quickchartButtonEl =
-        document.querySelector('#df-98694764-70d6-4067-b50d-edc327b8b3c2 button');
-      quickchartButtonEl.style.display =
-        google.colab.kernel.accessAllowed ? 'block' : 'none';
-    })();
-  </script>
+  
 </div>
 
     </div>
@@ -5430,13 +2735,7 @@ pd.DataFrame(
 **Vector Numerical Features**
 
 
-```python
-pd.DataFrame(
-    sparse_num_features.todense(),
-    columns = num_features,
-    index = content_based_data.title
-)
-```
+
 
 
 
@@ -5568,71 +2867,9 @@ pd.DataFrame(
   </svg>
     </button>
 
-  <style>
-    .colab-df-container {
-      display:flex;
-      gap: 12px;
-    }
+  
 
-    .colab-df-convert {
-      background-color: #E8F0FE;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      fill: #1967D2;
-      height: 32px;
-      padding: 0 0 0 0;
-      width: 32px;
-    }
-
-    .colab-df-convert:hover {
-      background-color: #E2EBFA;
-      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-      fill: #174EA6;
-    }
-
-    .colab-df-buttons div {
-      margin-bottom: 4px;
-    }
-
-    [theme=dark] .colab-df-convert {
-      background-color: #3B4455;
-      fill: #D2E3FC;
-    }
-
-    [theme=dark] .colab-df-convert:hover {
-      background-color: #434B5C;
-      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-      fill: #FFFFFF;
-    }
-  </style>
-
-    <script>
-      const buttonEl =
-        document.querySelector('#df-68e73100-6cf4-425b-b3b9-e13acebf0e05 button.colab-df-convert');
-      buttonEl.style.display =
-        google.colab.kernel.accessAllowed ? 'block' : 'none';
-
-      async function convertToInteractive(key) {
-        const element = document.querySelector('#df-68e73100-6cf4-425b-b3b9-e13acebf0e05');
-        const dataTable =
-          await google.colab.kernel.invokeFunction('convertToInteractive',
-                                                    [key], {});
-        if (!dataTable) return;
-
-        const docLinkHtml = 'Like what you see? Visit the ' +
-          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
-          + ' to learn more about interactive tables.';
-        element.innerHTML = '';
-        dataTable['output_type'] = 'display_data';
-        await google.colab.output.renderOutput(dataTable, element);
-        const docLink = document.createElement('div');
-        docLink.innerHTML = docLinkHtml;
-        element.appendChild(docLink);
-      }
-    </script>
+    
   </div>
 
 
@@ -5649,118 +2886,9 @@ pd.DataFrame(
 </svg>
   </button>
 
-<style>
-  .colab-df-quickchart {
-      --bg-color: #E8F0FE;
-      --fill-color: #1967D2;
-      --hover-bg-color: #E2EBFA;
-      --hover-fill-color: #174EA6;
-      --disabled-fill-color: #AAA;
-      --disabled-bg-color: #DDD;
-  }
 
-  [theme=dark] .colab-df-quickchart {
-      --bg-color: #3B4455;
-      --fill-color: #D2E3FC;
-      --hover-bg-color: #434B5C;
-      --hover-fill-color: #FFFFFF;
-      --disabled-bg-color: #3B4455;
-      --disabled-fill-color: #666;
-  }
 
-  .colab-df-quickchart {
-    background-color: var(--bg-color);
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    display: none;
-    fill: var(--fill-color);
-    height: 32px;
-    padding: 0;
-    width: 32px;
-  }
-
-  .colab-df-quickchart:hover {
-    background-color: var(--hover-bg-color);
-    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
-    fill: var(--button-hover-fill-color);
-  }
-
-  .colab-df-quickchart-complete:disabled,
-  .colab-df-quickchart-complete:disabled:hover {
-    background-color: var(--disabled-bg-color);
-    fill: var(--disabled-fill-color);
-    box-shadow: none;
-  }
-
-  .colab-df-spinner {
-    border: 2px solid var(--fill-color);
-    border-color: transparent;
-    border-bottom-color: var(--fill-color);
-    animation:
-      spin 1s steps(1) infinite;
-  }
-
-  @keyframes spin {
-    0% {
-      border-color: transparent;
-      border-bottom-color: var(--fill-color);
-      border-left-color: var(--fill-color);
-    }
-    20% {
-      border-color: transparent;
-      border-left-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-    }
-    30% {
-      border-color: transparent;
-      border-left-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-      border-right-color: var(--fill-color);
-    }
-    40% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-    }
-    60% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-    }
-    80% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-      border-bottom-color: var(--fill-color);
-    }
-    90% {
-      border-color: transparent;
-      border-bottom-color: var(--fill-color);
-    }
-  }
-</style>
-
-  <script>
-    async function quickchart(key) {
-      const quickchartButtonEl =
-        document.querySelector('#' + key + ' button');
-      quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
-      quickchartButtonEl.classList.add('colab-df-spinner');
-      try {
-        const charts = await google.colab.kernel.invokeFunction(
-            'suggestCharts', [key], {});
-      } catch (error) {
-        console.error('Error during call to suggestCharts:', error);
-      }
-      quickchartButtonEl.classList.remove('colab-df-spinner');
-      quickchartButtonEl.classList.add('colab-df-quickchart-complete');
-    }
-    (() => {
-      let quickchartButtonEl =
-        document.querySelector('#df-d07576f8-560d-4b1d-a14a-f444ccd0db98 button');
-      quickchartButtonEl.style.display =
-        google.colab.kernel.accessAllowed ? 'block' : 'none';
-    })();
-  </script>
+  
 </div>
 
     </div>
@@ -5772,13 +2900,7 @@ pd.DataFrame(
 **Vector Combined Features**
 
 
-```python
-pd.DataFrame(
-    combined_feature.todense(),
-    columns = tfidf_desc.get_feature_names_out().tolist() + tfidf_tags.get_feature_names_out().tolist() + num_features,
-    index = content_based_data.title
-)
-```
+
 
 
 
@@ -6131,71 +3253,9 @@ pd.DataFrame(
   </svg>
     </button>
 
-  <style>
-    .colab-df-container {
-      display:flex;
-      gap: 12px;
-    }
+  
 
-    .colab-df-convert {
-      background-color: #E8F0FE;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      fill: #1967D2;
-      height: 32px;
-      padding: 0 0 0 0;
-      width: 32px;
-    }
-
-    .colab-df-convert:hover {
-      background-color: #E2EBFA;
-      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-      fill: #174EA6;
-    }
-
-    .colab-df-buttons div {
-      margin-bottom: 4px;
-    }
-
-    [theme=dark] .colab-df-convert {
-      background-color: #3B4455;
-      fill: #D2E3FC;
-    }
-
-    [theme=dark] .colab-df-convert:hover {
-      background-color: #434B5C;
-      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-      fill: #FFFFFF;
-    }
-  </style>
-
-    <script>
-      const buttonEl =
-        document.querySelector('#df-a4af3ed0-cba6-426f-844c-332246503af0 button.colab-df-convert');
-      buttonEl.style.display =
-        google.colab.kernel.accessAllowed ? 'block' : 'none';
-
-      async function convertToInteractive(key) {
-        const element = document.querySelector('#df-a4af3ed0-cba6-426f-844c-332246503af0');
-        const dataTable =
-          await google.colab.kernel.invokeFunction('convertToInteractive',
-                                                    [key], {});
-        if (!dataTable) return;
-
-        const docLinkHtml = 'Like what you see? Visit the ' +
-          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
-          + ' to learn more about interactive tables.';
-        element.innerHTML = '';
-        dataTable['output_type'] = 'display_data';
-        await google.colab.output.renderOutput(dataTable, element);
-        const docLink = document.createElement('div');
-        docLink.innerHTML = docLinkHtml;
-        element.appendChild(docLink);
-      }
-    </script>
+    
   </div>
 
 
@@ -6212,118 +3272,9 @@ pd.DataFrame(
 </svg>
   </button>
 
-<style>
-  .colab-df-quickchart {
-      --bg-color: #E8F0FE;
-      --fill-color: #1967D2;
-      --hover-bg-color: #E2EBFA;
-      --hover-fill-color: #174EA6;
-      --disabled-fill-color: #AAA;
-      --disabled-bg-color: #DDD;
-  }
 
-  [theme=dark] .colab-df-quickchart {
-      --bg-color: #3B4455;
-      --fill-color: #D2E3FC;
-      --hover-bg-color: #434B5C;
-      --hover-fill-color: #FFFFFF;
-      --disabled-bg-color: #3B4455;
-      --disabled-fill-color: #666;
-  }
 
-  .colab-df-quickchart {
-    background-color: var(--bg-color);
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    display: none;
-    fill: var(--fill-color);
-    height: 32px;
-    padding: 0;
-    width: 32px;
-  }
-
-  .colab-df-quickchart:hover {
-    background-color: var(--hover-bg-color);
-    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
-    fill: var(--button-hover-fill-color);
-  }
-
-  .colab-df-quickchart-complete:disabled,
-  .colab-df-quickchart-complete:disabled:hover {
-    background-color: var(--disabled-bg-color);
-    fill: var(--disabled-fill-color);
-    box-shadow: none;
-  }
-
-  .colab-df-spinner {
-    border: 2px solid var(--fill-color);
-    border-color: transparent;
-    border-bottom-color: var(--fill-color);
-    animation:
-      spin 1s steps(1) infinite;
-  }
-
-  @keyframes spin {
-    0% {
-      border-color: transparent;
-      border-bottom-color: var(--fill-color);
-      border-left-color: var(--fill-color);
-    }
-    20% {
-      border-color: transparent;
-      border-left-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-    }
-    30% {
-      border-color: transparent;
-      border-left-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-      border-right-color: var(--fill-color);
-    }
-    40% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-    }
-    60% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-    }
-    80% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-      border-bottom-color: var(--fill-color);
-    }
-    90% {
-      border-color: transparent;
-      border-bottom-color: var(--fill-color);
-    }
-  }
-</style>
-
-  <script>
-    async function quickchart(key) {
-      const quickchartButtonEl =
-        document.querySelector('#' + key + ' button');
-      quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
-      quickchartButtonEl.classList.add('colab-df-spinner');
-      try {
-        const charts = await google.colab.kernel.invokeFunction(
-            'suggestCharts', [key], {});
-      } catch (error) {
-        console.error('Error during call to suggestCharts:', error);
-      }
-      quickchartButtonEl.classList.remove('colab-df-spinner');
-      quickchartButtonEl.classList.add('colab-df-quickchart-complete');
-    }
-    (() => {
-      let quickchartButtonEl =
-        document.querySelector('#df-58f507f0-e6cf-49d5-9128-729bf0765914 button');
-      quickchartButtonEl.style.display =
-        google.colab.kernel.accessAllowed ? 'block' : 'none';
-    })();
-  </script>
+  
 </div>
 
     </div>
@@ -6335,14 +3286,10 @@ pd.DataFrame(
 ### **2. Collaborative Filtering**
 
 
-```python
-colab_based_data=recommendations.copy()
-```
 
 
-```python
-colab_based_data.head()
-```
+
+
 
 
 
@@ -6448,71 +3395,9 @@ colab_based_data.head()
   </svg>
     </button>
 
-  <style>
-    .colab-df-container {
-      display:flex;
-      gap: 12px;
-    }
+  
 
-    .colab-df-convert {
-      background-color: #E8F0FE;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      fill: #1967D2;
-      height: 32px;
-      padding: 0 0 0 0;
-      width: 32px;
-    }
-
-    .colab-df-convert:hover {
-      background-color: #E2EBFA;
-      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-      fill: #174EA6;
-    }
-
-    .colab-df-buttons div {
-      margin-bottom: 4px;
-    }
-
-    [theme=dark] .colab-df-convert {
-      background-color: #3B4455;
-      fill: #D2E3FC;
-    }
-
-    [theme=dark] .colab-df-convert:hover {
-      background-color: #434B5C;
-      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-      fill: #FFFFFF;
-    }
-  </style>
-
-    <script>
-      const buttonEl =
-        document.querySelector('#df-53374b6a-9267-4093-a7aa-52a0709f2b41 button.colab-df-convert');
-      buttonEl.style.display =
-        google.colab.kernel.accessAllowed ? 'block' : 'none';
-
-      async function convertToInteractive(key) {
-        const element = document.querySelector('#df-53374b6a-9267-4093-a7aa-52a0709f2b41');
-        const dataTable =
-          await google.colab.kernel.invokeFunction('convertToInteractive',
-                                                    [key], {});
-        if (!dataTable) return;
-
-        const docLinkHtml = 'Like what you see? Visit the ' +
-          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
-          + ' to learn more about interactive tables.';
-        element.innerHTML = '';
-        dataTable['output_type'] = 'display_data';
-        await google.colab.output.renderOutput(dataTable, element);
-        const docLink = document.createElement('div');
-        docLink.innerHTML = docLinkHtml;
-        element.appendChild(docLink);
-      }
-    </script>
+    
   </div>
 
 
@@ -6529,118 +3414,9 @@ colab_based_data.head()
 </svg>
   </button>
 
-<style>
-  .colab-df-quickchart {
-      --bg-color: #E8F0FE;
-      --fill-color: #1967D2;
-      --hover-bg-color: #E2EBFA;
-      --hover-fill-color: #174EA6;
-      --disabled-fill-color: #AAA;
-      --disabled-bg-color: #DDD;
-  }
 
-  [theme=dark] .colab-df-quickchart {
-      --bg-color: #3B4455;
-      --fill-color: #D2E3FC;
-      --hover-bg-color: #434B5C;
-      --hover-fill-color: #FFFFFF;
-      --disabled-bg-color: #3B4455;
-      --disabled-fill-color: #666;
-  }
 
-  .colab-df-quickchart {
-    background-color: var(--bg-color);
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    display: none;
-    fill: var(--fill-color);
-    height: 32px;
-    padding: 0;
-    width: 32px;
-  }
-
-  .colab-df-quickchart:hover {
-    background-color: var(--hover-bg-color);
-    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
-    fill: var(--button-hover-fill-color);
-  }
-
-  .colab-df-quickchart-complete:disabled,
-  .colab-df-quickchart-complete:disabled:hover {
-    background-color: var(--disabled-bg-color);
-    fill: var(--disabled-fill-color);
-    box-shadow: none;
-  }
-
-  .colab-df-spinner {
-    border: 2px solid var(--fill-color);
-    border-color: transparent;
-    border-bottom-color: var(--fill-color);
-    animation:
-      spin 1s steps(1) infinite;
-  }
-
-  @keyframes spin {
-    0% {
-      border-color: transparent;
-      border-bottom-color: var(--fill-color);
-      border-left-color: var(--fill-color);
-    }
-    20% {
-      border-color: transparent;
-      border-left-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-    }
-    30% {
-      border-color: transparent;
-      border-left-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-      border-right-color: var(--fill-color);
-    }
-    40% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-    }
-    60% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-    }
-    80% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-      border-bottom-color: var(--fill-color);
-    }
-    90% {
-      border-color: transparent;
-      border-bottom-color: var(--fill-color);
-    }
-  }
-</style>
-
-  <script>
-    async function quickchart(key) {
-      const quickchartButtonEl =
-        document.querySelector('#' + key + ' button');
-      quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
-      quickchartButtonEl.classList.add('colab-df-spinner');
-      try {
-        const charts = await google.colab.kernel.invokeFunction(
-            'suggestCharts', [key], {});
-      } catch (error) {
-        console.error('Error during call to suggestCharts:', error);
-      }
-      quickchartButtonEl.classList.remove('colab-df-spinner');
-      quickchartButtonEl.classList.add('colab-df-quickchart-complete');
-    }
-    (() => {
-      let quickchartButtonEl =
-        document.querySelector('#df-d3271e65-2f9c-45cf-a05b-3f4adacfcb30 button');
-      quickchartButtonEl.style.display =
-        google.colab.kernel.accessAllowed ? 'block' : 'none';
-    })();
-  </script>
+  
 </div>
 
     </div>
@@ -6652,20 +3428,7 @@ colab_based_data.head()
 Digunakan data `is_recommended` dan `hours` sebagai parameter untuk model deep learning.
 
 
-```python
-# Encode user_id and app_id as integers
-user_ids = colab_based_data['user_id'].unique()
-app_ids = colab_based_data['app_id'].unique()
-user_id_map = {id_: idx for idx, id_ in enumerate(user_ids)}
-user_id_remap = {idx: id_ for id_, idx in user_id_map.items()}
-app_id_map = {id_: idx for idx, id_ in enumerate(app_ids)}
-app_id_remap = {idx: id_ for id_, idx in app_id_map.items()}
-# Create a new DataFrame with encoded user_id and app_id
-encoded_data = pd.DataFrame({
-    'user_encoded': colab_based_data['user_id'].map(user_id_map),
-    'app_encoded': colab_based_data['app_id'].map(app_id_map)
-})
-```
+
 
 Data User dan App dilakukan ordinal encoding agar dapat diterima oleh model.
 
@@ -6674,44 +3437,20 @@ Data User dan App dilakukan ordinal encoding agar dapat diterima oleh model.
 Data "hours" disesuaikan berdasarkan data game direkomendasikan atau tidak. Jika game direkomendasikan (is_recommended bernilai True), maka nilai  "hours" dengan dikalikan 1.25, dan jika tidak direkomendasikan, maka dikalikan dengan 0.75. Kemudian, data dinormalisasi sebagai "adjusted_hours" menggunakan MinMaxScaler untuk mengubah nilai-nya ke dalam rentang 0 hingga 1. Terakhir, kolom "adjusted_hours" yang telah dinormalisasi ditambahkan ke dalam dataset.
 
 
-```python
-adjusted_hours = colab_based_data.apply(lambda row: row['hours'] * 1.25 if row['is_recommended'] else row['hours'] * 0.75, axis=1)
-scaler = MinMaxScaler()
-adjusted_hours = scaler.fit_transform(adjusted_hours.values.reshape(-1, 1))
-colab_based_data['adjusted_hours']=adjusted_hours
-```
+
 
 #### **Train Test Split**
 
 Dibuat 3 set data train-test dengan komposisi 8:2 untuk 3 model berbeda. Model pertama menggunakan data `hours` yang telah dinormalisasi minmaxscaler, lalu data kedua menggunakan data `is_recommended` yang bernilai boolean, data kedua menggunakan data adjusted_hours yang menggabungkan parameter `hours` dan `is_recommended`.
 
 
-```python
-scaler = MinMaxScaler()
-# Prepare training data
-X_1 = encoded_data[['user_encoded', 'app_encoded']].values
-y_1 = scaler.fit_transform(colab_based_data[['hours']])
-train_X_1, test_X_1, train_y_1, test_y_1 = train_test_split(X_1, y_1, test_size=0.2, random_state=42)
-```
 
 
-```python
-# Prepare training data
-X_2 = encoded_data[['user_encoded', 'app_encoded']].values
-y_2 = colab_based_data['is_recommended']
-train_X_2, test_X_2, train_y_2, test_y_2 = train_test_split(X_2, y_2, test_size=0.2, random_state=42)
-```
 
 
-```python
 
-# adjusted_hours = adjusted_hours.flatten()
-# Prepare training data
-X_3 = encoded_data[['user_encoded', 'app_encoded']].values
-y_3 = adjusted_hours
-train_X_3, test_X_3, train_y_3, test_y_3 = train_test_split(X_3, y_3, test_size=0.2, random_state=42)
 
-```
+
 
 ## **Modeling**
 Tahapan ini membahas mengenai model sisten rekomendasi yang Anda buat untuk menyelesaikan permasalahan. Sajikan top-N recommendation sebagai output.
@@ -6743,28 +3482,7 @@ n   &\text{ adalah jumlah elemen dalam vektor } a \text{ dan } b
  Cosine similarity memiliki beberapa kelebihan, seperti output yang ternormalisasi dalam rentang -1 hingga 1, sehingga memudahkan interpretasi. Selain itu, metode ini sederhana dan efisien untuk menangani data sparse berdimensi tinggi, seperti yang dihasilkan oleh TF-IDF. Namun, terdapat juga kelemahan, seperti asumsi bahwa semua faktor atau parameter dianggap sama penting, sensitivitas terhadap perubahan kecil pada 'sudut vektor', serta kurang cocok untuk data yang mengandung nilai negatif. Setelah sistem rekomendasi ini dibangun menggunakan deskripsi, tag, dan fitur numerik dari game, serta diujicobakan untuk menampilkan 10 rekomendasi teratas berdasarkan interaksi pengguna dengan game, hasil yang diperoleh akan memberikan gambaran tentang efektivitas model ini dalam memberikan rekomendasi.
 
 
-```python
-# **1. Cosine Similarity on Vectorized Description**
-cosine_sim_desc = cosine_similarity(description_tfidf)
 
-# **2. Cosine Similarity on TF-IDF of Tags**
-# Process tags
-cosine_sim_tags = cosine_similarity(tags_tfidf)
-
-# **3. Cosine Similarity on Scaled Numerical Features**
-# Compute cosine similarity for numerical features
-cosine_sim_num = cosine_similarity(sparse_num_features)
-
-# **4. Cosine Similarity Combined**
-cosine_sim_comb = cosine_similarity(combined_feature)
-
-# **Results**
-print("Cosine Similarity (Description):\n", cosine_sim_desc)
-print("\nCosine Similarity (Tags):\n", cosine_sim_tags)
-print("\nCosine Similarity (Numerical Features):\n", cosine_sim_num)
-print("\nCosine Similarity (Combined):\n", cosine_sim_comb)
-
-```
 
     Cosine Similarity (Description):
      [[1.         0.         0.         ... 0.         0.         0.        ]
@@ -6808,60 +3526,22 @@ print("\nCosine Similarity (Combined):\n", cosine_sim_comb)
 Digunakan threshold similarity score >= 0.5 sebagai nilai True Prediction.
 
 
-```python
-def get_recommendations(title, cosine_sim, df, top_n=10):
-    # Find the index of the game title
-    idx = df[df['title'] == title].index[0]
-    sim_scores = list(enumerate(cosine_sim[idx])) # Get the similarity scores for the selected game
-    sim_scores = [score for score in sim_scores if score[0] != idx] # Remove the game itself (exclude the game being tested)
-    sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True) # Sort by similarity score in descending order
-    sim_scores = sim_scores[:top_n] # Select the top N games based on similarity scores
-
-    # Get recommended game indices and similarity scores
-    game_indices = [i[0] for i in sim_scores]
-    similarity_scores = [i[1] for i in sim_scores]
-
-    # Create a DataFrame with recommendations and similarity scores
-    recommended = df.iloc[game_indices][['app_id', 'title', 'description']].copy()
-    recommended['similarity_score'] = similarity_scores
-
-    return recommended
-
-```
 
 
-```python
-# Randomly select a game title
-random_title = np.random.choice(content_based_data['title'])
 
-# Get the app_id for the selected title
-random_id = content_based_data.loc[content_based_data['title'] == random_title, 'app_id'].iloc[0]
 
-print(f"Randomly selected Game Title: {random_title}")
-print(f"App ID for the selected game: {random_id}")
-```
 
     Randomly selected Game Title: Striving for Light: Survival
     App ID for the selected game: 2286450
 
 
 
-```python
-random_title = 'Striving for Light: Survival'
-random_id = 2286450
-```
+
 
 **Model 1:** Cosine Similarity (Description)
 
 
-```python
-print(f"Randomly selected Game Title: {random_title}")
-print(f"App ID for the selected game: {random_id}")
-# **1. Test on Description**
-print("\nRecommendations based on Description:")
-recommend_desc = get_recommendations(random_title, cosine_sim_desc, content_based_data)
-display(recommend_desc)
-```
+
 
     Randomly selected Game Title: Striving for Light: Survival
     App ID for the selected game: 2286450
@@ -6982,71 +3662,9 @@ display(recommend_desc)
   </svg>
     </button>
 
-  <style>
-    .colab-df-container {
-      display:flex;
-      gap: 12px;
-    }
+  
 
-    .colab-df-convert {
-      background-color: #E8F0FE;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      fill: #1967D2;
-      height: 32px;
-      padding: 0 0 0 0;
-      width: 32px;
-    }
-
-    .colab-df-convert:hover {
-      background-color: #E2EBFA;
-      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-      fill: #174EA6;
-    }
-
-    .colab-df-buttons div {
-      margin-bottom: 4px;
-    }
-
-    [theme=dark] .colab-df-convert {
-      background-color: #3B4455;
-      fill: #D2E3FC;
-    }
-
-    [theme=dark] .colab-df-convert:hover {
-      background-color: #434B5C;
-      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-      fill: #FFFFFF;
-    }
-  </style>
-
-    <script>
-      const buttonEl =
-        document.querySelector('#df-9e23cd8d-d140-4bac-8337-5aa6bb3f7bda button.colab-df-convert');
-      buttonEl.style.display =
-        google.colab.kernel.accessAllowed ? 'block' : 'none';
-
-      async function convertToInteractive(key) {
-        const element = document.querySelector('#df-9e23cd8d-d140-4bac-8337-5aa6bb3f7bda');
-        const dataTable =
-          await google.colab.kernel.invokeFunction('convertToInteractive',
-                                                    [key], {});
-        if (!dataTable) return;
-
-        const docLinkHtml = 'Like what you see? Visit the ' +
-          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
-          + ' to learn more about interactive tables.';
-        element.innerHTML = '';
-        dataTable['output_type'] = 'display_data';
-        await google.colab.output.renderOutput(dataTable, element);
-        const docLink = document.createElement('div');
-        docLink.innerHTML = docLinkHtml;
-        element.appendChild(docLink);
-      }
-    </script>
+    
   </div>
 
 
@@ -7063,152 +3681,13 @@ display(recommend_desc)
 </svg>
   </button>
 
-<style>
-  .colab-df-quickchart {
-      --bg-color: #E8F0FE;
-      --fill-color: #1967D2;
-      --hover-bg-color: #E2EBFA;
-      --hover-fill-color: #174EA6;
-      --disabled-fill-color: #AAA;
-      --disabled-bg-color: #DDD;
-  }
 
-  [theme=dark] .colab-df-quickchart {
-      --bg-color: #3B4455;
-      --fill-color: #D2E3FC;
-      --hover-bg-color: #434B5C;
-      --hover-fill-color: #FFFFFF;
-      --disabled-bg-color: #3B4455;
-      --disabled-fill-color: #666;
-  }
 
-  .colab-df-quickchart {
-    background-color: var(--bg-color);
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    display: none;
-    fill: var(--fill-color);
-    height: 32px;
-    padding: 0;
-    width: 32px;
-  }
-
-  .colab-df-quickchart:hover {
-    background-color: var(--hover-bg-color);
-    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
-    fill: var(--button-hover-fill-color);
-  }
-
-  .colab-df-quickchart-complete:disabled,
-  .colab-df-quickchart-complete:disabled:hover {
-    background-color: var(--disabled-bg-color);
-    fill: var(--disabled-fill-color);
-    box-shadow: none;
-  }
-
-  .colab-df-spinner {
-    border: 2px solid var(--fill-color);
-    border-color: transparent;
-    border-bottom-color: var(--fill-color);
-    animation:
-      spin 1s steps(1) infinite;
-  }
-
-  @keyframes spin {
-    0% {
-      border-color: transparent;
-      border-bottom-color: var(--fill-color);
-      border-left-color: var(--fill-color);
-    }
-    20% {
-      border-color: transparent;
-      border-left-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-    }
-    30% {
-      border-color: transparent;
-      border-left-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-      border-right-color: var(--fill-color);
-    }
-    40% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-    }
-    60% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-    }
-    80% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-      border-bottom-color: var(--fill-color);
-    }
-    90% {
-      border-color: transparent;
-      border-bottom-color: var(--fill-color);
-    }
-  }
-</style>
-
-  <script>
-    async function quickchart(key) {
-      const quickchartButtonEl =
-        document.querySelector('#' + key + ' button');
-      quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
-      quickchartButtonEl.classList.add('colab-df-spinner');
-      try {
-        const charts = await google.colab.kernel.invokeFunction(
-            'suggestCharts', [key], {});
-      } catch (error) {
-        console.error('Error during call to suggestCharts:', error);
-      }
-      quickchartButtonEl.classList.remove('colab-df-spinner');
-      quickchartButtonEl.classList.add('colab-df-quickchart-complete');
-    }
-    (() => {
-      let quickchartButtonEl =
-        document.querySelector('#df-afacaefb-870a-40a6-acaf-8772652d5f11 button');
-      quickchartButtonEl.style.display =
-        google.colab.kernel.accessAllowed ? 'block' : 'none';
-    })();
-  </script>
+  
 </div>
 
   <div id="id_8aad6efa-76df-49b0-8e00-1ca94c51821f">
-    <style>
-      .colab-df-generate {
-        background-color: #E8F0FE;
-        border: none;
-        border-radius: 50%;
-        cursor: pointer;
-        display: none;
-        fill: #1967D2;
-        height: 32px;
-        padding: 0 0 0 0;
-        width: 32px;
-      }
-
-      .colab-df-generate:hover {
-        background-color: #E2EBFA;
-        box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-        fill: #174EA6;
-      }
-
-      [theme=dark] .colab-df-generate {
-        background-color: #3B4455;
-        fill: #D2E3FC;
-      }
-
-      [theme=dark] .colab-df-generate:hover {
-        background-color: #434B5C;
-        box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-        filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-        fill: #FFFFFF;
-      }
-    </style>
+    
     <button class="colab-df-generate" onclick="generateWithVariable('recommend_desc')"
             title="Generate code using this dataframe."
             style="display:none;">
@@ -7218,18 +3697,7 @@ display(recommend_desc)
     <path d="M7,19H8.4L18.45,9,17,7.55,7,17.6ZM5,21V16.75L18.45,3.32a2,2,0,0,1,2.83,0l1.4,1.43a1.91,1.91,0,0,1,.58,1.4,1.91,1.91,0,0,1-.58,1.4L9.25,21ZM18.45,9,17,7.55Zm-12,3A5.31,5.31,0,0,0,4.9,8.1,5.31,5.31,0,0,0,1,6.5,5.31,5.31,0,0,0,4.9,4.9,5.31,5.31,0,0,0,6.5,1,5.31,5.31,0,0,0,8.1,4.9,5.31,5.31,0,0,0,12,6.5,5.46,5.46,0,0,0,6.5,12Z"/>
   </svg>
     </button>
-    <script>
-      (() => {
-      const buttonEl =
-        document.querySelector('#id_8aad6efa-76df-49b0-8e00-1ca94c51821f button.colab-df-generate');
-      buttonEl.style.display =
-        google.colab.kernel.accessAllowed ? 'block' : 'none';
-
-      buttonEl.onclick = () => {
-        google.colab.notebook.generateWithVariable('recommend_desc');
-      }
-      })();
-    </script>
+    
   </div>
 
     </div>
@@ -7240,14 +3708,7 @@ display(recommend_desc)
 **Model 2:** Cosine Similarity (Tags)
 
 
-```python
-print(f"Randomly selected Game Title: {random_title}")
-print(f"App ID for the selected game: {random_id}")
-# **2. Test on Tags**
-print("\nRecommendations based on Tags:")
-recommend_tags = get_recommendations(random_title, cosine_sim_tags, content_based_data)
-display(recommend_tags)
-```
+
 
     Randomly selected Game Title: Striving for Light: Survival
     App ID for the selected game: 2286450
@@ -7368,71 +3829,9 @@ display(recommend_tags)
   </svg>
     </button>
 
-  <style>
-    .colab-df-container {
-      display:flex;
-      gap: 12px;
-    }
+  
 
-    .colab-df-convert {
-      background-color: #E8F0FE;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      fill: #1967D2;
-      height: 32px;
-      padding: 0 0 0 0;
-      width: 32px;
-    }
-
-    .colab-df-convert:hover {
-      background-color: #E2EBFA;
-      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-      fill: #174EA6;
-    }
-
-    .colab-df-buttons div {
-      margin-bottom: 4px;
-    }
-
-    [theme=dark] .colab-df-convert {
-      background-color: #3B4455;
-      fill: #D2E3FC;
-    }
-
-    [theme=dark] .colab-df-convert:hover {
-      background-color: #434B5C;
-      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-      fill: #FFFFFF;
-    }
-  </style>
-
-    <script>
-      const buttonEl =
-        document.querySelector('#df-bda67614-6c8b-4d05-a758-c24f0fbdb573 button.colab-df-convert');
-      buttonEl.style.display =
-        google.colab.kernel.accessAllowed ? 'block' : 'none';
-
-      async function convertToInteractive(key) {
-        const element = document.querySelector('#df-bda67614-6c8b-4d05-a758-c24f0fbdb573');
-        const dataTable =
-          await google.colab.kernel.invokeFunction('convertToInteractive',
-                                                    [key], {});
-        if (!dataTable) return;
-
-        const docLinkHtml = 'Like what you see? Visit the ' +
-          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
-          + ' to learn more about interactive tables.';
-        element.innerHTML = '';
-        dataTable['output_type'] = 'display_data';
-        await google.colab.output.renderOutput(dataTable, element);
-        const docLink = document.createElement('div');
-        docLink.innerHTML = docLinkHtml;
-        element.appendChild(docLink);
-      }
-    </script>
+    
   </div>
 
 
@@ -7449,152 +3848,13 @@ display(recommend_tags)
 </svg>
   </button>
 
-<style>
-  .colab-df-quickchart {
-      --bg-color: #E8F0FE;
-      --fill-color: #1967D2;
-      --hover-bg-color: #E2EBFA;
-      --hover-fill-color: #174EA6;
-      --disabled-fill-color: #AAA;
-      --disabled-bg-color: #DDD;
-  }
 
-  [theme=dark] .colab-df-quickchart {
-      --bg-color: #3B4455;
-      --fill-color: #D2E3FC;
-      --hover-bg-color: #434B5C;
-      --hover-fill-color: #FFFFFF;
-      --disabled-bg-color: #3B4455;
-      --disabled-fill-color: #666;
-  }
 
-  .colab-df-quickchart {
-    background-color: var(--bg-color);
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    display: none;
-    fill: var(--fill-color);
-    height: 32px;
-    padding: 0;
-    width: 32px;
-  }
-
-  .colab-df-quickchart:hover {
-    background-color: var(--hover-bg-color);
-    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
-    fill: var(--button-hover-fill-color);
-  }
-
-  .colab-df-quickchart-complete:disabled,
-  .colab-df-quickchart-complete:disabled:hover {
-    background-color: var(--disabled-bg-color);
-    fill: var(--disabled-fill-color);
-    box-shadow: none;
-  }
-
-  .colab-df-spinner {
-    border: 2px solid var(--fill-color);
-    border-color: transparent;
-    border-bottom-color: var(--fill-color);
-    animation:
-      spin 1s steps(1) infinite;
-  }
-
-  @keyframes spin {
-    0% {
-      border-color: transparent;
-      border-bottom-color: var(--fill-color);
-      border-left-color: var(--fill-color);
-    }
-    20% {
-      border-color: transparent;
-      border-left-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-    }
-    30% {
-      border-color: transparent;
-      border-left-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-      border-right-color: var(--fill-color);
-    }
-    40% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-    }
-    60% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-    }
-    80% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-      border-bottom-color: var(--fill-color);
-    }
-    90% {
-      border-color: transparent;
-      border-bottom-color: var(--fill-color);
-    }
-  }
-</style>
-
-  <script>
-    async function quickchart(key) {
-      const quickchartButtonEl =
-        document.querySelector('#' + key + ' button');
-      quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
-      quickchartButtonEl.classList.add('colab-df-spinner');
-      try {
-        const charts = await google.colab.kernel.invokeFunction(
-            'suggestCharts', [key], {});
-      } catch (error) {
-        console.error('Error during call to suggestCharts:', error);
-      }
-      quickchartButtonEl.classList.remove('colab-df-spinner');
-      quickchartButtonEl.classList.add('colab-df-quickchart-complete');
-    }
-    (() => {
-      let quickchartButtonEl =
-        document.querySelector('#df-20c15dab-9b7e-48e1-b865-46c3e1373718 button');
-      quickchartButtonEl.style.display =
-        google.colab.kernel.accessAllowed ? 'block' : 'none';
-    })();
-  </script>
+  
 </div>
 
   <div id="id_59eafe9d-53bb-4e96-98f6-9718c842af47">
-    <style>
-      .colab-df-generate {
-        background-color: #E8F0FE;
-        border: none;
-        border-radius: 50%;
-        cursor: pointer;
-        display: none;
-        fill: #1967D2;
-        height: 32px;
-        padding: 0 0 0 0;
-        width: 32px;
-      }
-
-      .colab-df-generate:hover {
-        background-color: #E2EBFA;
-        box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-        fill: #174EA6;
-      }
-
-      [theme=dark] .colab-df-generate {
-        background-color: #3B4455;
-        fill: #D2E3FC;
-      }
-
-      [theme=dark] .colab-df-generate:hover {
-        background-color: #434B5C;
-        box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-        filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-        fill: #FFFFFF;
-      }
-    </style>
+    
     <button class="colab-df-generate" onclick="generateWithVariable('recommend_tags')"
             title="Generate code using this dataframe."
             style="display:none;">
@@ -7604,18 +3864,7 @@ display(recommend_tags)
     <path d="M7,19H8.4L18.45,9,17,7.55,7,17.6ZM5,21V16.75L18.45,3.32a2,2,0,0,1,2.83,0l1.4,1.43a1.91,1.91,0,0,1,.58,1.4,1.91,1.91,0,0,1-.58,1.4L9.25,21ZM18.45,9,17,7.55Zm-12,3A5.31,5.31,0,0,0,4.9,8.1,5.31,5.31,0,0,0,1,6.5,5.31,5.31,0,0,0,4.9,4.9,5.31,5.31,0,0,0,6.5,1,5.31,5.31,0,0,0,8.1,4.9,5.31,5.31,0,0,0,12,6.5,5.46,5.46,0,0,0,6.5,12Z"/>
   </svg>
     </button>
-    <script>
-      (() => {
-      const buttonEl =
-        document.querySelector('#id_59eafe9d-53bb-4e96-98f6-9718c842af47 button.colab-df-generate');
-      buttonEl.style.display =
-        google.colab.kernel.accessAllowed ? 'block' : 'none';
-
-      buttonEl.onclick = () => {
-        google.colab.notebook.generateWithVariable('recommend_tags');
-      }
-      })();
-    </script>
+    
   </div>
 
     </div>
@@ -7626,15 +3875,7 @@ display(recommend_tags)
 **Model 3:** Cosine Similarity (Numerical Features)
 
 
-```python
-print(f"Randomly selected Game Title: {random_title}")
-print(f"App ID for the selected game: {random_id}")
 
-# **3. Test on Numerical Features**
-print("\nRecommendations based on Numerical Features:")
-recommend_num = get_recommendations(random_title, cosine_sim_num, content_based_data)
-display(recommend_num)
-```
 
     Randomly selected Game Title: Striving for Light: Survival
     App ID for the selected game: 2286450
@@ -7755,71 +3996,9 @@ display(recommend_num)
   </svg>
     </button>
 
-  <style>
-    .colab-df-container {
-      display:flex;
-      gap: 12px;
-    }
+  
 
-    .colab-df-convert {
-      background-color: #E8F0FE;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      fill: #1967D2;
-      height: 32px;
-      padding: 0 0 0 0;
-      width: 32px;
-    }
-
-    .colab-df-convert:hover {
-      background-color: #E2EBFA;
-      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-      fill: #174EA6;
-    }
-
-    .colab-df-buttons div {
-      margin-bottom: 4px;
-    }
-
-    [theme=dark] .colab-df-convert {
-      background-color: #3B4455;
-      fill: #D2E3FC;
-    }
-
-    [theme=dark] .colab-df-convert:hover {
-      background-color: #434B5C;
-      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-      fill: #FFFFFF;
-    }
-  </style>
-
-    <script>
-      const buttonEl =
-        document.querySelector('#df-3ebc7214-e17a-4b30-b794-01027543e6ed button.colab-df-convert');
-      buttonEl.style.display =
-        google.colab.kernel.accessAllowed ? 'block' : 'none';
-
-      async function convertToInteractive(key) {
-        const element = document.querySelector('#df-3ebc7214-e17a-4b30-b794-01027543e6ed');
-        const dataTable =
-          await google.colab.kernel.invokeFunction('convertToInteractive',
-                                                    [key], {});
-        if (!dataTable) return;
-
-        const docLinkHtml = 'Like what you see? Visit the ' +
-          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
-          + ' to learn more about interactive tables.';
-        element.innerHTML = '';
-        dataTable['output_type'] = 'display_data';
-        await google.colab.output.renderOutput(dataTable, element);
-        const docLink = document.createElement('div');
-        docLink.innerHTML = docLinkHtml;
-        element.appendChild(docLink);
-      }
-    </script>
+    
   </div>
 
 
@@ -7836,152 +4015,13 @@ display(recommend_num)
 </svg>
   </button>
 
-<style>
-  .colab-df-quickchart {
-      --bg-color: #E8F0FE;
-      --fill-color: #1967D2;
-      --hover-bg-color: #E2EBFA;
-      --hover-fill-color: #174EA6;
-      --disabled-fill-color: #AAA;
-      --disabled-bg-color: #DDD;
-  }
 
-  [theme=dark] .colab-df-quickchart {
-      --bg-color: #3B4455;
-      --fill-color: #D2E3FC;
-      --hover-bg-color: #434B5C;
-      --hover-fill-color: #FFFFFF;
-      --disabled-bg-color: #3B4455;
-      --disabled-fill-color: #666;
-  }
 
-  .colab-df-quickchart {
-    background-color: var(--bg-color);
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    display: none;
-    fill: var(--fill-color);
-    height: 32px;
-    padding: 0;
-    width: 32px;
-  }
-
-  .colab-df-quickchart:hover {
-    background-color: var(--hover-bg-color);
-    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
-    fill: var(--button-hover-fill-color);
-  }
-
-  .colab-df-quickchart-complete:disabled,
-  .colab-df-quickchart-complete:disabled:hover {
-    background-color: var(--disabled-bg-color);
-    fill: var(--disabled-fill-color);
-    box-shadow: none;
-  }
-
-  .colab-df-spinner {
-    border: 2px solid var(--fill-color);
-    border-color: transparent;
-    border-bottom-color: var(--fill-color);
-    animation:
-      spin 1s steps(1) infinite;
-  }
-
-  @keyframes spin {
-    0% {
-      border-color: transparent;
-      border-bottom-color: var(--fill-color);
-      border-left-color: var(--fill-color);
-    }
-    20% {
-      border-color: transparent;
-      border-left-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-    }
-    30% {
-      border-color: transparent;
-      border-left-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-      border-right-color: var(--fill-color);
-    }
-    40% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-    }
-    60% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-    }
-    80% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-      border-bottom-color: var(--fill-color);
-    }
-    90% {
-      border-color: transparent;
-      border-bottom-color: var(--fill-color);
-    }
-  }
-</style>
-
-  <script>
-    async function quickchart(key) {
-      const quickchartButtonEl =
-        document.querySelector('#' + key + ' button');
-      quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
-      quickchartButtonEl.classList.add('colab-df-spinner');
-      try {
-        const charts = await google.colab.kernel.invokeFunction(
-            'suggestCharts', [key], {});
-      } catch (error) {
-        console.error('Error during call to suggestCharts:', error);
-      }
-      quickchartButtonEl.classList.remove('colab-df-spinner');
-      quickchartButtonEl.classList.add('colab-df-quickchart-complete');
-    }
-    (() => {
-      let quickchartButtonEl =
-        document.querySelector('#df-ea75003e-326b-4e35-bb6e-369ea5d176c7 button');
-      quickchartButtonEl.style.display =
-        google.colab.kernel.accessAllowed ? 'block' : 'none';
-    })();
-  </script>
+  
 </div>
 
   <div id="id_24a84b6e-3f6f-4352-8073-f6d6865b7023">
-    <style>
-      .colab-df-generate {
-        background-color: #E8F0FE;
-        border: none;
-        border-radius: 50%;
-        cursor: pointer;
-        display: none;
-        fill: #1967D2;
-        height: 32px;
-        padding: 0 0 0 0;
-        width: 32px;
-      }
-
-      .colab-df-generate:hover {
-        background-color: #E2EBFA;
-        box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-        fill: #174EA6;
-      }
-
-      [theme=dark] .colab-df-generate {
-        background-color: #3B4455;
-        fill: #D2E3FC;
-      }
-
-      [theme=dark] .colab-df-generate:hover {
-        background-color: #434B5C;
-        box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-        filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-        fill: #FFFFFF;
-      }
-    </style>
+    
     <button class="colab-df-generate" onclick="generateWithVariable('recommend_num')"
             title="Generate code using this dataframe."
             style="display:none;">
@@ -7991,18 +4031,7 @@ display(recommend_num)
     <path d="M7,19H8.4L18.45,9,17,7.55,7,17.6ZM5,21V16.75L18.45,3.32a2,2,0,0,1,2.83,0l1.4,1.43a1.91,1.91,0,0,1,.58,1.4,1.91,1.91,0,0,1-.58,1.4L9.25,21ZM18.45,9,17,7.55Zm-12,3A5.31,5.31,0,0,0,4.9,8.1,5.31,5.31,0,0,0,1,6.5,5.31,5.31,0,0,0,4.9,4.9,5.31,5.31,0,0,0,6.5,1,5.31,5.31,0,0,0,8.1,4.9,5.31,5.31,0,0,0,12,6.5,5.46,5.46,0,0,0,6.5,12Z"/>
   </svg>
     </button>
-    <script>
-      (() => {
-      const buttonEl =
-        document.querySelector('#id_24a84b6e-3f6f-4352-8073-f6d6865b7023 button.colab-df-generate');
-      buttonEl.style.display =
-        google.colab.kernel.accessAllowed ? 'block' : 'none';
-
-      buttonEl.onclick = () => {
-        google.colab.notebook.generateWithVariable('recommend_num');
-      }
-      })();
-    </script>
+    
   </div>
 
     </div>
@@ -8013,16 +4042,7 @@ display(recommend_num)
 **Model 4:** Cosine Similarity (Combined)
 
 
-```python
-print(f"Randomly selected Game Title: {random_title}")
-print(f"App ID for the selected game: {random_id}")
 
-# **4. Test on Combined Features**
-print("\nRecommendations based on Combined Features:")
-recommend_comb= get_recommendations(random_title, cosine_sim_comb , content_based_data)
-display(recommend_comb)
-
-```
 
     Randomly selected Game Title: Striving for Light: Survival
     App ID for the selected game: 2286450
@@ -8143,71 +4163,9 @@ display(recommend_comb)
   </svg>
     </button>
 
-  <style>
-    .colab-df-container {
-      display:flex;
-      gap: 12px;
-    }
+  
 
-    .colab-df-convert {
-      background-color: #E8F0FE;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      fill: #1967D2;
-      height: 32px;
-      padding: 0 0 0 0;
-      width: 32px;
-    }
-
-    .colab-df-convert:hover {
-      background-color: #E2EBFA;
-      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-      fill: #174EA6;
-    }
-
-    .colab-df-buttons div {
-      margin-bottom: 4px;
-    }
-
-    [theme=dark] .colab-df-convert {
-      background-color: #3B4455;
-      fill: #D2E3FC;
-    }
-
-    [theme=dark] .colab-df-convert:hover {
-      background-color: #434B5C;
-      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-      fill: #FFFFFF;
-    }
-  </style>
-
-    <script>
-      const buttonEl =
-        document.querySelector('#df-817bfc86-acdd-46e4-b808-eaaadd82c245 button.colab-df-convert');
-      buttonEl.style.display =
-        google.colab.kernel.accessAllowed ? 'block' : 'none';
-
-      async function convertToInteractive(key) {
-        const element = document.querySelector('#df-817bfc86-acdd-46e4-b808-eaaadd82c245');
-        const dataTable =
-          await google.colab.kernel.invokeFunction('convertToInteractive',
-                                                    [key], {});
-        if (!dataTable) return;
-
-        const docLinkHtml = 'Like what you see? Visit the ' +
-          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
-          + ' to learn more about interactive tables.';
-        element.innerHTML = '';
-        dataTable['output_type'] = 'display_data';
-        await google.colab.output.renderOutput(dataTable, element);
-        const docLink = document.createElement('div');
-        docLink.innerHTML = docLinkHtml;
-        element.appendChild(docLink);
-      }
-    </script>
+    
   </div>
 
 
@@ -8224,152 +4182,13 @@ display(recommend_comb)
 </svg>
   </button>
 
-<style>
-  .colab-df-quickchart {
-      --bg-color: #E8F0FE;
-      --fill-color: #1967D2;
-      --hover-bg-color: #E2EBFA;
-      --hover-fill-color: #174EA6;
-      --disabled-fill-color: #AAA;
-      --disabled-bg-color: #DDD;
-  }
 
-  [theme=dark] .colab-df-quickchart {
-      --bg-color: #3B4455;
-      --fill-color: #D2E3FC;
-      --hover-bg-color: #434B5C;
-      --hover-fill-color: #FFFFFF;
-      --disabled-bg-color: #3B4455;
-      --disabled-fill-color: #666;
-  }
 
-  .colab-df-quickchart {
-    background-color: var(--bg-color);
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    display: none;
-    fill: var(--fill-color);
-    height: 32px;
-    padding: 0;
-    width: 32px;
-  }
-
-  .colab-df-quickchart:hover {
-    background-color: var(--hover-bg-color);
-    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
-    fill: var(--button-hover-fill-color);
-  }
-
-  .colab-df-quickchart-complete:disabled,
-  .colab-df-quickchart-complete:disabled:hover {
-    background-color: var(--disabled-bg-color);
-    fill: var(--disabled-fill-color);
-    box-shadow: none;
-  }
-
-  .colab-df-spinner {
-    border: 2px solid var(--fill-color);
-    border-color: transparent;
-    border-bottom-color: var(--fill-color);
-    animation:
-      spin 1s steps(1) infinite;
-  }
-
-  @keyframes spin {
-    0% {
-      border-color: transparent;
-      border-bottom-color: var(--fill-color);
-      border-left-color: var(--fill-color);
-    }
-    20% {
-      border-color: transparent;
-      border-left-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-    }
-    30% {
-      border-color: transparent;
-      border-left-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-      border-right-color: var(--fill-color);
-    }
-    40% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-    }
-    60% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-    }
-    80% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-      border-bottom-color: var(--fill-color);
-    }
-    90% {
-      border-color: transparent;
-      border-bottom-color: var(--fill-color);
-    }
-  }
-</style>
-
-  <script>
-    async function quickchart(key) {
-      const quickchartButtonEl =
-        document.querySelector('#' + key + ' button');
-      quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
-      quickchartButtonEl.classList.add('colab-df-spinner');
-      try {
-        const charts = await google.colab.kernel.invokeFunction(
-            'suggestCharts', [key], {});
-      } catch (error) {
-        console.error('Error during call to suggestCharts:', error);
-      }
-      quickchartButtonEl.classList.remove('colab-df-spinner');
-      quickchartButtonEl.classList.add('colab-df-quickchart-complete');
-    }
-    (() => {
-      let quickchartButtonEl =
-        document.querySelector('#df-b2b8e369-8dbc-44ca-8677-9b5c263cf6b9 button');
-      quickchartButtonEl.style.display =
-        google.colab.kernel.accessAllowed ? 'block' : 'none';
-    })();
-  </script>
+  
 </div>
 
   <div id="id_4217071b-7104-4100-890d-acd0f4a4e950">
-    <style>
-      .colab-df-generate {
-        background-color: #E8F0FE;
-        border: none;
-        border-radius: 50%;
-        cursor: pointer;
-        display: none;
-        fill: #1967D2;
-        height: 32px;
-        padding: 0 0 0 0;
-        width: 32px;
-      }
-
-      .colab-df-generate:hover {
-        background-color: #E2EBFA;
-        box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-        fill: #174EA6;
-      }
-
-      [theme=dark] .colab-df-generate {
-        background-color: #3B4455;
-        fill: #D2E3FC;
-      }
-
-      [theme=dark] .colab-df-generate:hover {
-        background-color: #434B5C;
-        box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-        filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-        fill: #FFFFFF;
-      }
-    </style>
+    
     <button class="colab-df-generate" onclick="generateWithVariable('recommend_comb')"
             title="Generate code using this dataframe."
             style="display:none;">
@@ -8379,18 +4198,7 @@ display(recommend_comb)
     <path d="M7,19H8.4L18.45,9,17,7.55,7,17.6ZM5,21V16.75L18.45,3.32a2,2,0,0,1,2.83,0l1.4,1.43a1.91,1.91,0,0,1,.58,1.4,1.91,1.91,0,0,1-.58,1.4L9.25,21ZM18.45,9,17,7.55Zm-12,3A5.31,5.31,0,0,0,4.9,8.1,5.31,5.31,0,0,0,1,6.5,5.31,5.31,0,0,0,4.9,4.9,5.31,5.31,0,0,0,6.5,1,5.31,5.31,0,0,0,8.1,4.9,5.31,5.31,0,0,0,12,6.5,5.46,5.46,0,0,0,6.5,12Z"/>
   </svg>
     </button>
-    <script>
-      (() => {
-      const buttonEl =
-        document.querySelector('#id_4217071b-7104-4100-890d-acd0f4a4e950 button.colab-df-generate');
-      buttonEl.style.display =
-        google.colab.kernel.accessAllowed ? 'block' : 'none';
-
-      buttonEl.onclick = () => {
-        google.colab.notebook.generateWithVariable('recommend_comb');
-      }
-      })();
-    </script>
+    
   </div>
 
     </div>
@@ -8416,53 +4224,14 @@ Hasil evaluasi model menunjukkan `RMSE` berikut untuk setiap fitur:
 Dari hasil ini, model yang menggunakan `adjusted hours` menunjukkan performa terbaik dengan nilai `RMSE` terendah. Sistem rekomendasi ini kemudian diuji untuk menghasilkan 10 rekomendasi teratas berdasarkan game yang dipilih atau dimainkan oleh pengguna, dan hasilnya menunjukkan bahwa model mampu memberikan rekomendasi yang relevan.
 
 
-```python
-# Define the RecommenderNet model
-class RecommenderNet(Model):
-    def __init__(self, num_users, num_apps, embedding_size, **kwargs):
-        super(RecommenderNet, self).__init__(**kwargs)
-        # Embeddings for users and apps
-        self.user_embedding = Embedding(num_users, embedding_size, embeddings_initializer="he_normal", embeddings_regularizer=keras.regularizers.l2())
-        self.app_embedding = Embedding(num_apps, embedding_size, embeddings_initializer="he_normal", embeddings_regularizer=keras.regularizers.l2())
-        self.user_bias = layers.Embedding(num_users, 1)
-        self.app_bias = layers.Embedding(num_apps, 1)
 
-    def call(self, inputs):
-        user_vector = self.user_embedding(inputs[:, 0])
-        user_bias = self.user_bias(inputs[:, 0])
-        app_vector = self.app_embedding(inputs[:, 1])
-        app_bias = self.app_bias(inputs[:, 1])
-        dot_product = Dot(axes=1)([user_vector, app_vector])
-        x = dot_product + user_bias + app_bias
-        return tf.nn.sigmoid(x)
-
-
-
-# Model parameters
-num_users = len(user_id_map)
-num_apps = len(app_id_map)
-embedding_size = 50
-
-# Instantiate the model
-model1 = RecommenderNet(num_users, num_apps, embedding_size)
-model1.compile(optimizer=Adam(learning_rate=0.001), loss=tf.keras.losses.BinaryCrossentropy() ,metrics = [tf.keras.metrics.RootMeanSquaredError()])
-
-model2 = RecommenderNet(num_users, num_apps, embedding_size)
-model2.compile(optimizer=Adam(learning_rate=0.0001), loss=tf.keras.losses.BinaryCrossentropy() ,metrics = [tf.keras.metrics.RootMeanSquaredError()])
-
-model3 = RecommenderNet(num_users, num_apps, embedding_size)
-model3.compile(optimizer=Adam(learning_rate=0.001), loss=tf.keras.losses.BinaryCrossentropy() ,metrics = [tf.keras.metrics.RootMeanSquaredError()])
-```
 
 #### **Training**
 
 ##### **Model 1:** Hours-Based
 
 
-```python
-# Train the model
-history1=model1.fit(train_X_1, train_y_1, epochs=200, batch_size=32, validation_data=(test_X_1, test_y_1))
-```
+
 
     Epoch 1/200
     [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m10s[0m 12ms/step - loss: 0.2270 - root_mean_squared_error: 0.1840 - val_loss: 0.2034 - val_root_mean_squared_error: 0.1681
@@ -8869,9 +4638,7 @@ history1=model1.fit(train_X_1, train_y_1, epochs=200, batch_size=32, validation_
 ##### **Model 2:** User's Recommendation-Based
 
 
-```python
-history2=model2.fit(train_X_2, train_y_2, batch_size=32, epochs=200, validation_data=(test_X_2, test_y_2))
-```
+
 
     Epoch 1/200
     [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m10s[0m 11ms/step - loss: 0.5424 - root_mean_squared_error: 0.4207 - val_loss: 0.5529 - val_root_mean_squared_error: 0.4270
@@ -9278,9 +5045,7 @@ history2=model2.fit(train_X_2, train_y_2, batch_size=32, epochs=200, validation_
 ##### **Model 3:** Adjusted Hours-Based
 
 
-```python
-history3=model3.fit(train_X_3, train_y_3, batch_size=32, epochs=200, validation_data=(test_X_3, test_y_3))
-```
+
 
     Epoch 1/200
     [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 8ms/step - loss: 0.8249 - root_mean_squared_error: 0.4694 - val_loss: 0.5642 - val_root_mean_squared_error: 0.4162
@@ -9687,82 +5452,7 @@ history3=model3.fit(train_X_3, train_y_3, batch_size=32, epochs=200, validation_
 #### **Result**
 
 
-```python
-user_encoded = 400
-user_id = user_id_remap[user_encoded]
-print(f"Selected User ID: {user_id}")
 
-
-# Get the games watched/played by the user
-user_played_games = colab_based_data[colab_based_data['user_id']== user_id]
-
-# Map the app_id in games_data to their encoded form
-games_data_encoded = games_data["app_id"].map(app_id_map)
-
-# Find games not yet played by the user
-games_not_played = games_data_encoded[
-    ~games_data_encoded.isin(user_played_games.app_id.values)
-]
-
-# Ensure the remaining IDs are valid keys in app_id_map
-games_not_played = list(
-    set(games_not_played.dropna()).intersection(set(app_id_map.values()))
-)
-
-# Prepare the encoded IDs as a nested list
-games_not_played = [[x] for x in games_not_played]
-
-
-# Encode the user
-user_encoded = user_id_map[user_id]
-
-# Prepare user-game pairs for prediction
-user_game_array = np.hstack((
-    [[user_encoded]] * len(games_not_played),
-    games_not_played
-))
-
-# Predict ratings or scores for the user-game pairs
-recommended = model1.predict(user_game_array).flatten()
-
-# Get the top recommendations
-top_recommended_indices = recommended.argsort()[-10:][::-1]
-recommended_game_ids = [
-    app_id_remap.get(games_not_played[x][0]) for x in top_recommended_indices
-]
-
-# Showing recommendations for user: user_id
-print(f"Showing recommendations for user: {user_id}")
-print("=" * 40)
-
-# 1. Games with high hours played by the user
-top_games_user = (
-    user_played_games.sort_values(by="hours", ascending=False)  # Assuming "hours" column exists
-    .head(5)
-)
-
-# Create a DataFrame for the top 5 games played by the user
-top_games_df = top_games_user[["app_id", "hours"]].merge(
-    games_data[["app_id", "title", "tags"]],
-    on="app_id",
-    how="left"
-)[["title", "hours", "tags"]]
-
-# 2. Top 10 game recommendations
-recommended_games = games_data[games_data["app_id"].isin(recommended_game_ids)]
-
-# Create a DataFrame for the top 10 recommended games
-recommended_games_df = recommended_games[["title", "tags"]]
-
-# Print the DataFrames using tabulate
-print("Games with high hours played by the user")
-print(tabulate(top_games_df, headers="keys", tablefmt="fancy_grid", showindex=False))
-
-print("\nTop 10 game recommendations")
-print(tabulate(recommended_games_df, headers="keys", tablefmt="fancy_grid", showindex=False))
-
-
-```
 
     Selected User ID: 7193034
     [1m55/55[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 4ms/step
@@ -9810,82 +5500,7 @@ print(tabulate(recommended_games_df, headers="keys", tablefmt="fancy_grid", show
 
 
 
-```python
-user_encoded = 400
-user_id = user_id_remap[user_encoded]
-print(f"Selected User ID: {user_id}")
 
-
-# Get the games watched/played by the user
-user_played_games = colab_based_data[colab_based_data['user_id']== user_id]
-
-# Map the app_id in games_data to their encoded form
-games_data_encoded = games_data["app_id"].map(app_id_map)
-
-# Find games not yet played by the user
-games_not_played = games_data_encoded[
-    ~games_data_encoded.isin(user_played_games.app_id.values)
-]
-
-# Ensure the remaining IDs are valid keys in app_id_map
-games_not_played = list(
-    set(games_not_played.dropna()).intersection(set(app_id_map.values()))
-)
-
-# Prepare the encoded IDs as a nested list
-games_not_played = [[x] for x in games_not_played]
-
-
-# Encode the user
-user_encoded = user_id_map[user_id]
-
-# Prepare user-game pairs for prediction
-user_game_array = np.hstack((
-    [[user_encoded]] * len(games_not_played),
-    games_not_played
-))
-
-# Predict ratings or scores for the user-game pairs
-recommended = model1.predict(user_game_array).flatten()
-
-# Get the top recommendations
-top_recommended_indices = recommended.argsort()[-10:][::-1]
-recommended_game_ids = [
-    app_id_remap.get(games_not_played[x][0]) for x in top_recommended_indices
-]
-
-# Showing recommendations for user: user_id
-print(f"Showing recommendations for user: {user_id}")
-print("=" * 40)
-
-# 1. Games with high hours played by the user
-top_games_user = (
-    user_played_games.sort_values(by="is_recommended", ascending=False)
-    .head(5)
-)
-
-# Create a DataFrame for the top 5 games played by the user
-top_games_df = top_games_user[["app_id", "is_recommended"]].merge(
-    games_data[["app_id", "title", "tags"]],
-    on="app_id",
-    how="left"
-)[["title", "is_recommended", "tags"]]
-
-# 2. Top 10 game recommendations
-recommended_games = games_data[games_data["app_id"].isin(recommended_game_ids)]
-
-# Create a DataFrame for the top 10 recommended games
-recommended_games_df = recommended_games[["title", "tags"]]
-
-# Print the DataFrames using tabulate
-print("Games with high hours played by the user")
-print(tabulate(top_games_df, headers="keys", tablefmt="fancy_grid", showindex=False))
-
-print("\nTop 10 game recommendations")
-print(tabulate(recommended_games_df, headers="keys", tablefmt="fancy_grid", showindex=False))
-
-
-```
 
     Selected User ID: 7193034
     [1m55/55[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 1ms/step
@@ -9933,82 +5548,7 @@ print(tabulate(recommended_games_df, headers="keys", tablefmt="fancy_grid", show
 
 
 
-```python
-user_encoded = 400
-user_id = user_id_remap[user_encoded]
-print(f"Selected User ID: {user_id}")
 
-
-# Get the games watched/played by the user
-user_played_games = colab_based_data[colab_based_data['user_id']== user_id]
-
-# Map the app_id in games_data to their encoded form
-games_data_encoded = games_data["app_id"].map(app_id_map)
-
-# Find games not yet played by the user
-games_not_played = games_data_encoded[
-    ~games_data_encoded.isin(user_played_games.app_id.values)
-]
-
-# Ensure the remaining IDs are valid keys in app_id_map
-games_not_played = list(
-    set(games_not_played.dropna()).intersection(set(app_id_map.values()))
-)
-
-# Prepare the encoded IDs as a nested list
-games_not_played = [[x] for x in games_not_played]
-
-
-# Encode the user
-user_encoded = user_id_map[user_id]
-
-# Prepare user-game pairs for prediction
-user_game_array = np.hstack((
-    [[user_encoded]] * len(games_not_played),
-    games_not_played
-))
-
-# Predict ratings or scores for the user-game pairs
-recommended = model1.predict(user_game_array).flatten()
-
-# Get the top recommendations
-top_recommended_indices = recommended.argsort()[-10:][::-1]
-recommended_game_ids = [
-    app_id_remap.get(games_not_played[x][0]) for x in top_recommended_indices
-]
-
-# Showing recommendations for user: user_id
-print(f"Showing recommendations for user: {user_id}")
-print("=" * 40)
-
-# 1. Games with high hours played by the user
-top_games_user = (
-    user_played_games.sort_values(by="adjusted_hours", ascending=False)
-    .head(5)
-)
-
-# Create a DataFrame for the top 5 games played by the user
-top_games_df = top_games_user[["app_id", "adjusted_hours"]].merge(
-    games_data[["app_id", "title", "tags"]],
-    on="app_id",
-    how="left"
-)[["title", "adjusted_hours", "tags"]]
-
-# 2. Top 10 game recommendations
-recommended_games = games_data[games_data["app_id"].isin(recommended_game_ids)]
-
-# Create a DataFrame for the top 10 recommended games
-recommended_games_df = recommended_games[["title", "tags"]]
-
-# Print the DataFrames using tabulate
-print("Games with high hours played by the user")
-print(tabulate(top_games_df, headers="keys", tablefmt="fancy_grid", showindex=False))
-
-print("\nTop 10 game recommendations")
-print(tabulate(recommended_games_df, headers="keys", tablefmt="fancy_grid", showindex=False))
-
-
-```
 
     Selected User ID: 7193034
     [1m55/55[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 2ms/step
@@ -10118,74 +5658,13 @@ Sekilas tentang `Confusion Matrix`, `Akurasi`, dan Metrik Evaluasi
 Di dunia nyata, pengguna jarang melihat semua rekomendasi, biasanya hanya top-k (misalnya, 5 atau 10 teratas). Dengan menggunakan @k, fokus evaluasi dapat diarahkan pada rekomendasi terbaik yang diberikan model. Nilai k juga dapat disesuaikan dengan jumlah rekomendasi yang relevan untuk aplikasi tertentu. Selain itu, MRR@k memberikan perhatian khusus pada posisi item relevan pertama dalam urutan rekomendasi, yang penting dalam sistem yang mengutamakan urutan penyajian rekomendasi kepada pengguna.
 
 
-```python
-def list_relevant(game_id, recomended_list, review_data, threshold=0.5):
-
-    relevant_games=[]
-    for index,row in recomended_list.iterrows():
-        score = row['similarity_score']
-        game = row['app_id']
-        if score >= threshold:
-            relevant_games.append(game)
-
-    return relevant_games
-```
 
 
-```python
-def evaluate_recommendations(recommended_list, relevant_games,title="Confusion Matrix"):
-
-    y_true = [1 if i in relevant_games else 0 for i in recommended_list]
-    y_pred = [1] * len(recommended_list)  # All recommendations are relevant
-
-    # Compute Precision@k, Recall@k, and MRR
-    precision = len(set(recommended_list) & set(relevant_games)) / len(recommended_list) if recommended_list else 0
-    recall = len(set(recommended_list) & set(relevant_games)) / len(relevant_games) if relevant_games else 0
-
-    mrr = 0
-    for rank, rec_idx in enumerate(recommended_list, start=1):
-        if rec_idx in relevant_games:
-            mrr = 1 / rank
-            break
-
-    # Classification metrics
-    conf_matrix = confusion_matrix(y_true, y_pred, labels=[0, 1])
-    classification_metrics = classification_report(y_true, y_pred, labels=[0,1], target_names=['Irrelevant', 'Relevant'], zero_division=0)
-    accuracy = accuracy_score(y_true, y_pred)
-
-     # Membentuk Confusion Matrix
-    fig, ax = plt.subplots(figsize = (10, 5))
-    disp = ConfusionMatrixDisplay.from_predictions(y_true, y_pred, ax = ax, labels=[0, 1])
-
-    # Menambahkan label sumbu x dan y pada confusion matrix
-    ax.xaxis.set_ticklabels(['Irrelevant', 'Relevant'], rotation = 90)
-    ax.yaxis.set_ticklabels(['Irrelevant', 'Relevant'])
-
-    # Menghilangkan garis-garis grid
-    ax.grid(False)
-
-    # Menambahkan judul pada confusion matrix
-    _ = ax.set_title(title)
-    plt.show()
-
-    return precision, recall, mrr, conf_matrix, classification_metrics, accuracy
-```
 
 
-```python
-recommended_desc_list = recommend_desc['app_id'].tolist()
-relevant_games_desc = list_relevant(random_id, recommend_desc, recommendations)
-precision, recall, mrr, conf_matrix, class_report, accuracy = evaluate_recommendations(recommended_desc_list, relevant_games_desc)
-print(f"Evaluation for {random_title}:")
-print(f"Precision@5: {precision:.2f}")
-print(f"Recall@5: {recall:.2f}")
-print(f"Mean Reciprocal Rank (MRR): {mrr:.2f}")
-print(f"Accuracy: {accuracy:.2f}")
-print("\nConfusion Matrix:")
-print(conf_matrix)
-print("\nClassification Report:")
-print(class_report)
-```
+
+
+
 
 
     
@@ -10216,20 +5695,7 @@ print(class_report)
 
 
 
-```python
-recommended_tags_list = recommend_tags['app_id'].tolist()
-relevant_games_tags = list_relevant(random_id, recommend_tags, recommendations)
-precision, recall, mrr, conf_matrix, class_report, accuracy = evaluate_recommendations(recommended_tags_list, relevant_games_tags)
-print(f"Evaluation for {random_title}:")
-print(f"Precision@5: {precision:.2f}")
-print(f"Recall@5: {recall:.2f}")
-print(f"Mean Reciprocal Rank (MRR): {mrr:.2f}")
-print(f"Accuracy: {accuracy:.2f}")
-print("\nConfusion Matrix:")
-print(conf_matrix)
-print("\nClassification Report:")
-print(class_report)
-```
+
 
 
     
@@ -10260,20 +5726,7 @@ print(class_report)
 
 
 
-```python
-recommended_num_list = recommend_num['app_id'].tolist()
-relevant_games_num = list_relevant(random_id, recommend_num, recommendations)
-precision, recall, mrr, conf_matrix, class_report, accuracy = evaluate_recommendations(recommended_num_list, relevant_games_num)
-print(f"Evaluation for {random_title}:")
-print(f"Precision@5: {precision:.2f}")
-print(f"Recall@5: {recall:.2f}")
-print(f"Mean Reciprocal Rank (MRR): {mrr:.2f}")
-print(f"Accuracy: {accuracy:.2f}")
-print("\nConfusion Matrix:")
-print(conf_matrix)
-print("\nClassification Report:")
-print(class_report)
-```
+
 
 
     
@@ -10304,20 +5757,7 @@ print(class_report)
 
 
 
-```python
-recommended_comb_list = recommend_comb['app_id'].tolist()
-relevant_games_comb = list_relevant(random_id, recommend_comb, recommendations)
-precision, recall, mrr, conf_matrix, class_report, accuracy = evaluate_recommendations(recommended_comb_list, relevant_games_comb)
-print(f"Evaluation for {random_title}:")
-print(f"Precision@5: {precision:.2f}")
-print(f"Recall@5: {recall:.2f}")
-print(f"Mean Reciprocal Rank (MRR): {mrr:.2f}")
-print(f"Accuracy: {accuracy:.2f}")
-print("\nConfusion Matrix:")
-print(conf_matrix)
-print("\nClassification Report:")
-print(class_report)
-```
+
 
 
     
@@ -10360,9 +5800,7 @@ Confusion matrix menunjukkan bahwa semua prediksi yang dihasilkan oleh model ada
 Secara keseluruhan, hasil evaluasi yang menunjukkan nilai 100% untuk semua metrik utama ini menunjukkan bahwa model content-based filtering yang digunakan sangat efektif dalam memberikan rekomendasi yang relevan dan akurat. Metrik evaluasi yang baik, termasuk MRR@k, menunjukkan bahwa model ini tidak hanya memberikan rekomendasi yang tepat, tetapi juga memperhatikan kualitas urutan rekomendasi, yang penting dalam konteks sistem rekomendasi berbasis urutan.
 
 
-```python
 
-```
 
 ### **2. Collaborative Filtering**
 
@@ -10394,20 +5832,7 @@ Pada *collaborative filtering*, setelah melatih model selama 50 epoch, diperoleh
 Jika dilihat melalui grafik, hasilnya dapat dilihat pada plot berikut.
 
 
-```python
-# Membuat line plot untuk menunjukkan metrik evaluasi
-plt.plot(history1.history["root_mean_squared_error"])
-plt.plot(history1.history["val_root_mean_squared_error"])
 
-# Menambahkan judul, label, dan legend pada plot
-plt.title("Metrik Evaluasi pada Model")
-plt.ylabel("Root Mean Squared Error (RMSE)")
-plt.xlabel("Epoch")
-plt.legend(["Training", "Validation"], loc = "upper right")
-
-# Menampilkan plot
-plt.show()
-```
 
 
     
@@ -10416,20 +5841,7 @@ plt.show()
 
 
 
-```python
-# Membuat line plot untuk menunjukkan metrik evaluasi
-plt.plot(history2.history["root_mean_squared_error"])
-plt.plot(history2.history["val_root_mean_squared_error"])
 
-# Menambahkan judul, label, dan legend pada plot
-plt.title("Metrik Evaluasi pada Model")
-plt.ylabel("Root Mean Squared Error (RMSE)")
-plt.xlabel("Epoch")
-plt.legend(["Training", "Validation"], loc = "upper right")
-
-# Menampilkan plot
-plt.show()
-```
 
 
     
@@ -10438,20 +5850,7 @@ plt.show()
 
 
 
-```python
-# Membuat line plot untuk menunjukkan metrik evaluasi
-plt.plot(history3.history["root_mean_squared_error"])
-plt.plot(history3.history["val_root_mean_squared_error"])
 
-# Menambahkan judul, label, dan legend pada plot
-plt.title("Metrik Evaluasi pada Model")
-plt.ylabel("Root Mean Squared Error (RMSE)")
-plt.xlabel("Epoch")
-plt.legend(["Training", "Validation"], loc = "upper right")
-
-# Menampilkan plot
-plt.show()
-```
 
 
     
@@ -10502,550 +5901,3 @@ Berikut adalah kesimpulan untuk setiap poin secara singkat:
 
 10. Staiano, A. E., & Calvert, S. L. (2011). *Exergames for Physical Education: Developing and Leading Active Video Game Exercises*. *Games for Health Journal*, 1(1), 35-39.
 
-## Akhir
-
-
-```python
-!jupyter nbconvert --to markdown /content/gambar.ipynb
-!zip -r gambar_files.zip gambar_files
-```
-
-##### recycle bin
-
-
-```python
-# Aggregate total hours played per user
-user_hours = filtered_sampled_data.groupby('user_id')['hours'].sum().reset_index()
-user_hours.columns = ['user_id', 'total_hours']
-
-num_bins = 10
-
-# Divide review_count into quantiles (equal-sized groups)
-user_hours['hours_bin'] = pd.qcut(user_hours['total_hours'], q=num_bins, labels=False)
-
-# Step 2: Stratified sampling within each review_bin (10% sample per bin)
-sampled_user_by_bin = user_hours.groupby('hours_bin').apply(lambda x: x.sample(frac=0.1, random_state=42))
-
-# Extract the unique app_ids from the sampled games
-sampled_user_ids = sampled_user_by_bin['user_id'].unique()
-
-# Perform stratified sampling
-final_sampled_data = filtered_sampled_data[filtered_sampled_data['user_id'].isin(sampled_user_ids)]
-final_sampled_data = final_sampled_data.reset_index(drop=True)
-
-print(f"Number of rows after stratifying by user aggregate hours played: {final_sampled_data.shape[0]}")
-
-# Create a DataFrame
-colab_based_data = pd.DataFrame(final_sampled_data)
-```
-
-    Number of rows after stratifying by user aggregate hours played: 29313
-
-
-    <ipython-input-8-09f31f2ddd0a>:11: DeprecationWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
-      sampled_user_by_bin = user_hours.groupby('hours_bin').apply(lambda x: x.sample(frac=0.1, random_state=42))
-
-
-
-```python
-# def compute_overlap(game_id, recommended_game, review_data):
-#     # Step 2a: Get users who recommended the game
-#     users_for_game = review_data[(review_data['app_id'] == game_id) & (review_data['is_recommended'] == True)]['user_id'].unique()
-#     print(f'jumlah user: {len(users_for_game)}')
-#     # Step 2b: Check how many of those users also recommended the game
-#     overlap_count =len((review_data[(review_data['user_id'].isin(users_for_game)) & (review_data['app_id'] == recommended_game)]['is_recommended'] == True))
-#     print(f'jumlah user yang main rekomended: {overlap_count}')
-#     # Step 2c: Calculate overlap ratio
-#     overlap_ratio = overlap_count / len(users_for_game) if len(users_for_game) > 0 else 0
-#     print(f'overlap ratio: {overlap_ratio}')
-#     return overlap_ratio
-```
-
-
-```python
-# Recommendation function
-def get_user_reviewed_apps(user_encoded, review_data, games_data, user_id_remap):
-    user_id = user_id_remap[user_encoded]
-    print(user_id)
-    user_reviews = review_data[review_data['user_id'] == user_id]
-    print(user_reviews['review_id'].tolist())
-    reviewed_apps = user_reviews['app_id'].tolist()
-    # for i in range(len(reviewed_apps)):
-    #    reviewed_apps[i] = app_id_remap[reviewed_apps[i]]
-    reviewed_titles = [games_data.loc[games_data['app_id'] == app_id, 'title'].iloc[0] for app_id in reviewed_apps]
-    return  user_id,reviewed_apps, reviewed_titles
-
-def recommend_apps(user_id, model, app_id_map, games_data, num_recommendations=10):
-    user_idx = user_id_remap[user_id]
-    print(user_idx)
-    app_idxs = np.array(list(app_id_map.values()))
-    predictions = model.predict(np.array([[user_id, app_idx] for app_idx in app_idxs])).flatten()
-    recommended_app_idxs = app_idxs[np.argsort(-predictions)[:num_recommendations]]
-    recommended_apps = [id_ for id_, idx in app_id_map.items() if idx in recommended_app_idxs]
-    recommended_apps_name = [games_data.loc[games_data['app_id'] == app_id, 'title'].iloc[0] for app_id in recommended_apps]
-    return recommended_apps, recommended_apps_name
-
-# Example usage: Recommend apps for user_id=1
-user, game_played, game_played_name=get_user_reviewed_apps(user_encoded=1, review_data=colab_based_data, games_data=games_data, user_id_remap = user_id_remap)
-game_id, game_title = recommend_apps(user_id=1, model=model, app_id_map=app_id_map, games_data = games_data)
-print("User ID:", user)
-print("Reviewed Apps:", game_played)
-print("Reviewed Titles:", game_played_name)
-print("Recommended Apps:", game_id)
-print("Recommended Titles:", game_title)
-
-```
-
-    9089111
-    [6128126, 29478959, 31400666, 33258770, 37240573, 40138142]
-    9089111
-    [1m55/55[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 3ms/step
-    User ID: 9089111
-    Reviewed Apps: [999220, 265300, 1179210, 253330, 950400, 360170]
-    Reviewed Titles: ['Amnesia: Rebirth', 'Lords Of The Fallen™ 2014', 'Kill It With Fire', 'Neverending Nightmares', 'Blame Him', 'How to Survive 2']
-    Recommended Apps: [1452220, 396090, 1175980, 1762550, 413500, 328450, 503860, 527910, 1585130, 1274980]
-    Recommended Titles: ['Freddy Spaghetti 2.0', 'Rogue State', '城市生存计划 / City Survival Project', 'PixelOver', 'Rocket Fist', 'Deadlock II: Shrine Wars', 'Patterna', "Nevertales: Shattered Image Collector's Edition", 'VERSUS: The Deathscapes', 'Rogue Party 2']
-
-
-
-```python
-# def list_relevant(game_id, recomended_list, review_data, threshold=0.5):
-
-#     recomended_list['overlap_ratio']=0.0
-#     relevant_games=[]
-#     for index,row in recomended_list.iterrows():
-#         game_rec = row['app_id']
-#         overlap_ratio = compute_overlap(game_id, game_rec, review_data)
-#         row['overlap_ratio']=overlap_ratio
-#         if overlap_ratio >= threshold:
-#             relevant_games.append(game_rec)
-
-#     return relevant_games
-```
-
-
-```python
-# Randomly select an app_id
-random_id = np.random.choice(content_based_data['app_id'])
-print(f"Randomly selected App ID: {random_id}")
-
-```
-
-    Randomly selected App ID: 837640
-
-
-
-```python
-# **1. Test on Description**
-print("\nRecommendations based on Description:")
-recommend_desc = get_recommendations(random_id, cosine_sim_desc, content_based_data)
-print(recommend_desc)
-
-# Evaluate with classification metrics for combined features
-precision, recall, mrr, conf_matrix, classification_metrics, accuracy = evaluate_with_classification_metrics(
-    content_based_data, random_id, cosine_sim_desc, k=5
-)
-
-print(f"Evaluation for App ID {random_id}:")
-print(f"Precision@5: {precision:.2f}")
-print(f"Recall@5: {recall:.2f}")
-print(f"Mean Reciprocal Rank (MRR): {mrr:.2f}")
-print(f"Accuracy: {accuracy:.2f}")
-print("\nConfusion Matrix:")
-print(conf_matrix)
-print("\nClassification Report:")
-print(class_report)
-
-```
-
-    
-    Recommendations based on Description:
-
-
-
-    ---------------------------------------------------------------------------
-
-    IndexError                                Traceback (most recent call last)
-
-    <ipython-input-70-e8dbf4bf44df> in <cell line: 3>()
-          1 # **1. Test on Description**
-          2 print("\nRecommendations based on Description:")
-    ----> 3 recommend_desc = get_recommendations(random_id, cosine_sim_desc, games_data_processed)
-          4 print(recommend_desc)
-          5 
-
-
-    <ipython-input-60-92fd6e502dbc> in get_recommendations(app_id, cosine_sim, df, top_n)
-          8 
-          9     # Get the similarity scores for the target app
-    ---> 10     sim_scores = list(enumerate(cosine_sim[idx]))
-         11 
-         12     # Sort the similarity scores in descending order
-
-
-    IndexError: index 41167 is out of bounds for axis 0 with size 40285
-
-
-
-```python
-# **2. Test on Tags**
-print("\nRecommendations based on Tags:")
-recommend_tags = get_recommendations(random_id, cosine_sim_tags, content_based_data)
-print(recommend_tags)
-
-# Evaluate with classification metrics for combined features
-precision, recall, mrr, conf_matrix, class_report, accuracy = evaluate_with_classification_metrics(
-    content_based_data, random_id, cosine_sim_tags, k=5
-)
-
-print(f"Evaluation for App ID {random_id}:")
-print(f"Precision@5: {precision:.2f}")
-print(f"Recall@5: {recall:.2f}")
-print(f"Mean Reciprocal Rank (MRR): {mrr:.2f}")
-print(f"Accuracy: {accuracy:.2f}")
-print("\nConfusion Matrix:")
-print(conf_matrix)
-print("\nClassification Report:")
-print(class_report)
-```
-
-    
-    Recommendations based on Tags:
-            app_id                                         title  \
-    21038   400842          Block N Load - 560 Platinum Bar Pack   
-    29739   359860                     March of War - StormSiege   
-    35204  1864170        Conqueror's Blade - Battle Born Bundle   
-    43637  1986340  World of Tanks Blitz - Warhammer Skulls Pack   
-    24407   703090                          冒险之路(Adventure Road)   
-    
-                                                 description  
-    21038                                                     
-    29739                                                     
-    35204                                                     
-    43637                                                     
-    24407  A global service, real-time combat Strategy Ro...  
-    Evaluation for App ID 591990:
-    Precision@5: 0.00
-    Recall@5: 0.00
-    Mean Reciprocal Rank (MRR): 0.00
-    Accuracy: 0.99
-    
-    Confusion Matrix:
-    [[39823     5]
-     [  457     0]]
-    
-    Classification Report:
-                  precision    recall  f1-score   support
-    
-      Irrelevant       0.99      1.00      0.99     39828
-        Relevant       0.00      0.00      0.00       457
-    
-        accuracy                           0.99     40285
-       macro avg       0.49      0.50      0.50     40285
-    weighted avg       0.98      0.99      0.98     40285
-    
-
-
-
-```python
-# **3. Test on Numerical Features**
-print("\nRecommendations based on Numerical Features:")
-recommend_num = get_recommendations(random_id, cosine_sim_num, content_based_data)
-print(recommend_num)
-```
-
-
-```python
-# **4. Test on Combined Features**
-# Combine cosine similarity matrices with weights
-weight_desc = 0.4
-weight_tags = 0.3
-weight_num = 0.3
-cosine_sim_combined = (
-    weight_desc * cosine_sim_desc +
-    weight_tags * cosine_sim_tags +
-    weight_num * cosine_sim_num
-)
-
-print("\nRecommendations based on Combined Features:")
-recommend_combined = get_recommendations(random_id, cosine_sim_combined, content_based_data)
-print(recommend_combined)
-```
-
-
-```python
-from sklearn.metrics import classification_report, confusion_matrix, ConfusionMatrixDisplay
-import matplotlib.pyplot as plt
-import numpy as np
-
-def make_evaluation(y_true, y_pred, title):
-    # For content-based filtering, the values might represent relevance (1 = relevant, 0 = not relevant)
-    target_nama = ['Not_Relevant', 'Relevant']  # Assuming binary classification for relevance
-
-
-
-    # Display classification report
-    print(classification_report(y_true, y_pred, target_names=target_nama))
-
-    # Compute the confusion matrix
-    cm = confusion_matrix(y_true, y_pred, labels=[0, 1])
-
-    # Create confusion matrix display
-    fig, ax = plt.subplots(figsize=(10, 5))
-    disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=target_nama)
-    disp.plot(ax=ax, cmap='Blues', values_format='d')
-
-    # Add labels and grid customization
-    ax.set_xlabel('Predicted')
-    ax.set_ylabel('True')
-
-    # Remove grid lines
-    ax.grid(False)
-
-    # Add a title
-    ax.set_title(title)
-
-    plt.show()
-
-```
-
-
-```python
-import numpy as np
-from sklearn.metrics import confusion_matrix, classification_report, accuracy_score
-
-# Define a function to get recommendations
-def get_recommendations(app_id, cosine_sim, df, top_n=5):
-    # Find the index of the given app_id
-    idx = df[df['app_id'] == app_id].index[0]
-
-    # Get the similarity scores for the target app
-    sim_scores = list(enumerate(cosine_sim[idx]))
-
-    # Sort the similarity scores in descending order
-    sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
-
-    # Exclude the target app itself (idx 0) and select the top_n recommendations
-    sim_scores = sim_scores[1:top_n+1]
-
-    # Get the indices and similarity scores of the recommended apps
-    game_indices = [i[0] for i in sim_scores]
-    similarity_scores = [i[1] for i in sim_scores]
-
-    # Return the recommendations with similarity scores
-    recommendations = df.iloc[game_indices][['app_id', 'title', 'description']]
-    recommendations['similarity_score'] = similarity_scores
-
-    return recommendations
-
-
-# Simulate relevance based on cosine similarity threshold
-def simulate_relevance_cosine(cosine_sim_matrix, idx, threshold=0.5):
-    # Get the similarity scores for the target item
-    sim_scores = cosine_sim_matrix[idx]
-
-    # Find indices of items with similarity above the threshold (excluding itself)
-    relevance_indices = {i for i, score in enumerate(sim_scores) if score > threshold and i != idx}
-
-    return relevance_indices
-
-
-# Evaluate recommendations using classification metrics
-def evaluate_with_classification_metrics(df, app_id, cosine_sim, k=5, threshold=0.5):
-    """
-    Evaluate recommendations using Precision@k, Recall@k, F1-Score, Confusion Matrix, and Accuracy.
-    """
-    # Get recommendations using the existing function
-    recommendations = get_recommendations(app_id, cosine_sim, df, top_n=k)
-    print(recommendations)
-
-
-    # Get the recommended item indices (from the cosine similarity calculation)
-    recommended_indices = recommendations.index.tolist()
-    print(len(recommended_indices))
-
-    # Get the cosine similarity scores for the recommended items
-    sim_scores = recommendations['similarity_score'].tolist()
-    print(sim_scores)
-
-    # Create binary labels for y_true based on cosine similarity threshold for recommended items
-    y_true = [1 if score > threshold else 0 for score in sim_scores]
-
-    # Create binary labels for y_pred based on recommended items (all recommendations are predicted relevant)
-    y_pred =  [1] * len(recommended_indices)
-
-    # Compute Precision@k
-    true_positives = len(set(recommended_indices) & set([i for i, label in enumerate(y_true) if label == 1]))
-    print(set(recommended_indices))
-    print(set([i for i, label in enumerate(y_true) if label == 1]))
-    print(f'true positiv : {true_positives}')
-    precision = true_positives / len(recommended_indices) if recommended_indices else 0
-
-    # Compute Recall@k
-    relevant_items = [i for i, label in enumerate(y_true) if label == 1]
-    recall = true_positives / len(relevant_items) if relevant_items else 0
-
-    # Compute Mean Reciprocal Rank (MRR)
-    mrr = 0
-    for rank, rec_idx in enumerate(recommended_indices, start=1):
-        if rec_idx in relevant_items:
-            mrr = 1 / rank
-            break
-
-    # Classification metrics
-    conf_matrix = confusion_matrix(y_true, y_pred)
-    classification_metrics = classification_report(y_true, y_pred, labels=np.unique(y_true), target_names=['Irrelevant', 'Relevant'], zero_division=0)
-    accuracy = accuracy_score(y_true, y_pred)
-
-    return precision, recall, mrr, conf_matrix, classification_metrics, accuracy
-
-```
-
-
-```python
-from sklearn.metrics import confusion_matrix, classification_report, accuracy_score
-
-def simulate_relevance_cosine(cosine_sim_matrix, idx, threshold=0.5):
-
-    # Get the similarity scores for the target item
-    sim_scores = cosine_sim_matrix[idx]
-
-    # Find indices of items with similarity above the threshold (excluding itself)
-    relevance_indices = {i for i, score in enumerate(sim_scores) if score > threshold and i != idx}
-
-    return relevance_indices
-
-def evaluate_with_classification_metrics(df, app_id, cosine_sim, k=5, feature='tags'):
-    """
-    Evaluate recommendations using Precision@k, Recall@k, F1-Score, Confusion Matrix, and Accuracy.
-    """
-    # Simulate relevance
-    relevant_items = simulate_relevance_cosine(df, app_id, feature=feature)
-
-    # Get recommendations
-    idx = df[df['app_id'] == app_id].index[0]
-    sim_scores = list(enumerate(cosine_sim[idx]))
-    sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
-    recommended_indices = [i[0] for i in sim_scores[1:k+1]]  # Top-k recommendations
-
-    # Create binary labels
-    y_true = [1 if i in relevant_items else 0 for i in df.index]
-    y_pred = [1 if i in recommended_indices else 0 for i in df.index]
-
-    # Compute Precision@k, Recall@k, and MRR
-    precision = len(set(recommended_indices) & relevant_items) / len(recommended_indices) if recommended_indices else 0
-    recall = len(set(recommended_indices) & relevant_items) / len(relevant_items) if relevant_items else 0
-
-    mrr = 0
-    for rank, rec_idx in enumerate(recommended_indices, start=1):
-        if rec_idx in relevant_items:
-            mrr = 1 / rank
-            break
-
-    # Classification metrics
-    conf_matrix = confusion_matrix(y_true, y_pred)
-    classification_metrics = classification_report(y_true, y_pred, target_names=['Irrelevant', 'Relevant'], zero_division=0)
-    accuracy = accuracy_score(y_true, y_pred)
-
-    return precision, recall, mrr, conf_matrix, classification_metrics, accuracy
-
-
-# Example usage
-
-precision, recall, mrr, conf_matrix, class_report, accuracy = evaluate_with_classification_metrics(
-    content_based_data, random_id, cosine_sim_combined, k=5, feature='tags'
-)
-
-print(f"Evaluation for App ID {random_id}:")
-print(f"Precision@5: {precision:.2f}")
-print(f"Recall@5: {recall:.2f}")
-print(f"Mean Reciprocal Rank (MRR): {mrr:.2f}")
-print(f"Accuracy: {accuracy:.2f}")
-print("\nConfusion Matrix:")
-print(conf_matrix)
-print("\nClassification Report:")
-print(class_report)
-
-```
-
-
-```python
-import pandas as pd
-
-def groundtruth(content_based_data, get_recommendations_func, cosine_sim_combined, top_n=5):
-    """
-    Generates ground truth data for evaluating content-based filtering.
-
-    Args:
-        content_based_data (pd.DataFrame): DataFrame containing game features.
-        get_recommendations_func (function): Function to get recommendations (e.g., get_recommendations).
-        cosine_sim_combined (np.ndarray): Combined cosine similarity matrix.
-        top_n (int, optional): Number of recommendations to consider. Defaults to 5.
-
-    Returns:
-        pd.DataFrame: Ground truth DataFrame with columns: 'app_id', 'recommended_app_id', 'is_relevant'.
-    """
-    ground_truth = []
-
-    for index, row in content_based_data.iterrows():
-        app_id = row['app_id']
-
-        # Get recommendations for the current game using the provided function
-        recommended_app_ids = get_recommendations_func(app_id, cosine_sim_combined, content_based_data, top_n=top_n)['app_id'].tolist()
-
-        for recommended_app_id in recommended_app_ids:
-            # Define relevance based on tag similarity (customize as needed)
-            is_relevant = any(tag in content_based_data[content_based_data['app_id'] == recommended_app_id]['tags'].iloc[0]
-                             for tag in content_based_data[content_based_data['app_id'] == app_id]['tags'].iloc[0])
-
-            ground_truth.append({
-                'app_id': app_id,
-                'recommended_app_id': recommended_app_id,
-                'is_relevant': is_relevant,
-            })
-
-    return pd.DataFrame(ground_truth)
-
-# Example usage:
-# ground_truth_df = generate_ground_truth_content_based(content_based_data, get_recommendations, cosine_sim_combined, top_n=10)
-# print(ground_truth_df)
-```
-
-
-```python
-import pandas as pd
-
-# Assuming you have a DataFrame called 'content_based_data'
-# with columns: 'app_id', 'title', 'description', 'tags', etc.
-# And you have a function 'get_recommendations' that returns
-# a list of recommended app_ids for a given app_id.
-
-
-# Step 1: Create a dictionary to store ground truth data
-ground_truth = []
-
-# Step 2: Iterate through games in your dataset
-for index, row in content_based_data.iterrows():
-    app_id = row['app_id']
-    title = row['title']
-
-    # Step 3: Get recommendations for the current game
-    recommended_app_ids = get_recommendations(app_id, cosine_sim_combined, content_based_data, top_n=5)['app_id'].tolist()
-
-    # Step 4: Compute overlap/relevance for each recommended game
-    for recommended_app_id in recommended_app_ids:
-        # Here, you need to define your relevance criteria:
-        # Example: If both games share at least one common tag, they are considered relevant
-        is_relevant = any(tag in content_based_data[content_based_data['app_id'] == recommended_app_id]['tags'].iloc[0]
-                         for tag in content_based_data[content_based_data['app_id'] == app_id]['tags'].iloc[0])
-
-        ground_truth.append({
-            'app_id': app_id,
-            'recommended_app_id': recommended_app_id,
-            'is_relevant': is_relevant,  # True if relevant, False otherwise
-        })
-
-# Convert ground truth to a DataFrame
-ground_truth_df = pd.DataFrame(ground_truth)
-
-```
