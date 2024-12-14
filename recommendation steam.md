@@ -667,6 +667,7 @@ Dataframe recommendations memiliki 41154794  entri data dan 8 kolom dengan 3 kol
 
 ### **Missing Value & Duplicate**
     
+Jumlah missing value yang ada di dataframe `games_data` adalah sebagai berikut
 
 <table border="1" class="dataframe">
   <thead>
@@ -739,10 +740,12 @@ Dataframe recommendations memiliki 41154794  entri data dan 8 kolom dengan 3 kol
   </tbody>
 </table>
 
+Dilakukan drop pada baris yang memiliki _missing value_ sehingga mengahsilkan jumlah baris sebagai berikut.
     
     Total of rows: 40484
     Total of column: 15
 
+selanjutnya diperiksa nilai numerik yang menghasilkan nilai 0 pada dataframe `games_data`.
 
 <table border="1" class="dataframe">
   <thead>
@@ -815,11 +818,12 @@ Dataframe recommendations memiliki 41154794  entri data dan 8 kolom dengan 3 kol
   </tbody>
 </table>
 
+Terdapat nilai 0 di dalam kolom yang memiliki kepentingan yaitu kolom `price_final`. Maka baris yang memiliki nilai 0 tersebut dihilangkan, sedangkan nilai 0 di baris lainnya dibiarkan karena tidak relevan. 
     
     Total of rows: 32685
     Total of column: 15
 
-
+Diperiksa juga _missing value_ pada dataframe `recommendations`
 
 <table border="1" class="dataframe">
   <thead>
@@ -864,21 +868,23 @@ Dataframe recommendations memiliki 41154794  entri data dan 8 kolom dengan 3 kol
   </tbody>
 </table>
 
-    
+tidak ada _missing value_ yang harus dihilangkan
+
+
+Selanjutnya diperiksa data duplikat pada dataframe `games_data`    
 
     Number of duplicates (excluding 'tags' column): 0
 
 
+Diperiksa juga data duplikat pada dataframe `recommendations`
 
     Number of duplicates : 0
 
+Tidak terdeteksi data duplikat pada kedua dataframe sehingga tidak perlu dihilangkan.
 
 ### **Data Reduction**
 
 melakukan filter game yang dianggap relevan di dataframe `recommendations` dengan menggunakan data dari dataframe `games_data` yang telah dihilangkan *missing value*-nya
-
-
-
 
     Total of rows: 16337800
     Total of column: 8
@@ -901,19 +907,22 @@ melakukan filter game yang dianggap relevan di dataframe `recommendations` denga
 
 Karena ukuran data yang terlalu besar maka dilakukan sampling dengan kriteria seperti berikut: data tidak lebih lama dari tahun 2020, setiap interval dari total waktu dimainkan dari setiap game akan diambil 200 game relevan, setiap user relevan memiliki minimal 5 review game.
 
+Setelah dilakukan filter melalui data game setelah tahun 2020.
 
     Number of rows after date filtering: 9024102
 
+Disampling 200 game pada setiap kelas data dari total durasi dimainkan dari 10 kelas.
 
     Number of sampled games: 2000
     Number of rows in the filtered dataset: 675275
 
+Dilakukan filter user dengan minimal 5 review.
 
     Number of user with min reviews: 4235
     Number of rows in the filtered dataset: 34586
 
 
-Jumlah entri data `games_data` setelah dibersihkan adalah 32685 dan jumlah baris setelah reduksi dari data `recommendations` adalah 34586
+Jumlah entri data `games_data` setelah dibersihkan adalah 32685 dan jumlah baris setelah reduksi dari data `recommendations` adalah 34586.
 
 
 
@@ -1084,53 +1093,12 @@ Game yang memiliki Total Waktu Dimainkan tertinggi adalah Persona 4 Golden.
 
 
 
-
-    <ipython-input-74-2b6400b088da>:22: UserWarning: Glyph 39740 (\N{CJK UNIFIED IDEOGRAPH-9B3C}) missing from current font.
-      plt.tight_layout()
-    <ipython-input-74-2b6400b088da>:22: UserWarning: Glyph 35895 (\N{CJK UNIFIED IDEOGRAPH-8C37}) missing from current font.
-      plt.tight_layout()
-    <ipython-input-74-2b6400b088da>:22: UserWarning: Glyph 20843 (\N{CJK UNIFIED IDEOGRAPH-516B}) missing from current font.
-      plt.tight_layout()
-    <ipython-input-74-2b6400b088da>:22: UserWarning: Glyph 33618 (\N{CJK UNIFIED IDEOGRAPH-8352}) missing from current font.
-      plt.tight_layout()
-    /usr/local/lib/python3.10/dist-packages/IPython/core/pylabtools.py:151: UserWarning: Glyph 39740 (\N{CJK UNIFIED IDEOGRAPH-9B3C}) missing from current font.
-      fig.canvas.print_figure(bytes_io, **kw)
-    /usr/local/lib/python3.10/dist-packages/IPython/core/pylabtools.py:151: UserWarning: Glyph 35895 (\N{CJK UNIFIED IDEOGRAPH-8C37}) missing from current font.
-      fig.canvas.print_figure(bytes_io, **kw)
-    /usr/local/lib/python3.10/dist-packages/IPython/core/pylabtools.py:151: UserWarning: Glyph 20843 (\N{CJK UNIFIED IDEOGRAPH-516B}) missing from current font.
-      fig.canvas.print_figure(bytes_io, **kw)
-    /usr/local/lib/python3.10/dist-packages/IPython/core/pylabtools.py:151: UserWarning: Glyph 33618 (\N{CJK UNIFIED IDEOGRAPH-8352}) missing from current font.
-      fig.canvas.print_figure(bytes_io, **kw)
-
-
-
     
 ![png](gambar_files/gambar_68_1.png)
     
 
 
 Game yang paling banyak direkomendasikan adalah Far Cry 3.
-
-
-
-
-    /usr/local/lib/python3.10/dist-packages/IPython/core/events.py:89: UserWarning: Glyph 39740 (\N{CJK UNIFIED IDEOGRAPH-9B3C}) missing from current font.
-      func(*args, **kwargs)
-    /usr/local/lib/python3.10/dist-packages/IPython/core/events.py:89: UserWarning: Glyph 35895 (\N{CJK UNIFIED IDEOGRAPH-8C37}) missing from current font.
-      func(*args, **kwargs)
-    /usr/local/lib/python3.10/dist-packages/IPython/core/events.py:89: UserWarning: Glyph 20843 (\N{CJK UNIFIED IDEOGRAPH-516B}) missing from current font.
-      func(*args, **kwargs)
-    /usr/local/lib/python3.10/dist-packages/IPython/core/events.py:89: UserWarning: Glyph 33618 (\N{CJK UNIFIED IDEOGRAPH-8352}) missing from current font.
-      func(*args, **kwargs)
-    /usr/local/lib/python3.10/dist-packages/IPython/core/pylabtools.py:151: UserWarning: Glyph 39740 (\N{CJK UNIFIED IDEOGRAPH-9B3C}) missing from current font.
-      fig.canvas.print_figure(bytes_io, **kw)
-    /usr/local/lib/python3.10/dist-packages/IPython/core/pylabtools.py:151: UserWarning: Glyph 35895 (\N{CJK UNIFIED IDEOGRAPH-8C37}) missing from current font.
-      fig.canvas.print_figure(bytes_io, **kw)
-    /usr/local/lib/python3.10/dist-packages/IPython/core/pylabtools.py:151: UserWarning: Glyph 20843 (\N{CJK UNIFIED IDEOGRAPH-516B}) missing from current font.
-      fig.canvas.print_figure(bytes_io, **kw)
-    /usr/local/lib/python3.10/dist-packages/IPython/core/pylabtools.py:151: UserWarning: Glyph 33618 (\N{CJK UNIFIED IDEOGRAPH-8352}) missing from current font.
-      fig.canvas.print_figure(bytes_io, **kw)
-
 
 
     
@@ -1157,14 +1125,6 @@ Game yang paling banyak di-review adalah Tale of Immortal.
 
 #### **Median Positive Feedback Ratio by Price Intervals**
 
-
-
-
-    <ipython-input-78-d3f871d19562>:13: FutureWarning: The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.
-      median_feedback = games_data.groupby(price_bins)['positive_ratio'].median()
-
-
-
     
 ![png](gambar_files/gambar_77_1.png)
     
@@ -1173,10 +1133,6 @@ Game yang paling banyak di-review adalah Tale of Immortal.
 Sejauh ini tidak signifikan pengaruh `harga game` terhadap `Rasio Ulasan Positif`. Artinya tidak selalu game yang mahal memiliki kualitas ulasan yang positif, karena game mahal memunculkan ekspektasi yang lebih tinggi.
 
 #### **Average Positive Ratio by Tag**
-
-
-
-
 
     
 ![png](gambar_files/gambar_80_0.png)
@@ -1325,11 +1281,7 @@ Digunakan GridSearch untuk mngoptimalkan proses vektorisasi TF-IDF dari deskrips
 
 
 
-    Fitting 3 folds for each of 864 candidates, totalling 2592 fits
-
-
-    /usr/local/lib/python3.10/dist-packages/numpy/ma/core.py:2820: RuntimeWarning: invalid value encountered in cast
-      _data = np.array(data, dtype=dtype, copy=copy,
+    Fitting 3 folds for each of 864 candidates, totalling 2592 fit
 
 
     Best parameters found:  {'kmeans__init': 'random', 'kmeans__max_iter': 300, 'kmeans__n_clusters': 4, 'tfidf__max_df': 1.0, 'tfidf__max_features': 100, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 2)}
