@@ -155,8 +155,8 @@ Terdapat 4 file csv namun disini hanya digunakan 3 file yaitu `games.csv`, `game
 
 
 
-  <div id="df-c152e370-81b1-4882-ac3f-3152cd4cd7f6" class="colab-df-container">
-    <div>
+  
+    
 
 <table border="1" class="dataframe">
   <thead>
@@ -260,45 +260,28 @@ Terdapat 4 file csv namun disini hanya digunakan 3 file yaitu `games.csv`, `game
     </tr>
   </tbody>
 </table>
-</div>
-    <div class="colab-df-buttons">
 
-  <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-c152e370-81b1-4882-ac3f-3152cd4cd7f6')"
-            title="Convert this dataframe to an interactive table."
-            style="display:none;">
+    
 
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
-    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
-  </svg>
-    </button>
+  
+    
 
   
 
     
-  </div>
-
-
-<div id="df-09fc5824-cb06-4eed-aed2-b44c74f00b42">
-  <button class="colab-df-quickchart" onclick="quickchart('df-09fc5824-cb06-4eed-aed2-b44c74f00b42')"
-            title="Suggest charts"
-            style="display:none;">
-
-<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-     width="24px">
-    <g>
-        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
-    </g>
-</svg>
-  </button>
+  
 
 
 
   
-</div>
 
-    </div>
-  </div>
+
+
+  
+
+
+    
+  
 
 
 
@@ -312,8 +295,8 @@ File `games.csv` dan `games_metadata.json` digabung kedalam 1 dataframe yaitu `g
 
 
 
-  <div id="df-d7110459-8e61-452e-b5f3-ccaa2f777067" class="colab-df-container">
-    <div>
+  
+    
 
 <table border="1" class="dataframe">
   <thead>
@@ -429,45 +412,28 @@ File `games.csv` dan `games_metadata.json` digabung kedalam 1 dataframe yaitu `g
     </tr>
   </tbody>
 </table>
-</div>
-    <div class="colab-df-buttons">
 
-  <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-d7110459-8e61-452e-b5f3-ccaa2f777067')"
-            title="Convert this dataframe to an interactive table."
-            style="display:none;">
+    
 
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
-    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
-  </svg>
-    </button>
+  
+    
 
   
 
     
-  </div>
-
-
-<div id="df-4e3f3bfd-0c71-4ee8-bea4-1de9118fe1d0">
-  <button class="colab-df-quickchart" onclick="quickchart('df-4e3f3bfd-0c71-4ee8-bea4-1de9118fe1d0')"
-            title="Suggest charts"
-            style="display:none;">
-
-<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-     width="24px">
-    <g>
-        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
-    </g>
-</svg>
-  </button>
+  
 
 
 
   
-</div>
 
-    </div>
-  </div>
+
+
+  
+
+
+    
+  
 
 
 
@@ -481,8 +447,8 @@ Data `recommendations.csv` dibuat dataframe terpisah yaitu `recommendations` kar
 
 
 
-  <div id="df-35686626-b327-4a23-86c2-2df7682eb6cd" class="colab-df-container">
-    <div>
+  
+    
 
 <table border="1" class="dataframe">
   <thead>
@@ -556,45 +522,28 @@ Data `recommendations.csv` dibuat dataframe terpisah yaitu `recommendations` kar
     </tr>
   </tbody>
 </table>
-</div>
-    <div class="colab-df-buttons">
 
-  <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-35686626-b327-4a23-86c2-2df7682eb6cd')"
-            title="Convert this dataframe to an interactive table."
-            style="display:none;">
+    
 
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
-    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
-  </svg>
-    </button>
+  
+    
 
   
 
     
-  </div>
-
-
-<div id="df-9a540bb1-40b0-4b7d-9dfa-a8f8c3056850">
-  <button class="colab-df-quickchart" onclick="quickchart('df-9a540bb1-40b0-4b7d-9dfa-a8f8c3056850')"
-            title="Suggest charts"
-            style="display:none;">
-
-<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-     width="24px">
-    <g>
-        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
-    </g>
-</svg>
-  </button>
+  
 
 
 
   
-</div>
 
-    </div>
-  </div>
+
+
+  
+
+
+    
+  
 
 
 
@@ -670,8 +619,8 @@ penjelasan variabel pada dataframe `recommendations`
 
 
 
-  <div id="df-d2511b58-1f50-4439-9209-1116ef08024b" class="colab-df-container">
-    <div>
+  
+    
 
 <table border="1" class="dataframe">
   <thead>
@@ -760,45 +709,28 @@ penjelasan variabel pada dataframe `recommendations`
     </tr>
   </tbody>
 </table>
-</div>
-    <div class="colab-df-buttons">
 
-  <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-d2511b58-1f50-4439-9209-1116ef08024b')"
-            title="Convert this dataframe to an interactive table."
-            style="display:none;">
+    
 
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
-    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
-  </svg>
-    </button>
+  
+    
 
   
 
     
-  </div>
-
-
-<div id="df-731804c7-ed64-489a-93b9-e83b5a34051d">
-  <button class="colab-df-quickchart" onclick="quickchart('df-731804c7-ed64-489a-93b9-e83b5a34051d')"
-            title="Suggest charts"
-            style="display:none;">
-
-<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-     width="24px">
-    <g>
-        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
-    </g>
-</svg>
-  </button>
+  
 
 
 
   
-</div>
 
-    </div>
-  </div>
+
+
+  
+
+
+    
+  
 
 
 
@@ -829,8 +761,8 @@ Dataframe games_data memiliki 50872 entri rekod dan 15 kolom dengan 5 kolom nume
 
 
 
-  <div id="df-ef65c961-92a5-46b7-94e8-a0b0513aad27" class="colab-df-container">
-    <div>
+  
+    
 
 <table border="1" class="dataframe">
   <thead>
@@ -919,45 +851,28 @@ Dataframe games_data memiliki 50872 entri rekod dan 15 kolom dengan 5 kolom nume
     </tr>
   </tbody>
 </table>
-</div>
-    <div class="colab-df-buttons">
 
-  <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-ef65c961-92a5-46b7-94e8-a0b0513aad27')"
-            title="Convert this dataframe to an interactive table."
-            style="display:none;">
+    
 
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
-    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
-  </svg>
-    </button>
+  
+    
 
   
 
     
-  </div>
-
-
-<div id="df-8b0e1679-8d48-4d5e-aacf-99f93fd3ed38">
-  <button class="colab-df-quickchart" onclick="quickchart('df-8b0e1679-8d48-4d5e-aacf-99f93fd3ed38')"
-            title="Suggest charts"
-            style="display:none;">
-
-<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-     width="24px">
-    <g>
-        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
-    </g>
-</svg>
-  </button>
+  
 
 
 
   
-</div>
 
-    </div>
-  </div>
+
+
+  
+
+
+    
+  
 
 
 
@@ -979,8 +894,8 @@ Dataframe recommendations memiliki 41154794  entri data dan 8 kolom dengan 3 kol
 
 
 
-  <div id="df-87600cc6-621b-40ea-9948-03fcc9561f86" class="colab-df-container">
-    <div>
+  
+    
 
 <table border="1" class="dataframe">
   <thead>
@@ -1052,45 +967,28 @@ Dataframe recommendations memiliki 41154794  entri data dan 8 kolom dengan 3 kol
     </tr>
   </tbody>
 </table>
-</div>
-    <div class="colab-df-buttons">
 
-  <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-87600cc6-621b-40ea-9948-03fcc9561f86')"
-            title="Convert this dataframe to an interactive table."
-            style="display:none;">
+    
 
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
-    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
-  </svg>
-    </button>
+  
+    
 
   
 
     
-  </div>
-
-
-<div id="df-b04df083-ced0-4802-aa36-484e91038793">
-  <button class="colab-df-quickchart" onclick="quickchart('df-b04df083-ced0-4802-aa36-484e91038793')"
-            title="Suggest charts"
-            style="display:none;">
-
-<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-     width="24px">
-    <g>
-        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
-    </g>
-</svg>
-  </button>
+  
 
 
 
   
-</div>
 
-    </div>
-  </div>
+
+
+  
+
+
+    
+  
 
 
 
@@ -1109,8 +1007,8 @@ Dataframe recommendations memiliki 41154794  entri data dan 8 kolom dengan 3 kol
 
 
 
-  <div id="df-7887c1a3-1fa6-4e0d-a5ad-8ef8f34b1046" class="colab-df-container">
-    <div>
+  
+    
 
 <table border="1" class="dataframe">
   <thead>
@@ -1182,45 +1080,28 @@ Dataframe recommendations memiliki 41154794  entri data dan 8 kolom dengan 3 kol
     </tr>
   </tbody>
 </table>
-</div>
-    <div class="colab-df-buttons">
 
-  <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-7887c1a3-1fa6-4e0d-a5ad-8ef8f34b1046')"
-            title="Convert this dataframe to an interactive table."
-            style="display:none;">
+    
 
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
-    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
-  </svg>
-    </button>
+  
+    
 
   
 
     
-  </div>
-
-
-<div id="df-5ce34186-c2ad-4edf-8609-80cee02d7752">
-  <button class="colab-df-quickchart" onclick="quickchart('df-5ce34186-c2ad-4edf-8609-80cee02d7752')"
-            title="Suggest charts"
-            style="display:none;">
-
-<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-     width="24px">
-    <g>
-        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
-    </g>
-</svg>
-  </button>
+  
 
 
 
   
-</div>
 
-    </div>
-  </div>
+
+
+  
+
+
+    
+  
 
 
 
@@ -1239,8 +1120,8 @@ Dataframe recommendations memiliki 41154794  entri data dan 8 kolom dengan 3 kol
 
 
 
-  <div id="df-369c64f3-9757-4d77-9d34-12474edeec6d" class="colab-df-container">
-    <div>
+  
+    
 
 <table border="1" class="dataframe">
   <thead>
@@ -1284,45 +1165,28 @@ Dataframe recommendations memiliki 41154794  entri data dan 8 kolom dengan 3 kol
     </tr>
   </tbody>
 </table>
-</div>
-    <div class="colab-df-buttons">
 
-  <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-369c64f3-9757-4d77-9d34-12474edeec6d')"
-            title="Convert this dataframe to an interactive table."
-            style="display:none;">
+    
 
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
-    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
-  </svg>
-    </button>
+  
+    
 
   
 
     
-  </div>
-
-
-<div id="df-bfb259c4-1e0d-4093-b671-adaf6aecf77c">
-  <button class="colab-df-quickchart" onclick="quickchart('df-bfb259c4-1e0d-4093-b671-adaf6aecf77c')"
-            title="Suggest charts"
-            style="display:none;">
-
-<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-     width="24px">
-    <g>
-        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
-    </g>
-</svg>
-  </button>
+  
 
 
 
   
-</div>
 
-    </div>
-  </div>
+
+
+  
+
+
+    
+  
 
 
 
@@ -1433,8 +1297,8 @@ Distribusi harga dari sebuah game ternyata sangat terjal ke kanan. Artinya sebag
 <html>
 <head><meta charset="utf-8" /></head>
 <body>
-    <div>                            
-                        <div id="250d8873-5565-45d8-9b21-47db0db73d8c" class="plotly-graph-div" style="height:525px; width:100%;"></div>                    </div>
+                                
+                                            
 </body>
 </html>
 
@@ -1787,19 +1651,24 @@ Jika memperhitungkan jumlah game yang dirilis di setiap platform, malah linux ya
 
 ### **1. Content Based Filtering**
 
-
-
-
-
-
 Kolom tag yang berisi list tag apa saja yang ada di sebuah game, dipecah menjadi kumpulan string yang bisa diterima sebagai corpus oleh TfidfVectorizer.
+rating di-encode agar dapat dimengerti oleh cosine similarity dengan map seperti berikut:
 
 
-
-
-rating di-encode agar dapat dimengerti oleh cosine similarity
-
-
+```python
+# Convert the rating column (text to numeric)
+rating_mapping = {
+    'Overwhelmingly Positive': 5,
+    'Very Positive': 4,
+    'Positive': 3,
+    'Mildly Positive': 2,
+    'Mixed': 1,
+    'Mildly Negative': -1,
+    'Negative': -2,
+    'Very Negative': -3,
+    'Overwhelmingly Negative': -4
+}
+```
 
 
 
@@ -1833,24 +1702,14 @@ Digunakan TF-IDF dengan nilai dari 0 hingga 1 untuk data berupa teks yaitu deskr
 
 #### **Feature Engineering**
 
-Tiga vektor yang telah dibuat digabungkan seluruh kolomnya menghasilkan data vektor gabungan tf-idf dan numerikal yaitu Combined Features. Hal ini dilakukan untuk melihat keterkaitan yang lebih kompleks dari data yang ada.
-
-
-
+Tiga vektor yang telah dibuat digabungkan seluruh kolomnya menghasilkan data vektor gabungan tf-idf dan numerikal yaitu Combined Features. Hal ini dilakukan untuk melihat keterkaitan yang lebih kompleks dari data yang ada. Metode yang digunakan adalah concatenation array 
+```
+Vector Combined Features = Vector Tf-idf Descriptions  + Vactor Tf-idf Tags + Vector Numerical Features
+```
 
 #### **Data Vector**
 
 **Vector TF-IDF Descriptions**
-
-
-
-
-
-
-
-
-  <div id="df-76509d52-fdec-4e03-aec4-4f48ee0bbbe7" class="colab-df-container">
-    <div>
 
 <table border="1" class="dataframe">
   <thead>
@@ -2171,60 +2030,8 @@ Tiga vektor yang telah dibuat digabungkan seluruh kolomnya menghasilkan data vek
   </tbody>
 </table>
 <p>25806 rows × 100 columns</p>
-</div>
-    <div class="colab-df-buttons">
-
-  <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-76509d52-fdec-4e03-aec4-4f48ee0bbbe7')"
-            title="Convert this dataframe to an interactive table."
-            style="display:none;">
-
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
-    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
-  </svg>
-    </button>
-
-  
-
-    
-  </div>
-
-
-<div id="df-dc7c86df-7f74-40da-9427-b67e0e80a67e">
-  <button class="colab-df-quickchart" onclick="quickchart('df-dc7c86df-7f74-40da-9427-b67e0e80a67e')"
-            title="Suggest charts"
-            style="display:none;">
-
-<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-     width="24px">
-    <g>
-        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
-    </g>
-</svg>
-  </button>
-
-
-
-  
-</div>
-
-    </div>
-  </div>
-
-
-
-
+ 
 **Vector TF-IDF Tags**
-
-
-
-
-
-
-
-
-  <div id="df-5d420ee3-c4b8-469d-a871-dde09d16da44" class="colab-df-container">
-    <div>
 
 <table border="1" class="dataframe">
   <thead>
@@ -2545,60 +2352,9 @@ Tiga vektor yang telah dibuat digabungkan seluruh kolomnya menghasilkan data vek
   </tbody>
 </table>
 <p>25806 rows × 464 columns</p>
-</div>
-    <div class="colab-df-buttons">
-
-  <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-5d420ee3-c4b8-469d-a871-dde09d16da44')"
-            title="Convert this dataframe to an interactive table."
-            style="display:none;">
-
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
-    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
-  </svg>
-    </button>
-
-  
-
-    
-  </div>
-
-
-<div id="df-98694764-70d6-4067-b50d-edc327b8b3c2">
-  <button class="colab-df-quickchart" onclick="quickchart('df-98694764-70d6-4067-b50d-edc327b8b3c2')"
-            title="Suggest charts"
-            style="display:none;">
-
-<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-     width="24px">
-    <g>
-        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
-    </g>
-</svg>
-  </button>
-
-
-
-  
-</div>
-
-    </div>
-  </div>
-
-
 
 
 **Vector Numerical Features**
-
-
-
-
-
-
-
-
-  <div id="df-68e73100-6cf4-425b-b3b9-e13acebf0e05" class="colab-df-container">
-    <div>
 
 <table border="1" class="dataframe">
   <thead>
@@ -2698,48 +2454,6 @@ Tiga vektor yang telah dibuat digabungkan seluruh kolomnya menghasilkan data vek
   </tbody>
 </table>
 <p>25806 rows × 4 columns</p>
-</div>
-    <div class="colab-df-buttons">
-
-  <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-68e73100-6cf4-425b-b3b9-e13acebf0e05')"
-            title="Convert this dataframe to an interactive table."
-            style="display:none;">
-
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
-    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
-  </svg>
-    </button>
-
-  
-
-    
-  </div>
-
-
-<div id="df-d07576f8-560d-4b1d-a14a-f444ccd0db98">
-  <button class="colab-df-quickchart" onclick="quickchart('df-d07576f8-560d-4b1d-a14a-f444ccd0db98')"
-            title="Suggest charts"
-            style="display:none;">
-
-<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-     width="24px">
-    <g>
-        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
-    </g>
-</svg>
-  </button>
-
-
-
-  
-</div>
-
-    </div>
-  </div>
-
-
-
 
 **Vector Combined Features**
 
@@ -2750,8 +2464,8 @@ Tiga vektor yang telah dibuat digabungkan seluruh kolomnya menghasilkan data vek
 
 
 
-  <div id="df-a4af3ed0-cba6-426f-844c-332246503af0" class="colab-df-container">
-    <div>
+  
+    
 
 <table border="1" class="dataframe">
   <thead>
@@ -3072,63 +2786,11 @@ Tiga vektor yang telah dibuat digabungkan seluruh kolomnya menghasilkan data vek
   </tbody>
 </table>
 <p>25806 rows × 568 columns</p>
-</div>
-    <div class="colab-df-buttons">
-
-  <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-a4af3ed0-cba6-426f-844c-332246503af0')"
-            title="Convert this dataframe to an interactive table."
-            style="display:none;">
-
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
-    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
-  </svg>
-    </button>
-
-  
-
-    
-  </div>
-
-
-<div id="df-58f507f0-e6cf-49d5-9128-729bf0765914">
-  <button class="colab-df-quickchart" onclick="quickchart('df-58f507f0-e6cf-49d5-9128-729bf0765914')"
-            title="Suggest charts"
-            style="display:none;">
-
-<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-     width="24px">
-    <g>
-        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
-    </g>
-</svg>
-  </button>
-
-
-
-  
-</div>
-
-    </div>
-  </div>
-
-
 
 
 ### **2. Collaborative Filtering**
 
-
-
-
-
-
-
-
-
-
-
-  <div id="df-53374b6a-9267-4093-a7aa-52a0709f2b41" class="colab-df-container">
-    <div>
+    
 
 <table border="1" class="dataframe">
   <thead>
@@ -3202,84 +2864,26 @@ Tiga vektor yang telah dibuat digabungkan seluruh kolomnya menghasilkan data vek
     </tr>
   </tbody>
 </table>
-</div>
-    <div class="colab-df-buttons">
-
-  <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-53374b6a-9267-4093-a7aa-52a0709f2b41')"
-            title="Convert this dataframe to an interactive table."
-            style="display:none;">
-
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
-    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
-  </svg>
-    </button>
-
   
+Digunakan data `is_recommended` dan `hours` sebagai parameter untuk model deep learning.Data User dan App dilakukan ordinal encoding agar dapat diterima oleh model.
 
-    
-  </div>
-
-
-<div id="df-d3271e65-2f9c-45cf-a05b-3f4adacfcb30">
-  <button class="colab-df-quickchart" onclick="quickchart('df-d3271e65-2f9c-45cf-a05b-3f4adacfcb30')"
-            title="Suggest charts"
-            style="display:none;">
-
-<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-     width="24px">
-    <g>
-        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
-    </g>
-</svg>
-  </button>
-
-
-
-  
-</div>
-
-    </div>
-  </div>
-
-
-
-
-Digunakan data `is_recommended` dan `hours` sebagai parameter untuk model deep learning.
-
-
-
-
-Data User dan App dilakukan ordinal encoding agar dapat diterima oleh model.
-
-####**Feature Engineering**
+#### **Feature Engineering**
 
 Data "hours" disesuaikan berdasarkan data game direkomendasikan atau tidak. Jika game direkomendasikan (is_recommended bernilai True), maka nilai  "hours" dengan dikalikan 1.25, dan jika tidak direkomendasikan, maka dikalikan dengan 0.75. Kemudian, data dinormalisasi sebagai "adjusted_hours" menggunakan MinMaxScaler untuk mengubah nilai-nya ke dalam rentang 0 hingga 1. Terakhir, kolom "adjusted_hours" yang telah dinormalisasi ditambahkan ke dalam dataset.
 
-
-
+\[
+\text{adjusted\_hours} = 
+\begin{cases} 
+\text{hours} \times 1.25 & \text{jika } \text{is\_recommended} = \text{True} \\
+\text{hours} \times 0.75 & \text{jika } \text{is\_recommended} = \text{False}
+\end{cases}
+\]
 
 #### **Train Test Split**
 
 Dibuat 3 set data train-test dengan komposisi 8:2 untuk 3 model berbeda. Model pertama menggunakan data `hours` yang telah dinormalisasi minmaxscaler, lalu data kedua menggunakan data `is_recommended` yang bernilai boolean, data kedua menggunakan data adjusted_hours yang menggabungkan parameter `hours` dan `is_recommended`.
 
-
-
-
-
-
-
-
-
-
 ## **Modeling**
-Tahapan ini membahas mengenai model sisten rekomendasi yang Anda buat untuk menyelesaikan permasalahan. Sajikan top-N recommendation sebagai output.
-
-**Rubrik/Kriteria Tambahan (Opsional)**:
-- Menyajikan dua solusi rekomendasi dengan algoritma yang berbeda.
-- Menjelaskan kelebihan dan kekurangan dari solusi/pendekatan yang dipilih.
-
-
 
 ### **1. Content Based Filtering**
 
@@ -3343,36 +2947,17 @@ n   &\text{ adalah jumlah elemen dalam vektor } a \text{ dan } b
 
 #### **Result**
 
-Digunakan threshold similarity score >= 0.5 sebagai nilai True Prediction.
-
-
-
-
-
-
+Digunakan threshold similarity score >= 0.5 sebagai nilai True Prediction. Dan untuk melihat hasil dari model digunakan pemilihan judul game secara acak untuk diprediksi rekomendasinya.
 
     Randomly selected Game Title: Striving for Light: Survival
     App ID for the selected game: 2286450
 
-
-
-
-
 **Model 1:** Cosine Similarity (Description)
-
-
-
 
     Randomly selected Game Title: Striving for Light: Survival
     App ID for the selected game: 2286450
     
     Recommendations based on Description:
-
-
-
-
-  <div id="df-9e23cd8d-d140-4bac-8337-5aa6bb3f7bda" class="colab-df-container">
-    <div>
 
 <table border="1" class="dataframe">
   <thead>
@@ -3457,77 +3042,14 @@ Digunakan threshold similarity score >= 0.5 sebagai nilai True Prediction.
     </tr>
   </tbody>
 </table>
-</div>
-    <div class="colab-df-buttons">
-
-  <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-9e23cd8d-d140-4bac-8337-5aa6bb3f7bda')"
-            title="Convert this dataframe to an interactive table."
-            style="display:none;">
-
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
-    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
-  </svg>
-    </button>
-
-  
-
-    
-  </div>
-
-
-<div id="df-afacaefb-870a-40a6-acaf-8772652d5f11">
-  <button class="colab-df-quickchart" onclick="quickchart('df-afacaefb-870a-40a6-acaf-8772652d5f11')"
-            title="Suggest charts"
-            style="display:none;">
-
-<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-     width="24px">
-    <g>
-        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
-    </g>
-</svg>
-  </button>
-
-
-
-  
-</div>
-
-  <div id="id_8aad6efa-76df-49b0-8e00-1ca94c51821f">
-    
-    <button class="colab-df-generate" onclick="generateWithVariable('recommend_desc')"
-            title="Generate code using this dataframe."
-            style="display:none;">
-
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-       width="24px">
-    <path d="M7,19H8.4L18.45,9,17,7.55,7,17.6ZM5,21V16.75L18.45,3.32a2,2,0,0,1,2.83,0l1.4,1.43a1.91,1.91,0,0,1,.58,1.4,1.91,1.91,0,0,1-.58,1.4L9.25,21ZM18.45,9,17,7.55Zm-12,3A5.31,5.31,0,0,0,4.9,8.1,5.31,5.31,0,0,0,1,6.5,5.31,5.31,0,0,0,4.9,4.9,5.31,5.31,0,0,0,6.5,1,5.31,5.31,0,0,0,8.1,4.9,5.31,5.31,0,0,0,12,6.5,5.46,5.46,0,0,0,6.5,12Z"/>
-  </svg>
-    </button>
-    
-  </div>
-
-    </div>
-  </div>
-
 
 
 **Model 2:** Cosine Similarity (Tags)
-
-
-
 
     Randomly selected Game Title: Striving for Light: Survival
     App ID for the selected game: 2286450
     
     Recommendations based on Tags:
-
-
-
-
-  <div id="df-bda67614-6c8b-4d05-a758-c24f0fbdb573" class="colab-df-container">
-    <div>
 
 <table border="1" class="dataframe">
   <thead>
@@ -3612,77 +3134,15 @@ Digunakan threshold similarity score >= 0.5 sebagai nilai True Prediction.
     </tr>
   </tbody>
 </table>
-</div>
-    <div class="colab-df-buttons">
-
-  <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-bda67614-6c8b-4d05-a758-c24f0fbdb573')"
-            title="Convert this dataframe to an interactive table."
-            style="display:none;">
-
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
-    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
-  </svg>
-    </button>
-
-  
-
-    
-  </div>
-
-
-<div id="df-20c15dab-9b7e-48e1-b865-46c3e1373718">
-  <button class="colab-df-quickchart" onclick="quickchart('df-20c15dab-9b7e-48e1-b865-46c3e1373718')"
-            title="Suggest charts"
-            style="display:none;">
-
-<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-     width="24px">
-    <g>
-        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
-    </g>
-</svg>
-  </button>
-
-
-
-  
-</div>
-
-  <div id="id_59eafe9d-53bb-4e96-98f6-9718c842af47">
-    
-    <button class="colab-df-generate" onclick="generateWithVariable('recommend_tags')"
-            title="Generate code using this dataframe."
-            style="display:none;">
-
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-       width="24px">
-    <path d="M7,19H8.4L18.45,9,17,7.55,7,17.6ZM5,21V16.75L18.45,3.32a2,2,0,0,1,2.83,0l1.4,1.43a1.91,1.91,0,0,1,.58,1.4,1.91,1.91,0,0,1-.58,1.4L9.25,21ZM18.45,9,17,7.55Zm-12,3A5.31,5.31,0,0,0,4.9,8.1,5.31,5.31,0,0,0,1,6.5,5.31,5.31,0,0,0,4.9,4.9,5.31,5.31,0,0,0,6.5,1,5.31,5.31,0,0,0,8.1,4.9,5.31,5.31,0,0,0,12,6.5,5.46,5.46,0,0,0,6.5,12Z"/>
-  </svg>
-    </button>
-    
-  </div>
-
-    </div>
-  </div>
-
 
 
 **Model 3:** Cosine Similarity (Numerical Features)
-
-
-
 
     Randomly selected Game Title: Striving for Light: Survival
     App ID for the selected game: 2286450
     
     Recommendations based on Numerical Features:
 
-
-
-
-  <div id="df-3ebc7214-e17a-4b30-b794-01027543e6ed" class="colab-df-container">
-    <div>
 
 <table border="1" class="dataframe">
   <thead>
@@ -3767,77 +3227,14 @@ Digunakan threshold similarity score >= 0.5 sebagai nilai True Prediction.
     </tr>
   </tbody>
 </table>
-</div>
-    <div class="colab-df-buttons">
-
-  <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-3ebc7214-e17a-4b30-b794-01027543e6ed')"
-            title="Convert this dataframe to an interactive table."
-            style="display:none;">
-
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
-    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
-  </svg>
-    </button>
-
   
-
-    
-  </div>
-
-
-<div id="df-ea75003e-326b-4e35-bb6e-369ea5d176c7">
-  <button class="colab-df-quickchart" onclick="quickchart('df-ea75003e-326b-4e35-bb6e-369ea5d176c7')"
-            title="Suggest charts"
-            style="display:none;">
-
-<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-     width="24px">
-    <g>
-        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
-    </g>
-</svg>
-  </button>
-
-
-
-  
-</div>
-
-  <div id="id_24a84b6e-3f6f-4352-8073-f6d6865b7023">
-    
-    <button class="colab-df-generate" onclick="generateWithVariable('recommend_num')"
-            title="Generate code using this dataframe."
-            style="display:none;">
-
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-       width="24px">
-    <path d="M7,19H8.4L18.45,9,17,7.55,7,17.6ZM5,21V16.75L18.45,3.32a2,2,0,0,1,2.83,0l1.4,1.43a1.91,1.91,0,0,1,.58,1.4,1.91,1.91,0,0,1-.58,1.4L9.25,21ZM18.45,9,17,7.55Zm-12,3A5.31,5.31,0,0,0,4.9,8.1,5.31,5.31,0,0,0,1,6.5,5.31,5.31,0,0,0,4.9,4.9,5.31,5.31,0,0,0,6.5,1,5.31,5.31,0,0,0,8.1,4.9,5.31,5.31,0,0,0,12,6.5,5.46,5.46,0,0,0,6.5,12Z"/>
-  </svg>
-    </button>
-    
-  </div>
-
-    </div>
-  </div>
-
-
-
 **Model 4:** Cosine Similarity (Combined)
-
-
-
 
     Randomly selected Game Title: Striving for Light: Survival
     App ID for the selected game: 2286450
     
     Recommendations based on Combined Features:
 
-
-
-
-  <div id="df-817bfc86-acdd-46e4-b808-eaaadd82c245" class="colab-df-container">
-    <div>
 
 <table border="1" class="dataframe">
   <thead>
@@ -3922,63 +3319,9 @@ Digunakan threshold similarity score >= 0.5 sebagai nilai True Prediction.
     </tr>
   </tbody>
 </table>
-</div>
-    <div class="colab-df-buttons">
 
-  <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-817bfc86-acdd-46e4-b808-eaaadd82c245')"
-            title="Convert this dataframe to an interactive table."
-            style="display:none;">
-
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
-    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
-  </svg>
-    </button>
-
-  
-
-    
-  </div>
-
-
-<div id="df-b2b8e369-8dbc-44ca-8677-9b5c263cf6b9">
-  <button class="colab-df-quickchart" onclick="quickchart('df-b2b8e369-8dbc-44ca-8677-9b5c263cf6b9')"
-            title="Suggest charts"
-            style="display:none;">
-
-<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-     width="24px">
-    <g>
-        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
-    </g>
-</svg>
-  </button>
-
-
-
-  
-</div>
-
-  <div id="id_4217071b-7104-4100-890d-acd0f4a4e950">
-    
-    <button class="colab-df-generate" onclick="generateWithVariable('recommend_comb')"
-            title="Generate code using this dataframe."
-            style="display:none;">
-
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-       width="24px">
-    <path d="M7,19H8.4L18.45,9,17,7.55,7,17.6ZM5,21V16.75L18.45,3.32a2,2,0,0,1,2.83,0l1.4,1.43a1.91,1.91,0,0,1,.58,1.4,1.91,1.91,0,0,1-.58,1.4L9.25,21ZM18.45,9,17,7.55Zm-12,3A5.31,5.31,0,0,0,4.9,8.1,5.31,5.31,0,0,0,1,6.5,5.31,5.31,0,0,0,4.9,4.9,5.31,5.31,0,0,0,6.5,1,5.31,5.31,0,0,0,8.1,4.9,5.31,5.31,0,0,0,12,6.5,5.46,5.46,0,0,0,6.5,12Z"/>
-  </svg>
-    </button>
-    
-  </div>
-
-    </div>
-  </div>
-
-
-
-Semua model dapat memprediksi rekomendasi game dengan baik dengan nilai similarity score diatas 0.5 mencapai 100% prediksi. Namun Model terbaik adalah Model 3: Cosine Similarity (Numerical Features) karena similarity score mencapai 1.
+ 
+Semua model dapat memprediksi rekomendasi game dengan baik dengan nilai similarity score diatas 0.5 mencapai 100% prediksi. Namun Model terbaik dipilih Model 3: Cosine Similarity (Numerical Features) karena similarity score mencapai 1 pada prediksi teratasnya.
 
 ### **2. Collaborative Filtering**
 
@@ -3995,410 +3338,10 @@ Hasil evaluasi model menunjukkan `RMSE` berikut untuk setiap fitur:
 
 Dari hasil ini, model yang menggunakan `adjusted hours` menunjukkan performa terbaik dengan nilai `RMSE` terendah. Sistem rekomendasi ini kemudian diuji untuk menghasilkan 10 rekomendasi teratas berdasarkan game yang dipilih atau dimainkan oleh pengguna, dan hasilnya menunjukkan bahwa model mampu memberikan rekomendasi yang relevan.
 
-
-
-
 #### **Training**
 
 ##### **Model 1:** Hours-Based
 
-
-
-
-    Epoch 1/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m10s[0m 12ms/step - loss: 0.2270 - root_mean_squared_error: 0.1840 - val_loss: 0.2034 - val_root_mean_squared_error: 0.1681
-    Epoch 2/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m25s[0m 17ms/step - loss: 0.1886 - root_mean_squared_error: 0.1534 - val_loss: 0.1793 - val_root_mean_squared_error: 0.1481
-    Epoch 3/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m15s[0m 11ms/step - loss: 0.1654 - root_mean_squared_error: 0.1325 - val_loss: 0.1620 - val_root_mean_squared_error: 0.1331
-    Epoch 4/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 5ms/step - loss: 0.1505 - root_mean_squared_error: 0.1190 - val_loss: 0.1486 - val_root_mean_squared_error: 0.1209
-    Epoch 5/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.1366 - root_mean_squared_error: 0.1057 - val_loss: 0.1378 - val_root_mean_squared_error: 0.1108
-    Epoch 6/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 6ms/step - loss: 0.1263 - root_mean_squared_error: 0.0963 - val_loss: 0.1291 - val_root_mean_squared_error: 0.1022
-    Epoch 7/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 9ms/step - loss: 0.1173 - root_mean_squared_error: 0.0874 - val_loss: 0.1218 - val_root_mean_squared_error: 0.0949
-    Epoch 8/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m4s[0m 5ms/step - loss: 0.1109 - root_mean_squared_error: 0.0804 - val_loss: 0.1157 - val_root_mean_squared_error: 0.0887
-    Epoch 9/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.1052 - root_mean_squared_error: 0.0741 - val_loss: 0.1106 - val_root_mean_squared_error: 0.0833
-    Epoch 10/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.1015 - root_mean_squared_error: 0.0690 - val_loss: 0.1062 - val_root_mean_squared_error: 0.0787
-    Epoch 11/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m10s[0m 7ms/step - loss: 0.0971 - root_mean_squared_error: 0.0651 - val_loss: 0.1025 - val_root_mean_squared_error: 0.0747
-    Epoch 12/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 5ms/step - loss: 0.0943 - root_mean_squared_error: 0.0610 - val_loss: 0.0993 - val_root_mean_squared_error: 0.0712
-    Epoch 13/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 7ms/step - loss: 0.0910 - root_mean_squared_error: 0.0581 - val_loss: 0.0966 - val_root_mean_squared_error: 0.0682
-    Epoch 14/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 5ms/step - loss: 0.0891 - root_mean_squared_error: 0.0567 - val_loss: 0.0943 - val_root_mean_squared_error: 0.0656
-    Epoch 15/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m12s[0m 13ms/step - loss: 0.0864 - root_mean_squared_error: 0.0537 - val_loss: 0.0922 - val_root_mean_squared_error: 0.0633
-    Epoch 16/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m15s[0m 7ms/step - loss: 0.0850 - root_mean_squared_error: 0.0505 - val_loss: 0.0904 - val_root_mean_squared_error: 0.0613
-    Epoch 17/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m11s[0m 7ms/step - loss: 0.0825 - root_mean_squared_error: 0.0478 - val_loss: 0.0889 - val_root_mean_squared_error: 0.0596
-    Epoch 18/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 6ms/step - loss: 0.0815 - root_mean_squared_error: 0.0490 - val_loss: 0.0875 - val_root_mean_squared_error: 0.0580
-    Epoch 19/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m12s[0m 9ms/step - loss: 0.0790 - root_mean_squared_error: 0.0433 - val_loss: 0.0863 - val_root_mean_squared_error: 0.0567
-    Epoch 20/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 7ms/step - loss: 0.0785 - root_mean_squared_error: 0.0432 - val_loss: 0.0853 - val_root_mean_squared_error: 0.0555
-    Epoch 21/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 9ms/step - loss: 0.0778 - root_mean_squared_error: 0.0445 - val_loss: 0.0843 - val_root_mean_squared_error: 0.0544
-    Epoch 22/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m13s[0m 13ms/step - loss: 0.0770 - root_mean_squared_error: 0.0431 - val_loss: 0.0835 - val_root_mean_squared_error: 0.0535
-    Epoch 23/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m11s[0m 12ms/step - loss: 0.0764 - root_mean_squared_error: 0.0424 - val_loss: 0.0828 - val_root_mean_squared_error: 0.0527
-    Epoch 24/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m20s[0m 11ms/step - loss: 0.0758 - root_mean_squared_error: 0.0401 - val_loss: 0.0821 - val_root_mean_squared_error: 0.0520
-    Epoch 25/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m11s[0m 12ms/step - loss: 0.0745 - root_mean_squared_error: 0.0367 - val_loss: 0.0815 - val_root_mean_squared_error: 0.0513
-    Epoch 26/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m17s[0m 8ms/step - loss: 0.0745 - root_mean_squared_error: 0.0411 - val_loss: 0.0810 - val_root_mean_squared_error: 0.0507
-    Epoch 27/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m13s[0m 11ms/step - loss: 0.0734 - root_mean_squared_error: 0.0358 - val_loss: 0.0805 - val_root_mean_squared_error: 0.0502
-    Epoch 28/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m12s[0m 13ms/step - loss: 0.0730 - root_mean_squared_error: 0.0376 - val_loss: 0.0801 - val_root_mean_squared_error: 0.0497
-    Epoch 29/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m17s[0m 9ms/step - loss: 0.0733 - root_mean_squared_error: 0.0365 - val_loss: 0.0797 - val_root_mean_squared_error: 0.0493
-    Epoch 30/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 6ms/step - loss: 0.0730 - root_mean_squared_error: 0.0371 - val_loss: 0.0794 - val_root_mean_squared_error: 0.0489
-    Epoch 31/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.0714 - root_mean_squared_error: 0.0364 - val_loss: 0.0791 - val_root_mean_squared_error: 0.0486
-    Epoch 32/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.0719 - root_mean_squared_error: 0.0350 - val_loss: 0.0788 - val_root_mean_squared_error: 0.0483
-    Epoch 33/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 6ms/step - loss: 0.0721 - root_mean_squared_error: 0.0381 - val_loss: 0.0785 - val_root_mean_squared_error: 0.0480
-    Epoch 34/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m15s[0m 12ms/step - loss: 0.0717 - root_mean_squared_error: 0.0355 - val_loss: 0.0783 - val_root_mean_squared_error: 0.0478
-    Epoch 35/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m12s[0m 14ms/step - loss: 0.0696 - root_mean_squared_error: 0.0342 - val_loss: 0.0781 - val_root_mean_squared_error: 0.0475
-    Epoch 36/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m17s[0m 10ms/step - loss: 0.0705 - root_mean_squared_error: 0.0356 - val_loss: 0.0779 - val_root_mean_squared_error: 0.0474
-    Epoch 37/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m10s[0m 10ms/step - loss: 0.0703 - root_mean_squared_error: 0.0349 - val_loss: 0.0778 - val_root_mean_squared_error: 0.0472
-    Epoch 38/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.0701 - root_mean_squared_error: 0.0356 - val_loss: 0.0776 - val_root_mean_squared_error: 0.0470
-    Epoch 39/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m12s[0m 13ms/step - loss: 0.0707 - root_mean_squared_error: 0.0337 - val_loss: 0.0775 - val_root_mean_squared_error: 0.0469
-    Epoch 40/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m13s[0m 15ms/step - loss: 0.0705 - root_mean_squared_error: 0.0331 - val_loss: 0.0773 - val_root_mean_squared_error: 0.0467
-    Epoch 41/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m10s[0m 12ms/step - loss: 0.0697 - root_mean_squared_error: 0.0332 - val_loss: 0.0772 - val_root_mean_squared_error: 0.0466
-    Epoch 42/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m13s[0m 15ms/step - loss: 0.0696 - root_mean_squared_error: 0.0326 - val_loss: 0.0771 - val_root_mean_squared_error: 0.0465
-    Epoch 43/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m15s[0m 8ms/step - loss: 0.0715 - root_mean_squared_error: 0.0344 - val_loss: 0.0770 - val_root_mean_squared_error: 0.0464
-    Epoch 44/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m11s[0m 9ms/step - loss: 0.0702 - root_mean_squared_error: 0.0333 - val_loss: 0.0770 - val_root_mean_squared_error: 0.0463
-    Epoch 45/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.0697 - root_mean_squared_error: 0.0331 - val_loss: 0.0769 - val_root_mean_squared_error: 0.0463
-    Epoch 46/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m12s[0m 9ms/step - loss: 0.0701 - root_mean_squared_error: 0.0342 - val_loss: 0.0768 - val_root_mean_squared_error: 0.0462
-    Epoch 47/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.0693 - root_mean_squared_error: 0.0336 - val_loss: 0.0768 - val_root_mean_squared_error: 0.0461
-    Epoch 48/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 10ms/step - loss: 0.0694 - root_mean_squared_error: 0.0321 - val_loss: 0.0767 - val_root_mean_squared_error: 0.0461
-    Epoch 49/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 11ms/step - loss: 0.0686 - root_mean_squared_error: 0.0328 - val_loss: 0.0766 - val_root_mean_squared_error: 0.0460
-    Epoch 50/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 9ms/step - loss: 0.0705 - root_mean_squared_error: 0.0337 - val_loss: 0.0766 - val_root_mean_squared_error: 0.0460
-    Epoch 51/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.0706 - root_mean_squared_error: 0.0328 - val_loss: 0.0766 - val_root_mean_squared_error: 0.0459
-    Epoch 52/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m10s[0m 6ms/step - loss: 0.0694 - root_mean_squared_error: 0.0318 - val_loss: 0.0765 - val_root_mean_squared_error: 0.0459
-    Epoch 53/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.0700 - root_mean_squared_error: 0.0314 - val_loss: 0.0765 - val_root_mean_squared_error: 0.0459
-    Epoch 54/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 10ms/step - loss: 0.0684 - root_mean_squared_error: 0.0320 - val_loss: 0.0764 - val_root_mean_squared_error: 0.0458
-    Epoch 55/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m10s[0m 9ms/step - loss: 0.0684 - root_mean_squared_error: 0.0308 - val_loss: 0.0764 - val_root_mean_squared_error: 0.0458
-    Epoch 56/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 6ms/step - loss: 0.0680 - root_mean_squared_error: 0.0310 - val_loss: 0.0764 - val_root_mean_squared_error: 0.0458
-    Epoch 57/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m12s[0m 8ms/step - loss: 0.0700 - root_mean_squared_error: 0.0308 - val_loss: 0.0764 - val_root_mean_squared_error: 0.0457
-    Epoch 58/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 7ms/step - loss: 0.0689 - root_mean_squared_error: 0.0313 - val_loss: 0.0763 - val_root_mean_squared_error: 0.0457
-    Epoch 59/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 9ms/step - loss: 0.0683 - root_mean_squared_error: 0.0317 - val_loss: 0.0763 - val_root_mean_squared_error: 0.0457
-    Epoch 60/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.0680 - root_mean_squared_error: 0.0307 - val_loss: 0.0763 - val_root_mean_squared_error: 0.0456
-    Epoch 61/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m11s[0m 8ms/step - loss: 0.0689 - root_mean_squared_error: 0.0294 - val_loss: 0.0763 - val_root_mean_squared_error: 0.0456
-    Epoch 62/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m10s[0m 7ms/step - loss: 0.0682 - root_mean_squared_error: 0.0297 - val_loss: 0.0763 - val_root_mean_squared_error: 0.0456
-    Epoch 63/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 7ms/step - loss: 0.0677 - root_mean_squared_error: 0.0309 - val_loss: 0.0762 - val_root_mean_squared_error: 0.0456
-    Epoch 64/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 9ms/step - loss: 0.0678 - root_mean_squared_error: 0.0319 - val_loss: 0.0762 - val_root_mean_squared_error: 0.0456
-    Epoch 65/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.0694 - root_mean_squared_error: 0.0313 - val_loss: 0.0762 - val_root_mean_squared_error: 0.0456
-    Epoch 66/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.0683 - root_mean_squared_error: 0.0310 - val_loss: 0.0762 - val_root_mean_squared_error: 0.0456
-    Epoch 67/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.0680 - root_mean_squared_error: 0.0296 - val_loss: 0.0762 - val_root_mean_squared_error: 0.0456
-    Epoch 68/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.0684 - root_mean_squared_error: 0.0294 - val_loss: 0.0762 - val_root_mean_squared_error: 0.0455
-    Epoch 69/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m10s[0m 6ms/step - loss: 0.0686 - root_mean_squared_error: 0.0306 - val_loss: 0.0762 - val_root_mean_squared_error: 0.0455
-    Epoch 70/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m12s[0m 8ms/step - loss: 0.0695 - root_mean_squared_error: 0.0321 - val_loss: 0.0762 - val_root_mean_squared_error: 0.0455
-    Epoch 71/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.0684 - root_mean_squared_error: 0.0319 - val_loss: 0.0762 - val_root_mean_squared_error: 0.0455
-    Epoch 72/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.0686 - root_mean_squared_error: 0.0322 - val_loss: 0.0762 - val_root_mean_squared_error: 0.0455
-    Epoch 73/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.0689 - root_mean_squared_error: 0.0310 - val_loss: 0.0762 - val_root_mean_squared_error: 0.0455
-    Epoch 74/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.0687 - root_mean_squared_error: 0.0305 - val_loss: 0.0762 - val_root_mean_squared_error: 0.0455
-    Epoch 75/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 9ms/step - loss: 0.0684 - root_mean_squared_error: 0.0297 - val_loss: 0.0761 - val_root_mean_squared_error: 0.0455
-    Epoch 76/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.0678 - root_mean_squared_error: 0.0291 - val_loss: 0.0761 - val_root_mean_squared_error: 0.0455
-    Epoch 77/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m11s[0m 8ms/step - loss: 0.0680 - root_mean_squared_error: 0.0296 - val_loss: 0.0761 - val_root_mean_squared_error: 0.0455
-    Epoch 78/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 6ms/step - loss: 0.0696 - root_mean_squared_error: 0.0322 - val_loss: 0.0761 - val_root_mean_squared_error: 0.0455
-    Epoch 79/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.0668 - root_mean_squared_error: 0.0309 - val_loss: 0.0761 - val_root_mean_squared_error: 0.0455
-    Epoch 80/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.0689 - root_mean_squared_error: 0.0311 - val_loss: 0.0761 - val_root_mean_squared_error: 0.0455
-    Epoch 81/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 9ms/step - loss: 0.0686 - root_mean_squared_error: 0.0310 - val_loss: 0.0761 - val_root_mean_squared_error: 0.0454
-    Epoch 82/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 6ms/step - loss: 0.0690 - root_mean_squared_error: 0.0306 - val_loss: 0.0761 - val_root_mean_squared_error: 0.0454
-    Epoch 83/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.0682 - root_mean_squared_error: 0.0311 - val_loss: 0.0761 - val_root_mean_squared_error: 0.0454
-    Epoch 84/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 6ms/step - loss: 0.0686 - root_mean_squared_error: 0.0300 - val_loss: 0.0761 - val_root_mean_squared_error: 0.0454
-    Epoch 85/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m10s[0m 6ms/step - loss: 0.0694 - root_mean_squared_error: 0.0306 - val_loss: 0.0761 - val_root_mean_squared_error: 0.0454
-    Epoch 86/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.0679 - root_mean_squared_error: 0.0292 - val_loss: 0.0761 - val_root_mean_squared_error: 0.0455
-    Epoch 87/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.0681 - root_mean_squared_error: 0.0305 - val_loss: 0.0761 - val_root_mean_squared_error: 0.0454
-    Epoch 88/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.0676 - root_mean_squared_error: 0.0295 - val_loss: 0.0761 - val_root_mean_squared_error: 0.0454
-    Epoch 89/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.0685 - root_mean_squared_error: 0.0297 - val_loss: 0.0761 - val_root_mean_squared_error: 0.0454
-    Epoch 90/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m11s[0m 8ms/step - loss: 0.0686 - root_mean_squared_error: 0.0294 - val_loss: 0.0761 - val_root_mean_squared_error: 0.0455
-    Epoch 91/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 6ms/step - loss: 0.0687 - root_mean_squared_error: 0.0305 - val_loss: 0.0761 - val_root_mean_squared_error: 0.0455
-    Epoch 92/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m11s[0m 7ms/step - loss: 0.0693 - root_mean_squared_error: 0.0305 - val_loss: 0.0761 - val_root_mean_squared_error: 0.0455
-    Epoch 93/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 7ms/step - loss: 0.0677 - root_mean_squared_error: 0.0291 - val_loss: 0.0761 - val_root_mean_squared_error: 0.0455
-    Epoch 94/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m10s[0m 6ms/step - loss: 0.0678 - root_mean_squared_error: 0.0294 - val_loss: 0.0761 - val_root_mean_squared_error: 0.0455
-    Epoch 95/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.0684 - root_mean_squared_error: 0.0291 - val_loss: 0.0762 - val_root_mean_squared_error: 0.0455
-    Epoch 96/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.0680 - root_mean_squared_error: 0.0298 - val_loss: 0.0762 - val_root_mean_squared_error: 0.0455
-    Epoch 97/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m10s[0m 7ms/step - loss: 0.0686 - root_mean_squared_error: 0.0294 - val_loss: 0.0762 - val_root_mean_squared_error: 0.0455
-    Epoch 98/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 5ms/step - loss: 0.0683 - root_mean_squared_error: 0.0293 - val_loss: 0.0762 - val_root_mean_squared_error: 0.0455
-    Epoch 99/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 9ms/step - loss: 0.0671 - root_mean_squared_error: 0.0279 - val_loss: 0.0762 - val_root_mean_squared_error: 0.0455
-    Epoch 100/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 6ms/step - loss: 0.0687 - root_mean_squared_error: 0.0308 - val_loss: 0.0762 - val_root_mean_squared_error: 0.0455
-    Epoch 101/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.0667 - root_mean_squared_error: 0.0291 - val_loss: 0.0762 - val_root_mean_squared_error: 0.0455
-    Epoch 102/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 5ms/step - loss: 0.0686 - root_mean_squared_error: 0.0307 - val_loss: 0.0762 - val_root_mean_squared_error: 0.0455
-    Epoch 103/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.0673 - root_mean_squared_error: 0.0285 - val_loss: 0.0762 - val_root_mean_squared_error: 0.0455
-    Epoch 104/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.0679 - root_mean_squared_error: 0.0277 - val_loss: 0.0762 - val_root_mean_squared_error: 0.0455
-    Epoch 105/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 5ms/step - loss: 0.0674 - root_mean_squared_error: 0.0281 - val_loss: 0.0762 - val_root_mean_squared_error: 0.0455
-    Epoch 106/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.0683 - root_mean_squared_error: 0.0283 - val_loss: 0.0762 - val_root_mean_squared_error: 0.0455
-    Epoch 107/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.0675 - root_mean_squared_error: 0.0287 - val_loss: 0.0762 - val_root_mean_squared_error: 0.0455
-    Epoch 108/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.0675 - root_mean_squared_error: 0.0294 - val_loss: 0.0762 - val_root_mean_squared_error: 0.0455
-    Epoch 109/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 5ms/step - loss: 0.0688 - root_mean_squared_error: 0.0307 - val_loss: 0.0762 - val_root_mean_squared_error: 0.0455
-    Epoch 110/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.0677 - root_mean_squared_error: 0.0276 - val_loss: 0.0762 - val_root_mean_squared_error: 0.0455
-    Epoch 111/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.0679 - root_mean_squared_error: 0.0303 - val_loss: 0.0762 - val_root_mean_squared_error: 0.0455
-    Epoch 112/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 6ms/step - loss: 0.0676 - root_mean_squared_error: 0.0284 - val_loss: 0.0762 - val_root_mean_squared_error: 0.0455
-    Epoch 113/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.0678 - root_mean_squared_error: 0.0293 - val_loss: 0.0762 - val_root_mean_squared_error: 0.0455
-    Epoch 114/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.0691 - root_mean_squared_error: 0.0312 - val_loss: 0.0762 - val_root_mean_squared_error: 0.0455
-    Epoch 115/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.0679 - root_mean_squared_error: 0.0296 - val_loss: 0.0762 - val_root_mean_squared_error: 0.0455
-    Epoch 116/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 6ms/step - loss: 0.0681 - root_mean_squared_error: 0.0294 - val_loss: 0.0762 - val_root_mean_squared_error: 0.0455
-    Epoch 117/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.0680 - root_mean_squared_error: 0.0307 - val_loss: 0.0762 - val_root_mean_squared_error: 0.0455
-    Epoch 118/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.0677 - root_mean_squared_error: 0.0296 - val_loss: 0.0762 - val_root_mean_squared_error: 0.0455
-    Epoch 119/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.0682 - root_mean_squared_error: 0.0295 - val_loss: 0.0762 - val_root_mean_squared_error: 0.0455
-    Epoch 120/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 9ms/step - loss: 0.0680 - root_mean_squared_error: 0.0299 - val_loss: 0.0762 - val_root_mean_squared_error: 0.0455
-    Epoch 121/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.0683 - root_mean_squared_error: 0.0309 - val_loss: 0.0762 - val_root_mean_squared_error: 0.0455
-    Epoch 122/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.0672 - root_mean_squared_error: 0.0284 - val_loss: 0.0762 - val_root_mean_squared_error: 0.0455
-    Epoch 123/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 5ms/step - loss: 0.0692 - root_mean_squared_error: 0.0314 - val_loss: 0.0762 - val_root_mean_squared_error: 0.0455
-    Epoch 124/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.0675 - root_mean_squared_error: 0.0295 - val_loss: 0.0763 - val_root_mean_squared_error: 0.0455
-    Epoch 125/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.0685 - root_mean_squared_error: 0.0286 - val_loss: 0.0763 - val_root_mean_squared_error: 0.0455
-    Epoch 126/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.0669 - root_mean_squared_error: 0.0274 - val_loss: 0.0763 - val_root_mean_squared_error: 0.0455
-    Epoch 127/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m11s[0m 7ms/step - loss: 0.0673 - root_mean_squared_error: 0.0298 - val_loss: 0.0763 - val_root_mean_squared_error: 0.0455
-    Epoch 128/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.0677 - root_mean_squared_error: 0.0301 - val_loss: 0.0763 - val_root_mean_squared_error: 0.0455
-    Epoch 129/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m10s[0m 5ms/step - loss: 0.0676 - root_mean_squared_error: 0.0286 - val_loss: 0.0763 - val_root_mean_squared_error: 0.0455
-    Epoch 130/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.0669 - root_mean_squared_error: 0.0270 - val_loss: 0.0763 - val_root_mean_squared_error: 0.0455
-    Epoch 131/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.0675 - root_mean_squared_error: 0.0290 - val_loss: 0.0763 - val_root_mean_squared_error: 0.0455
-    Epoch 132/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.0689 - root_mean_squared_error: 0.0315 - val_loss: 0.0763 - val_root_mean_squared_error: 0.0456
-    Epoch 133/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.0672 - root_mean_squared_error: 0.0281 - val_loss: 0.0763 - val_root_mean_squared_error: 0.0456
-    Epoch 134/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.0686 - root_mean_squared_error: 0.0310 - val_loss: 0.0763 - val_root_mean_squared_error: 0.0456
-    Epoch 135/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m10s[0m 7ms/step - loss: 0.0676 - root_mean_squared_error: 0.0281 - val_loss: 0.0763 - val_root_mean_squared_error: 0.0456
-    Epoch 136/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.0686 - root_mean_squared_error: 0.0307 - val_loss: 0.0763 - val_root_mean_squared_error: 0.0456
-    Epoch 137/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.0674 - root_mean_squared_error: 0.0289 - val_loss: 0.0763 - val_root_mean_squared_error: 0.0456
-    Epoch 138/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 9ms/step - loss: 0.0668 - root_mean_squared_error: 0.0277 - val_loss: 0.0763 - val_root_mean_squared_error: 0.0456
-    Epoch 139/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.0678 - root_mean_squared_error: 0.0291 - val_loss: 0.0763 - val_root_mean_squared_error: 0.0456
-    Epoch 140/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.0671 - root_mean_squared_error: 0.0313 - val_loss: 0.0763 - val_root_mean_squared_error: 0.0456
-    Epoch 141/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 6ms/step - loss: 0.0678 - root_mean_squared_error: 0.0284 - val_loss: 0.0763 - val_root_mean_squared_error: 0.0456
-    Epoch 142/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 9ms/step - loss: 0.0672 - root_mean_squared_error: 0.0301 - val_loss: 0.0763 - val_root_mean_squared_error: 0.0456
-    Epoch 143/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 6ms/step - loss: 0.0670 - root_mean_squared_error: 0.0299 - val_loss: 0.0763 - val_root_mean_squared_error: 0.0456
-    Epoch 144/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m13s[0m 10ms/step - loss: 0.0679 - root_mean_squared_error: 0.0279 - val_loss: 0.0763 - val_root_mean_squared_error: 0.0456
-    Epoch 145/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.0675 - root_mean_squared_error: 0.0278 - val_loss: 0.0763 - val_root_mean_squared_error: 0.0456
-    Epoch 146/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.0682 - root_mean_squared_error: 0.0295 - val_loss: 0.0763 - val_root_mean_squared_error: 0.0456
-    Epoch 147/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m10s[0m 7ms/step - loss: 0.0665 - root_mean_squared_error: 0.0296 - val_loss: 0.0763 - val_root_mean_squared_error: 0.0456
-    Epoch 148/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.0670 - root_mean_squared_error: 0.0287 - val_loss: 0.0763 - val_root_mean_squared_error: 0.0456
-    Epoch 149/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 6ms/step - loss: 0.0674 - root_mean_squared_error: 0.0292 - val_loss: 0.0763 - val_root_mean_squared_error: 0.0456
-    Epoch 150/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m11s[0m 7ms/step - loss: 0.0676 - root_mean_squared_error: 0.0294 - val_loss: 0.0763 - val_root_mean_squared_error: 0.0456
-    Epoch 151/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m12s[0m 10ms/step - loss: 0.0676 - root_mean_squared_error: 0.0304 - val_loss: 0.0763 - val_root_mean_squared_error: 0.0456
-    Epoch 152/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.0673 - root_mean_squared_error: 0.0270 - val_loss: 0.0763 - val_root_mean_squared_error: 0.0456
-    Epoch 153/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m12s[0m 8ms/step - loss: 0.0688 - root_mean_squared_error: 0.0305 - val_loss: 0.0763 - val_root_mean_squared_error: 0.0456
-    Epoch 154/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m11s[0m 9ms/step - loss: 0.0680 - root_mean_squared_error: 0.0279 - val_loss: 0.0763 - val_root_mean_squared_error: 0.0456
-    Epoch 155/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.0686 - root_mean_squared_error: 0.0294 - val_loss: 0.0763 - val_root_mean_squared_error: 0.0456
-    Epoch 156/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.0671 - root_mean_squared_error: 0.0272 - val_loss: 0.0764 - val_root_mean_squared_error: 0.0456
-    Epoch 157/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 6ms/step - loss: 0.0679 - root_mean_squared_error: 0.0293 - val_loss: 0.0764 - val_root_mean_squared_error: 0.0457
-    Epoch 158/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.0678 - root_mean_squared_error: 0.0280 - val_loss: 0.0764 - val_root_mean_squared_error: 0.0457
-    Epoch 159/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.0675 - root_mean_squared_error: 0.0290 - val_loss: 0.0764 - val_root_mean_squared_error: 0.0457
-    Epoch 160/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 6ms/step - loss: 0.0683 - root_mean_squared_error: 0.0285 - val_loss: 0.0764 - val_root_mean_squared_error: 0.0457
-    Epoch 161/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m12s[0m 9ms/step - loss: 0.0683 - root_mean_squared_error: 0.0305 - val_loss: 0.0764 - val_root_mean_squared_error: 0.0457
-    Epoch 162/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 8ms/step - loss: 0.0676 - root_mean_squared_error: 0.0270 - val_loss: 0.0764 - val_root_mean_squared_error: 0.0457
-    Epoch 163/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.0682 - root_mean_squared_error: 0.0289 - val_loss: 0.0764 - val_root_mean_squared_error: 0.0457
-    Epoch 164/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m10s[0m 6ms/step - loss: 0.0677 - root_mean_squared_error: 0.0286 - val_loss: 0.0764 - val_root_mean_squared_error: 0.0457
-    Epoch 165/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m12s[0m 8ms/step - loss: 0.0682 - root_mean_squared_error: 0.0291 - val_loss: 0.0764 - val_root_mean_squared_error: 0.0457
-    Epoch 166/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m11s[0m 9ms/step - loss: 0.0675 - root_mean_squared_error: 0.0291 - val_loss: 0.0764 - val_root_mean_squared_error: 0.0457
-    Epoch 167/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 6ms/step - loss: 0.0682 - root_mean_squared_error: 0.0300 - val_loss: 0.0764 - val_root_mean_squared_error: 0.0457
-    Epoch 168/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 11ms/step - loss: 0.0669 - root_mean_squared_error: 0.0270 - val_loss: 0.0764 - val_root_mean_squared_error: 0.0457
-    Epoch 169/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 7ms/step - loss: 0.0680 - root_mean_squared_error: 0.0306 - val_loss: 0.0764 - val_root_mean_squared_error: 0.0457
-    Epoch 170/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m11s[0m 8ms/step - loss: 0.0677 - root_mean_squared_error: 0.0288 - val_loss: 0.0764 - val_root_mean_squared_error: 0.0457
-    Epoch 171/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.0681 - root_mean_squared_error: 0.0284 - val_loss: 0.0764 - val_root_mean_squared_error: 0.0457
-    Epoch 172/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 9ms/step - loss: 0.0689 - root_mean_squared_error: 0.0291 - val_loss: 0.0764 - val_root_mean_squared_error: 0.0457
-    Epoch 173/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 6ms/step - loss: 0.0676 - root_mean_squared_error: 0.0291 - val_loss: 0.0764 - val_root_mean_squared_error: 0.0457
-    Epoch 174/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m10s[0m 6ms/step - loss: 0.0674 - root_mean_squared_error: 0.0277 - val_loss: 0.0764 - val_root_mean_squared_error: 0.0457
-    Epoch 175/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.0677 - root_mean_squared_error: 0.0292 - val_loss: 0.0764 - val_root_mean_squared_error: 0.0457
-    Epoch 176/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 5ms/step - loss: 0.0677 - root_mean_squared_error: 0.0284 - val_loss: 0.0764 - val_root_mean_squared_error: 0.0457
-    Epoch 177/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.0668 - root_mean_squared_error: 0.0284 - val_loss: 0.0764 - val_root_mean_squared_error: 0.0457
-    Epoch 178/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m10s[0m 6ms/step - loss: 0.0684 - root_mean_squared_error: 0.0288 - val_loss: 0.0764 - val_root_mean_squared_error: 0.0457
-    Epoch 179/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m10s[0m 6ms/step - loss: 0.0684 - root_mean_squared_error: 0.0287 - val_loss: 0.0764 - val_root_mean_squared_error: 0.0457
-    Epoch 180/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.0687 - root_mean_squared_error: 0.0302 - val_loss: 0.0764 - val_root_mean_squared_error: 0.0457
-    Epoch 181/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m10s[0m 6ms/step - loss: 0.0667 - root_mean_squared_error: 0.0279 - val_loss: 0.0764 - val_root_mean_squared_error: 0.0457
-    Epoch 182/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m10s[0m 6ms/step - loss: 0.0676 - root_mean_squared_error: 0.0278 - val_loss: 0.0764 - val_root_mean_squared_error: 0.0457
-    Epoch 183/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m12s[0m 8ms/step - loss: 0.0675 - root_mean_squared_error: 0.0270 - val_loss: 0.0764 - val_root_mean_squared_error: 0.0457
-    Epoch 184/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.0686 - root_mean_squared_error: 0.0284 - val_loss: 0.0764 - val_root_mean_squared_error: 0.0457
-    Epoch 185/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.0677 - root_mean_squared_error: 0.0290 - val_loss: 0.0764 - val_root_mean_squared_error: 0.0457
-    Epoch 186/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.0671 - root_mean_squared_error: 0.0262 - val_loss: 0.0764 - val_root_mean_squared_error: 0.0457
-    Epoch 187/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.0669 - root_mean_squared_error: 0.0271 - val_loss: 0.0764 - val_root_mean_squared_error: 0.0457
-    Epoch 188/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 10ms/step - loss: 0.0684 - root_mean_squared_error: 0.0272 - val_loss: 0.0764 - val_root_mean_squared_error: 0.0457
-    Epoch 189/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.0680 - root_mean_squared_error: 0.0281 - val_loss: 0.0764 - val_root_mean_squared_error: 0.0457
-    Epoch 190/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.0677 - root_mean_squared_error: 0.0284 - val_loss: 0.0764 - val_root_mean_squared_error: 0.0457
-    Epoch 191/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.0682 - root_mean_squared_error: 0.0286 - val_loss: 0.0764 - val_root_mean_squared_error: 0.0457
-    Epoch 192/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 7ms/step - loss: 0.0669 - root_mean_squared_error: 0.0284 - val_loss: 0.0764 - val_root_mean_squared_error: 0.0457
-    Epoch 193/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m10s[0m 6ms/step - loss: 0.0680 - root_mean_squared_error: 0.0295 - val_loss: 0.0764 - val_root_mean_squared_error: 0.0457
-    Epoch 194/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m11s[0m 7ms/step - loss: 0.0680 - root_mean_squared_error: 0.0300 - val_loss: 0.0764 - val_root_mean_squared_error: 0.0457
-    Epoch 195/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 5ms/step - loss: 0.0675 - root_mean_squared_error: 0.0277 - val_loss: 0.0764 - val_root_mean_squared_error: 0.0457
-    Epoch 196/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.0675 - root_mean_squared_error: 0.0287 - val_loss: 0.0764 - val_root_mean_squared_error: 0.0457
-    Epoch 197/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 6ms/step - loss: 0.0681 - root_mean_squared_error: 0.0289 - val_loss: 0.0764 - val_root_mean_squared_error: 0.0457
     Epoch 198/200
     [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m10s[0m 6ms/step - loss: 0.0678 - root_mean_squared_error: 0.0289 - val_loss: 0.0764 - val_root_mean_squared_error: 0.0458
     Epoch 199/200
@@ -4409,403 +3352,6 @@ Dari hasil ini, model yang menggunakan `adjusted hours` menunjukkan performa ter
 
 ##### **Model 2:** User's Recommendation-Based
 
-
-
-
-    Epoch 1/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m10s[0m 11ms/step - loss: 0.5424 - root_mean_squared_error: 0.4207 - val_loss: 0.5529 - val_root_mean_squared_error: 0.4270
-    Epoch 2/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 5ms/step - loss: 0.5349 - root_mean_squared_error: 0.4167 - val_loss: 0.5487 - val_root_mean_squared_error: 0.4248
-    Epoch 3/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.5294 - root_mean_squared_error: 0.4137 - val_loss: 0.5450 - val_root_mean_squared_error: 0.4228
-    Epoch 4/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 9ms/step - loss: 0.5256 - root_mean_squared_error: 0.4117 - val_loss: 0.5416 - val_root_mean_squared_error: 0.4210
-    Epoch 5/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 6ms/step - loss: 0.5225 - root_mean_squared_error: 0.4101 - val_loss: 0.5382 - val_root_mean_squared_error: 0.4193
-    Epoch 6/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.5202 - root_mean_squared_error: 0.4090 - val_loss: 0.5350 - val_root_mean_squared_error: 0.4176
-    Epoch 7/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.5140 - root_mean_squared_error: 0.4055 - val_loss: 0.5319 - val_root_mean_squared_error: 0.4160
-    Epoch 8/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.5118 - root_mean_squared_error: 0.4044 - val_loss: 0.5289 - val_root_mean_squared_error: 0.4145
-    Epoch 9/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.5088 - root_mean_squared_error: 0.4029 - val_loss: 0.5260 - val_root_mean_squared_error: 0.4130
-    Epoch 10/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m12s[0m 9ms/step - loss: 0.5056 - root_mean_squared_error: 0.4012 - val_loss: 0.5231 - val_root_mean_squared_error: 0.4115
-    Epoch 11/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 6ms/step - loss: 0.4998 - root_mean_squared_error: 0.3981 - val_loss: 0.5203 - val_root_mean_squared_error: 0.4101
-    Epoch 12/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m12s[0m 9ms/step - loss: 0.4963 - root_mean_squared_error: 0.3961 - val_loss: 0.5176 - val_root_mean_squared_error: 0.4087
-    Epoch 13/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 6ms/step - loss: 0.4927 - root_mean_squared_error: 0.3942 - val_loss: 0.5150 - val_root_mean_squared_error: 0.4074
-    Epoch 14/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 9ms/step - loss: 0.4949 - root_mean_squared_error: 0.3957 - val_loss: 0.5125 - val_root_mean_squared_error: 0.4061
-    Epoch 15/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 6ms/step - loss: 0.4862 - root_mean_squared_error: 0.3908 - val_loss: 0.5100 - val_root_mean_squared_error: 0.4048
-    Epoch 16/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.4859 - root_mean_squared_error: 0.3908 - val_loss: 0.5076 - val_root_mean_squared_error: 0.4036
-    Epoch 17/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 6ms/step - loss: 0.4849 - root_mean_squared_error: 0.3904 - val_loss: 0.5052 - val_root_mean_squared_error: 0.4024
-    Epoch 18/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m10s[0m 6ms/step - loss: 0.4797 - root_mean_squared_error: 0.3875 - val_loss: 0.5029 - val_root_mean_squared_error: 0.4012
-    Epoch 19/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.4775 - root_mean_squared_error: 0.3865 - val_loss: 0.5007 - val_root_mean_squared_error: 0.4001
-    Epoch 20/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m10s[0m 6ms/step - loss: 0.4741 - root_mean_squared_error: 0.3846 - val_loss: 0.4985 - val_root_mean_squared_error: 0.3990
-    Epoch 21/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m12s[0m 7ms/step - loss: 0.4718 - root_mean_squared_error: 0.3834 - val_loss: 0.4964 - val_root_mean_squared_error: 0.3980
-    Epoch 22/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 5ms/step - loss: 0.4676 - root_mean_squared_error: 0.3812 - val_loss: 0.4943 - val_root_mean_squared_error: 0.3969
-    Epoch 23/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.4662 - root_mean_squared_error: 0.3805 - val_loss: 0.4923 - val_root_mean_squared_error: 0.3960
-    Epoch 24/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 5ms/step - loss: 0.4631 - root_mean_squared_error: 0.3788 - val_loss: 0.4903 - val_root_mean_squared_error: 0.3950
-    Epoch 25/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 10ms/step - loss: 0.4598 - root_mean_squared_error: 0.3770 - val_loss: 0.4884 - val_root_mean_squared_error: 0.3940
-    Epoch 26/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.4576 - root_mean_squared_error: 0.3759 - val_loss: 0.4866 - val_root_mean_squared_error: 0.3931
-    Epoch 27/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m11s[0m 8ms/step - loss: 0.4558 - root_mean_squared_error: 0.3750 - val_loss: 0.4848 - val_root_mean_squared_error: 0.3922
-    Epoch 28/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 5ms/step - loss: 0.4545 - root_mean_squared_error: 0.3744 - val_loss: 0.4830 - val_root_mean_squared_error: 0.3914
-    Epoch 29/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.4541 - root_mean_squared_error: 0.3745 - val_loss: 0.4813 - val_root_mean_squared_error: 0.3905
-    Epoch 30/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 9ms/step - loss: 0.4525 - root_mean_squared_error: 0.3737 - val_loss: 0.4796 - val_root_mean_squared_error: 0.3897
-    Epoch 31/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.4505 - root_mean_squared_error: 0.3727 - val_loss: 0.4779 - val_root_mean_squared_error: 0.3889
-    Epoch 32/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 7ms/step - loss: 0.4436 - root_mean_squared_error: 0.3686 - val_loss: 0.4763 - val_root_mean_squared_error: 0.3881
-    Epoch 33/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 9ms/step - loss: 0.4417 - root_mean_squared_error: 0.3676 - val_loss: 0.4747 - val_root_mean_squared_error: 0.3874
-    Epoch 34/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 8ms/step - loss: 0.4406 - root_mean_squared_error: 0.3672 - val_loss: 0.4732 - val_root_mean_squared_error: 0.3867
-    Epoch 35/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 7ms/step - loss: 0.4418 - root_mean_squared_error: 0.3682 - val_loss: 0.4717 - val_root_mean_squared_error: 0.3859
-    Epoch 36/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.4368 - root_mean_squared_error: 0.3652 - val_loss: 0.4703 - val_root_mean_squared_error: 0.3852
-    Epoch 37/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 6ms/step - loss: 0.4337 - root_mean_squared_error: 0.3637 - val_loss: 0.4688 - val_root_mean_squared_error: 0.3846
-    Epoch 38/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.4309 - root_mean_squared_error: 0.3623 - val_loss: 0.4674 - val_root_mean_squared_error: 0.3839
-    Epoch 39/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 6ms/step - loss: 0.4348 - root_mean_squared_error: 0.3649 - val_loss: 0.4661 - val_root_mean_squared_error: 0.3833
-    Epoch 40/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.4303 - root_mean_squared_error: 0.3623 - val_loss: 0.4647 - val_root_mean_squared_error: 0.3826
-    Epoch 41/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 9ms/step - loss: 0.4268 - root_mean_squared_error: 0.3602 - val_loss: 0.4634 - val_root_mean_squared_error: 0.3820
-    Epoch 42/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.4259 - root_mean_squared_error: 0.3600 - val_loss: 0.4622 - val_root_mean_squared_error: 0.3814
-    Epoch 43/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.4266 - root_mean_squared_error: 0.3604 - val_loss: 0.4609 - val_root_mean_squared_error: 0.3808
-    Epoch 44/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.4230 - root_mean_squared_error: 0.3586 - val_loss: 0.4597 - val_root_mean_squared_error: 0.3803
-    Epoch 45/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m10s[0m 7ms/step - loss: 0.4202 - root_mean_squared_error: 0.3569 - val_loss: 0.4585 - val_root_mean_squared_error: 0.3797
-    Epoch 46/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 6ms/step - loss: 0.4216 - root_mean_squared_error: 0.3580 - val_loss: 0.4573 - val_root_mean_squared_error: 0.3792
-    Epoch 47/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m10s[0m 6ms/step - loss: 0.4196 - root_mean_squared_error: 0.3571 - val_loss: 0.4562 - val_root_mean_squared_error: 0.3786
-    Epoch 48/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.4177 - root_mean_squared_error: 0.3562 - val_loss: 0.4551 - val_root_mean_squared_error: 0.3781
-    Epoch 49/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m10s[0m 6ms/step - loss: 0.4178 - root_mean_squared_error: 0.3564 - val_loss: 0.4540 - val_root_mean_squared_error: 0.3776
-    Epoch 50/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 9ms/step - loss: 0.4118 - root_mean_squared_error: 0.3529 - val_loss: 0.4529 - val_root_mean_squared_error: 0.3771
-    Epoch 51/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.4112 - root_mean_squared_error: 0.3526 - val_loss: 0.4519 - val_root_mean_squared_error: 0.3767
-    Epoch 52/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m12s[0m 8ms/step - loss: 0.4162 - root_mean_squared_error: 0.3559 - val_loss: 0.4508 - val_root_mean_squared_error: 0.3762
-    Epoch 53/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 5ms/step - loss: 0.4072 - root_mean_squared_error: 0.3505 - val_loss: 0.4498 - val_root_mean_squared_error: 0.3757
-    Epoch 54/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.4105 - root_mean_squared_error: 0.3529 - val_loss: 0.4488 - val_root_mean_squared_error: 0.3753
-    Epoch 55/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.4096 - root_mean_squared_error: 0.3523 - val_loss: 0.4479 - val_root_mean_squared_error: 0.3748
-    Epoch 56/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.4057 - root_mean_squared_error: 0.3500 - val_loss: 0.4469 - val_root_mean_squared_error: 0.3744
-    Epoch 57/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.4045 - root_mean_squared_error: 0.3495 - val_loss: 0.4460 - val_root_mean_squared_error: 0.3740
-    Epoch 58/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 6ms/step - loss: 0.4024 - root_mean_squared_error: 0.3483 - val_loss: 0.4451 - val_root_mean_squared_error: 0.3736
-    Epoch 59/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.4012 - root_mean_squared_error: 0.3479 - val_loss: 0.4442 - val_root_mean_squared_error: 0.3732
-    Epoch 60/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 6ms/step - loss: 0.4013 - root_mean_squared_error: 0.3482 - val_loss: 0.4433 - val_root_mean_squared_error: 0.3728
-    Epoch 61/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m10s[0m 6ms/step - loss: 0.3983 - root_mean_squared_error: 0.3463 - val_loss: 0.4425 - val_root_mean_squared_error: 0.3724
-    Epoch 62/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 10ms/step - loss: 0.3980 - root_mean_squared_error: 0.3467 - val_loss: 0.4416 - val_root_mean_squared_error: 0.3721
-    Epoch 63/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 6ms/step - loss: 0.3985 - root_mean_squared_error: 0.3469 - val_loss: 0.4408 - val_root_mean_squared_error: 0.3717
-    Epoch 64/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m11s[0m 7ms/step - loss: 0.3973 - root_mean_squared_error: 0.3463 - val_loss: 0.4400 - val_root_mean_squared_error: 0.3713
-    Epoch 65/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.3969 - root_mean_squared_error: 0.3463 - val_loss: 0.4392 - val_root_mean_squared_error: 0.3710
-    Epoch 66/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.3875 - root_mean_squared_error: 0.3408 - val_loss: 0.4384 - val_root_mean_squared_error: 0.3706
-    Epoch 67/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.3907 - root_mean_squared_error: 0.3426 - val_loss: 0.4377 - val_root_mean_squared_error: 0.3703
-    Epoch 68/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.3904 - root_mean_squared_error: 0.3428 - val_loss: 0.4369 - val_root_mean_squared_error: 0.3700
-    Epoch 69/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.3898 - root_mean_squared_error: 0.3426 - val_loss: 0.4362 - val_root_mean_squared_error: 0.3697
-    Epoch 70/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 6ms/step - loss: 0.3852 - root_mean_squared_error: 0.3399 - val_loss: 0.4355 - val_root_mean_squared_error: 0.3694
-    Epoch 71/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.3826 - root_mean_squared_error: 0.3385 - val_loss: 0.4348 - val_root_mean_squared_error: 0.3691
-    Epoch 72/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 6ms/step - loss: 0.3883 - root_mean_squared_error: 0.3422 - val_loss: 0.4341 - val_root_mean_squared_error: 0.3688
-    Epoch 73/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m10s[0m 6ms/step - loss: 0.3870 - root_mean_squared_error: 0.3415 - val_loss: 0.4334 - val_root_mean_squared_error: 0.3685
-    Epoch 74/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.3885 - root_mean_squared_error: 0.3425 - val_loss: 0.4327 - val_root_mean_squared_error: 0.3682
-    Epoch 75/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 9ms/step - loss: 0.3862 - root_mean_squared_error: 0.3412 - val_loss: 0.4321 - val_root_mean_squared_error: 0.3679
-    Epoch 76/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 5ms/step - loss: 0.3809 - root_mean_squared_error: 0.3382 - val_loss: 0.4314 - val_root_mean_squared_error: 0.3676
-    Epoch 77/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.3829 - root_mean_squared_error: 0.3399 - val_loss: 0.4308 - val_root_mean_squared_error: 0.3674
-    Epoch 78/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.3770 - root_mean_squared_error: 0.3360 - val_loss: 0.4302 - val_root_mean_squared_error: 0.3671
-    Epoch 79/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.3820 - root_mean_squared_error: 0.3392 - val_loss: 0.4295 - val_root_mean_squared_error: 0.3668
-    Epoch 80/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m10s[0m 6ms/step - loss: 0.3788 - root_mean_squared_error: 0.3373 - val_loss: 0.4290 - val_root_mean_squared_error: 0.3666
-    Epoch 81/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 5ms/step - loss: 0.3702 - root_mean_squared_error: 0.3323 - val_loss: 0.4284 - val_root_mean_squared_error: 0.3663
-    Epoch 82/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.3761 - root_mean_squared_error: 0.3360 - val_loss: 0.4278 - val_root_mean_squared_error: 0.3661
-    Epoch 83/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 9ms/step - loss: 0.3747 - root_mean_squared_error: 0.3355 - val_loss: 0.4272 - val_root_mean_squared_error: 0.3659
-    Epoch 84/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 6ms/step - loss: 0.3715 - root_mean_squared_error: 0.3337 - val_loss: 0.4267 - val_root_mean_squared_error: 0.3656
-    Epoch 85/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.3731 - root_mean_squared_error: 0.3348 - val_loss: 0.4261 - val_root_mean_squared_error: 0.3654
-    Epoch 86/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.3714 - root_mean_squared_error: 0.3338 - val_loss: 0.4256 - val_root_mean_squared_error: 0.3652
-    Epoch 87/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.3694 - root_mean_squared_error: 0.3326 - val_loss: 0.4250 - val_root_mean_squared_error: 0.3649
-    Epoch 88/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m10s[0m 6ms/step - loss: 0.3676 - root_mean_squared_error: 0.3315 - val_loss: 0.4245 - val_root_mean_squared_error: 0.3647
-    Epoch 89/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.3686 - root_mean_squared_error: 0.3324 - val_loss: 0.4240 - val_root_mean_squared_error: 0.3645
-    Epoch 90/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.3665 - root_mean_squared_error: 0.3313 - val_loss: 0.4235 - val_root_mean_squared_error: 0.3643
-    Epoch 91/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m13s[0m 9ms/step - loss: 0.3671 - root_mean_squared_error: 0.3318 - val_loss: 0.4230 - val_root_mean_squared_error: 0.3641
-    Epoch 92/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.3645 - root_mean_squared_error: 0.3304 - val_loss: 0.4225 - val_root_mean_squared_error: 0.3639
-    Epoch 93/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m11s[0m 7ms/step - loss: 0.3689 - root_mean_squared_error: 0.3333 - val_loss: 0.4221 - val_root_mean_squared_error: 0.3637
-    Epoch 94/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m10s[0m 7ms/step - loss: 0.3658 - root_mean_squared_error: 0.3312 - val_loss: 0.4216 - val_root_mean_squared_error: 0.3635
-    Epoch 95/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.3642 - root_mean_squared_error: 0.3305 - val_loss: 0.4211 - val_root_mean_squared_error: 0.3633
-    Epoch 96/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m11s[0m 8ms/step - loss: 0.3580 - root_mean_squared_error: 0.3264 - val_loss: 0.4207 - val_root_mean_squared_error: 0.3632
-    Epoch 97/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 6ms/step - loss: 0.3599 - root_mean_squared_error: 0.3281 - val_loss: 0.4202 - val_root_mean_squared_error: 0.3630
-    Epoch 98/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 11ms/step - loss: 0.3673 - root_mean_squared_error: 0.3330 - val_loss: 0.4198 - val_root_mean_squared_error: 0.3628
-    Epoch 99/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 6ms/step - loss: 0.3602 - root_mean_squared_error: 0.3286 - val_loss: 0.4194 - val_root_mean_squared_error: 0.3626
-    Epoch 100/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.3592 - root_mean_squared_error: 0.3283 - val_loss: 0.4190 - val_root_mean_squared_error: 0.3625
-    Epoch 101/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.3593 - root_mean_squared_error: 0.3282 - val_loss: 0.4185 - val_root_mean_squared_error: 0.3623
-    Epoch 102/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.3578 - root_mean_squared_error: 0.3274 - val_loss: 0.4181 - val_root_mean_squared_error: 0.3621
-    Epoch 103/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.3566 - root_mean_squared_error: 0.3267 - val_loss: 0.4177 - val_root_mean_squared_error: 0.3620
-    Epoch 104/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.3574 - root_mean_squared_error: 0.3278 - val_loss: 0.4174 - val_root_mean_squared_error: 0.3618
-    Epoch 105/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 5ms/step - loss: 0.3557 - root_mean_squared_error: 0.3265 - val_loss: 0.4170 - val_root_mean_squared_error: 0.3617
-    Epoch 106/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 9ms/step - loss: 0.3499 - root_mean_squared_error: 0.3230 - val_loss: 0.4166 - val_root_mean_squared_error: 0.3615
-    Epoch 107/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 5ms/step - loss: 0.3547 - root_mean_squared_error: 0.3261 - val_loss: 0.4162 - val_root_mean_squared_error: 0.3614
-    Epoch 108/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.3552 - root_mean_squared_error: 0.3264 - val_loss: 0.4158 - val_root_mean_squared_error: 0.3612
-    Epoch 109/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m10s[0m 6ms/step - loss: 0.3542 - root_mean_squared_error: 0.3263 - val_loss: 0.4155 - val_root_mean_squared_error: 0.3611
-    Epoch 110/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 9ms/step - loss: 0.3559 - root_mean_squared_error: 0.3272 - val_loss: 0.4151 - val_root_mean_squared_error: 0.3609
-    Epoch 111/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 6ms/step - loss: 0.3538 - root_mean_squared_error: 0.3262 - val_loss: 0.4148 - val_root_mean_squared_error: 0.3608
-    Epoch 112/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m10s[0m 6ms/step - loss: 0.3562 - root_mean_squared_error: 0.3278 - val_loss: 0.4144 - val_root_mean_squared_error: 0.3607
-    Epoch 113/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.3500 - root_mean_squared_error: 0.3238 - val_loss: 0.4141 - val_root_mean_squared_error: 0.3605
-    Epoch 114/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.3526 - root_mean_squared_error: 0.3257 - val_loss: 0.4138 - val_root_mean_squared_error: 0.3604
-    Epoch 115/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.3500 - root_mean_squared_error: 0.3245 - val_loss: 0.4134 - val_root_mean_squared_error: 0.3603
-    Epoch 116/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 9ms/step - loss: 0.3476 - root_mean_squared_error: 0.3227 - val_loss: 0.4131 - val_root_mean_squared_error: 0.3602
-    Epoch 117/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 7ms/step - loss: 0.3465 - root_mean_squared_error: 0.3221 - val_loss: 0.4128 - val_root_mean_squared_error: 0.3600
-    Epoch 118/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.3494 - root_mean_squared_error: 0.3241 - val_loss: 0.4125 - val_root_mean_squared_error: 0.3599
-    Epoch 119/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 6ms/step - loss: 0.3484 - root_mean_squared_error: 0.3237 - val_loss: 0.4122 - val_root_mean_squared_error: 0.3598
-    Epoch 120/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m10s[0m 6ms/step - loss: 0.3467 - root_mean_squared_error: 0.3230 - val_loss: 0.4119 - val_root_mean_squared_error: 0.3597
-    Epoch 121/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m12s[0m 9ms/step - loss: 0.3463 - root_mean_squared_error: 0.3227 - val_loss: 0.4116 - val_root_mean_squared_error: 0.3596
-    Epoch 122/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.3463 - root_mean_squared_error: 0.3226 - val_loss: 0.4113 - val_root_mean_squared_error: 0.3595
-    Epoch 123/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.3406 - root_mean_squared_error: 0.3195 - val_loss: 0.4110 - val_root_mean_squared_error: 0.3593
-    Epoch 124/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 7ms/step - loss: 0.3401 - root_mean_squared_error: 0.3191 - val_loss: 0.4108 - val_root_mean_squared_error: 0.3592
-    Epoch 125/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m10s[0m 7ms/step - loss: 0.3404 - root_mean_squared_error: 0.3190 - val_loss: 0.4105 - val_root_mean_squared_error: 0.3591
-    Epoch 126/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.3413 - root_mean_squared_error: 0.3200 - val_loss: 0.4102 - val_root_mean_squared_error: 0.3590
-    Epoch 127/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m10s[0m 7ms/step - loss: 0.3416 - root_mean_squared_error: 0.3205 - val_loss: 0.4100 - val_root_mean_squared_error: 0.3589
-    Epoch 128/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 10ms/step - loss: 0.3410 - root_mean_squared_error: 0.3202 - val_loss: 0.4097 - val_root_mean_squared_error: 0.3588
-    Epoch 129/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.3402 - root_mean_squared_error: 0.3197 - val_loss: 0.4094 - val_root_mean_squared_error: 0.3587
-    Epoch 130/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.3415 - root_mean_squared_error: 0.3207 - val_loss: 0.4092 - val_root_mean_squared_error: 0.3586
-    Epoch 131/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m11s[0m 7ms/step - loss: 0.3347 - root_mean_squared_error: 0.3163 - val_loss: 0.4089 - val_root_mean_squared_error: 0.3585
-    Epoch 132/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 9ms/step - loss: 0.3374 - root_mean_squared_error: 0.3185 - val_loss: 0.4087 - val_root_mean_squared_error: 0.3585
-    Epoch 133/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 8ms/step - loss: 0.3415 - root_mean_squared_error: 0.3209 - val_loss: 0.4085 - val_root_mean_squared_error: 0.3584
-    Epoch 134/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 7ms/step - loss: 0.3353 - root_mean_squared_error: 0.3170 - val_loss: 0.4082 - val_root_mean_squared_error: 0.3583
-    Epoch 135/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.3386 - root_mean_squared_error: 0.3188 - val_loss: 0.4080 - val_root_mean_squared_error: 0.3582
-    Epoch 136/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 10ms/step - loss: 0.3347 - root_mean_squared_error: 0.3167 - val_loss: 0.4078 - val_root_mean_squared_error: 0.3581
-    Epoch 137/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.3367 - root_mean_squared_error: 0.3183 - val_loss: 0.4076 - val_root_mean_squared_error: 0.3580
-    Epoch 138/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.3372 - root_mean_squared_error: 0.3187 - val_loss: 0.4073 - val_root_mean_squared_error: 0.3579
-    Epoch 139/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.3333 - root_mean_squared_error: 0.3164 - val_loss: 0.4071 - val_root_mean_squared_error: 0.3579
-    Epoch 140/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m10s[0m 8ms/step - loss: 0.3378 - root_mean_squared_error: 0.3192 - val_loss: 0.4069 - val_root_mean_squared_error: 0.3578
-    Epoch 141/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.3343 - root_mean_squared_error: 0.3171 - val_loss: 0.4067 - val_root_mean_squared_error: 0.3577
-    Epoch 142/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 7ms/step - loss: 0.3357 - root_mean_squared_error: 0.3181 - val_loss: 0.4065 - val_root_mean_squared_error: 0.3576
-    Epoch 143/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 5ms/step - loss: 0.3276 - root_mean_squared_error: 0.3130 - val_loss: 0.4063 - val_root_mean_squared_error: 0.3576
-    Epoch 144/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.3330 - root_mean_squared_error: 0.3167 - val_loss: 0.4061 - val_root_mean_squared_error: 0.3575
-    Epoch 145/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 6ms/step - loss: 0.3315 - root_mean_squared_error: 0.3157 - val_loss: 0.4059 - val_root_mean_squared_error: 0.3574
-    Epoch 146/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 9ms/step - loss: 0.3307 - root_mean_squared_error: 0.3155 - val_loss: 0.4058 - val_root_mean_squared_error: 0.3573
-    Epoch 147/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 7ms/step - loss: 0.3317 - root_mean_squared_error: 0.3159 - val_loss: 0.4056 - val_root_mean_squared_error: 0.3573
-    Epoch 148/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 9ms/step - loss: 0.3294 - root_mean_squared_error: 0.3147 - val_loss: 0.4054 - val_root_mean_squared_error: 0.3572
-    Epoch 149/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.3304 - root_mean_squared_error: 0.3157 - val_loss: 0.4052 - val_root_mean_squared_error: 0.3571
-    Epoch 150/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m13s[0m 10ms/step - loss: 0.3281 - root_mean_squared_error: 0.3141 - val_loss: 0.4050 - val_root_mean_squared_error: 0.3571
-    Epoch 151/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 7ms/step - loss: 0.3275 - root_mean_squared_error: 0.3140 - val_loss: 0.4049 - val_root_mean_squared_error: 0.3570
-    Epoch 152/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 6ms/step - loss: 0.3292 - root_mean_squared_error: 0.3154 - val_loss: 0.4047 - val_root_mean_squared_error: 0.3569
-    Epoch 153/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m12s[0m 9ms/step - loss: 0.3246 - root_mean_squared_error: 0.3124 - val_loss: 0.4045 - val_root_mean_squared_error: 0.3569
-    Epoch 154/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.3258 - root_mean_squared_error: 0.3132 - val_loss: 0.4044 - val_root_mean_squared_error: 0.3568
-    Epoch 155/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.3248 - root_mean_squared_error: 0.3128 - val_loss: 0.4042 - val_root_mean_squared_error: 0.3568
-    Epoch 156/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.3267 - root_mean_squared_error: 0.3138 - val_loss: 0.4041 - val_root_mean_squared_error: 0.3567
-    Epoch 157/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.3265 - root_mean_squared_error: 0.3138 - val_loss: 0.4039 - val_root_mean_squared_error: 0.3567
-    Epoch 158/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 9ms/step - loss: 0.3207 - root_mean_squared_error: 0.3102 - val_loss: 0.4038 - val_root_mean_squared_error: 0.3566
-    Epoch 159/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 6ms/step - loss: 0.3274 - root_mean_squared_error: 0.3146 - val_loss: 0.4036 - val_root_mean_squared_error: 0.3565
-    Epoch 160/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m10s[0m 7ms/step - loss: 0.3199 - root_mean_squared_error: 0.3100 - val_loss: 0.4035 - val_root_mean_squared_error: 0.3565
-    Epoch 161/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 9ms/step - loss: 0.3191 - root_mean_squared_error: 0.3095 - val_loss: 0.4034 - val_root_mean_squared_error: 0.3564
-    Epoch 162/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.3201 - root_mean_squared_error: 0.3102 - val_loss: 0.4032 - val_root_mean_squared_error: 0.3564
-    Epoch 163/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m11s[0m 9ms/step - loss: 0.3212 - root_mean_squared_error: 0.3111 - val_loss: 0.4031 - val_root_mean_squared_error: 0.3563
-    Epoch 164/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 7ms/step - loss: 0.3242 - root_mean_squared_error: 0.3134 - val_loss: 0.4030 - val_root_mean_squared_error: 0.3563
-    Epoch 165/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 9ms/step - loss: 0.3220 - root_mean_squared_error: 0.3119 - val_loss: 0.4028 - val_root_mean_squared_error: 0.3563
-    Epoch 166/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 6ms/step - loss: 0.3243 - root_mean_squared_error: 0.3133 - val_loss: 0.4027 - val_root_mean_squared_error: 0.3562
-    Epoch 167/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m14s[0m 11ms/step - loss: 0.3188 - root_mean_squared_error: 0.3099 - val_loss: 0.4026 - val_root_mean_squared_error: 0.3562
-    Epoch 168/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 8ms/step - loss: 0.3191 - root_mean_squared_error: 0.3100 - val_loss: 0.4025 - val_root_mean_squared_error: 0.3561
-    Epoch 169/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 7ms/step - loss: 0.3217 - root_mean_squared_error: 0.3121 - val_loss: 0.4024 - val_root_mean_squared_error: 0.3561
-    Epoch 170/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m10s[0m 7ms/step - loss: 0.3203 - root_mean_squared_error: 0.3112 - val_loss: 0.4023 - val_root_mean_squared_error: 0.3560
-    Epoch 171/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m11s[0m 9ms/step - loss: 0.3177 - root_mean_squared_error: 0.3094 - val_loss: 0.4022 - val_root_mean_squared_error: 0.3560
-    Epoch 172/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 7ms/step - loss: 0.3156 - root_mean_squared_error: 0.3079 - val_loss: 0.4020 - val_root_mean_squared_error: 0.3560
-    Epoch 173/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m10s[0m 7ms/step - loss: 0.3181 - root_mean_squared_error: 0.3099 - val_loss: 0.4019 - val_root_mean_squared_error: 0.3559
-    Epoch 174/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.3178 - root_mean_squared_error: 0.3103 - val_loss: 0.4018 - val_root_mean_squared_error: 0.3559
-    Epoch 175/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 6ms/step - loss: 0.3192 - root_mean_squared_error: 0.3108 - val_loss: 0.4017 - val_root_mean_squared_error: 0.3558
-    Epoch 176/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m11s[0m 7ms/step - loss: 0.3159 - root_mean_squared_error: 0.3085 - val_loss: 0.4016 - val_root_mean_squared_error: 0.3558
-    Epoch 177/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.3129 - root_mean_squared_error: 0.3068 - val_loss: 0.4016 - val_root_mean_squared_error: 0.3558
-    Epoch 178/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m10s[0m 6ms/step - loss: 0.3139 - root_mean_squared_error: 0.3077 - val_loss: 0.4015 - val_root_mean_squared_error: 0.3557
-    Epoch 179/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m11s[0m 8ms/step - loss: 0.3120 - root_mean_squared_error: 0.3065 - val_loss: 0.4014 - val_root_mean_squared_error: 0.3557
-    Epoch 180/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m12s[0m 9ms/step - loss: 0.3176 - root_mean_squared_error: 0.3102 - val_loss: 0.4013 - val_root_mean_squared_error: 0.3557
-    Epoch 181/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.3118 - root_mean_squared_error: 0.3064 - val_loss: 0.4012 - val_root_mean_squared_error: 0.3556
-    Epoch 182/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m12s[0m 9ms/step - loss: 0.3137 - root_mean_squared_error: 0.3078 - val_loss: 0.4011 - val_root_mean_squared_error: 0.3556
-    Epoch 183/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.3072 - root_mean_squared_error: 0.3034 - val_loss: 0.4010 - val_root_mean_squared_error: 0.3556
-    Epoch 184/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 6ms/step - loss: 0.3091 - root_mean_squared_error: 0.3049 - val_loss: 0.4010 - val_root_mean_squared_error: 0.3555
-    Epoch 185/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m11s[0m 7ms/step - loss: 0.3119 - root_mean_squared_error: 0.3068 - val_loss: 0.4009 - val_root_mean_squared_error: 0.3555
-    Epoch 186/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m10s[0m 7ms/step - loss: 0.3144 - root_mean_squared_error: 0.3087 - val_loss: 0.4008 - val_root_mean_squared_error: 0.3555
-    Epoch 187/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m14s[0m 11ms/step - loss: 0.3084 - root_mean_squared_error: 0.3048 - val_loss: 0.4008 - val_root_mean_squared_error: 0.3555
-    Epoch 188/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 7ms/step - loss: 0.3084 - root_mean_squared_error: 0.3049 - val_loss: 0.4007 - val_root_mean_squared_error: 0.3554
-    Epoch 189/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 9ms/step - loss: 0.3145 - root_mean_squared_error: 0.3089 - val_loss: 0.4006 - val_root_mean_squared_error: 0.3554
-    Epoch 190/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.3113 - root_mean_squared_error: 0.3069 - val_loss: 0.4006 - val_root_mean_squared_error: 0.3554
-    Epoch 191/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.3112 - root_mean_squared_error: 0.3070 - val_loss: 0.4005 - val_root_mean_squared_error: 0.3554
-    Epoch 192/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 9ms/step - loss: 0.3131 - root_mean_squared_error: 0.3084 - val_loss: 0.4004 - val_root_mean_squared_error: 0.3553
-    Epoch 193/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.3076 - root_mean_squared_error: 0.3045 - val_loss: 0.4004 - val_root_mean_squared_error: 0.3553
-    Epoch 194/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m10s[0m 6ms/step - loss: 0.3125 - root_mean_squared_error: 0.3081 - val_loss: 0.4003 - val_root_mean_squared_error: 0.3553
-    Epoch 195/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 9ms/step - loss: 0.3077 - root_mean_squared_error: 0.3047 - val_loss: 0.4003 - val_root_mean_squared_error: 0.3553
-    Epoch 196/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.3079 - root_mean_squared_error: 0.3051 - val_loss: 0.4002 - val_root_mean_squared_error: 0.3552
-    Epoch 197/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.3084 - root_mean_squared_error: 0.3052 - val_loss: 0.4002 - val_root_mean_squared_error: 0.3552
     Epoch 198/200
     [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 10ms/step - loss: 0.3078 - root_mean_squared_error: 0.3053 - val_loss: 0.4001 - val_root_mean_squared_error: 0.3552
     Epoch 199/200
@@ -4816,403 +3362,6 @@ Dari hasil ini, model yang menggunakan `adjusted hours` menunjukkan performa ter
 
 ##### **Model 3:** Adjusted Hours-Based
 
-
-
-
-    Epoch 1/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 8ms/step - loss: 0.8249 - root_mean_squared_error: 0.4694 - val_loss: 0.5642 - val_root_mean_squared_error: 0.4162
-    Epoch 2/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 6ms/step - loss: 0.5340 - root_mean_squared_error: 0.3986 - val_loss: 0.4644 - val_root_mean_squared_error: 0.3556
-    Epoch 3/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 9ms/step - loss: 0.4393 - root_mean_squared_error: 0.3394 - val_loss: 0.3884 - val_root_mean_squared_error: 0.3060
-    Epoch 4/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 5ms/step - loss: 0.3657 - root_mean_squared_error: 0.2899 - val_loss: 0.3296 - val_root_mean_squared_error: 0.2655
-    Epoch 5/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.3099 - root_mean_squared_error: 0.2498 - val_loss: 0.2834 - val_root_mean_squared_error: 0.2322
-    Epoch 6/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.2639 - root_mean_squared_error: 0.2166 - val_loss: 0.2468 - val_root_mean_squared_error: 0.2046
-    Epoch 7/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.2303 - root_mean_squared_error: 0.1895 - val_loss: 0.2175 - val_root_mean_squared_error: 0.1816
-    Epoch 8/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.2020 - root_mean_squared_error: 0.1668 - val_loss: 0.1938 - val_root_mean_squared_error: 0.1624
-    Epoch 9/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 9ms/step - loss: 0.1779 - root_mean_squared_error: 0.1466 - val_loss: 0.1747 - val_root_mean_squared_error: 0.1461
-    Epoch 10/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 8ms/step - loss: 0.1616 - root_mean_squared_error: 0.1317 - val_loss: 0.1590 - val_root_mean_squared_error: 0.1324
-    Epoch 11/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m10s[0m 7ms/step - loss: 0.1458 - root_mean_squared_error: 0.1172 - val_loss: 0.1462 - val_root_mean_squared_error: 0.1207
-    Epoch 12/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 9ms/step - loss: 0.1332 - root_mean_squared_error: 0.1048 - val_loss: 0.1356 - val_root_mean_squared_error: 0.1108
-    Epoch 13/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.1254 - root_mean_squared_error: 0.0975 - val_loss: 0.1268 - val_root_mean_squared_error: 0.1023
-    Epoch 14/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m10s[0m 7ms/step - loss: 0.1160 - root_mean_squared_error: 0.0870 - val_loss: 0.1195 - val_root_mean_squared_error: 0.0950
-    Epoch 15/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.1082 - root_mean_squared_error: 0.0792 - val_loss: 0.1134 - val_root_mean_squared_error: 0.0887
-    Epoch 16/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m11s[0m 7ms/step - loss: 0.1029 - root_mean_squared_error: 0.0747 - val_loss: 0.1082 - val_root_mean_squared_error: 0.0833
-    Epoch 17/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.0983 - root_mean_squared_error: 0.0692 - val_loss: 0.1038 - val_root_mean_squared_error: 0.0786
-    Epoch 18/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.0954 - root_mean_squared_error: 0.0645 - val_loss: 0.1000 - val_root_mean_squared_error: 0.0746
-    Epoch 19/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m11s[0m 8ms/step - loss: 0.0914 - root_mean_squared_error: 0.0607 - val_loss: 0.0968 - val_root_mean_squared_error: 0.0711
-    Epoch 20/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.0877 - root_mean_squared_error: 0.0583 - val_loss: 0.0940 - val_root_mean_squared_error: 0.0680
-    Epoch 21/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.0851 - root_mean_squared_error: 0.0532 - val_loss: 0.0916 - val_root_mean_squared_error: 0.0653
-    Epoch 22/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 9ms/step - loss: 0.0841 - root_mean_squared_error: 0.0517 - val_loss: 0.0896 - val_root_mean_squared_error: 0.0630
-    Epoch 23/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.0820 - root_mean_squared_error: 0.0503 - val_loss: 0.0878 - val_root_mean_squared_error: 0.0610
-    Epoch 24/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 9ms/step - loss: 0.0801 - root_mean_squared_error: 0.0487 - val_loss: 0.0862 - val_root_mean_squared_error: 0.0592
-    Epoch 25/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 7ms/step - loss: 0.0777 - root_mean_squared_error: 0.0437 - val_loss: 0.0848 - val_root_mean_squared_error: 0.0577
-    Epoch 26/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m12s[0m 9ms/step - loss: 0.0770 - root_mean_squared_error: 0.0437 - val_loss: 0.0836 - val_root_mean_squared_error: 0.0563
-    Epoch 27/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 5ms/step - loss: 0.0767 - root_mean_squared_error: 0.0453 - val_loss: 0.0825 - val_root_mean_squared_error: 0.0551
-    Epoch 28/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.0749 - root_mean_squared_error: 0.0423 - val_loss: 0.0815 - val_root_mean_squared_error: 0.0540
-    Epoch 29/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 6ms/step - loss: 0.0733 - root_mean_squared_error: 0.0409 - val_loss: 0.0807 - val_root_mean_squared_error: 0.0530
-    Epoch 30/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.0721 - root_mean_squared_error: 0.0402 - val_loss: 0.0799 - val_root_mean_squared_error: 0.0522
-    Epoch 31/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 6ms/step - loss: 0.0727 - root_mean_squared_error: 0.0396 - val_loss: 0.0793 - val_root_mean_squared_error: 0.0514
-    Epoch 32/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m10s[0m 6ms/step - loss: 0.0727 - root_mean_squared_error: 0.0413 - val_loss: 0.0787 - val_root_mean_squared_error: 0.0508
-    Epoch 33/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.0705 - root_mean_squared_error: 0.0382 - val_loss: 0.0781 - val_root_mean_squared_error: 0.0502
-    Epoch 34/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 7ms/step - loss: 0.0720 - root_mean_squared_error: 0.0410 - val_loss: 0.0777 - val_root_mean_squared_error: 0.0496
-    Epoch 35/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m11s[0m 7ms/step - loss: 0.0699 - root_mean_squared_error: 0.0362 - val_loss: 0.0772 - val_root_mean_squared_error: 0.0491
-    Epoch 36/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.0700 - root_mean_squared_error: 0.0376 - val_loss: 0.0768 - val_root_mean_squared_error: 0.0487
-    Epoch 37/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 9ms/step - loss: 0.0699 - root_mean_squared_error: 0.0370 - val_loss: 0.0765 - val_root_mean_squared_error: 0.0483
-    Epoch 38/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 7ms/step - loss: 0.0686 - root_mean_squared_error: 0.0350 - val_loss: 0.0762 - val_root_mean_squared_error: 0.0480
-    Epoch 39/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 6ms/step - loss: 0.0686 - root_mean_squared_error: 0.0356 - val_loss: 0.0759 - val_root_mean_squared_error: 0.0476
-    Epoch 40/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m13s[0m 9ms/step - loss: 0.0699 - root_mean_squared_error: 0.0392 - val_loss: 0.0756 - val_root_mean_squared_error: 0.0473
-    Epoch 41/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 7ms/step - loss: 0.0668 - root_mean_squared_error: 0.0315 - val_loss: 0.0754 - val_root_mean_squared_error: 0.0471
-    Epoch 42/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 10ms/step - loss: 0.0695 - root_mean_squared_error: 0.0376 - val_loss: 0.0752 - val_root_mean_squared_error: 0.0469
-    Epoch 43/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 6ms/step - loss: 0.0670 - root_mean_squared_error: 0.0331 - val_loss: 0.0750 - val_root_mean_squared_error: 0.0466
-    Epoch 44/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m10s[0m 6ms/step - loss: 0.0670 - root_mean_squared_error: 0.0351 - val_loss: 0.0748 - val_root_mean_squared_error: 0.0465
-    Epoch 45/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.0676 - root_mean_squared_error: 0.0331 - val_loss: 0.0746 - val_root_mean_squared_error: 0.0463
-    Epoch 46/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.0687 - root_mean_squared_error: 0.0349 - val_loss: 0.0745 - val_root_mean_squared_error: 0.0461
-    Epoch 47/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m12s[0m 9ms/step - loss: 0.0690 - root_mean_squared_error: 0.0350 - val_loss: 0.0744 - val_root_mean_squared_error: 0.0460
-    Epoch 48/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.0680 - root_mean_squared_error: 0.0350 - val_loss: 0.0742 - val_root_mean_squared_error: 0.0459
-    Epoch 49/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.0680 - root_mean_squared_error: 0.0350 - val_loss: 0.0741 - val_root_mean_squared_error: 0.0458
-    Epoch 50/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 6ms/step - loss: 0.0658 - root_mean_squared_error: 0.0303 - val_loss: 0.0740 - val_root_mean_squared_error: 0.0457
-    Epoch 51/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.0673 - root_mean_squared_error: 0.0335 - val_loss: 0.0740 - val_root_mean_squared_error: 0.0456
-    Epoch 52/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 6ms/step - loss: 0.0650 - root_mean_squared_error: 0.0308 - val_loss: 0.0739 - val_root_mean_squared_error: 0.0455
-    Epoch 53/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.0669 - root_mean_squared_error: 0.0325 - val_loss: 0.0738 - val_root_mean_squared_error: 0.0454
-    Epoch 54/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 10ms/step - loss: 0.0674 - root_mean_squared_error: 0.0320 - val_loss: 0.0737 - val_root_mean_squared_error: 0.0453
-    Epoch 55/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.0673 - root_mean_squared_error: 0.0323 - val_loss: 0.0737 - val_root_mean_squared_error: 0.0453
-    Epoch 56/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m11s[0m 7ms/step - loss: 0.0659 - root_mean_squared_error: 0.0306 - val_loss: 0.0736 - val_root_mean_squared_error: 0.0452
-    Epoch 57/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.0664 - root_mean_squared_error: 0.0326 - val_loss: 0.0736 - val_root_mean_squared_error: 0.0452
-    Epoch 58/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 9ms/step - loss: 0.0667 - root_mean_squared_error: 0.0326 - val_loss: 0.0735 - val_root_mean_squared_error: 0.0451
-    Epoch 59/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 6ms/step - loss: 0.0663 - root_mean_squared_error: 0.0313 - val_loss: 0.0735 - val_root_mean_squared_error: 0.0451
-    Epoch 60/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m10s[0m 6ms/step - loss: 0.0667 - root_mean_squared_error: 0.0311 - val_loss: 0.0734 - val_root_mean_squared_error: 0.0450
-    Epoch 61/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.0654 - root_mean_squared_error: 0.0317 - val_loss: 0.0734 - val_root_mean_squared_error: 0.0450
-    Epoch 62/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 6ms/step - loss: 0.0658 - root_mean_squared_error: 0.0312 - val_loss: 0.0734 - val_root_mean_squared_error: 0.0450
-    Epoch 63/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.0668 - root_mean_squared_error: 0.0327 - val_loss: 0.0734 - val_root_mean_squared_error: 0.0449
-    Epoch 64/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 6ms/step - loss: 0.0664 - root_mean_squared_error: 0.0309 - val_loss: 0.0733 - val_root_mean_squared_error: 0.0449
-    Epoch 65/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.0654 - root_mean_squared_error: 0.0313 - val_loss: 0.0733 - val_root_mean_squared_error: 0.0449
-    Epoch 66/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.0661 - root_mean_squared_error: 0.0313 - val_loss: 0.0733 - val_root_mean_squared_error: 0.0449
-    Epoch 67/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.0659 - root_mean_squared_error: 0.0316 - val_loss: 0.0733 - val_root_mean_squared_error: 0.0448
-    Epoch 68/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 9ms/step - loss: 0.0664 - root_mean_squared_error: 0.0316 - val_loss: 0.0732 - val_root_mean_squared_error: 0.0448
-    Epoch 69/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.0654 - root_mean_squared_error: 0.0317 - val_loss: 0.0732 - val_root_mean_squared_error: 0.0448
-    Epoch 70/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.0658 - root_mean_squared_error: 0.0299 - val_loss: 0.0732 - val_root_mean_squared_error: 0.0448
-    Epoch 71/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m10s[0m 7ms/step - loss: 0.0651 - root_mean_squared_error: 0.0301 - val_loss: 0.0732 - val_root_mean_squared_error: 0.0448
-    Epoch 72/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m10s[0m 6ms/step - loss: 0.0656 - root_mean_squared_error: 0.0310 - val_loss: 0.0732 - val_root_mean_squared_error: 0.0447
-    Epoch 73/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m12s[0m 9ms/step - loss: 0.0657 - root_mean_squared_error: 0.0285 - val_loss: 0.0732 - val_root_mean_squared_error: 0.0447
-    Epoch 74/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 6ms/step - loss: 0.0666 - root_mean_squared_error: 0.0316 - val_loss: 0.0732 - val_root_mean_squared_error: 0.0447
-    Epoch 75/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 9ms/step - loss: 0.0660 - root_mean_squared_error: 0.0316 - val_loss: 0.0731 - val_root_mean_squared_error: 0.0447
-    Epoch 76/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.0657 - root_mean_squared_error: 0.0299 - val_loss: 0.0731 - val_root_mean_squared_error: 0.0447
-    Epoch 77/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 10ms/step - loss: 0.0655 - root_mean_squared_error: 0.0309 - val_loss: 0.0731 - val_root_mean_squared_error: 0.0447
-    Epoch 78/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 6ms/step - loss: 0.0642 - root_mean_squared_error: 0.0281 - val_loss: 0.0731 - val_root_mean_squared_error: 0.0447
-    Epoch 79/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.0662 - root_mean_squared_error: 0.0302 - val_loss: 0.0731 - val_root_mean_squared_error: 0.0447
-    Epoch 80/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.0650 - root_mean_squared_error: 0.0304 - val_loss: 0.0731 - val_root_mean_squared_error: 0.0447
-    Epoch 81/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m12s[0m 9ms/step - loss: 0.0656 - root_mean_squared_error: 0.0308 - val_loss: 0.0731 - val_root_mean_squared_error: 0.0446
-    Epoch 82/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 7ms/step - loss: 0.0667 - root_mean_squared_error: 0.0318 - val_loss: 0.0731 - val_root_mean_squared_error: 0.0446
-    Epoch 83/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m11s[0m 8ms/step - loss: 0.0652 - root_mean_squared_error: 0.0301 - val_loss: 0.0731 - val_root_mean_squared_error: 0.0446
-    Epoch 84/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m12s[0m 10ms/step - loss: 0.0652 - root_mean_squared_error: 0.0298 - val_loss: 0.0731 - val_root_mean_squared_error: 0.0446
-    Epoch 85/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 7ms/step - loss: 0.0648 - root_mean_squared_error: 0.0291 - val_loss: 0.0731 - val_root_mean_squared_error: 0.0446
-    Epoch 86/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 10ms/step - loss: 0.0651 - root_mean_squared_error: 0.0282 - val_loss: 0.0731 - val_root_mean_squared_error: 0.0446
-    Epoch 87/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.0656 - root_mean_squared_error: 0.0287 - val_loss: 0.0731 - val_root_mean_squared_error: 0.0446
-    Epoch 88/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.0656 - root_mean_squared_error: 0.0283 - val_loss: 0.0731 - val_root_mean_squared_error: 0.0446
-    Epoch 89/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.0655 - root_mean_squared_error: 0.0295 - val_loss: 0.0731 - val_root_mean_squared_error: 0.0446
-    Epoch 90/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.0648 - root_mean_squared_error: 0.0281 - val_loss: 0.0731 - val_root_mean_squared_error: 0.0446
-    Epoch 91/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m11s[0m 7ms/step - loss: 0.0648 - root_mean_squared_error: 0.0282 - val_loss: 0.0731 - val_root_mean_squared_error: 0.0446
-    Epoch 92/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m11s[0m 8ms/step - loss: 0.0645 - root_mean_squared_error: 0.0278 - val_loss: 0.0731 - val_root_mean_squared_error: 0.0446
-    Epoch 93/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m11s[0m 8ms/step - loss: 0.0660 - root_mean_squared_error: 0.0305 - val_loss: 0.0731 - val_root_mean_squared_error: 0.0446
-    Epoch 94/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.0647 - root_mean_squared_error: 0.0293 - val_loss: 0.0731 - val_root_mean_squared_error: 0.0446
-    Epoch 95/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.0653 - root_mean_squared_error: 0.0287 - val_loss: 0.0731 - val_root_mean_squared_error: 0.0446
-    Epoch 96/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 10ms/step - loss: 0.0658 - root_mean_squared_error: 0.0301 - val_loss: 0.0731 - val_root_mean_squared_error: 0.0446
-    Epoch 97/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 8ms/step - loss: 0.0650 - root_mean_squared_error: 0.0286 - val_loss: 0.0731 - val_root_mean_squared_error: 0.0446
-    Epoch 98/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 7ms/step - loss: 0.0652 - root_mean_squared_error: 0.0293 - val_loss: 0.0731 - val_root_mean_squared_error: 0.0446
-    Epoch 99/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m11s[0m 8ms/step - loss: 0.0655 - root_mean_squared_error: 0.0279 - val_loss: 0.0731 - val_root_mean_squared_error: 0.0446
-    Epoch 100/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.0653 - root_mean_squared_error: 0.0282 - val_loss: 0.0731 - val_root_mean_squared_error: 0.0446
-    Epoch 101/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 9ms/step - loss: 0.0644 - root_mean_squared_error: 0.0271 - val_loss: 0.0731 - val_root_mean_squared_error: 0.0446
-    Epoch 102/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 7ms/step - loss: 0.0657 - root_mean_squared_error: 0.0294 - val_loss: 0.0731 - val_root_mean_squared_error: 0.0446
-    Epoch 103/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 10ms/step - loss: 0.0641 - root_mean_squared_error: 0.0280 - val_loss: 0.0731 - val_root_mean_squared_error: 0.0446
-    Epoch 104/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 6ms/step - loss: 0.0639 - root_mean_squared_error: 0.0277 - val_loss: 0.0731 - val_root_mean_squared_error: 0.0446
-    Epoch 105/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 9ms/step - loss: 0.0655 - root_mean_squared_error: 0.0279 - val_loss: 0.0731 - val_root_mean_squared_error: 0.0446
-    Epoch 106/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 7ms/step - loss: 0.0649 - root_mean_squared_error: 0.0293 - val_loss: 0.0731 - val_root_mean_squared_error: 0.0446
-    Epoch 107/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.0651 - root_mean_squared_error: 0.0281 - val_loss: 0.0731 - val_root_mean_squared_error: 0.0446
-    Epoch 108/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 6ms/step - loss: 0.0640 - root_mean_squared_error: 0.0277 - val_loss: 0.0731 - val_root_mean_squared_error: 0.0446
-    Epoch 109/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.0660 - root_mean_squared_error: 0.0296 - val_loss: 0.0731 - val_root_mean_squared_error: 0.0446
-    Epoch 110/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 6ms/step - loss: 0.0654 - root_mean_squared_error: 0.0291 - val_loss: 0.0731 - val_root_mean_squared_error: 0.0446
-    Epoch 111/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m10s[0m 6ms/step - loss: 0.0651 - root_mean_squared_error: 0.0282 - val_loss: 0.0731 - val_root_mean_squared_error: 0.0446
-    Epoch 112/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.0645 - root_mean_squared_error: 0.0284 - val_loss: 0.0731 - val_root_mean_squared_error: 0.0446
-    Epoch 113/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 9ms/step - loss: 0.0658 - root_mean_squared_error: 0.0285 - val_loss: 0.0731 - val_root_mean_squared_error: 0.0446
-    Epoch 114/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 6ms/step - loss: 0.0651 - root_mean_squared_error: 0.0283 - val_loss: 0.0731 - val_root_mean_squared_error: 0.0446
-    Epoch 115/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.0652 - root_mean_squared_error: 0.0285 - val_loss: 0.0731 - val_root_mean_squared_error: 0.0446
-    Epoch 116/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 7ms/step - loss: 0.0649 - root_mean_squared_error: 0.0283 - val_loss: 0.0731 - val_root_mean_squared_error: 0.0446
-    Epoch 117/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m10s[0m 6ms/step - loss: 0.0653 - root_mean_squared_error: 0.0293 - val_loss: 0.0731 - val_root_mean_squared_error: 0.0446
-    Epoch 118/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.0647 - root_mean_squared_error: 0.0284 - val_loss: 0.0731 - val_root_mean_squared_error: 0.0446
-    Epoch 119/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.0646 - root_mean_squared_error: 0.0287 - val_loss: 0.0731 - val_root_mean_squared_error: 0.0446
-    Epoch 120/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 7ms/step - loss: 0.0659 - root_mean_squared_error: 0.0288 - val_loss: 0.0731 - val_root_mean_squared_error: 0.0446
-    Epoch 121/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.0651 - root_mean_squared_error: 0.0293 - val_loss: 0.0731 - val_root_mean_squared_error: 0.0446
-    Epoch 122/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 6ms/step - loss: 0.0653 - root_mean_squared_error: 0.0296 - val_loss: 0.0731 - val_root_mean_squared_error: 0.0446
-    Epoch 123/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 9ms/step - loss: 0.0647 - root_mean_squared_error: 0.0290 - val_loss: 0.0731 - val_root_mean_squared_error: 0.0446
-    Epoch 124/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 6ms/step - loss: 0.0646 - root_mean_squared_error: 0.0282 - val_loss: 0.0731 - val_root_mean_squared_error: 0.0446
-    Epoch 125/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.0640 - root_mean_squared_error: 0.0261 - val_loss: 0.0731 - val_root_mean_squared_error: 0.0446
-    Epoch 126/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 6ms/step - loss: 0.0641 - root_mean_squared_error: 0.0270 - val_loss: 0.0731 - val_root_mean_squared_error: 0.0446
-    Epoch 127/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m10s[0m 6ms/step - loss: 0.0654 - root_mean_squared_error: 0.0292 - val_loss: 0.0732 - val_root_mean_squared_error: 0.0446
-    Epoch 128/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m13s[0m 9ms/step - loss: 0.0638 - root_mean_squared_error: 0.0270 - val_loss: 0.0732 - val_root_mean_squared_error: 0.0446
-    Epoch 129/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.0641 - root_mean_squared_error: 0.0268 - val_loss: 0.0732 - val_root_mean_squared_error: 0.0446
-    Epoch 130/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 6ms/step - loss: 0.0640 - root_mean_squared_error: 0.0280 - val_loss: 0.0732 - val_root_mean_squared_error: 0.0446
-    Epoch 131/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.0644 - root_mean_squared_error: 0.0267 - val_loss: 0.0732 - val_root_mean_squared_error: 0.0446
-    Epoch 132/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m11s[0m 6ms/step - loss: 0.0640 - root_mean_squared_error: 0.0276 - val_loss: 0.0732 - val_root_mean_squared_error: 0.0446
-    Epoch 133/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m11s[0m 7ms/step - loss: 0.0644 - root_mean_squared_error: 0.0289 - val_loss: 0.0732 - val_root_mean_squared_error: 0.0446
-    Epoch 134/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m11s[0m 8ms/step - loss: 0.0647 - root_mean_squared_error: 0.0283 - val_loss: 0.0732 - val_root_mean_squared_error: 0.0446
-    Epoch 135/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.0652 - root_mean_squared_error: 0.0283 - val_loss: 0.0732 - val_root_mean_squared_error: 0.0446
-    Epoch 136/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.0649 - root_mean_squared_error: 0.0272 - val_loss: 0.0732 - val_root_mean_squared_error: 0.0446
-    Epoch 137/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m10s[0m 7ms/step - loss: 0.0647 - root_mean_squared_error: 0.0285 - val_loss: 0.0732 - val_root_mean_squared_error: 0.0446
-    Epoch 138/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 9ms/step - loss: 0.0657 - root_mean_squared_error: 0.0289 - val_loss: 0.0732 - val_root_mean_squared_error: 0.0446
-    Epoch 139/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 6ms/step - loss: 0.0654 - root_mean_squared_error: 0.0303 - val_loss: 0.0732 - val_root_mean_squared_error: 0.0446
-    Epoch 140/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.0637 - root_mean_squared_error: 0.0270 - val_loss: 0.0732 - val_root_mean_squared_error: 0.0446
-    Epoch 141/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.0646 - root_mean_squared_error: 0.0286 - val_loss: 0.0732 - val_root_mean_squared_error: 0.0446
-    Epoch 142/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.0656 - root_mean_squared_error: 0.0303 - val_loss: 0.0732 - val_root_mean_squared_error: 0.0446
-    Epoch 143/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 9ms/step - loss: 0.0643 - root_mean_squared_error: 0.0276 - val_loss: 0.0732 - val_root_mean_squared_error: 0.0446
-    Epoch 144/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 6ms/step - loss: 0.0668 - root_mean_squared_error: 0.0298 - val_loss: 0.0732 - val_root_mean_squared_error: 0.0446
-    Epoch 145/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 9ms/step - loss: 0.0647 - root_mean_squared_error: 0.0280 - val_loss: 0.0732 - val_root_mean_squared_error: 0.0446
-    Epoch 146/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.0642 - root_mean_squared_error: 0.0282 - val_loss: 0.0732 - val_root_mean_squared_error: 0.0446
-    Epoch 147/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.0649 - root_mean_squared_error: 0.0277 - val_loss: 0.0732 - val_root_mean_squared_error: 0.0446
-    Epoch 148/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 9ms/step - loss: 0.0656 - root_mean_squared_error: 0.0304 - val_loss: 0.0732 - val_root_mean_squared_error: 0.0446
-    Epoch 149/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.0641 - root_mean_squared_error: 0.0287 - val_loss: 0.0732 - val_root_mean_squared_error: 0.0446
-    Epoch 150/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 9ms/step - loss: 0.0652 - root_mean_squared_error: 0.0272 - val_loss: 0.0732 - val_root_mean_squared_error: 0.0446
-    Epoch 151/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 7ms/step - loss: 0.0656 - root_mean_squared_error: 0.0290 - val_loss: 0.0732 - val_root_mean_squared_error: 0.0446
-    Epoch 152/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 10ms/step - loss: 0.0647 - root_mean_squared_error: 0.0283 - val_loss: 0.0732 - val_root_mean_squared_error: 0.0446
-    Epoch 153/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m5s[0m 6ms/step - loss: 0.0653 - root_mean_squared_error: 0.0291 - val_loss: 0.0732 - val_root_mean_squared_error: 0.0446
-    Epoch 154/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m12s[0m 8ms/step - loss: 0.0643 - root_mean_squared_error: 0.0276 - val_loss: 0.0732 - val_root_mean_squared_error: 0.0446
-    Epoch 155/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.0649 - root_mean_squared_error: 0.0268 - val_loss: 0.0732 - val_root_mean_squared_error: 0.0446
-    Epoch 156/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 9ms/step - loss: 0.0661 - root_mean_squared_error: 0.0295 - val_loss: 0.0732 - val_root_mean_squared_error: 0.0446
-    Epoch 157/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 6ms/step - loss: 0.0647 - root_mean_squared_error: 0.0293 - val_loss: 0.0732 - val_root_mean_squared_error: 0.0446
-    Epoch 158/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.0643 - root_mean_squared_error: 0.0277 - val_loss: 0.0732 - val_root_mean_squared_error: 0.0446
-    Epoch 159/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 6ms/step - loss: 0.0653 - root_mean_squared_error: 0.0276 - val_loss: 0.0732 - val_root_mean_squared_error: 0.0446
-    Epoch 160/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.0645 - root_mean_squared_error: 0.0267 - val_loss: 0.0733 - val_root_mean_squared_error: 0.0446
-    Epoch 161/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 7ms/step - loss: 0.0654 - root_mean_squared_error: 0.0294 - val_loss: 0.0732 - val_root_mean_squared_error: 0.0446
-    Epoch 162/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 10ms/step - loss: 0.0649 - root_mean_squared_error: 0.0289 - val_loss: 0.0732 - val_root_mean_squared_error: 0.0446
-    Epoch 163/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.0656 - root_mean_squared_error: 0.0281 - val_loss: 0.0733 - val_root_mean_squared_error: 0.0446
-    Epoch 164/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 9ms/step - loss: 0.0639 - root_mean_squared_error: 0.0284 - val_loss: 0.0733 - val_root_mean_squared_error: 0.0446
-    Epoch 165/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.0647 - root_mean_squared_error: 0.0280 - val_loss: 0.0733 - val_root_mean_squared_error: 0.0446
-    Epoch 166/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m13s[0m 11ms/step - loss: 0.0652 - root_mean_squared_error: 0.0283 - val_loss: 0.0733 - val_root_mean_squared_error: 0.0446
-    Epoch 167/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.0650 - root_mean_squared_error: 0.0273 - val_loss: 0.0733 - val_root_mean_squared_error: 0.0446
-    Epoch 168/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.0647 - root_mean_squared_error: 0.0271 - val_loss: 0.0733 - val_root_mean_squared_error: 0.0446
-    Epoch 169/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.0654 - root_mean_squared_error: 0.0276 - val_loss: 0.0733 - val_root_mean_squared_error: 0.0446
-    Epoch 170/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 6ms/step - loss: 0.0646 - root_mean_squared_error: 0.0283 - val_loss: 0.0733 - val_root_mean_squared_error: 0.0446
-    Epoch 171/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m10s[0m 7ms/step - loss: 0.0647 - root_mean_squared_error: 0.0292 - val_loss: 0.0733 - val_root_mean_squared_error: 0.0446
-    Epoch 172/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m12s[0m 9ms/step - loss: 0.0652 - root_mean_squared_error: 0.0294 - val_loss: 0.0733 - val_root_mean_squared_error: 0.0446
-    Epoch 173/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m12s[0m 10ms/step - loss: 0.0655 - root_mean_squared_error: 0.0289 - val_loss: 0.0733 - val_root_mean_squared_error: 0.0446
-    Epoch 174/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 7ms/step - loss: 0.0646 - root_mean_squared_error: 0.0262 - val_loss: 0.0733 - val_root_mean_squared_error: 0.0446
-    Epoch 175/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 9ms/step - loss: 0.0646 - root_mean_squared_error: 0.0263 - val_loss: 0.0733 - val_root_mean_squared_error: 0.0446
-    Epoch 176/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m9s[0m 7ms/step - loss: 0.0655 - root_mean_squared_error: 0.0290 - val_loss: 0.0733 - val_root_mean_squared_error: 0.0446
-    Epoch 177/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 10ms/step - loss: 0.0647 - root_mean_squared_error: 0.0276 - val_loss: 0.0733 - val_root_mean_squared_error: 0.0446
-    Epoch 178/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 6ms/step - loss: 0.0649 - root_mean_squared_error: 0.0293 - val_loss: 0.0733 - val_root_mean_squared_error: 0.0446
-    Epoch 179/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.0655 - root_mean_squared_error: 0.0285 - val_loss: 0.0733 - val_root_mean_squared_error: 0.0446
-    Epoch 180/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m7s[0m 8ms/step - loss: 0.0658 - root_mean_squared_error: 0.0293 - val_loss: 0.0733 - val_root_mean_squared_error: 0.0446
-    Epoch 181/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.0654 - root_mean_squared_error: 0.0270 - val_loss: 0.0733 - val_root_mean_squared_error: 0.0446
-    Epoch 182/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m10s[0m 6ms/step - loss: 0.0652 - root_mean_squared_error: 0.0288 - val_loss: 0.0733 - val_root_mean_squared_error: 0.0446
-    Epoch 183/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m11s[0m 7ms/step - loss: 0.0655 - root_mean_squared_error: 0.0290 - val_loss: 0.0733 - val_root_mean_squared_error: 0.0446
-    Epoch 184/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m11s[0m 8ms/step - loss: 0.0644 - root_mean_squared_error: 0.0279 - val_loss: 0.0733 - val_root_mean_squared_error: 0.0446
-    Epoch 185/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 7ms/step - loss: 0.0655 - root_mean_squared_error: 0.0281 - val_loss: 0.0733 - val_root_mean_squared_error: 0.0446
-    Epoch 186/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 9ms/step - loss: 0.0649 - root_mean_squared_error: 0.0283 - val_loss: 0.0733 - val_root_mean_squared_error: 0.0446
-    Epoch 187/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m8s[0m 7ms/step - loss: 0.0650 - root_mean_squared_error: 0.0296 - val_loss: 0.0733 - val_root_mean_squared_error: 0.0446
-    Epoch 188/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m10s[0m 6ms/step - loss: 0.0659 - root_mean_squared_error: 0.0277 - val_loss: 0.0733 - val_root_mean_squared_error: 0.0446
-    Epoch 189/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m13s[0m 10ms/step - loss: 0.0642 - root_mean_squared_error: 0.0265 - val_loss: 0.0733 - val_root_mean_squared_error: 0.0446
-    Epoch 190/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.0642 - root_mean_squared_error: 0.0282 - val_loss: 0.0733 - val_root_mean_squared_error: 0.0446
-    Epoch 191/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m12s[0m 9ms/step - loss: 0.0643 - root_mean_squared_error: 0.0270 - val_loss: 0.0733 - val_root_mean_squared_error: 0.0446
-    Epoch 192/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 6ms/step - loss: 0.0640 - root_mean_squared_error: 0.0269 - val_loss: 0.0733 - val_root_mean_squared_error: 0.0446
-    Epoch 193/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m10s[0m 7ms/step - loss: 0.0659 - root_mean_squared_error: 0.0287 - val_loss: 0.0733 - val_root_mean_squared_error: 0.0446
-    Epoch 194/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m12s[0m 9ms/step - loss: 0.0642 - root_mean_squared_error: 0.0257 - val_loss: 0.0733 - val_root_mean_squared_error: 0.0446
-    Epoch 195/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.0655 - root_mean_squared_error: 0.0290 - val_loss: 0.0733 - val_root_mean_squared_error: 0.0446
-    Epoch 196/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m10s[0m 6ms/step - loss: 0.0648 - root_mean_squared_error: 0.0282 - val_loss: 0.0733 - val_root_mean_squared_error: 0.0446
-    Epoch 197/200
-    [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m11s[0m 8ms/step - loss: 0.0644 - root_mean_squared_error: 0.0262 - val_loss: 0.0733 - val_root_mean_squared_error: 0.0446
     Epoch 198/200
     [1m865/865[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 7ms/step - loss: 0.0654 - root_mean_squared_error: 0.0290 - val_loss: 0.0733 - val_root_mean_squared_error: 0.0446
     Epoch 199/200
@@ -5223,8 +3372,7 @@ Dari hasil ini, model yang menggunakan `adjusted hours` menunjukkan performa ter
 
 #### **Result**
 
-
-
+**Model 1:** Hours-Based
 
     Selected User ID: 7193034
     [1m55/55[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 4ms/step
@@ -5273,6 +3421,7 @@ Dari hasil ini, model yang menggunakan `adjusted hours` menunjukkan performa ter
 
 
 
+**Model 2:** User's Recommendation-Based
 
     Selected User ID: 7193034
     [1m55/55[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 1ms/step
@@ -5320,7 +3469,7 @@ Dari hasil ini, model yang menggunakan `adjusted hours` menunjukkan performa ter
 
 
 
-
+**Model 3:** Adjusted Hours-Based
 
     Selected User ID: 7193034
     [1m55/55[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 2ms/step
@@ -5429,19 +3578,9 @@ Sekilas tentang `Confusion Matrix`, `Akurasi`, dan Metrik Evaluasi
 
 Di dunia nyata, pengguna jarang melihat semua rekomendasi, biasanya hanya top-k (misalnya, 5 atau 10 teratas). Dengan menggunakan @k, fokus evaluasi dapat diarahkan pada rekomendasi terbaik yang diberikan model. Nilai k juga dapat disesuaikan dengan jumlah rekomendasi yang relevan untuk aplikasi tertentu. Selain itu, MRR@k memberikan perhatian khusus pada posisi item relevan pertama dalam urutan rekomendasi, yang penting dalam sistem yang mengutamakan urutan penyajian rekomendasi kepada pengguna.
 
-
-
-
-
-
-
-
-
-
-
+**Model 1:** Cosine Similarity (descriptions)
     
 ![png](gambar_files/gambar_176_0.png)
-    
 
 
     Evaluation for Striving for Light: Survival:
@@ -5468,7 +3607,7 @@ Di dunia nyata, pengguna jarang melihat semua rekomendasi, biasanya hanya top-k 
 
 
 
-
+**Model 2:** Cosine Similarity (tags)
 
     
 ![png](gambar_files/gambar_177_0.png)
@@ -5499,7 +3638,7 @@ Di dunia nyata, pengguna jarang melihat semua rekomendasi, biasanya hanya top-k 
 
 
 
-
+**Model 3:** Cosine Similarity (numerical features)
 
     
 ![png](gambar_files/gambar_178_0.png)
@@ -5530,7 +3669,7 @@ Di dunia nyata, pengguna jarang melihat semua rekomendasi, biasanya hanya top-k 
 
 
 
-
+**Model 4:** Cosine Similarity (combined features)
 
     
 ![png](gambar_files/gambar_179_0.png)
@@ -5605,14 +3744,14 @@ Jika dilihat melalui grafik, hasilnya dapat dilihat pada plot berikut.
 
 
 
-
+**RMSE historical graph: Model hours based**
 
     
 ![png](gambar_files/gambar_184_0.png)
     
 
 
-
+**RMSE historical graph: Model user's recommendation**
 
 
 
@@ -5622,7 +3761,7 @@ Jika dilihat melalui grafik, hasilnya dapat dilihat pada plot berikut.
 
 
 
-
+**RMSE historical graph: Model adjusted hours based**
 
 
     
@@ -5643,13 +3782,15 @@ Secara keseluruhan, meskipun ada perbedaan dalam nilai RMSE antar model, semua n
 
 ## **Kesimpulan**
 
-Berikut adalah kesimpulan untuk setiap poin secara singkat:
+Berikut adalah kesimpulan dari _goals_ yang telah dicapai secara singkat:
 
 1. Model rekomendasi game yang dikembangkan berhasil dibuat untuk pengguna dalam memilih game berdasarkan kesamaan karakteristik game dan pengguna. Model terbaik content based filtering adalah Model 3: Cosine Similarity (Numerical Features) dengan Precision@k=10 bernilai 1. Model terbaik collaborative filtering adalah Model adjusted hours based dengan nilai RMSE pengujian 0.0446.
 2. Analisis game berdasarkan kepopuleran yang diwakili oleh total durasi bermain, jumlah review, dan jumlah rekomendasi memberikan wawasan tentang kepopuleran dan interaksi pengguna. Game teratas dalam kategori total durasi dimainkan adalah Persona 4 Golden, kategori jumlah rekomendasi adalah Far Cry 3, dan kategori jumlah ulasan adalah Tale of Immortal.
 3. Pengaruh sistem operasi terhadap preferensi game pengguna menunjukkan perbedaan kecenderungan berdasarkan platform yang digunakan. Yaitu windows adalah os yang paling populer untuk bermain game karena banyaknya game yang rilis di platform ini. Sedangkan linux memiliki kepopuleran tertinggi jika memeperhitungkan jumlah game yang dirilis disana.
 4. Hubungan antara distribusi harga game dan tingkat ulasan positif mengungkapkan dampak harga terhadap persepsi kualitas game oleh pengguna. Secara umum tidak terlalu signifikan hubungan keduanya namun secara umum terdapat sedikit pola hubungan yang menunjukkan game yang lebih tinggi harganya memiliki lebih banyak ulasan positif.
 5. Analisis hubungan antara rating game dan waktu yang dihabiskan pengguna untuk memainkannya memperlihatkan keterkaitan antara kualitas game dan tingkat keterlibatan pengguna. Pengguna lebih banyak menghabiskan waktunya untuk game dengan rating yang bernada positif.
+
+Model rekomendasi game berhasil dikembangkan secara optimal menggunakan content-based filtering dan collaborative filtering. Exploratory Data Analysis juga memberikan wawasan tentang kepopuleran game, pengaruh sistem operasi terhadap preferensi pengguna, dampak harga terhadap ulasan positif, serta keterkaitan rating dengan waktu bermain, yang secara keseluruhan mendukung pemahaman dan pengalaman pengguna dalam pembelian game.
 
 ## **Reference**
 
