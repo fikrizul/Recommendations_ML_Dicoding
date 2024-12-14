@@ -943,7 +943,7 @@ Distribusi harga dari sebuah game ternyata sangat terjal ke kanan. Artinya sebag
 ![png](gambar_files/gambar_54_0.png)
     
 
-![png](gambar_files/gambar_177_0.png)
+![png](gambar_files/gambar_187_0.png)
 
 Sebagian besar `rating` berada ada kategori positive dengan berbagai derajatnya kecuali `overwhelmingly positive`.
 
