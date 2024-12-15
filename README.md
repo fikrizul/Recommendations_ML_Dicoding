@@ -2999,7 +2999,7 @@ Dari hasil ini, model yang menggunakan `adjusted hours` menunjukkan performa ter
     [1m55/55[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 1ms/step
     Showing recommendations for user: 7193034
     ========================================
-    Games with high hours played by the user
+    Games with high recommendations played by the user
     ╒═════════════════════════════════════════════════════╤══════════════════╤══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╕
     │ title                                               │ is_recommended   │ tags                                                                                                                                                                                                                                                                                                     │
     ╞═════════════════════════════════════════════════════╪══════════════════╪══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╡
@@ -3047,7 +3047,7 @@ Dari hasil ini, model yang menggunakan `adjusted hours` menunjukkan performa ter
     [1m55/55[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 2ms/step
     Showing recommendations for user: 7193034
     ========================================
-    Games with high hours played by the user
+    Games with high adjusted hours played by the user
     ╒═════════════════════════════════════════════════════╤══════════════════╤════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╕
     │ title                                               │   adjusted_hours │ tags                                                                                                                                                                                                                                                                       │
     ╞═════════════════════════════════════════════════════╪══════════════════╪════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╡
@@ -3094,13 +3094,15 @@ Dari hasil ini, model yang menggunakan `adjusted hours` menunjukkan performa ter
 
 Metrik yang digunakan dalam evaluasi model content-based filtering meliputi Precision@k, Recall@k, F1@k, dan MRR@k. Sebelum membahas hasil evaluasi, berikut adalah penjelasan tentang cara menghitung masing-masing metrik serta penggunaan confusion matrix untuk mengukur performa model.
 
-Sekilas tentang `Confusion Matrix`, `Akurasi`, dan Metrik Evaluasi
+Sekilas tentang `Confusion Matrix` dan Metrik Evaluasi
 
 `Confusion Matrix` adalah tabel yang digunakan untuk mengevaluasi performa model klasifikasi dengan mengukur jumlah prediksi yang benar dan salah berdasarkan label aktual dan prediksi. Setiap baris dalam `confusion matrix` mewakili nilai sebenarnya (`actual`), sedangkan setiap kolom mewakili nilai prediksi (`predicted`). Komponen utama dari `confusion matrix` adalah sebagai berikut:
 - **True Positive (TP)**: Jumlah data positif yang diprediksi benar.
 - **True Negative (TN)**: Jumlah data negatif yang diprediksi benar.
 - **False Positive (FP)**: Jumlah data negatif yang salah diprediksi sebagai positif (*Error Tipe 1*).
 - **False Negative (FN)**: Jumlah data positif yang salah diprediksi sebagai negatif (*Error Tipe 2*).
+
+  ![png](gambar_files/gambar_188_0.png)
 
 ### Metrik Evaluasi @k
 
