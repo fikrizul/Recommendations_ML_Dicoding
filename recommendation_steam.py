@@ -1042,6 +1042,11 @@ y_3 = adjusted_hours
 train_X_3, test_X_3, train_y_3, test_y_3 = train_test_split(X_3, y_3, test_size=0.2, random_state=42)
 
 """## **Modeling**
+Tahapan ini membahas mengenai model sisten rekomendasi yang Anda buat untuk menyelesaikan permasalahan. Sajikan top-N recommendation sebagai output.
+
+**Rubrik/Kriteria Tambahan (Opsional)**:
+- Menyajikan dua solusi rekomendasi dengan algoritma yang berbeda.
+- Menjelaskan kelebihan dan kekurangan dari solusi/pendekatan yang dipilih.
 
 ### **1. Content Based Filtering**
 
@@ -1369,7 +1374,7 @@ recommended_games = games_data[games_data["app_id"].isin(recommended_game_ids)]
 recommended_games_df = recommended_games[["title", "tags"]]
 
 # Print the DataFrames using tabulate
-print("Games with high hours played by the user")
+print("Games with high recommendations played by the user")
 print(tabulate(top_games_df, headers="keys", tablefmt="fancy_grid", showindex=False))
 
 print("\nTop 10 game recommendations")
@@ -1442,7 +1447,7 @@ recommended_games = games_data[games_data["app_id"].isin(recommended_game_ids)]
 recommended_games_df = recommended_games[["title", "tags"]]
 
 # Print the DataFrames using tabulate
-print("Games with high hours played by the user")
+print("Games with high adjusted hours played by the user")
 print(tabulate(top_games_df, headers="keys", tablefmt="fancy_grid", showindex=False))
 
 print("\nTop 10 game recommendations")
@@ -1451,8 +1456,65 @@ print(tabulate(recommended_games_df, headers="keys", tablefmt="fancy_grid", show
 """## **Evaluation**
 
 ### **1. Content Based Filtering**
+"""
 
-Metrik yang digunakan dalam evaluasi model content-based filtering meliputi Precision@k, Recall@k, F1@k, dan MRR@k. Sebelum membahas hasil evaluasi, berikut adalah penjelasan tentang cara menghitung masing-masing metrik serta penggunaan confusion matrix untuk mengukur performa model.
+# Define the confusion matrix as a NumPy array of strings
+cm = np.array([['True Negative', 'False Positive'], ['False Negative', 'True Positive']])
+
+# Create a ConfusionMatrixDisplay object
+disp = ConfusionMatrixDisplay(
+    confusion_matrix=np.array([[1, 0], [0, 1]]),  # Dummy numerical data for plot structure
+    display_labels=[0, 1]  # Labels for the axes
+)
+
+# Override the text values in the plot
+fig, ax = plt.subplots()
+disp.plot(ax=ax, include_values=False)  # Hide default values and colorbar
+# for i in range(cm.shape[0]):
+#     for j in range(cm.shape[1]):
+#         ax.text(j, i, cm[i, j], ha='center', va='center', color='black', fontsize=14)
+
+# for i in range(len(cm)):
+#     disp.text_[i, i].set_color('green')  # TP in green
+
+# # False Positives (non-diagonal column elements)
+# for i in range(len(cm)):
+#     for j in range(len(cm)):
+#         if i != j:
+#             disp.text_[i, j].set_color('red')  # FP in red (off-diagonal elements)
+
+# for i in range(len(cm)):
+#     for j in range(len(cm)):
+#         text = disp.text_[i, j]  # Get the text element
+#         if i == j:  # Diagonal (TP, TN)
+#             text.set_color('green')  # TP, TN in green
+#         else:  # Off-diagonal (FP, FN)
+#             text.set_color('red')  # FP, FN in red
+
+# False Negatives (non-diagonal row elements)
+# Already colored since FP = FN in this symmetric confusion matrix for classification.
+
+for i in range(cm.shape[0]):  # Rows (true labels)
+    for j in range(cm.shape[1]):  # Columns (predicted labels)
+        # Assign color based on TP/FP/FN
+        if i == j:  # True Positives (Diagonal)
+            text_color = "black"
+        else:  # False Positives/Negatives (Off-diagonal)
+            text_color = "yellow"
+
+        # Add text annotation
+        ax.text(j, i, cm[i, j], ha="center", va="center", color=text_color)
+
+ax.xaxis.set_ticklabels(['Irrelevant', 'Relevant'], rotation = 90)
+ax.yaxis.set_ticklabels(['Irrelevant', 'Relevant'])
+ax.grid(False)
+
+# Set title and show the plot
+plt.title("Confusion Matrix")
+plt.savefig("gambar_188_0.png",bbox_inches="tight")
+plt.show()
+
+"""Metrik yang digunakan dalam evaluasi model content-based filtering meliputi Precision@k, Recall@k, F1@k, dan MRR@k. Sebelum membahas hasil evaluasi, berikut adalah penjelasan tentang cara menghitung masing-masing metrik serta penggunaan confusion matrix untuk mengukur performa model.
 
 Sekilas tentang `Confusion Matrix`, `Akurasi`, dan Metrik Evaluasi
 
@@ -1650,8 +1712,8 @@ Jika nilai prediksi mendekati nilai sesungguhnya, maka selisih antara $(y_i - \h
 Pada *collaborative filtering*, setelah melatih model selama 50 epoch, diperoleh nilai RMSE sebesar 0.0315 untuk data pelatihan dan 0.1886 untuk data pengujian. Berikut adalah nilai RMSE untuk tiga model yang diuji:
 
 - **RMSE Model hours based**: 0.0296 (data pelatihan) dan 0.0457 (data pengujian)
-- **RMSE Model user's recommendation**: 0.3745 (data pelatihan) dan 0.3905 (data pengujian)
-- **RMSE Model adjusted hours based**: 0.0288 (data pelatihan) dan 0.0446 (data pengujian)
+- **RMSE Model user's recommendation**: 0.3088 (data pelatihan) dan 0.3558 (data pengujian)
+- **RMSE Model adjusted hours based**: 0.0262 (data pelatihan) dan 0.0446 (data pengujian)
 
 Jika dilihat melalui grafik, hasilnya dapat dilihat pada plot berikut.
 """
@@ -1695,19 +1757,19 @@ plt.legend(["Training", "Validation"], loc = "upper right")
 # Menampilkan plot
 plt.show()
 
-"""Plot tersebut menunjukkan, bahwa nilai RMSE pada data pelatihan dan pengujian terus menurun tajam, tetapi setelah 10 epoch, nilai RMSE mulai stagnan untuk model hours-based dan adjusted-hours-based. Meskipun RMSE pada data pengujian lebih besar dibandingkan dengan data pelatihan, keduanya memiliki nilai yang sangat mendekati 0. Oleh karena itu, model ini dapat dianggap baik dan akurat untuk digunakan dalam sistem rekomendasi. Sedangkan model user's recommendation nilai RMSE pelatihan dan pengujian sama-sama menurun dengan gradient yang stabil. Hanya saja metrik pengujian memiliki slope yang lebih landai dan menuju nilai 0.4 pada RMSE. Menunjukkan bahwa model tidak dapat meningkat lagi akurasinya dan diperlukan perlakuan tambahan untuk mengoptimalkan modelnya.
+"""Plot tersebut menunjukkan, bahwa nilai RMSE pada data pelatihan dan pengujian terus menurun tajam, tetapi setelah 10 epoch, nilai RMSE mulai stagnan untuk model hours-based dan adjusted-hours-based. Meskipun RMSE pada data pengujian lebih besar dibandingkan dengan data pelatihan, keduanya memiliki nilai yang sangat mendekati 0. Oleh karena itu, model ini dapat dianggap baik dan akurat untuk digunakan dalam sistem rekomendasi. Sedangkan model user's recommendation nilai RMSE pelatihan dan pengujian sama-sama menurun dengan gradient yang stabil. Hanya saja metrik pengujian memiliki slope yang lebih landai dan menuju nilai 0.35 pada RMSE. Menunjukkan bahwa model tidak dapat meningkat lagi akurasinya dan diperlukan perlakuan tambahan untuk mengoptimalkan modelnya.
 
 Nilai **Root Mean Squared Error (RMSE)** yang diperoleh pada setiap model dapat diinterpretasikan dalam konteks data yang memiliki rentang antara 0 hingga 1, memberikan gambaran yang lebih jelas tentang kualitas prediksi model. Model dengan fitur `hours`, memiliki nilai RMSE sebesar **0.0457** pada data pengujian berarti bahwa rata-rata kesalahan prediksi model adalah sekitar **4.57%** dari nilai maksimum yaitu 1. Ini menunjukkan bahwa meskipun terdapat sedikit kesalahan dalam prediksi, tingkat kesalahan tersebut sangat kecil jika dibandingkan dengan rentang data yang ada. Dengan demikian, model ini memiliki tingkat akurasi yang sangat baik.
 
-Untuk model dengan fitur `is_recommended`, nilai RMSE yang lebih tinggi yaitu **0.3745** pada data pelatihan dan **0.3905** pada data pengujian menunjukkan bahwa model ini kurang akurat dalam memprediksi rekomendasi yang relevan. Nilai RMSE ini setara dengan **37.45%** dan **39.05%** dari nilai maksimum, yang berarti model ini memiliki kesalahan prediksi yang cukup besar jika dibandingkan dengan model lainnya. Namun, meskipun nilai RMSE lebih tinggi, model ini masih dapat diterima tergantung pada konteks dan aplikasi penggunaan, terutama jika rekomendasi berbasis `is_recommended` memiliki variasi yang lebih kompleks.
+Untuk model dengan fitur `is_recommended`, nilai RMSE yang lebih tinggi yaitu **0.3088** pada data pelatihan dan **0.3558** pada data pengujian menunjukkan bahwa model ini kurang akurat dalam memprediksi rekomendasi yang relevan. Nilai RMSE ini setara dengan **30.88%** dan **35.58%** dari nilai maksimum, yang berarti model ini memiliki kesalahan prediksi yang cukup besar jika dibandingkan dengan model lainnya. Namun, meskipun nilai RMSE lebih tinggi, model ini masih dapat diterima tergantung pada konteks dan aplikasi penggunaan, terutama jika rekomendasi berbasis `is_recommended` memiliki variasi yang lebih kompleks.
 
-Sementara itu, untuk model dengan `adjusted_hours`, nilai RMSE yang diperoleh adalah **0.0288** pada data pelatihan dan **0.0446** pada data pengujian. Nilai RMSE ini setara dengan **2.88%** pada data pelatihan dan **4.46%** pada data pengujian, yang menunjukkan bahwa model ini juga mampu memberikan prediksi yang akurat, dengan kesalahan yang sangat kecil. Seperti model `hours`, model ini memiliki performa yang sangat baik dalam memprediksi data dengan rentang 0 hingga 1, dengan tingkat kesalahan yang relatif rendah.
+Sementara itu, untuk model dengan `adjusted_hours`, nilai RMSE yang diperoleh adalah **0.0262** pada data pelatihan dan **0.0446** pada data pengujian. Nilai RMSE ini setara dengan **2.62%** pada data pelatihan dan **4.46%** pada data pengujian, yang menunjukkan bahwa model ini juga mampu memberikan prediksi yang akurat, dengan kesalahan yang sangat kecil. Seperti model `hours`, model ini memiliki performa yang sangat baik dalam memprediksi data dengan rentang 0 hingga 1, dengan tingkat kesalahan yang relatif rendah.
 
 Secara keseluruhan, meskipun ada perbedaan dalam nilai RMSE antar model, semua nilai RMSE yang diperoleh berada dalam kisaran yang sangat kecil jika dibandingkan dengan skala data 0 hingga 1. Hal ini menunjukkan bahwa model-model ini, meskipun memiliki karakteristik yang berbeda, mampu menghasilkan prediksi yang sangat mendekati nilai aktual, dengan kesalahan yang minimal, yang menjadikannya sangat baik untuk digunakan dalam sistem rekomendasi berbasis data dengan rentang terbatas seperti ini.
 
 ## **Kesimpulan**
 
-Berikut adalah kesimpulan untuk setiap poin secara singkat:
+Berikut adalah kesimpulan untuk setiap goal secara singkat:
 
 1. Model rekomendasi game yang dikembangkan berhasil dibuat untuk pengguna dalam memilih game berdasarkan kesamaan karakteristik game dan pengguna. Model terbaik content based filtering adalah Model 3: Cosine Similarity (Numerical Features) dengan Precision@k=10 bernilai 1. Model terbaik collaborative filtering adalah Model adjusted hours based dengan nilai RMSE pengujian 0.0446.
 2. Analisis game berdasarkan kepopuleran yang diwakili oleh total durasi bermain, jumlah review, dan jumlah rekomendasi memberikan wawasan tentang kepopuleran dan interaksi pengguna. Game teratas dalam kategori total durasi dimainkan adalah Persona 4 Golden, kategori jumlah rekomendasi adalah Far Cry 3, dan kategori jumlah ulasan adalah Tale of Immortal.
