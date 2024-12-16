@@ -3101,7 +3101,7 @@ Sekilas tentang `Confusion Matrix` dan Metrik Evaluasi
 - **False Positive (FP)**: Jumlah data negatif yang salah diprediksi sebagai positif (*Error Tipe 1*).
 - **False Negative (FN)**: Jumlah data positif yang salah diprediksi sebagai negatif (*Error Tipe 2*).
 
-  ![png](gambar_files/gambar_188_0.png)
+![png](gambar_files/gambar_188_0.png)
 
 ### Metrik Evaluasi @k
 
