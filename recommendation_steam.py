@@ -849,7 +849,7 @@ print(f"Total of column: {total_column}")
 recommendations.head()
 recommendations.info()
 
-"""Karena ukuran data yang masih terlalu besar sebanyak 16337800 maka dilakukan sampling dengan kriteria seperti berikut: data tidak lebih lama dari tahun 2020, setiap interval dari total waktu dimainkan dari setiap game akan diambil 200 game relevan, setiap user relevan memiliki minimal 5 review game.
+"""Karena ukuran data yang masih terlalu besar yaitu 16337800 data maka dilakukan sampling dengan kriteria seperti berikut: data tidak lebih lama dari tahun 2020, setiap interval dari total waktu dimainkan dari setiap game akan diambil 200 game relevan, setiap user relevan memiliki minimal 5 review game.
 
 Setelah dilakukan filter melalui data game setelah tahun 2020.
 """
