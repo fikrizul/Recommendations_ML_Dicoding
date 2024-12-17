@@ -3308,7 +3308,7 @@ Jika nilai prediksi mendekati nilai sesungguhnya, maka selisih antara $(y_i - \h
 
   **Penerapan Evaluasi Model dengan RMSE**
 
-Pada *collaborative filtering*, setelah melatih model selama 50 epoch, diperoleh nilai RMSE sebesar 0.0315 untuk data pelatihan dan 0.1886 untuk data pengujian. Berikut adalah nilai RMSE untuk tiga model yang diuji:
+Pada *collaborative filtering*, setelah melatih model selama 200 epoch, diperoleh nilai RMSE sebesar 0.0315 untuk data pelatihan dan 0.1886 untuk data pengujian. Berikut adalah nilai RMSE untuk tiga model yang diuji:
 
 - **RMSE Model hours based**: 0.0296 (data pelatihan) dan 0.0457 (data pengujian)
 - **RMSE Model user's recommendation**: 0.3088 (data pelatihan) dan 0.3558(data pengujian)
