@@ -2672,6 +2672,68 @@ Data "hours" disesuaikan berdasarkan data game direkomendasikan atau tidak. Jika
 
 Data  `hours`  dan  `adjusted_hours`  dinormalisasi dengan MinMaxScaler() agar data berada di rentang 0 hingga 1 sehingga model jadi lebih sederhana dan metrik evaluasi lebih mudah untuk dibandingkan.
 
+<table class="dataframe" border="1">
+<thead>
+<tr>
+<th>&nbsp;</th>
+<th>hours_scaled</th>
+<th>adjusted_hours_scaled</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>0.051356</td>
+<td>0.051356</td>
+</tr>
+<tr>
+<th>1</th>
+<td>0.008810</td>
+<td>0.008810</td>
+</tr>
+<tr>
+<th>2</th>
+<td>0.010111</td>
+<td>0.006067</td>
+</tr>
+<tr>
+<th>3</th>
+<td>0.000701</td>
+<td>0.000701</td>
+</tr>
+<tr>
+<th>4</th>
+<td>0.241666</td>
+<td>0.241666</td>
+</tr>
+<tr>
+<th>5</th>
+<td>0.022925</td>
+<td>0.022925</td>
+</tr>
+<tr>
+<th>6</th>
+<td>0.013415</td>
+<td>0.013415</td>
+</tr>
+<tr>
+<th>7</th>
+<td>0.008009</td>
+<td>0.004805</td>
+</tr>
+<tr>
+<th>8</th>
+<td>0.003204</td>
+<td>0.001922</td>
+</tr>
+<tr>
+<th>9</th>
+<td>0.020222</td>
+<td>0.020222</td>
+</tr>
+</tbody>
+</table>
+
 #### **Train Test Split**
 
 Dibuat 3 set data train-test dengan komposisi 8:2 untuk 3 model berbeda. Model pertama menggunakan data `hours` yang telah dinormalisasi minmaxscaler, lalu data kedua menggunakan data `is_recommended` yang bernilai boolean, data kedua menggunakan data adjusted_hours yang menggabungkan parameter `hours` dan `is_recommended`.
