@@ -1227,7 +1227,7 @@ Dilakukan filter game yang dianggap relevan di dataframe `recommendations` denga
     memory usage: 1012.8+ MB
 
 
-Karena ukuran data yang masih terlalu besar maka dilakukan sampling dengan kriteria seperti berikut: data tidak lebih lama dari tahun 2020, setiap interval dari total waktu dimainkan dari setiap game akan diambil 200 game relevan, setiap user relevan memiliki minimal 5 review game.
+Karena ukuran data yang masih terlalu besar yaitu 16337800 data maka dilakukan sampling dengan kriteria seperti berikut: data tidak lebih lama dari tahun 2020, setiap interval dari total waktu dimainkan dari setiap game akan diambil 200 game relevan, setiap user relevan memiliki minimal 5 review game.
 
 Setelah dilakukan filter melalui data game setelah tahun 2020.
 
@@ -1371,7 +1371,7 @@ Ditentukan bahwa kolom informasi yang digunakan yaitu 'description', 'tags', 'ti
 
 Kolom tag yang berisi list tag apa saja yang ada di sebuah game, dipecah menjadi satu kumpulan string dipisahkan oleh spasi yang bisa diterima sebagai corpus oleh TfidfVectorizer. Namun sebelum dipecah beberapa tag yang berisi lebih dari satu kata seperti `Local Co-Op`, `Third Person`, `Tower Defense` disatukan menjadi satu kata dengan mengganti spasi dengan underscore '_' agar menjadi seperti ini `Local_Co-Op`, `Third_Person`, `Tower_Defense`.
 
-Rating di-encode agar dapat dimengerti oleh cosine similarity dengan map seperti berikut:
+Rating di- agar dapat dimengerti oleh cosine similarity dengan map seperti berikut:
 
 
 ```python
@@ -2595,6 +2595,7 @@ Data user_id dan app_id di-encode sebagai dataframe baru berisi nilai-nilai repr
 <table class="dataframe" border="1">
 <thead>
 <tr>
+<th>&nbsp;</th>
 <th>user_encoded</th>
 <th>app_encoded</th>
 </tr>
