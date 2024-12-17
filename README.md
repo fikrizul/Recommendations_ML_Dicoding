@@ -3151,7 +3151,7 @@ $$
 
 Di mana $\eta$ adalah laju pembelajaran (learning rate), dan $\frac{\partial L}{\partial P_i}$ dan $\frac{\partial L}{\partial Q_j}$ adalah turunan dari fungsi kerugian terhadap $P_i$ dan  $Q_j$, yang mengukur perubahan yang diperlukan untuk memperbaiki kesalahan prediksi. Dengan iterasi ini, model akan semakin akurat dalam memprediksi nilai fitur yang belum diketahui.
 
-Dalam hal ini, algoritma **Matrix Factorization** menggunakan metode yang disebut "collaborative filtering",  yang berasumsi bahwa jika user 1 memiliki pendapat yang sama dengan user 2 tentang suatu hal, maka user 1 lebih mungkin memiliki pandangan yang sama dengan user 2 tentang hal lain.
+Algoritma **Matrix Factorization** menggunakan metode yang disebut "collaborative filtering",  yang berasumsi bahwa jika user 1 memiliki pendapat yang sama dengan user 2 tentang suatu hal, maka user 1 lebih mungkin memiliki pandangan yang sama dengan user 2 tentang hal lain.
 
 Contohnya, jika user 1 dan user 2 memiliki waktu bermain yang serupa terhadap game tertentu, maka user 2 lebih mungkin untuk menikmati game yang telah dimainkan oleh user 1 dalam waktu yang lama.
 
