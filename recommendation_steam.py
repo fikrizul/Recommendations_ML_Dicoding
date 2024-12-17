@@ -131,7 +131,17 @@ recommendations = pd.read_csv('/content/drive/MyDrive/Recommendation/recommendat
 # Display the first few rows of the CSV data
 recommendations.head()
 
-"""### **Variable Description**
+# Show total rows and total column of the data
+total_row, total_column = games_data.shape
+print(f"Total rows of games_data: {total_row}")
+print(f"Total columns of games_data: {total_column}")
+total_row, total_column = recommendations.shape
+print(f"Total rows of recommendations: {total_row}")
+print(f"Total columns of recommendations: {total_column}")
+
+"""`games_data` memiliki 50872 entri data dengan 15 kolom informasi sedangkan `recommendation` memiliki 41154794 entri data dengan 8 kolom informasi.
+
+## **Variable Description**
 
 penjelasan variabel pada dataframe `games_data`
 
@@ -166,7 +176,7 @@ penjelasan variabel pada dataframe `recommendations`
 | 7      | `user_id`         | `int64`       | ID unik pengguna yang menulis ulasan.                                        |
 | 8      | `review_id`       | `int64`       | ID unik untuk setiap ulasan dalam dataset.                                   |
 
-### **Statistic Data**
+## **Statistic Data**
 """
 
 games_data.info()
@@ -179,120 +189,9 @@ recommendations.describe()
 
 """Dataframe recommendations memiliki 41154794  entri data dan 8 kolom dengan 3 kolom numerik.
 
-## **Data Cleaning**
+## **Exploratory Data Analysis**
 
-### **Missing Value & Duplicate**
-"""
-
-games_data.replace('', None, inplace=True)
-games_data = games_data.applymap(lambda x: None if isinstance(x, list) and len(x) == 0 else x)
-pd.DataFrame({'Nilai yang Kosong':games_data.isna().sum()})
-
-# Menghapus baris yang memiliki nilai null pada data
-games_data.drop(games_data[games_data.isna().any(axis = 1)].index, inplace = True)
-
-# Menampilkan jumlah baris dan kolom pada data setelah menghapus baris dengan nilai null
-total_row, total_column = games_data.shape
-print(f"Total of rows: {total_row}")
-print(f"Total of column: {total_column}")
-
-# Count the occurrences of 0.0 in each column
-zero_counts = games_data.apply(lambda col: col.apply(lambda x: isinstance(x, float) and x == 0.0).sum())
-
-# Convert to a table format
-zero_count_table = zero_counts.reset_index()
-zero_count_table.columns = ["Column", "Count of 0.0"]
-
-pd.DataFrame({'Nilai yang bernilai 0':zero_counts})
-
-games_data.drop(index=games_data[games_data['price_final'] == 0.0].index, inplace=True)
-
-total_row, total_column = games_data.shape
-print(f"Total of rows: {total_row}")
-print(f"Total of column: {total_column}")
-
-recommendations.replace('', None, inplace=True)
-# recommendations = recommendations.applymap(lambda x: None if isinstance(x, list) and len(x) == 0 else x)
-pd.DataFrame({'Nilai yang Kosong':recommendations.isna().sum()})
-
-# Get a list of columns excluding the one with lists
-columns_to_check = [col for col in games_data.columns if col != 'tags']
-
-# Check for duplicates only in the specified subset of columns
-duplicates = games_data.duplicated(subset=columns_to_check).sum()
-
-print(f"Number of duplicates (excluding 'tags' column): {duplicates}")
-
-# Check for duplicates only in the specified subset of columns
-duplicates = recommendations.duplicated(subset='review_id').sum()
-
-print(f"Number of duplicates : {duplicates}")
-
-"""### **Data Reduction**
-
-melakukan filter game yang dianggap relevan di dataframe `recommendations` dengan menggunakan data dari dataframe `games_data` yang telah dihilangkan *missing value*-nya
-"""
-
-games_list = games_data['app_id'].unique()
-recommendations = recommendations[recommendations['app_id'].isin(games_list)]
-
-total_row, total_column = recommendations.shape
-print(f"Total of rows: {total_row}")
-print(f"Total of column: {total_column}")
-recommendations.head()
-recommendations.info()
-
-"""Karena ukuran data yang terlalu besar maka dilakukan sampling dengan kriteria seperti berikut: data tidak lebih lama dari tahun 2020, setiap interval dari total waktu dimainkan dari setiap game akan diambil 200 game relevan, setiap user relevan memiliki minimal 5 review game."""
-
-start_date = '2020-01-01'
-filtered_data = recommendations[(recommendations['date'] >= start_date) ]
-
-print(f"Number of rows after date filtering: {filtered_data.shape[0]}")
-
-# Calculate review count per total game hours
-game_counts = filtered_data.groupby('app_id')['hours'].count().reset_index()
-game_counts.columns = ['app_id', 'hours_count']
-
-# Create bins for stratification
-num_bins = 10  # Example: 5 bins
-game_counts['hours_bin'] = pd.qcut(game_counts['hours_count'], q=num_bins, labels=False)
-
-# Sample exactly 100 games from each review_bin
-sampled_games_by_bin = game_counts.groupby('hours_bin').apply(lambda x: x.sample(n=200, random_state=42) if len(x) >= 100 else x)
-
-# Extract the unique app_ids from the sampled games
-sampled_app_ids = sampled_games_by_bin['app_id'].unique()
-
-# Filter filtered_data to include only reviews for sampled app_ids
-filtered_sampled_data = filtered_data[filtered_data['app_id'].isin(sampled_app_ids)]
-
-# Step 3: Print the number of rows in the resulting dataset
-print(f"Number of sampled games: {len(sampled_app_ids)}")
-print(f"Number of rows in the filtered dataset: {len(filtered_sampled_data)}")
-
-# Filter out users with fewer than 5 games
-user_review_counts = filtered_sampled_data.groupby('user_id')['app_id'].count().reset_index()
-user_review_counts.columns = ['user_id', 'app_count']
-
-# Filter users who have 5 or more reviews
-users_with_min_reviews = user_review_counts[user_review_counts['app_count'] >= 5]['user_id']
-
-# Filter the main dataset to include only users with at least 5 reviews
-filtered_min_reviews = filtered_sampled_data[filtered_sampled_data['user_id'].isin(users_with_min_reviews)]
-
-print(f"Number of user with min reviews: {len(users_with_min_reviews)}")
-print(f"Number of rows in the filtered dataset: {len(filtered_min_reviews)}")
-
-recommendations= pd.DataFrame(filtered_min_reviews)
-
-"""Jumlah entri data `games_data` setelah dibersihkan adalah 32685 dan jumlah baris setelah reduksi dari data `recommendations` adalah 34586"""
-
-games_data = games_data.reset_index(drop=True)
-recommendations = recommendations.reset_index(drop=True)
-
-"""## **Exploratory Data Analysis**
-
-### **Unvariate Data Analysis**
+### **Univariate Data Analysis**
 
 #### **Price**
 """
@@ -454,7 +353,7 @@ print(release_trend)
 #### **Top Games**
 """
 
-game_hours = colab_based_data.groupby('app_id')['hours'].sum().reset_index()
+game_hours = recommendations.groupby('app_id')['hours'].sum().reset_index()
 
 # Merge with game metadata to get titles
 game_hours = pd.merge(game_hours, games_data[['app_id', 'title']], on='app_id', how='left')
@@ -474,10 +373,10 @@ plt.gca().invert_yaxis()  # Invert y-axis to show the most played game at the to
 plt.tight_layout()
 plt.show()
 
-"""Game yang memiliki Total Waktu Dimainkan tertinggi adalah Persona 4 Golden."""
+"""Game yang memiliki Total Waktu Dimainkan tertinggi adalah **Team Fortress 2**."""
 
 # Assuming your DataFrame is named 'recommendations'
-game_recommendations_count = colab_based_data.groupby('app_id')['is_recommended'].count().reset_index()
+game_recommendations_count = recommendations.groupby('app_id')['is_recommended'].count().reset_index()
 game_recommendations_count.columns = ['app_id', 'recommendation_count']
 
 # Sort by recommendation count in descending order
@@ -498,7 +397,7 @@ plt.gca().invert_yaxis()  # Invert y-axis to show the most played game at the to
 plt.tight_layout()
 plt.show()
 
-"""Game yang paling banyak direkomendasikan adalah Far Cry 3."""
+"""Game yang paling banyak direkomendasikan adalah **Team Fortress 2**."""
 
 # Hitung jumlah ulasan untuk setiap game
 game_review_counts = games_data.groupby('title')['user_reviews'].sum().reset_index()
@@ -514,7 +413,7 @@ plt.ylabel('Game Title')
 plt.title('Top 20 Games By Reviews Count')
 plt.gca().invert_yaxis()  # Balikkan sumbu y agar game dengan ulasan terbanyak
 
-"""Game yang paling banyak di-review adalah Tale of Immortal.
+"""Game yang paling banyak di-review adalah **Counter-Strike: Global Offensive**.
 
 ### **Multivariate Data Analysis**
 
@@ -544,7 +443,7 @@ plt.grid(alpha=0.3)
 plt.tight_layout()
 plt.show()
 
-"""Rasio *feedback* positif yang rendah (10-50), terlihat fluktuasi harga yang cukup besar dengan kecenderungan meningkat. Namun, seiring dengan meningkatnya rasio, fluktuasi mulai berkurang, dan grafik menjadi lebih stabil. Yaitu pada rentang rasio *feedback* positif 50-100, harga rata-rata cenderung stabil dengan variasi yang minim. Ini menunjukkan bahwa rasio *feedback* positif akan meningkat seiring peningkatan harga, terutama pada kisaran yang lebih rendah.
+"""Rasio *feedback* positif yang rendah (10-50), terlihat fluktuasi harga yang cukup besar dengan kecenderungan sedikit meningkat. Namun, seiring dengan meningkatnya rasio, fluktuasi mulai berkurang, dan grafik menjadi lebih stabil. Yaitu pada rentang rasio *feedback* positif 50-100, harga rata-rata cenderung stabil dengan variasi yang minim. Ini menunjukkan bahwa rasio *feedback* positif tidak memiliki kaitan signifikan dengan harga, hanya ada sedikit korelasi positif pada kisaran yang rendah.
 
 #### **Median Positive Feedback Ratio by Price Intervals**
 """
@@ -571,7 +470,7 @@ plt.grid(alpha=0.3, linestyle='--')
 plt.tight_layout()
 plt.show()
 
-"""Sejauh ini tidak signifikan pengaruh `harga game` terhadap `Rasio Ulasan Positif`. Artinya tidak selalu game yang mahal memiliki kualitas ulasan yang positif, karena game mahal memunculkan ekspektasi yang lebih tinggi.
+"""Sejauh ini tidak signifikan pengaruh `harga game` terhadap `Rasio Ulasan Positif`. Hanya ada sedikit penurunan `rasio ulasan positif` pada rentang harga yang rendah dan sedikit peningkatan pada rentang harga menengah ke tinggi.
 
 #### **Average Positive Ratio by Tag**
 """
@@ -665,9 +564,6 @@ game_hours_by_rating = merged_data.groupby(['app_id', 'rating'])['hours'].sum().
 game_hours_by_rating.columns = ['app_id', 'rating', 'total_hours_played']
 
 
-import seaborn as sns
-import matplotlib.pyplot as plt
-
 # Urutkan rating agar ditampilkan secara berurutan di plot
 rating_order = ["Overwhelmingly Positive", "Very Positive", "Positive", "Mostly Positive", "Mixed",
                 "Mostly Negative", "Negative", "Very Negative", "Overwhelmingly Negative"]
@@ -702,7 +598,7 @@ plt.axis('equal')  # Make the pie chart circular
 
 plt.show()
 
-"""Jumlah Game yang rilis di platform windows mendominasi dengan 69.1%.
+"""Jumlah Game yang rilis di platform windows mendominasi dengan 69.4%.
 
 #### **Game Popularity per OS**
 """
@@ -837,16 +733,194 @@ plt.show()
 
 ## **Data Preparation**
 
-### **1. Content Based Filtering**
+### **Data Cleaning**
+
+#### **Missing Value & Duplicate**
+
+Menilik dari nilai data yang ada, untuk mengetahui data yang kosong perlu dilakukan pre-processing terlebih dahulu karena missing value tidak berupa `None`, `Null` atau `NaN` tapi berupa empty string `''` , empty list `[]`, zero-value atau non-numerical value pada kolom numerik.
+
+Jumlah *missing value* berupa empty string `''` dan empty list `[]` yang ada di dataframe `games_data` adalah sebagai berikut
+"""
+
+games_data.replace('', None, inplace=True)
+games_data = games_data.applymap(lambda x: None if isinstance(x, list) and len(x) == 0 else x)
+pd.DataFrame({'Nilai yang Kosong':games_data.isna().sum()})
+
+"""Dilakukan drop pada baris yang memiliki _missing value_ sehingga menghasilkan jumlah baris sebagai berikut"""
+
+# Menghapus baris yang memiliki nilai null pada data
+games_data.drop(games_data[games_data.isna().any(axis = 1)].index, inplace = True)
+
+# Menampilkan jumlah baris dan kolom pada data setelah menghapus baris dengan nilai null
+total_row, total_column = games_data.shape
+print(f"Total of rows: {total_row}")
+print(f"Total of column: {total_column}")
+
+"""selanjutnya diperiksa nilai numerik yang menghasilkan nilai 0 pada dataframe `games_data`."""
+
+# Count the occurrences of 0.0 in each column
+zero_counts = games_data.apply(lambda col: col.apply(lambda x: isinstance(x, float) and x == 0.0).sum())
+
+# Convert to a table format
+zero_count_table = zero_counts.reset_index()
+zero_count_table.columns = ["Column", "Count of 0.0"]
+
+pd.DataFrame({'Nilai yang bernilai 0':zero_counts})
+
+"""Terdapat nilai 0 di dalam kolom yang memiliki kepentingan yaitu kolom `price_final`. Maka baris yang memiliki nilai 0 tersebut dihilangkan, sedangkan nilai 0 di baris lainnya dibiarkan karena tidak relevan dan malah akan menghilangkan data penting ketika dihilangkan."""
+
+games_data.drop(index=games_data[games_data['price_final'] == 0.0].index, inplace=True)
+
+total_row, total_column = games_data.shape
+print(f"Total of rows: {total_row}")
+print(f"Total of column: {total_column}")
+
+"""Dilakukan deteksi adanya data non-numerik di kolom-kolom numerik. Data yang terdeteksi akan diubah menjadi NaN untuk dihilangkan menggunakan `dropna()`."""
+
+# Handle non-numeric values in numeric columns by coercing them into NaN
+games_data[['positive_ratio', 'user_reviews', 'price_final']] = (
+    games_data[['positive_ratio', 'user_reviews', 'price_final']]
+    .apply(pd.to_numeric, errors='coerce')
+)
+# Drop rows with NaN values in critical columns after conversion
+games_data = games_data.dropna(subset=['rating', 'positive_ratio', 'user_reviews', 'price_final'])
+
+
+total_row, total_column = games_data.shape
+print(f"Total of rows: {total_row}")
+print(f"Total of column: {total_column}")
+
+"""Diperiksa juga _missing value_ dan data invalid di kolom numerik pada dataframe `recommendations`"""
+
+recommendations.replace('', None, inplace=True)
+recommendations[['helpful', 'funny', 'hours']] = (
+    recommendations[['helpful', 'funny', 'hours']]
+    .apply(pd.to_numeric, errors='coerce')
+)
+pd.DataFrame({'Nilai yang Kosong':recommendations.isna().sum()})
+
+"""tidak ada _missing value_ yang harus dihilangkan
+
+Penghilangan nilai 0 tidak dilakukan pada dataframe `recommendations` karena kolom penting `hours` berisi banyak data nilai 0 yang berarti user tidak memiliki cukup waktu bermain game yang user tersebut ulas.
+
+Selanjutnya diperiksa data duplikat pada dataframe `games_data`
+"""
+
+# Get a list of columns excluding the one with lists
+columns_to_check = [col for col in games_data.columns if col != 'tags']
+
+# Check for duplicates only in the specified subset of columns
+duplicates = games_data.duplicated(subset=columns_to_check).sum()
+
+print(f"Number of duplicates (excluding 'tags' column): {duplicates}")
+
+"""Diperiksa juga data duplikat pada dataframe `recommendations`"""
+
+# Check for duplicates only in the specified subset of columns
+duplicates = recommendations.duplicated(subset='review_id').sum()
+
+print(f"Number of duplicates : {duplicates}")
+
+"""Tidak terdeteksi data duplikat pada kedua dataframe sehingga tidak perlu dihilangkan.
+
+"""
+
+# Show total rows and total column of the data
+total_row, total_column = games_data.shape
+print(f"Total rows of games_data: {total_row}")
+print(f"Total columns of games_data: {total_column}")
+total_row, total_column = recommendations.shape
+print(f"Total rows of recommendations: {total_row}")
+print(f"Total columns of recommendations: {total_column}")
+
+"""Jumlah data di `games_data` setelah cleaning adalah 32685 dan di `recommendations` adalah 41154794
+
+#### **Data Reduction**
+
+Dilakukan filter game yang dianggap relevan di dataframe `recommendations` dengan menggunakan data dari dataframe `games_data` yang telah dihilangkan *missing value*-nya. Hasilnya sebagai berikut
+"""
+
+games_list = games_data['app_id'].unique()
+recommendations = recommendations[recommendations['app_id'].isin(games_list)]
+
+total_row, total_column = recommendations.shape
+print(f"Total of rows: {total_row}")
+print(f"Total of column: {total_column}")
+recommendations.head()
+recommendations.info()
+
+"""Karena ukuran data yang masih terlalu besar sebanyak 16337800 maka dilakukan sampling dengan kriteria seperti berikut: data tidak lebih lama dari tahun 2020, setiap interval dari total waktu dimainkan dari setiap game akan diambil 200 game relevan, setiap user relevan memiliki minimal 5 review game.
+
+Setelah dilakukan filter melalui data game setelah tahun 2020.
+"""
+
+start_date = '2020-01-01'
+filtered_data = recommendations[(recommendations['date'] >= start_date) ]
+
+print(f"Number of rows after date filtering: {filtered_data.shape[0]}")
+
+"""Disampling 200 game pada setiap kelas data dari kolom ‘hours’ yang diagreasi dari setiap game lalu diurutkan dan dibuat 10 kelas interval.
+
+
+"""
+
+# Calculate review count per total game hours
+game_counts = filtered_data.groupby('app_id')['hours'].count().reset_index()
+game_counts.columns = ['app_id', 'hours_count']
+
+# Create bins for stratification
+num_bins = 10  # Example: 5 bins
+game_counts['hours_bin'] = pd.qcut(game_counts['hours_count'], q=num_bins, labels=False)
+
+# Sample exactly 100 games from each review_bin
+sampled_games_by_bin = game_counts.groupby('hours_bin').apply(lambda x: x.sample(n=200, random_state=42) if len(x) >= 100 else x)
+
+# Extract the unique app_ids from the sampled games
+sampled_app_ids = sampled_games_by_bin['app_id'].unique()
+
+# Filter filtered_data to include only reviews for sampled app_ids
+filtered_sampled_data = filtered_data[filtered_data['app_id'].isin(sampled_app_ids)]
+
+# Step 3: Print the number of rows in the resulting dataset
+print(f"Number of sampled games: {len(sampled_app_ids)}")
+print(f"Number of rows in the filtered dataset: {len(filtered_sampled_data)}")
+
+# Filter out users with fewer than 5 games
+user_review_counts = filtered_sampled_data.groupby('user_id')['app_id'].count().reset_index()
+user_review_counts.columns = ['user_id', 'app_count']
+
+# Filter users who have 5 or more reviews
+users_with_min_reviews = user_review_counts[user_review_counts['app_count'] >= 5]['user_id']
+
+# Filter the main dataset to include only users with at least 5 reviews
+filtered_min_reviews = filtered_sampled_data[filtered_sampled_data['user_id'].isin(users_with_min_reviews)]
+
+print(f"Number of user with min reviews: {len(users_with_min_reviews)}")
+print(f"Number of rows in the filtered dataset: {len(filtered_min_reviews)}")
+
+recommendations= pd.DataFrame(filtered_min_reviews)
+
+"""Jumlah entri data `games_data` setelah dibersihkan adalah 32685 dan jumlah baris setelah reduksi dari data `recommendations` adalah 34586"""
+
+games_data = games_data.reset_index(drop=True)
+recommendations = recommendations.reset_index(drop=True)
+
+"""### **1. Content Based Filtering**
+
+Dataframe dari `games_data`  dianalisis kolomnya untuk ditemukan kolom yang sesuai dalam penghitungan `cosine similarity`.
 """
 
 # Create a copy of games_data to ensure the original DataFrame remains unchanged
 content_based_data = games_data.copy()
 
+"""Ditentukan bahwa kolom informasi yang digunakan yaitu 'description', 'tags', 'title', 'rating', 'positive_ratio', 'user_reviews', 'price_final'. Kolom `descriptions` dan `tags` akan digunakan *feature*nya dari konversi TF-IDF sedangkan kolom `rating`, `positive_ratio`, `user_reviews`, `price_final` akan digunakan sebagai *feature* nilai numeriknya.
+Kolom lain yang tidak termasuk akan di-drop dari dataframe.
+"""
+
 # Drop unnecessary columns
 content_based_data = content_based_data[['app_id', 'description', 'tags', 'title', 'rating', 'positive_ratio', 'user_reviews', 'price_final']]
 
-"""Kolom tag yang berisi list tag apa saja yang ada di sebuah game, dipecah menjadi kumpulan string yang bisa diterima sebagai corpus oleh TfidfVectorizer."""
+"""Kolom tag yang berisi list tag apa saja yang ada di sebuah game, dipecah menjadi satu kumpulan string dipisahkan oleh spasi yang bisa diterima sebagai corpus oleh TfidfVectorizer. Namun sebelum dipecah beberapa tag yang berisi lebih dari satu kata seperti `Local Co-Op`, `Third Person`, `Tower Defense` disatukan menjadi satu kata dengan mengganti spasi dengan underscore '_' agar menjadi seperti ini `Local_Co-Op`, `Third_Person`, `Tower_Defense`."""
 
 # Replace spaces within multi-word tags with underscores
 content_based_data['tags'] = content_based_data['tags'].apply(
@@ -873,21 +947,14 @@ rating_mapping = {
 
 content_based_data['rating'] = content_based_data['rating'].map(rating_mapping)
 
-# Handle non-numeric values in numeric columns by coercing them into NaN
-content_based_data[['positive_ratio', 'user_reviews', 'price_final']] = \
-    content_based_data[['positive_ratio', 'user_reviews', 'price_final']].apply(pd.to_numeric, errors='coerce')
-
-# Drop rows with NaN values in critical columns after conversion
-content_based_data = content_based_data.dropna(subset=['rating', 'positive_ratio', 'user_reviews', 'price_final'])
-
-
-content_based_data = content_based_data.reset_index(drop=True)
+content_based_data.head()
+content_based_data.info()
 
 """#### **Hyper-Parameter Tuning**
 
 **GridSearch for TF-IDF**
 
-Digunakan GridSearch untuk mngoptimalkan proses vektorisasi TF-IDF dari deskripsi game yang memiliki deretan string yang panjang. Yaitu dengan optimasi parameter sebagai berikut: max_features yaitu berapa variasi kata yang akan digunakan model, ngram yaitu jenis urutan kata yang digunakan apakah unigrams (1 kata) atau bigrams (2 kata), max_df adalah jumlah maksimal persentase sebuah kata muncul yaitu jika sebuah kata muncul terlalu banyak maka maknanya hilang, min_df yaitu sebaliknya jika sebuah kata hanya muncul dalam sedikit dokumen maka tidak relevan maka nilai ini adalah jumlah dokumen minimal sebuah kata muncul. Parameter pengujian digunakan KNN karena algoritma tersebut adalah clustering yang sesuai dengan tujuan vektorisasi TF-IDF.
+Digunakan GridSearch untuk mengoptimalkan proses vektorisasi TF-IDF dari deskripsi game yang memiliki deretan string yang panjang. Yaitu dengan optimasi parameter sebagai berikut: max_features yaitu berapa variasi kata yang akan digunakan model, ngram yaitu jenis urutan kata yang digunakan apakah unigrams (1 kata) atau bigrams (2 kata), max_df adalah jumlah maksimal persentase sebuah kata muncul yaitu jika sebuah kata muncul terlalu banyak maka maknanya hilang, min_df yaitu sebaliknya jika sebuah kata hanya muncul dalam sedikit dokumen maka tidak relevan maka nilai ini adalah jumlah dokumen minimal sebuah kata muncul. Parameter pengujian digunakan KNN karena algoritma tersebut adalah clustering yang sesuai dengan tujuan vektorisasi TF-IDF.
 """
 
 # Corpus of text data (no labels)
@@ -944,14 +1011,13 @@ scaler = MinMaxScaler()
 scaled_num_features = scaler.fit_transform(numerical_features_array)
 sparse_num_features = csr_matrix(numerical_features_array)
 
-"""#### **Feature Engineering**
-
-Tiga vektor yang telah dibuat digabungkan seluruh kolomnya menghasilkan data vektor gabungan tf-idf dan numerikal yaitu Combined Features. Hal ini dilakukan untuk melihat keterkaitan yang lebih kompleks dari data yang ada.
-"""
+"""#### **Feature Engineering**"""
 
 combined_feature= hstack([description_tfidf, tags_tfidf,sparse_num_features])
 
-"""#### **Data Vector**
+"""Tiga vektor yang telah dibuat digabungkan seluruh kolomnya menghasilkan data vektor gabungan tf-idf dan numerikal yaitu Combined Features. Hal ini dilakukan untuk melihat keterkaitan yang lebih kompleks dari data yang ada.
+
+#### **Data Vector**
 
 **Vector TF-IDF Descriptions**
 """
@@ -986,48 +1052,91 @@ pd.DataFrame(
     index = content_based_data.title
 )
 
-"""### **2. Collaborative Filtering**"""
+"""### **2. Collaborative Filtering**
+
+Berikut ini dataframe dari recommendations yang dianalisis kolomnya untuk ditemukan data mana yang dapat digunakan untuk melatih model deep learning RecommenderNet.
+"""
 
 colab_based_data=recommendations.copy()
 
 colab_based_data.head()
 
-"""Digunakan data `is_recommended` dan `hours` sebagai parameter untuk model deep learning."""
+"""Digunakan data `is_recommended` dan `hours` sebagai parameter untuk model deep learning. Kolom lain yang tidak dibutuhkan didrop."""
+
+# Drop unnecessary columns
+colab_based_data = colab_based_data[['user_id', 'app_id', 'is_recommended', 'hours']]
+
+"""#### **Encoding Map**
+
+Dilakukan pembuatan map encoding terhadap user_id dan app_id menjadi nilai integer ordinal untuk menyederhanakan data. Map untuk mengkonversi ulang nilai encoding ke semula juga dibuat untuk melihat hasil rekomendasi. Lalu sebagian output dari map-nya ditampilkan sebagai berikut
+"""
 
 # Encode user_id and app_id as integers
-user_ids = colab_based_data['user_id'].unique()
-app_ids = colab_based_data['app_id'].unique()
-user_id_map = {id_: idx for idx, id_ in enumerate(user_ids)}
+user = colab_based_data['user_id'].unique()
+app = colab_based_data['app_id'].unique()
+user_id_map = {id_: idx for idx, id_ in enumerate(user)}
 user_id_remap = {idx: id_ for id_, idx in user_id_map.items()}
-app_id_map = {id_: idx for idx, id_ in enumerate(app_ids)}
+app_id_map = {id_: idx for idx, id_ in enumerate(app)}
 app_id_remap = {idx: id_ for id_, idx in app_id_map.items()}
+# Convert the dictionaries to lists of items before slicing for printing
+print(f'app_id ke ordinal: {list(app_id_map.items())[:11]}') # Convert app_id_map to list of items
+print(f'user_id ke ordinal: {list(user_id_map.items())[:11]}') # Convert user_id_map to list of items
+print(f'ordinal app_id ke semula : {list(app_id_remap.items())[:11]}') # Convert app_id_remap to list of items
+print(f'ordinal user_id ke semula: {list(user_id_remap.items())[:11]}') # Convert user_id_remap to list of items
+
+"""Data user_id dan app_id di-encode sebagai dataframe baru berisi nilai-nilai representasi integer dari mapping yang telah dibuat sebelumnya. Output hasil mapping ini yang ditraining melalu model deep learning `RecommenderNet`. Sebagian data ditampilkan sebagai berikut"""
+
 # Create a new DataFrame with encoded user_id and app_id
 encoded_data = pd.DataFrame({
     'user_encoded': colab_based_data['user_id'].map(user_id_map),
     'app_encoded': colab_based_data['app_id'].map(app_id_map)
 })
+encoded_data.head(10)
 
-"""Data User dan App dilakukan ordinal encoding agar dapat diterima oleh model.
+"""#### **Feature Engineering**
 
-####**Feature Engineering**
+Data "hours" disesuaikan berdasarkan data game direkomendasikan atau tidak. Jika game direkomendasikan (is_recommended bernilai True), maka nilai  "hours" dengan dikalikan 1.25, dan jika tidak direkomendasikan, maka dikalikan dengan 0.75. Setelah itu dibuat kolom baru dalam dataframe sebagai `adjusted_hours`.
 
-Data "hours" disesuaikan berdasarkan data game direkomendasikan atau tidak. Jika game direkomendasikan (is_recommended bernilai True), maka nilai  "hours" dengan dikalikan 1.25, dan jika tidak direkomendasikan, maka dikalikan dengan 0.75. Kemudian, data dinormalisasi sebagai "adjusted_hours" menggunakan MinMaxScaler untuk mengubah nilai-nya ke dalam rentang 0 hingga 1. Terakhir, kolom "adjusted_hours" yang telah dinormalisasi ditambahkan ke dalam dataset.
+$$
+\text{adjusted_hours} =
+\begin{cases}
+\text{hours} \times 1.25 & \text{jika } \text{is_recommended} = \text{True} \\
+\text{hours} \times 0.75 & \text{jika } \text{is_recommended} = \text{False}
+\end{cases}
+$$
 """
 
-adjusted_hours = colab_based_data.apply(lambda row: row['hours'] * 1.25 if row['is_recommended'] else row['hours'] * 0.75, axis=1)
+colab_based_data['adjusted_hours'] = colab_based_data.apply(lambda row: row['hours'] * 1.25 if row['is_recommended'] else row['hours'] * 0.75, axis=1)
+
+"""#### **Data Normalization**
+
+Data `hours` dan `adjusted_hours` dinormalisasi dengan MinMaxScaler() agar data berada di rentang 0 hingga 1 sehingga model jadi lebih sederhana dan metrik evaluasi lebih mudah untuk dibandingkan. Data tersebut disimpan masing-masing dalam list baru agar data aslinya dapat digunakan dalam mengurutkan rekomendasi.
+"""
+
 scaler = MinMaxScaler()
-adjusted_hours = scaler.fit_transform(adjusted_hours.values.reshape(-1, 1))
-colab_based_data['adjusted_hours']=adjusted_hours
+hours = scaler.fit_transform(colab_based_data[['hours']])
+scaler = MinMaxScaler()
+hours = scaler.fit_transform(colab_based_data[['hours']])
+adjusted_hours = scaler.fit_transform(colab_based_data[['adjusted_hours']])
+
+# Print the header with a border
+print("+" + "-" * 30 + "+" + "-" * 30 + "+")
+print(f"| {'hours':<28} | {'adjusted_hours':<28} |")
+print("+" + "-" * 30 + "+" + "-" * 30 + "+")
+
+# Print the data rows with a border between each row
+for h, adj_h in zip(hours[:10], adjusted_hours[:10]):
+    print(f"| {h[0]:<28} | {adj_h[0]:<28} |")
+    print("+" + "-" * 30 + "+" + "-" * 30 + "+")
 
 """#### **Train Test Split**
 
-Dibuat 3 set data train-test dengan komposisi 8:2 untuk 3 model berbeda. Model pertama menggunakan data `hours` yang telah dinormalisasi minmaxscaler, lalu data kedua menggunakan data `is_recommended` yang bernilai boolean, data kedua menggunakan data adjusted_hours yang menggabungkan parameter `hours` dan `is_recommended`.
+Dibuat 3 set data train-test dengan komposisi 8:2 untuk 3 model berbeda. Model pertama menggunakan data `hours` yang telah dinormalisasi minmaxscaler, lalu data kedua menggunakan data `is_recommended` yang bernilai boolean, data kedua menggunakan data adjusted_hours yang menggabungkan parameter `hours` dan `is_recommended`. Data user_id dan app_id diambil dari data yang telah di-encode sebelumnya yaitu `encoded_data`
 """
 
-scaler = MinMaxScaler()
 # Prepare training data
 X_1 = encoded_data[['user_encoded', 'app_encoded']].values
-y_1 = scaler.fit_transform(colab_based_data[['hours']])
+y_1 = hours
 train_X_1, test_X_1, train_y_1, test_y_1 = train_test_split(X_1, y_1, test_size=0.2, random_state=42)
 
 # Prepare training data
@@ -1041,12 +1150,7 @@ X_3 = encoded_data[['user_encoded', 'app_encoded']].values
 y_3 = adjusted_hours
 train_X_3, test_X_3, train_y_3, test_y_3 = train_test_split(X_3, y_3, test_size=0.2, random_state=42)
 
-"""## **Modeling**
-Tahapan ini membahas mengenai model sisten rekomendasi yang Anda buat untuk menyelesaikan permasalahan. Sajikan top-N recommendation sebagai output.
-
-**Rubrik/Kriteria Tambahan (Opsional)**:
-- Menyajikan dua solusi rekomendasi dengan algoritma yang berbeda.
-- Menjelaskan kelebihan dan kekurangan dari solusi/pendekatan yang dipilih.
+"""## **Modeling & Result**
 
 ### **1. Content Based Filtering**
 
@@ -1091,7 +1195,7 @@ print("\nCosine Similarity (Combined):\n", cosine_sim_comb)
 
 """#### **Result**
 
-Digunakan threshold similarity score >= 0.5 sebagai nilai True Prediction.
+Rekomendasi ditemukan dengan cara mengambil baris dari judul game yang diprediksi. Hasilnya adalah list dari similarity score game tersebut terhadap game lain. Lalu list tersebut diurutkan dari yang terbesar dengan tidak mengikutkan kolom game yang diprediksi dalam list tersebut. Rekomendasi diambil 10 teratas dari list tersebut.
 """
 
 def get_recommendations(title, cosine_sim, df, top_n=10):
@@ -1111,6 +1215,8 @@ def get_recommendations(title, cosine_sim, df, top_n=10):
     recommended['similarity_score'] = similarity_scores
 
     return recommended
+
+"""Hasil prediksi dari model dilihat dengan cara pemilihan judul game secara acak untuk diprediksi rekomendasinya."""
 
 # Randomly select a game title
 random_title = np.random.choice(content_based_data['title'])
@@ -1162,7 +1268,9 @@ print("\nRecommendations based on Combined Features:")
 recommend_comb= get_recommendations(random_title, cosine_sim_comb , content_based_data)
 display(recommend_comb)
 
-"""Semua model dapat memprediksi rekomendasi game dengan baik dengan nilai similarity score diatas 0.5 mencapai 100% prediksi. Namun Model terbaik adalah Model 3: Cosine Similarity (Numerical Features) karena similarity score mencapai 1.
+"""#### **Best Model**
+
+Digunakan threshold similarity score >= 0.5 sebagai nilai True Prediction. Semua model dapat memprediksi rekomendasi game dengan baik dengan nilai similarity score diatas 0.5 mencapai 100% prediksi. Namun Model terbaik dipilih **Model 3: Cosine Similarity (Numerical Features)** karena similarity score mencapai 1 pada rekomendasi teratas. Penjelasan mengenai metrik akan dijelaskan pada rubrik Evaluation.
 
 ### **2. Collaborative Filtering**
 
@@ -1170,14 +1278,41 @@ Collaborative Filtering dapat diterapkan menggunakan deep learning dengan memanf
 
 Dalam implementasi ini, tiga model rekomendasi dibangun menggunakan berbagai fitur, yaitu `hours`, `is_recommended`, dan `adjusted hours`. Fitur `adjusted hours` diperoleh dengan menyesuaikan nilai `hours` berdasarkan apakah game direkomendasikan atau tidak, menggunakan bobot tertentu.
 
-`Embedding layer` memiliki beberapa kelebihan, seperti mampu mengurangi kompleksitas model, fleksibel untuk digunakan dalam berbagai algoritma deep learning, dan efektif dalam menangkap hubungan semantik antara data. Namun, `embedding layer` juga memiliki kelemahan, seperti membutuhkan data dalam jumlah besar untuk menghasilkan representasi yang baik, sensitivitas terhadap hyperparameter, serta rentan terhadap masalah *cold start*.
+Data embedding antara user dan game terhadap fitur dilatih menggunakan **RecommenderNet** yang melakukan **Matrix Factorization** terhadap matrix user-game(item) $ R $ yang direpresentasikan oleh `embedding layer` menjadi dua matriks kecil $ P $ dan $ Q $ untuk memprediksi rating yang belum diketahui. Rumus utama adalah:
 
-Hasil evaluasi model menunjukkan `RMSE` berikut untuk setiap fitur:
-- `hours`: 0.0296 (pelatihan) dan 0.0457 (validasi),
-- `is_recommended`: 0.3745 (pelatihan) dan 0.3905 (validasi),
-- `adjusted hours`: 0.0288 (pelatihan) dan 0.0446 (validasi).
+$$
+\hat{R} = P \times Q^T
+$$
 
-Dari hasil ini, model yang menggunakan `adjusted hours` menunjukkan performa terbaik dengan nilai `RMSE` terendah. Sistem rekomendasi ini kemudian diuji untuk menghasilkan 10 rekomendasi teratas berdasarkan game yang dipilih atau dimainkan oleh pengguna, dan hasilnya menunjukkan bahwa model mampu memberikan rekomendasi yang relevan.
+Di mana:
+- $P$ adalah matriks faktor pengguna (berukuran $m \times k$),
+- $ Q $ adalah matriks faktor game(item) (berukuran $ n \times k $),
+- $ \hat{R} $ adalah prediksi rating.
+
+**RecommenderNet** melakukan operasi perhitungan ini dengan menggunakan dot product `embedding layer` vector user terhadap fitur dan `embedding layer` vector app terhadap fitur.
+
+Untuk memperbarui $ P $ dan $ Q $, digunakan metode **gradient descent**, yang bertujuan meminimalkan kesalahan prediksi. Pembaruan dilakukan dengan rumus:
+
+$$
+P_i \leftarrow P_i - \eta \frac{\partial L}{\partial P_i}
+$$
+
+$$
+Q_j \leftarrow Q_j - \eta \frac{\partial L}{\partial Q_j}
+$$
+
+Di mana $ \eta $ adalah laju pembelajaran (learning rate), dan $ \frac{\partial L}{\partial P_i} $ dan $ \frac{\partial L}{\partial Q_j} $ adalah turunan dari fungsi loss terhadap $ P_i $ dan $ Q_j $, yang mengukur perubahan yang diperlukan untuk memperbaiki kesalahan prediksi yang diimplementasikan dengan `l2 regularizer` pada model. Dengan iterasi ini, model akan semakin akurat dalam memprediksi nilai fitur yang belum diketahui.
+
+Algoritma **Matrix Factorization** menggunakan metode yang disebut "collaborative filtering", yang berasumsi bahwa jika user 1 memiliki pendapat yang sama dengan user 2 tentang suatu hal, maka user 1 lebih mungkin memiliki pandangan yang sama dengan user 2 tentang hal lain.
+
+Contohnya, jika user 1 dan user 2 memiliki waktu bermain yang serupa terhadap game tertentu, maka user 2 lebih mungkin untuk menikmati game yang telah dimainkan oleh user 1 dengan waktu bermain yang tinggi.
+
+
+**Matrix Factorization** memiliki beberapa kelebihan, seperti mampu mengurangi kompleksitas model, fleksibel untuk digunakan dalam berbagai algoritma deep learning, dan efektif dalam menangkap hubungan semantik antara data. Namun, *matrix factorization* juga memiliki kelemahan, seperti membutuhkan data dalam jumlah besar untuk menghasilkan representasi yang baik, sensitivitas terhadap hyperparameter, serta rentan terhadap masalah *cold start*.
+
+#### **RecommenderNet Model**
+
+Model dibuat dengan diwariskan dari class `RecommenderNet` dari `keras`. Model dioptimasi dengan Adam dengan learning rate 0.001 untuk `model hours` dan `model adjusted_hours` dan 0.0001 untuk `model is_recommended`. Model `is_recomended` agak sulit untuk konvergen pada tingkat kesalahan yang kecil sehingga dilakukan sedikit fine-tune. Digunakan `l2 regularizer` sebesar 0.01 yaitu nilai default dari `keras` dengan loss function Binary Crossentropy. Metrik yang digunakan untuk memonitor model adalah RMSE. Tidak digunakan callback pada model ini.
 """
 
 # Define the RecommenderNet model
@@ -1232,7 +1367,10 @@ history2=model2.fit(train_X_2, train_y_2, batch_size=32, epochs=200, validation_
 
 history3=model3.fit(train_X_3, train_y_3, batch_size=32, epochs=200, validation_data=(test_X_3, test_y_3))
 
-"""#### **Result**"""
+"""#### **Result**
+
+**Model 1:** Hours-Based
+"""
 
 user_encoded = 400
 user_id = user_id_remap[user_encoded]
@@ -1307,6 +1445,8 @@ print(tabulate(top_games_df, headers="keys", tablefmt="fancy_grid", showindex=Fa
 print("\nTop 10 game recommendations")
 print(tabulate(recommended_games_df, headers="keys", tablefmt="fancy_grid", showindex=False))
 
+"""**Model 2:** User's Recommendation-Based"""
+
 user_encoded = 400
 user_id = user_id_remap[user_encoded]
 print(f"Selected User ID: {user_id}")
@@ -1379,6 +1519,8 @@ print(tabulate(top_games_df, headers="keys", tablefmt="fancy_grid", showindex=Fa
 
 print("\nTop 10 game recommendations")
 print(tabulate(recommended_games_df, headers="keys", tablefmt="fancy_grid", showindex=False))
+
+"""**Model 3:** Adjusted Hours-Based"""
 
 user_encoded = 400
 user_id = user_id_remap[user_encoded]
@@ -1453,9 +1595,23 @@ print(tabulate(top_games_df, headers="keys", tablefmt="fancy_grid", showindex=Fa
 print("\nTop 10 game recommendations")
 print(tabulate(recommended_games_df, headers="keys", tablefmt="fancy_grid", showindex=False))
 
-"""## **Evaluation**
+"""#### **Best Model**
+
+Dipilih **Model adjusted hours based** sebagai model terbaik karena mampu memprediksi dengan tingkat kesalahan paling minimal yaitu **RMSE** sebesar 0.0269 dari data pelatihan dan sebesar 0.0446 dalam pengujian. Selain itu model ini pula adalah gabungan dari dua fitur yang diuji sehingga didapat korelasi yang lebih kompleks antar game dan antar user di dalam model ini. Penjelasan lebih detail mengenai evaluasi akan dijelaskan di rubrik selanjutnya.
+
+## **Evaluation**
 
 ### **1. Content Based Filtering**
+
+Metrik yang digunakan dalam evaluasi model content-based filtering meliputi Precision@k, Recall@k, F1@k, dan MRR@k. Sebelum membahas hasil evaluasi, berikut adalah penjelasan tentang cara menghitung masing-masing metrik serta penggunaan confusion matrix untuk mengukur performa model.
+
+Sekilas tentang `Confusion Matrix`, `Akurasi`, dan Metrik Evaluasi
+
+`Confusion Matrix` adalah tabel yang digunakan untuk mengevaluasi performa model klasifikasi dengan mengukur jumlah prediksi yang benar dan salah berdasarkan label aktual dan prediksi. Setiap baris dalam `confusion matrix` mewakili nilai sebenarnya (`actual`), sedangkan setiap kolom mewakili nilai prediksi (`predicted`). Komponen utama dari `confusion matrix` adalah sebagai berikut:
+- **True Positive (TP)**: Jumlah data positif yang diprediksi benar.
+- **True Negative (TN)**: Jumlah data negatif yang diprediksi benar.
+- **False Positive (FP)**: Jumlah data negatif yang salah diprediksi sebagai positif (*Error Tipe 1*).
+- **False Negative (FN)**: Jumlah data positif yang salah diprediksi sebagai negatif (*Error Tipe 2*).
 """
 
 # Define the confusion matrix as a NumPy array of strings
@@ -1470,29 +1626,7 @@ disp = ConfusionMatrixDisplay(
 # Override the text values in the plot
 fig, ax = plt.subplots()
 disp.plot(ax=ax, include_values=False)  # Hide default values and colorbar
-# for i in range(cm.shape[0]):
-#     for j in range(cm.shape[1]):
-#         ax.text(j, i, cm[i, j], ha='center', va='center', color='black', fontsize=14)
 
-# for i in range(len(cm)):
-#     disp.text_[i, i].set_color('green')  # TP in green
-
-# # False Positives (non-diagonal column elements)
-# for i in range(len(cm)):
-#     for j in range(len(cm)):
-#         if i != j:
-#             disp.text_[i, j].set_color('red')  # FP in red (off-diagonal elements)
-
-# for i in range(len(cm)):
-#     for j in range(len(cm)):
-#         text = disp.text_[i, j]  # Get the text element
-#         if i == j:  # Diagonal (TP, TN)
-#             text.set_color('green')  # TP, TN in green
-#         else:  # Off-diagonal (FP, FN)
-#             text.set_color('red')  # FP, FN in red
-
-# False Negatives (non-diagonal row elements)
-# Already colored since FP = FN in this symmetric confusion matrix for classification.
 
 for i in range(cm.shape[0]):  # Rows (true labels)
     for j in range(cm.shape[1]):  # Columns (predicted labels)
@@ -1514,63 +1648,109 @@ plt.title("Confusion Matrix")
 plt.savefig("gambar_188_0.png",bbox_inches="tight")
 plt.show()
 
-"""Metrik yang digunakan dalam evaluasi model content-based filtering meliputi Precision@k, Recall@k, F1@k, dan MRR@k. Sebelum membahas hasil evaluasi, berikut adalah penjelasan tentang cara menghitung masing-masing metrik serta penggunaan confusion matrix untuk mengukur performa model.
+"""**Metrik Evaluasi @k**
 
-Sekilas tentang `Confusion Matrix`, `Akurasi`, dan Metrik Evaluasi
+  
 
-`Confusion Matrix` adalah tabel yang digunakan untuk mengevaluasi performa model klasifikasi dengan mengukur jumlah prediksi yang benar dan salah berdasarkan label aktual dan prediksi. Setiap baris dalam `confusion matrix` mewakili nilai sebenarnya (`actual`), sedangkan setiap kolom mewakili nilai prediksi (`predicted`). Komponen utama dari `confusion matrix` adalah sebagai berikut:
-- **True Positive (TP)**: Jumlah data positif yang diprediksi benar.
-- **True Negative (TN)**: Jumlah data negatif yang diprediksi benar.
-- **False Positive (FP)**: Jumlah data negatif yang salah diprediksi sebagai positif (*Error Tipe 1*).
-- **False Negative (FN)**: Jumlah data positif yang salah diprediksi sebagai negatif (*Error Tipe 2*).
+1. **Precision@k**
 
-### Metrik Evaluasi @k
+$Precision@k$ mengukur seberapa banyak rekomendasi yang relevan dalam $top-k$ rekomendasi. Ini dihitung dengan rumus:
 
-1. **Precision@k**  
-   Precision@k mengukur seberapa banyak rekomendasi yang relevan dalam top-k rekomendasi. Ini dihitung dengan rumus:
-   $
-   \text{Precision@k} = \frac{\text{Jumlah item relevan dalam top-k}}{k}
-   $
-   Di mana:
-   - `k` adalah jumlah rekomendasi teratas yang diberikan oleh model.
+  
 
-2. **Recall@k**  
-   Recall@k mengukur seberapa baik model dalam menemukan semua item relevan dalam top-k rekomendasi dibandingkan dengan total item relevan yang ada. Rumusnya adalah:
-   $
-   \text{Recall@k} = \frac{\text{Jumlah item relevan dalam top-k}}{\text{Total item relevan yang tersedia}}
-   $
+$$
+\text{Precision@k} = \frac{\text{Jumlah item relevan dalam top-k}}{k}
+$$
 
-3. **F1@k**  
-   F1@k adalah rata-rata harmonik antara Precision@k dan Recall@k, yang memberikan keseimbangan antara keduanya. Rumusnya adalah:
-   $
-   F1@k = 2 \cdot \frac{\text{Precision@k} \cdot \text{Recall@k}}{\text{Precision@k} + \text{Recall@k}}
-   $
+  
 
-4. **Accuracy@k**  
-   Accuracy@k adalah metrik yang digunakan untuk mengukur seberapa akurat model dalam memberikan rekomendasi terbaik. Metrik ini mengukur proporsi item relevan yang muncul dalam top-k rekomendasi dibandingkan dengan seluruh rekomendasi yang diprediksi oleh model. Accuracy@k memberi gambaran tentang seberapa sering item relevan muncul dalam daftar teratas rekomendasi.  
-   Rumus untuk menghitung Accuracy@k adalah:
-   $
-   \text{Accuracy@k} = \frac{\text{Jumlah item relevan dalam top-k}}{k}
-   $
-   Di mana:
-   - `k` adalah jumlah rekomendasi teratas yang diberikan oleh model.
-   - Jumlah item relevan dalam **top-k** adalah jumlah item yang benar-benar relevan dan ada di dalam urutan rekomendasi teratas.
+Di mana:
 
-5. **MRR@k (Mean Reciprocal Rank)**  
-   MRR@k mengukur kualitas urutan rekomendasi berdasarkan posisi item relevan pertama yang ditemukan dalam top-k rekomendasi. Metrik ini sangat berguna ketika urutan rekomendasi memiliki peran penting, dan kita hanya tertarik pada posisi pertama dari item relevan yang ditemukan oleh model. Rumus MRR@k adalah:
-   $
-   \text{MRR@k} = \frac{1}{Q} \sum_{i=1}^Q \frac{1}{\text{Rank}_i}
-   $
-   Di mana:
-   - `Q` adalah jumlah total query atau pengguna.
-   - `Rank_i` adalah posisi relevan pertama untuk pengguna ke-i.
+- $k$ adalah jumlah rekomendasi teratas yang diberikan oleh model.
 
-   Reciprocal Rank (RR) dihitung dengan rumus:
-   $
-   \text{RR} = \frac{1}{\text{Rank of first relevant item}}
-   $
+  
 
-Di dunia nyata, pengguna jarang melihat semua rekomendasi, biasanya hanya top-k (misalnya, 5 atau 10 teratas). Dengan menggunakan @k, fokus evaluasi dapat diarahkan pada rekomendasi terbaik yang diberikan model. Nilai k juga dapat disesuaikan dengan jumlah rekomendasi yang relevan untuk aplikasi tertentu. Selain itu, MRR@k memberikan perhatian khusus pada posisi item relevan pertama dalam urutan rekomendasi, yang penting dalam sistem yang mengutamakan urutan penyajian rekomendasi kepada pengguna.
+2. **Recall@k**
+
+$Recall@k$ mengukur seberapa baik model dalam menemukan semua item relevan dalam $top-k$ rekomendasi dibandingkan dengan total item relevan yang ada. Rumusnya adalah:
+
+  
+
+$$
+\text{Recall@k} = \frac{\text{Jumlah item relevan dalam top-k}}{\text{Total item relevan yang tersedia}}
+$$
+
+  
+
+3. **F1@k**
+
+$F1@k$ adalah rata-rata harmonik antara $Precision@k$ dan $Recall@k$, yang memberikan keseimbangan antara keduanya. Rumusnya adalah:
+
+  
+
+$$
+F1@k = 2 \cdot \frac{\text{Precision@k} \cdot \text{Recall@k}}{\text{Precision@k} + \text{Recall@k}}
+$$
+
+  
+
+4. **Accuracy@k**
+
+$Accuracy@k$ adalah metrik yang digunakan untuk mengukur seberapa akurat model dalam memberikan rekomendasi terbaik. Metrik ini mengukur proporsi item relevan yang muncul dalam $top-k$ rekomendasi dibandingkan dengan seluruh rekomendasi yang diprediksi oleh model. $Accuracy@k$ memberi gambaran tentang seberapa sering item relevan muncul dalam daftar teratas rekomendasi.
+
+  
+
+Rumus untuk menghitung $Accuracy@k$ adalah:
+
+  
+
+$$
+\text{Accuracy@k} = \frac{\text{Jumlah item relevan dalam top-k}}{k}
+$$
+
+  
+
+Di mana:
+
+- $k$ adalah jumlah rekomendasi teratas yang diberikan oleh model.
+
+- Jumlah item relevan dalam $top-k$ adalah jumlah item yang benar-benar relevan dan ada di dalam urutan rekomendasi teratas.
+
+  
+
+5. **MRR@k (Mean Reciprocal Rank)**
+
+$MRR@k$ mengukur kualitas urutan rekomendasi berdasarkan posisi item relevan pertama yang ditemukan dalam $top-k$ rekomendasi. Metrik ini sangat berguna ketika urutan rekomendasi memiliki peran penting, dan kita hanya tertarik pada posisi pertama dari item relevan yang ditemukan oleh model.
+
+Rumus $MRR@k$ adalah:
+
+  
+
+$$
+\text{MRR@k} = \frac{1}{Q} \sum_{i=1}^Q \frac{1}{\text{Rank}_i}
+$$
+
+  
+
+Di mana:
+
+- $Q$ adalah jumlah total query atau pengguna.
+
+- $Rank_i$ adalah posisi relevan pertama untuk pengguna ke-i.
+
+  
+
+$Reciprocal Rank (RR)$ dihitung dengan rumus:
+
+  
+
+$$
+\text{RR} = \frac{1}{\text{Rank of first relevant item}}
+$$
+
+  
+
+Di dunia nyata, pengguna jarang melihat semua rekomendasi, biasanya hanya $top-k$ (misalnya, 5 atau 10 teratas). Dengan menggunakan $@k$, fokus evaluasi dapat diarahkan pada rekomendasi terbaik yang diberikan model. Nilai $k$ juga dapat disesuaikan dengan jumlah rekomendasi yang relevan untuk aplikasi tertentu. Selain itu, $MRR@k$ memberikan perhatian khusus pada posisi item relevan pertama dalam urutan rekomendasi, yang penting dalam sistem yang mengutamakan urutan penyajian rekomendasi kepada pengguna.
 """
 
 def list_relevant(game_id, recomended_list, review_data, threshold=0.5):
@@ -1684,11 +1864,8 @@ F1@k, yang menggabungkan Precision@k dan Recall@k, juga memperoleh nilai 100%. I
 Confusion matrix menunjukkan bahwa semua prediksi yang dihasilkan oleh model adalah True Positive (TP), yaitu semua item relevan diprediksi dengan benar sebagai relevan, dan tidak ada kesalahan prediksi (False Positive atau False Negative). Ini mengindikasikan bahwa model bekerja dengan sangat tepat dalam mengklasifikasikan item relevan.
 
 Secara keseluruhan, hasil evaluasi yang menunjukkan nilai 100% untuk semua metrik utama ini menunjukkan bahwa model content-based filtering yang digunakan sangat efektif dalam memberikan rekomendasi yang relevan dan akurat. Metrik evaluasi yang baik, termasuk MRR@k, menunjukkan bahwa model ini tidak hanya memberikan rekomendasi yang tepat, tetapi juga memperhatikan kualitas urutan rekomendasi, yang penting dalam konteks sistem rekomendasi berbasis urutan.
-"""
 
-
-
-"""### **2. Collaborative Filtering**
+### **2. Collaborative Filtering**
 
 Model *collaborative filtering* ini, metrik evaluasi yang digunakan adalah **Root Mean Squared Error (RMSE)**.
 
@@ -1709,13 +1886,15 @@ Jika nilai prediksi mendekati nilai sesungguhnya, maka selisih antara $(y_i - \h
 
   **Penerapan Evaluasi Model dengan RMSE**
 
-Pada *collaborative filtering*, setelah melatih model selama 50 epoch, diperoleh nilai RMSE sebesar 0.0315 untuk data pelatihan dan 0.1886 untuk data pengujian. Berikut adalah nilai RMSE untuk tiga model yang diuji:
+Pada *collaborative filtering*, setelah melatih model selama 200 epoch. Berikut adalah nilai RMSE untuk tiga model yang diuji:
 
 - **RMSE Model hours based**: 0.0296 (data pelatihan) dan 0.0457 (data pengujian)
 - **RMSE Model user's recommendation**: 0.3088 (data pelatihan) dan 0.3558 (data pengujian)
-- **RMSE Model adjusted hours based**: 0.0262 (data pelatihan) dan 0.0446 (data pengujian)
+- **RMSE Model adjusted hours based**: 0.0269 (data pelatihan) dan 0.0446 (data pengujian)
 
 Jika dilihat melalui grafik, hasilnya dapat dilihat pada plot berikut.
+
+**RMSE historical graph: Model hours based**
 """
 
 # Membuat line plot untuk menunjukkan metrik evaluasi
@@ -1731,6 +1910,8 @@ plt.legend(["Training", "Validation"], loc = "upper right")
 # Menampilkan plot
 plt.show()
 
+"""**RMSE historical graph: Model user's recommendation**"""
+
 # Membuat line plot untuk menunjukkan metrik evaluasi
 plt.plot(history2.history["root_mean_squared_error"])
 plt.plot(history2.history["val_root_mean_squared_error"])
@@ -1743,6 +1924,8 @@ plt.legend(["Training", "Validation"], loc = "upper right")
 
 # Menampilkan plot
 plt.show()
+
+"""**RMSE historical graph: Model adjusted hours based**"""
 
 # Membuat line plot untuk menunjukkan metrik evaluasi
 plt.plot(history3.history["root_mean_squared_error"])
@@ -1763,19 +1946,21 @@ Nilai **Root Mean Squared Error (RMSE)** yang diperoleh pada setiap model dapat 
 
 Untuk model dengan fitur `is_recommended`, nilai RMSE yang lebih tinggi yaitu **0.3088** pada data pelatihan dan **0.3558** pada data pengujian menunjukkan bahwa model ini kurang akurat dalam memprediksi rekomendasi yang relevan. Nilai RMSE ini setara dengan **30.88%** dan **35.58%** dari nilai maksimum, yang berarti model ini memiliki kesalahan prediksi yang cukup besar jika dibandingkan dengan model lainnya. Namun, meskipun nilai RMSE lebih tinggi, model ini masih dapat diterima tergantung pada konteks dan aplikasi penggunaan, terutama jika rekomendasi berbasis `is_recommended` memiliki variasi yang lebih kompleks.
 
-Sementara itu, untuk model dengan `adjusted_hours`, nilai RMSE yang diperoleh adalah **0.0262** pada data pelatihan dan **0.0446** pada data pengujian. Nilai RMSE ini setara dengan **2.62%** pada data pelatihan dan **4.46%** pada data pengujian, yang menunjukkan bahwa model ini juga mampu memberikan prediksi yang akurat, dengan kesalahan yang sangat kecil. Seperti model `hours`, model ini memiliki performa yang sangat baik dalam memprediksi data dengan rentang 0 hingga 1, dengan tingkat kesalahan yang relatif rendah.
+Sementara itu, untuk model dengan `adjusted_hours`, nilai RMSE yang diperoleh adalah **0.0269** pada data pelatihan dan **0.0446** pada data pengujian. Nilai RMSE ini setara dengan **2.62%** pada data pelatihan dan **4.46%** pada data pengujian, yang menunjukkan bahwa model ini juga mampu memberikan prediksi yang akurat, dengan kesalahan yang sangat kecil. Seperti model `hours`, model ini memiliki performa yang sangat baik dalam memprediksi data dengan rentang 0 hingga 1, dengan tingkat kesalahan yang relatif rendah.
 
 Secara keseluruhan, meskipun ada perbedaan dalam nilai RMSE antar model, semua nilai RMSE yang diperoleh berada dalam kisaran yang sangat kecil jika dibandingkan dengan skala data 0 hingga 1. Hal ini menunjukkan bahwa model-model ini, meskipun memiliki karakteristik yang berbeda, mampu menghasilkan prediksi yang sangat mendekati nilai aktual, dengan kesalahan yang minimal, yang menjadikannya sangat baik untuk digunakan dalam sistem rekomendasi berbasis data dengan rentang terbatas seperti ini.
 
-## **Kesimpulan**
+## **Conclusion**
 
-Berikut adalah kesimpulan untuk setiap goal secara singkat:
+Berikut adalah kesimpulan untuk setiap *goal* secara singkat:
 
-1. Model rekomendasi game yang dikembangkan berhasil dibuat untuk pengguna dalam memilih game berdasarkan kesamaan karakteristik game dan pengguna. Model terbaik content based filtering adalah Model 3: Cosine Similarity (Numerical Features) dengan Precision@k=10 bernilai 1. Model terbaik collaborative filtering adalah Model adjusted hours based dengan nilai RMSE pengujian 0.0446.
-2. Analisis game berdasarkan kepopuleran yang diwakili oleh total durasi bermain, jumlah review, dan jumlah rekomendasi memberikan wawasan tentang kepopuleran dan interaksi pengguna. Game teratas dalam kategori total durasi dimainkan adalah Persona 4 Golden, kategori jumlah rekomendasi adalah Far Cry 3, dan kategori jumlah ulasan adalah Tale of Immortal.
-3. Pengaruh sistem operasi terhadap preferensi game pengguna menunjukkan perbedaan kecenderungan berdasarkan platform yang digunakan. Yaitu windows adalah os yang paling populer untuk bermain game karena banyaknya game yang rilis di platform ini. Sedangkan linux memiliki kepopuleran tertinggi jika memeperhitungkan jumlah game yang dirilis disana.
-4. Hubungan antara distribusi harga game dan tingkat ulasan positif mengungkapkan dampak harga terhadap persepsi kualitas game oleh pengguna. Secara umum tidak terlalu signifikan hubungan keduanya namun secara umum terdapat sedikit pola hubungan yang menunjukkan game yang lebih tinggi harganya memiliki lebih banyak ulasan positif.
-5. Analisis hubungan antara rating game dan waktu yang dihabiskan pengguna untuk memainkannya memperlihatkan keterkaitan antara kualitas game dan tingkat keterlibatan pengguna. Pengguna lebih banyak menghabiskan waktunya untuk game dengan rating yang bernada positif.
+1. Model rekomendasi game yang dikembangkan berhasil dibuat untuk pengguna dalam memilih game berdasarkan kesamaan karakteristik game dan pengguna. Model terbaik content based filtering adalah **Model 3: Cosine Similarity (Numerical Features)** dengan **Precision@k=10** bernilai **1**. Model terbaik collaborative filtering adalah **Model adjusted hours based** dengan nilai **RMSE** pengujian **0.0446**.
+2. Analisis game berdasarkan kepopuleran yang diwakili oleh total durasi bermain, jumlah review, dan jumlah rekomendasi memberikan wawasan tentang kepopuleran dan interaksi pengguna. Game teratas dalam kategori **total durasi dimainkan** adalah **Team Fortress 2**, kategori **jumlah rekomendasi** adalah **Team Fortress 2**, dan kategori **jumlah ulasan** adalah **Counter Strike: Global Offensive**.
+3. Pengaruh sistem operasi terhadap preferensi game pengguna menunjukkan perbedaan kecenderungan berdasarkan platform yang digunakan. Yaitu **windows** adalah os yang paling populer untuk bermain game karena banyaknya game yang rilis di platform ini. Sedangkan **linux** memiliki kepopuleran tertinggi jika memeperhitungkan jumlah game yang dirilis disana.
+4. Hubungan antara distribusi harga game dan tingkat ulasan positif mengungkapkan dampak harga terhadap persepsi kualitas game oleh pengguna. Secara umum **tidak terlalu signifikan** hubungan keduanya namun secara spesifik terdapat sedikit pola hubungan yang menunjukkan game yang lebih tinggi harganya memiliki lebih banyak ulasan positif pada rentang harga menengah.
+5. Analisis hubungan antara rating game dan waktu yang dihabiskan pengguna untuk memainkannya memperlihatkan keterkaitan antara kualitas game dan tingkat keterlibatan pengguna. Pengguna lebih banyak menghabiskan waktunya untuk game dengan **rating bernada positif**.
+
+Model rekomendasi game berhasil dikembangkan secara optimal menggunakan content-based filtering dan collaborative filtering. Exploratory Data Analysis juga memberikan wawasan tentang kepopuleran game, pengaruh sistem operasi terhadap preferensi pengguna, dampak harga terhadap ulasan positif, serta keterkaitan rating dengan waktu bermain, yang secara keseluruhan mendukung pemahaman dan pengalaman pengguna dalam pembelian game.
 
 ## **Reference**
 
