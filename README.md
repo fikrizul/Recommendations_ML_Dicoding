@@ -911,7 +911,7 @@ Setelah dilakukan filter melalui data game setelah tahun 2020.
 
     Number of rows after date filtering: 9024102
 
-Disampling 200 game pada setiap kelas data dari total durasi dimainkan dari 10 kelas.
+Disampling 200 game pada setiap kelas data dari kolom 'hours' yang diagreasi dari setiap game lalu diurutkan dan dibuat 10 kelas interval.
 
     Number of sampled games: 2000
     Number of rows in the filtered dataset: 675275
