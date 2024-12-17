@@ -1,3 +1,4 @@
+
 # **Laporan Proyek Machine Learning - Fikri Zulfialdi**
 
 ## **Project Overview**
@@ -400,8 +401,16 @@ Dataframe `recommendations`
   </tbody>
 </table>
 
+	Total rows of games_data: 50872
+	Total columns of games_data: 15
+	Total rows of recommendations: 41154794
+	Total columns of recommendations: 8
 
-### **Variable Description**
+
+
+`games_data`  memiliki 50872 entri data dengan 15 kolom informasi sedangkan  `recommendation`  memiliki 41154794 entri data dengan 8 kolom informasi.
+
+## **Variable Description**
 
 penjelasan variabel pada dataframe `games_data`
 
@@ -439,7 +448,7 @@ penjelasan variabel pada dataframe `recommendations`
 | 8      | `review_id`       | `int64`       | ID unik untuk setiap ulasan dalam dataset.                                   |
 
 
-### **Statistic Data**
+## **Statistic Data**
 
     <class 'pandas.core.frame.DataFrame'>
     RangeIndex: 50872 entries, 0 to 50871
@@ -965,8 +974,10 @@ Jika memperhitungkan jumlah game yang dirilis di setiap platform, malah linux ya
 ### **Data Cleaning**
 
 #### **Missing Value & Duplicate**
-    
-Jumlah missing value yang ada di dataframe `games_data` adalah sebagai berikut
+
+Menilik dari nilai data yang ada, untuk mengetahui data yang kosong perlu dilakukan pre-processing terlebih dahulu karena missing value tidak berupa `None`, `Null` atau `NaN` tapi berupa empty string `''` , empty list `[]`, zero-value atau non-numerical value pada kolom numerik.
+
+Jumlah _missing value_ empty string `''`  dan empty list `[]` yang ada di dataframe `games_data` adalah sebagai berikut
 
 <table border="1" class="dataframe">
   <thead>
@@ -1039,7 +1050,7 @@ Jumlah missing value yang ada di dataframe `games_data` adalah sebagai berikut
   </tbody>
 </table>
 
-Dilakukan drop pada baris yang memiliki _missing value_ sehingga mengahsilkan jumlah baris sebagai berikut.
+Dilakukan drop pada baris yang memiliki _missing value_ sehingga menghasilkan jumlah baris sebagai berikut.
     
     Total of rows: 40484
     Total of column: 15
@@ -1117,7 +1128,7 @@ selanjutnya diperiksa nilai numerik yang menghasilkan nilai 0 pada dataframe `ga
   </tbody>
 </table>
 
-Terdapat nilai 0 di dalam kolom yang memiliki kepentingan yaitu kolom `price_final`. Maka baris yang memiliki nilai 0 tersebut dihilangkan, sedangkan nilai 0 di baris lainnya dibiarkan karena tidak relevan. 
+Terdapat nilai 0 di dalam kolom yang memiliki kepentingan yaitu kolom `price_final`. Maka baris yang memiliki nilai 0 tersebut dihilangkan, sedangkan nilai 0 di baris lainnya dibiarkan karena tidak relevan dan malah akan menghilangkan data penting ketika dihilangkan. 
     
     Total of rows: 32685
     Total of column: 15
@@ -1229,7 +1240,125 @@ Jumlah entri data `games_data` setelah dibersihkan adalah 32685 dan jumlah baris
 
 ### **1. Content Based Filtering**
 
-Kolom tag yang berisi list tag apa saja yang ada di sebuah game, dipecah menjadi kumpulan string yang bisa diterima sebagai corpus oleh TfidfVectorizer.
+Dataframe dari `games_data` dianalisis kolomnya untuk ditemukan kolom yang sesuai dalam penghitungan `cosine similarity`.
+
+<table class="dataframe" border="1">
+<thead>
+<tr>
+<th>app_id</th>
+<th>description</th>
+<th>tags</th>
+<th>title</th>
+<th>date_release</th>
+<th>win</th>
+<th>mac</th>
+<th>linux</th>
+<th>rating</th>
+<th>positive_ratio</th>
+<th>user_reviews</th>
+<th>price_final</th>
+<th>price_original</th>
+<th>discount</th>
+<th>steam_deck</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>13500</td>
+<td>Enter the dark underworld of Prince of Persia ...</td>
+<td>[Action, Adventure, Parkour, Third Person, Gre...</td>
+<td>Prince of Persia: Warrior Within&trade;</td>
+<td>2008-11-21</td>
+<td>True</td>
+<td>False</td>
+<td>False</td>
+<td>Very Positive</td>
+<td>84</td>
+<td>2199</td>
+<td>9.99</td>
+<td>9.99</td>
+<td>0.0</td>
+<td>True</td>
+</tr>
+<tr>
+<th>1</th>
+<td>113020</td>
+<td>Monaco: What's Yours Is Mine is a single playe...</td>
+<td>[Co-op, Stealth, Indie, Heist, Local Co-Op, St...</td>
+<td>Monaco: What's Yours Is Mine</td>
+<td>2013-04-24</td>
+<td>True</td>
+<td>True</td>
+<td>True</td>
+<td>Very Positive</td>
+<td>92</td>
+<td>3722</td>
+<td>14.99</td>
+<td>14.99</td>
+<td>0.0</td>
+<td>True</td>
+</tr>
+<tr>
+<th>2</th>
+<td>226560</td>
+<td>Escape Dead Island is a Survival-Mystery adven...</td>
+<td>[Zombies, Adventure, Survival, Action, Third P...</td>
+<td>Escape Dead Island</td>
+<td>2014-11-18</td>
+<td>True</td>
+<td>False</td>
+<td>False</td>
+<td>Mixed</td>
+<td>61</td>
+<td>873</td>
+<td>14.99</td>
+<td>14.99</td>
+<td>0.0</td>
+<td>True</td>
+</tr>
+<tr>
+<th>3</th>
+<td>249050</td>
+<td>Dungeon of the Endless is a Rogue-Like Dungeon...</td>
+<td>[Roguelike, Strategy, Tower Defense, Pixel Gra...</td>
+<td>Dungeon of the ENDLESS&trade;</td>
+<td>2014-10-27</td>
+<td>True</td>
+<td>True</td>
+<td>False</td>
+<td>Very Positive</td>
+<td>88</td>
+<td>8784</td>
+<td>11.99</td>
+<td>11.99</td>
+<td>0.0</td>
+<td>True</td>
+</tr>
+<tr>
+<th>4</th>
+<td>250180</td>
+<td>&ldquo;METAL SLUG 3&rdquo;, the masterpiece in SNK&rsquo;s emble...</td>
+<td>[Arcade, Classic, Action, Co-op, Side Scroller...</td>
+<td>METAL SLUG 3</td>
+<td>2015-09-14</td>
+<td>True</td>
+<td>False</td>
+<td>False</td>
+<td>Very Positive</td>
+<td>90</td>
+<td>5579</td>
+<td>7.99</td>
+<td>7.99</td>
+<td>0.0</td>
+<td>True</td>
+</tr>
+</tbody>
+</table>
+Ditentukan bahwa kolom informasi yang digunakan yaitu 'description', 'tags', 'title', 'rating', 'positive_ratio', 'user_reviews', 'price_final'. Kolom `descriptions` dan `tags` akan digunakan *feature*nya dari konversi TF-IDF sedangkan kolom `rating`, `positive_ratio`, `user_reviews`, `price_final` akan digunakan sebagai *feature* nilai numeriknya. Kolom lain yang tidak termasuk akan di-drop dari dataframe.
+
+Kolom tag yang berisi list tag apa saja yang ada di sebuah game, dipecah menjadi satu kumpulan string dipisahkan oleh spasi yang bisa diterima sebagai corpus oleh TfidfVectorizer. Namun sebelum dipecah beberapa tag yang berisi lebih dari satu kata seperti `Local Co-Op`, `Third Person`, `Tower Defense` disatukan menjadi satu kata dengan mengganti spasi dengan underscore '_' agar menjadi seperti ini `Local_Co-Op`, `Third_Person`, `Tower_Defense`.
+
 Rating di-encode agar dapat dimengerti oleh cosine similarity dengan map seperti berikut:
 
 
@@ -1256,7 +1385,7 @@ rating_mapping = {
 
 **GridSearch for TF-IDF**
 
-Digunakan GridSearch untuk mngoptimalkan proses vektorisasi TF-IDF dari deskripsi game yang memiliki deretan string yang panjang. Yaitu dengan optimasi parameter sebagai berikut: max_features yaitu berapa variasi kata yang akan digunakan model, ngram yaitu jenis urutan kata yang digunakan apakah unigrams (1 kata) atau bigrams (2 kata), max_df adalah jumlah maksimal persentase sebuah kata muncul yaitu jika sebuah kata muncul terlalu banyak maka maknanya hilang, min_df yaitu sebaliknya jika sebuah kata hanya muncul dalam sedikit dokumen maka tidak relevan maka nilai ini adalah jumlah dokumen minimal sebuah kata muncul. Parameter pengujian digunakan KNN karena algoritma tersebut adalah clustering yang sesuai dengan tujuan vektorisasi TF-IDF.
+Digunakan GridSearch untuk mengoptimalkan proses vektorisasi TF-IDF dari deskripsi game yang memiliki deretan string yang panjang. Yaitu dengan optimasi parameter sebagai berikut: max_features yaitu berapa variasi kata yang akan digunakan model, ngram yaitu jenis urutan kata yang digunakan apakah unigrams (1 kata) atau bigrams (2 kata), max_df adalah jumlah maksimal persentase sebuah kata muncul yaitu jika sebuah kata muncul terlalu banyak maka maknanya hilang, min_df yaitu sebaliknya jika sebuah kata hanya muncul dalam sedikit dokumen maka tidak relevan maka nilai ini adalah jumlah dokumen minimal sebuah kata muncul. Parameter pengujian digunakan KNN karena algoritma tersebut adalah clustering yang sesuai dengan tujuan vektorisasi TF-IDF.
 
 
 
@@ -2438,19 +2567,96 @@ Berikut ini dataframe dari `recommendations` yang dianalisis kolomnya untuk dite
   </tbody>
 </table>
   
-Digunakan data `is_recommended` dan `hours` sebagai parameter untuk model deep learning. Data `user_id` dan `app_id` dilakukan ordinal encoding untuk penyederhanaan agar dapat diterima oleh model dengan baik.
+Digunakan data `is_recommended` dan `hours` sebagai parameter untuk model deep learning. Kolom lain yang tidak dibutuhkan didrop.
+
+#### **Encoding**
+
+Dilakukan pembuatan map encoding terhadap user_id dan app_id menjadi nilai integer ordinal untuk menyederhanakan data. Map untuk mengkonversi ulang nilai encoding ke semula juga dibuat untuk melihat hasil rekomendasi. Lalu sebagian output dari map-nya ditampilkan sebagai berikut
+
+	app_id ke ordinal: [(601840, 0), (999220, 1), (1090630, 2), (1812090, 3), (363440, 4), (976590, 5), (586200, 6), (1147560, 7), (874390, 8), (851890, 9), (577690, 10)] 
+	user_id ke ordinal: [(4591253, 0), (9089111, 1), (6138998, 2), (13271495, 3), (12053923, 4), (13219396, 5), (2622846, 6), (3366677, 7), (14088822, 8), (11451103, 9), (13112500, 10)]
+	ordinal app_id ke semula : [(0, 601840), (1, 999220), (2, 1090630), (3, 1812090), (4, 363440), (5, 976590), (6, 586200), (7, 1147560), (8, 874390), (9, 851890), (10, 577690)] 
+	ordinal user_id ke semula: [(0, 4591253), (1, 9089111), (2, 6138998), (3, 13271495), (4, 12053923), (5, 13219396), (6, 2622846), (7, 3366677), (8, 14088822), (9, 11451103), (10, 13112500)]
+
+Data user_id dan app_id di-encode sebagai dataframe baru berisi nilai-nilai representasi integer dari mapping yang telah dibuat sebelumnya. Output hasil mapping ini yang ditraining melalu model deep learning `RecommenderNet`. Sebagian data ditampilkan sebagai berikut
+
+<table class="dataframe" border="1">
+<thead>
+<tr>
+<th>user_encoded</th>
+<th>app_encoded</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<th>1</th>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<th>2</th>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<th>3</th>
+<td>3</td>
+<td>3</td>
+</tr>
+<tr>
+<th>4</th>
+<td>4</td>
+<td>2</td>
+</tr>
+<tr>
+<th>5</th>
+<td>5</td>
+<td>2</td>
+</tr>
+<tr>
+<th>6</th>
+<td>6</td>
+<td>4</td>
+</tr>
+<tr>
+<th>7</th>
+<td>7</td>
+<td>2</td>
+</tr>
+<tr>
+<th>8</th>
+<td>8</td>
+<td>2</td>
+</tr>
+<tr>
+<th>9</th>
+<td>9</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
 
 #### **Feature Engineering**
 
-Data "hours" disesuaikan berdasarkan data game direkomendasikan atau tidak. Jika game direkomendasikan (is_recommended bernilai True), maka nilai  "hours" dengan dikalikan 1.25, dan jika tidak direkomendasikan, maka dikalikan dengan 0.75. Kemudian, data dinormalisasi sebagai "adjusted_hours" menggunakan MinMaxScaler untuk mengubah nilai-nya ke dalam rentang 0 hingga 1. Terakhir, kolom "adjusted_hours" yang telah dinormalisasi ditambahkan ke dalam dataset.
+Data "hours" disesuaikan berdasarkan data game direkomendasikan atau tidak. Jika game direkomendasikan (is_recommended bernilai True), maka nilai  "hours" dengan dikalikan 1.25, dan jika tidak direkomendasikan, maka dikalikan dengan 0.75. Setelah itu dibuat kolom baru dalam dataframe sebagai `adjusted_hours`.
 
-```math
+$$
 \text{adjusted\_hours} =
 \begin{cases} 
 \text{hours} \times 1.25 & \text{jika } \text{is\_recommended} = \text{True} \\
 \text{hours} \times 0.75 & \text{jika } \text{is\_recommended} = \text{False}
 \end{cases}
-```
+$$
+
+#### **Data Normalization**
+
+Data  `hours`  dan  `adjusted_hours`  dinormalisasi dengan MinMaxScaler() agar data berada di rentang 0 hingga 1 sehingga model jadi lebih sederhana dan metrik evaluasi lebih mudah untuk dibandingkan.
 
 #### **Train Test Split**
 
@@ -2520,7 +2726,9 @@ n   &\text{ adalah jumlah elemen dalam vektor } a \text{ dan } b
 
 #### **Result**
 
-Digunakan threshold similarity score >= 0.5 sebagai nilai True Prediction. Dan untuk melihat hasil dari model digunakan pemilihan judul game secara acak untuk diprediksi rekomendasinya.
+Rekomendasi ditemukan dengan cara mengambil baris dari judul game yang diprediksi. Hasilnya adalah list dari similarity score game tersebut terhadap game lain. Lalu list tersebut diurutkan dari yang terbesar dengan tidak mengikutkan kolom game yang diprediksi dalam list tersebut. Rekomendasi diambil 10 teratas dari list tersebut.
+
+Hasil prediksi dari model dilihat dengan cara pemilihan judul game secara acak untuk diprediksi rekomendasinya.
 
     Randomly selected Game Title: Striving for Light: Survival
     App ID for the selected game: 2286450
@@ -2894,22 +3102,52 @@ Digunakan threshold similarity score >= 0.5 sebagai nilai True Prediction. Dan u
 </table>
 
  
-Semua model dapat memprediksi rekomendasi game dengan baik dengan nilai similarity score diatas 0.5 mencapai 100% prediksi. Namun Model terbaik dipilih Model 3: Cosine Similarity (Numerical Features) karena similarity score mencapai 1 pada prediksi teratasnya.
+#### **Best Model**
+
+Digunakan threshold similarity score >= 0.5 sebagai nilai True Prediction. Semua model dapat memprediksi rekomendasi game dengan baik dengan nilai similarity score diatas 0.5 mencapai 100% prediksi. Namun Model terbaik dipilih Model 3: Cosine Similarity (Numerical Features) karena similarity score mencapai 1 pada rekomendasi teratas. Penjelasan mengenai metrik akan dijelaskan pada rubrik Evaluation.
+
 
 ### **2. Collaborative Filtering**
+
 
 Collaborative Filtering dapat diterapkan menggunakan deep learning dengan memanfaatkan `embedding layer` untuk membangun model rekomendasi. `Embedding layer` adalah tipe layer dalam deep learning yang berfungsi untuk mengubah data kategorikal menjadi vektor bernilai kontinu, yang kemudian digunakan untuk merepresentasikan data secara lebih padat dan bermakna. Di Python, kita dapat menggunakan `tensorflow.keras.layers.Embedding` untuk membangun embedding layer ini.
 
 Dalam implementasi ini, tiga model rekomendasi dibangun menggunakan berbagai fitur, yaitu `hours`, `is_recommended`, dan `adjusted hours`. Fitur `adjusted hours` diperoleh dengan menyesuaikan nilai `hours` berdasarkan apakah game direkomendasikan atau tidak, menggunakan bobot tertentu.
 
-`Embedding layer` memiliki beberapa kelebihan, seperti mampu mengurangi kompleksitas model, fleksibel untuk digunakan dalam berbagai algoritma deep learning, dan efektif dalam menangkap hubungan semantik antara data. Namun, `embedding layer` juga memiliki kelemahan, seperti membutuhkan data dalam jumlah besar untuk menghasilkan representasi yang baik, sensitivitas terhadap hyperparameter, serta rentan terhadap masalah *cold start*.
+Data embedding antara user dan game terhadap fitur dilatih menggunakan **RecommenderNet** yang melakukan **Matrix Factorization** terhadap matrix user-game(item) $R$ yang direpresentasikan oleh `embedding layer` menjadi dua matriks kecil $P$ dan $Q$ untuk memprediksi rating yang belum diketahui. Rumus utama adalah:
 
-Hasil evaluasi model menunjukkan `RMSE` berikut untuk setiap fitur:
-- `hours`: 0.0296 (pelatihan) dan 0.0457 (validasi),
-- `is_recommended`: 0.3745 (pelatihan) dan 0.3905 (validasi),
-- `adjusted hours`: 0.0288 (pelatihan) dan 0.0446 (validasi).
+$$
+\hat{R} = P \times Q^T
+$$
 
-Dari hasil ini, model yang menggunakan `adjusted hours` menunjukkan performa terbaik dengan nilai `RMSE` terendah. Sistem rekomendasi ini kemudian diuji untuk menghasilkan 10 rekomendasi teratas berdasarkan game yang dipilih atau dimainkan oleh pengguna, dan hasilnya menunjukkan bahwa model mampu memberikan rekomendasi yang relevan.
+Di mana:
+- $P$ adalah matriks faktor pengguna (berukuran $m \times k$),
+- $Q$ adalah matriks faktor game(item) (berukuran $ n \times k $),
+- $\hat{R}$ adalah prediksi rating.
+
+Untuk memperbarui $P$ dan $Q$, digunakan metode **gradient descent**, yang bertujuan meminimalkan kesalahan prediksi. Pembaruan dilakukan dengan rumus:
+
+$$
+P_i \leftarrow P_i - \eta \frac{\partial L}{\partial P_i}
+$$
+
+$$
+Q_j \leftarrow Q_j - \eta \frac{\partial L}{\partial Q_j}
+$$
+
+Di mana $\eta$ adalah laju pembelajaran (learning rate), dan $\frac{\partial L}{\partial P_i}$ dan $\frac{\partial L}{\partial Q_j}$ adalah turunan dari fungsi kerugian terhadap $P_i$ dan  $Q_j$, yang mengukur perubahan yang diperlukan untuk memperbaiki kesalahan prediksi. Dengan iterasi ini, model akan semakin akurat dalam memprediksi nilai fitur yang belum diketahui.
+
+Dalam hal ini, algoritma **Matrix Factorization** menggunakan metode yang disebut "collaborative filtering",  yang berasumsi bahwa jika user 1 memiliki pendapat yang sama dengan user 2 tentang suatu hal, maka user 1 lebih mungkin memiliki pandangan yang sama dengan user 2 tentang hal lain.
+
+Contohnya, jika user 1 dan user 2 memiliki waktu bermain yang serupa terhadap game tertentu, maka user 2 lebih mungkin untuk menikmati game yang telah dimainkan oleh user 1 dalam waktu yang lama.
+
+
+**Matrix Factorization** memiliki beberapa kelebihan, seperti mampu mengurangi kompleksitas model, fleksibel untuk digunakan dalam berbagai algoritma deep learning, dan efektif dalam menangkap hubungan semantik antara data. Namun, *matrix factorization* juga memiliki kelemahan, seperti membutuhkan data dalam jumlah besar untuk menghasilkan representasi yang baik, sensitivitas terhadap hyperparameter, serta rentan terhadap masalah *cold start*.
+
+#### **RecommenderNet**
+
+Model dibuat dengan diwariskan dari class  `RecommenderNet`  dari  `keras`. Model dioptimasi dengan Adam dengan learning rate 0.001 untuk  `model hours`  dan  `model adjusted_hours`  dan 0.0001 untuk  `model is_recommended`. Model  `is_recomended`  agak sulit untuk konvergen pada tingkat kesalahan yang kecil sehingga dilakukan sedikit fine-tune. Digunakan  `l2 regularizer`  sebesar 0.01 yaitu nilai default dari  `keras`  dengan loss function Binary Crossentropy. Metrik yang digunakan untuk memonitor model adalah RMSE. Tidak digunakan callback pada model ini.
+
 
 #### **Training**
 
@@ -2933,12 +3171,12 @@ Dari hasil ini, model yang menggunakan `adjusted hours` menunjukkan performa ter
 
 ##### **Model 3:** Adjusted Hours-Based
 
-    Epoch 198/200
-    865/865 ━━━━━━━━━━━━━━━━━━━━ 3s 2ms/step - loss: 0.0656 - root_mean_squared_error: 0.0287 - val_loss: 0.0733 - val_root_mean_squared_error: 0.0446
-    Epoch 199/200
-    865/865 ━━━━━━━━━━━━━━━━━━━━ 2s 2ms/step - loss: 0.0658 - root_mean_squared_error: 0.0288 - val_loss: 0.0733 - val_root_mean_squared_error: 0.0446
-    Epoch 200/200
-    865/865 ━━━━━━━━━━━━━━━━━━━━ 2s 2ms/step - loss: 0.0644 - root_mean_squared_error: 0.0262 - val_loss: 0.0733 - val_root_mean_squared_error: 0.0446
+    Epoch 198/200 
+    865/865  ━━━━━━━━━━━━━━━━━━━━  9s 6ms/step - loss: 0.0645 - root_mean_squared_error: 0.0279 - val_loss: 0.0733 - val_root_mean_squared_error: 0.0446 
+    Epoch 199/200 
+    865/865  ━━━━━━━━━━━━━━━━━━━━  6s 7ms/step - loss: 0.0647 - root_mean_squared_error: 0.0272 - val_loss: 0.0733 - val_root_mean_squared_error: 0.0446 
+    Epoch 200/200 
+    865/865  ━━━━━━━━━━━━━━━━━━━━  11s 8ms/step - loss: 0.0648 - root_mean_squared_error: 0.0269 - val_loss: 0.0733 - val_root_mean_squared_error: 0.0446
 
 #### **Result**
 
@@ -3042,51 +3280,13 @@ Dari hasil ini, model yang menggunakan `adjusted hours` menunjukkan performa ter
 
 **Model 3:** Adjusted Hours-Based
 
-    Selected User ID: 7193034
-    55/55 ━━━━━━━━━━━━━━━━━━━━ 0s 1ms/step
-    Showing recommendations for user: 7193034
-    ========================================
-    Games with high adjusted hours played by the user
-    ╒═════════════════════════════════════════════════════╤══════════════════╤════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╕
-    │ title                                               │   adjusted_hours │ tags                                                                                                                                                                                                                                                                       │
-    ╞═════════════════════════════════════════════════════╪══════════════════╪════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╡
-    │ Paint the Town Red                                  │      0.00510562  │ ['Gore', 'Action', 'Blood', 'Fighting', 'Violent', 'Multiplayer', 'First-Person', 'Roguelike', 'Physics', 'Funny', 'Roguelite', 'Voxel', "Beat 'em up", 'Singleplayer', 'Indie', 'FPS', 'Mature', 'Adventure', 'Difficult', 'Arcade']                                      │
-    ├─────────────────────────────────────────────────────┼──────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
-    │ Kane & Lynch 2: Dog Days                            │      0.000600661 │ ['Action', 'Co-op', 'Crime', 'Third-Person Shooter', 'Shooter', 'Violent', 'Third Person', 'Atmospheric', 'Mature', 'Multiplayer', 'Singleplayer', 'Short', 'Heist', 'Nudity', 'Story Rich', 'Open World', 'Adventure', 'Local Co-Op', 'Great Soundtrack', 'Controller']   │
-    ├─────────────────────────────────────────────────────┼──────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
-    │ The Settlers® : Heritage of Kings - History Edition │      0.00030033  │ ['Strategy', 'Colony Sim', 'City Builder', 'RTS', 'Medieval']                                                                                                                                                                                                              │
-    ├─────────────────────────────────────────────────────┼──────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
-    │ Gothic® 3                                           │      0.000120132 │ ['RPG', 'Open World', 'Fantasy', 'Action', 'Singleplayer', 'Atmospheric', 'Third Person', 'Medieval', 'Gothic', 'Adventure', 'Great Soundtrack', 'Story Rich', 'Magic', 'Action RPG', 'Sandbox', 'Classic', 'First-Person', 'Dark Fantasy', 'Replay Value', 'Exploration'] │
-    ├─────────────────────────────────────────────────────┼──────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
-    │ Company of Heroes                                   │      0.00010011  │ ['Strategy', 'World War II', 'RTS', 'War', 'Action', 'Multiplayer', 'Singleplayer', 'Tactical', 'Military', 'Violent', 'Historical', 'Base Building', 'Co-op', 'Classic', 'Real Time Tactics', 'Mod', 'Moddable', 'Story Rich', 'Mature', 'Great Soundtrack']              │
-    ╘═════════════════════════════════════════════════════╧══════════════════╧════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╛
-
-    Top 10 game recommendations
-    ╒════════════════════════════════════╤════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╕
-    │ title                              │ tags                                                                                                                                                                                                                                                                                           │
-    ╞════════════════════════════════════╪════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╡
-    │ Demon Sword: Incubus               │ ['Action', 'RPG', '2D Fighter', 'JRPG', '3D Fighter', "Beat 'em up", '3D Platformer', 'Side Scroller', 'Spectacle fighter', '2.5D', '3D', 'Cute', 'Anime', 'Cartoon', 'Fantasy', 'Medieval', 'Swordplay', 'Magic', 'Controller', 'Tutorial']                                                   │
-    ├────────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
-    │ Roah                               │ ['Action', 'Indie', 'Adventure', 'RPG', 'Female Protagonist', 'Platformer', 'Metroidvania', 'Difficult', 'Anime', 'Singleplayer', 'Retro', 'Cute', '2D', 'Great Soundtrack']                                                                                                                   │
-    ├────────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
-    │ PixelOver                          │ ['Design & Illustration', 'Utilities', 'Animation & Modeling', 'Game Development', 'Early Access', 'Pixel Graphics', 'Software']                                                                                                                                                               │
-    ├────────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
-    │ Alien Shooter - Last Hope          │ ['Arena Shooter', 'Action', 'RPG', "Shoot 'Em Up", 'Shooter', 'PvE', 'Gore', 'Action RPG', 'Arcade', 'Isometric', 'Third Person', 'Aliens', 'Indie', 'Sci-fi', 'Singleplayer']                                                                                                                 │
-    ├────────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
-    │ Steven Universe: Unleash the Light │ ['RPG', 'Tactical RPG', 'Turn-Based Tactics', 'Party-Based RPG', 'Action-Adventure', '2.5D', '2D', '3D', 'Tutorial', 'Cute', 'Story Rich', 'Procedural Generation', 'Team-Based', 'Action', 'Turn-Based Combat', 'Cartoony', 'Colorful', 'Stylized', 'Family Friendly', 'Fantasy']             │
-    ├────────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
-    │ The Ditty of Carmeana              │ ['Action-Adventure', '3D', 'Third Person', 'Funny', 'Parody', 'Comedy', 'Satire', 'Action', 'Adventure', 'Old School', 'Open World', 'Fantasy', 'Medieval', 'Story Rich', 'Lore-Rich', 'Singleplayer', 'Indie']                                                                                │
-    ├────────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
-    │ Yummy Girl 2                       │ ['Sexual Content', 'Nudity', 'Mature', 'NSFW', 'Hentai', 'Anime', 'Cute', 'Cooking', 'Casual', 'Puzzle', 'Idler', '2D', 'FMV', 'Indie', 'Hand-drawn', 'Colorful', 'Atmospheric', 'Cats', 'Emotional', 'Singleplayer']                                                                          │
-    ├────────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
-    │ Mystery of Neuschwanstein          │ ['Adventure', 'Casual', 'Hidden Object', 'Mystery', 'Puzzle']                                                                                                                                                                                                                                  │
-    ├────────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
-    │ Seek Etyliv                        │ ['Casual', 'Indie', 'RPG', 'Puzzle', 'Minimalist', 'Roguelite', 'Pixel Graphics', 'Dungeon Crawler', 'Turn-Based', 'Tactical', 'Grid-Based Movement', 'Abstract', 'Fantasy', 'Atmospheric', 'Roguelike']                                                                                       │
-    ├────────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
-    │ GOAL! The Club Manager             │ ['Early Access', 'Football (Soccer)', 'Sports', 'Strategy', 'Simulation', 'Management', 'Economy', 'Singleplayer', 'Multiplayer', 'Grand Strategy', 'Trading', 'Turn-Based Strategy', 'Turn-Based Tactics', '2.5D', 'Stylized', 'Old School', 'Choices Matter', 'Comedy', 'PvP', 'Minimalist'] │
-    ╘════════════════════════════════════╧════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╛
+Selected User ID: 7193034 55/55  ━━━━━━━━━━━━━━━━━━━━  0s 3ms/step Showing recommendations for user: 7193034 ======================================== Games with high adjusted hours played by the user ╒═════════════════════════════════════════════════════╤══════════════════╤════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╕ │ title │ adjusted_hours │ tags │ ╞═════════════════════════════════════════════════════╪══════════════════╪════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╡ │ Paint the Town Red │ 6.375 │ ['Gore', 'Action', 'Blood', 'Fighting', 'Violent', 'Multiplayer', 'First-Person', 'Roguelike', 'Physics', 'Funny', 'Roguelite', 'Voxel', "Beat 'em up", 'Singleplayer', 'Indie', 'FPS', 'Mature', 'Adventure', 'Difficult', 'Arcade'] │ ├─────────────────────────────────────────────────────┼──────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤ │ Kane & Lynch 2: Dog Days │ 0.75 │ ['Action', 'Co-op', 'Crime', 'Third-Person Shooter', 'Shooter', 'Violent', 'Third Person', 'Atmospheric', 'Mature', 'Multiplayer', 'Singleplayer', 'Short', 'Heist', 'Nudity', 'Story Rich', 'Open World', 'Adventure', 'Local Co-Op', 'Great Soundtrack', 'Controller'] │ ├─────────────────────────────────────────────────────┼──────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤ │ The Settlers® : Heritage of Kings - History Edition │ 0.375 │ ['Strategy', 'Colony Sim', 'City Builder', 'RTS', 'Medieval'] │ ├─────────────────────────────────────────────────────┼──────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤ │ Gothic® 3 │ 0.15 │ ['RPG', 'Open World', 'Fantasy', 'Action', 'Singleplayer', 'Atmospheric', 'Third Person', 'Medieval', 'Gothic', 'Adventure', 'Great Soundtrack', 'Story Rich', 'Magic', 'Action RPG', 'Sandbox', 'Classic', 'First-Person', 'Dark Fantasy', 'Replay Value', 'Exploration'] │ ├─────────────────────────────────────────────────────┼──────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤ │ Company of Heroes │ 0.125 │ ['Strategy', 'World War II', 'RTS', 'War', 'Action', 'Multiplayer', 'Singleplayer', 'Tactical', 'Military', 'Violent', 'Historical', 'Base Building', 'Co-op', 'Classic', 'Real Time Tactics', 'Mod', 'Moddable', 'Story Rich', 'Mature', 'Great Soundtrack'] │ ╘═════════════════════════════════════════════════════╧══════════════════╧════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╛ Top 10 game recommendations ╒════════════════════════════════════════╤═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╕ │ title │ tags │ ╞════════════════════════════════════════╪═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╡ │ Dreamin' Her - 僕は、彼女の夢を見る。- │ ['Simulation', 'Adventure', 'Visual Novel', 'Dating Sim', 'Choose Your Own Adventure', 'Cute', '2D', 'Emotional', 'Drama', 'Sexual Content', 'Romance', 'Story Rich', 'Violent', 'Choices Matter', 'Singleplayer'] │ ├────────────────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤ │ Find Yourself │ ['Simulation', 'Horror', 'Exploration', 'Walking Simulator', '3D Platformer', 'Cinematic', 'First-Person', 'Psychedelic', 'Realistic', 'Psychological Horror', 'Indie', 'Violent', 'Thriller', 'Story Rich', 'Singleplayer', 'Dark Humor', 'Nudity', 'Dark', 'Short', 'Adventure'] │ ├────────────────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤ │ Sudocats │ ['Casual', 'Cats', 'Puzzle', 'Relaxing', 'Cute', 'Logic', 'Hand-drawn', 'Wholesome', '2D', 'Cozy', 'Education', 'Tabletop', 'Cartoony', 'Colorful', 'Minimalist', 'Family Friendly', 'Singleplayer', 'Mouse only', 'Stylized', 'Indie'] │ ├────────────────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤ │ The Cyclist: Tactics │ ['Sports', 'Strategy', 'Cycling', 'Management', 'Turn-Based Tactics', 'Tactical', '2D', 'Hand-drawn', 'Top-Down', 'Turn-Based Strategy', 'Singleplayer'] │ ├────────────────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤ │ Joe Danger 2: The Movie │ ['Racing', 'Indie', 'Action', 'Casual', 'Controller', 'Score Attack', 'Local Multiplayer', 'Platformer', 'Funny', 'Arcade', 'Local Co-Op'] │ ├────────────────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤ │ The Note of Red Evil │ ['RPG', 'Indie', 'Casual', 'Strategy', 'Adventure', 'Nudity'] │ ├────────────────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤ │ Daemonic Runner │ ['Action', 'Indie', 'Violent', 'Retro', 'Gore', 'Fast-Paced', 'First-Person', 'Gothic', 'Shooter', 'FPS', 'Classic', 'Singleplayer', 'Demons'] │ ├────────────────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤ │ Rabbit Island │ ['Strategy', 'Indie', 'Tower Defense'] │ ├────────────────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤ │ Onset │ ['RPG', 'Massively Multiplayer', 'Simulation', 'Action', 'Indie', 'Open World', 'Multiplayer', 'Sandbox', 'Early Access'] │ ├────────────────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤ │ Fight Ascending │ ['Female Protagonist', 'Martial Arts', '3D Fighter', 'Procedural Generation', "Beat 'em up", 'Spectacle fighter', 'Sexual Content', 'Nudity', 'Mature', 'NSFW', 'Arcade', 'Casual', 'Fast-Paced', 'Fighting', 'Action', 'Fantasy', 'Combat', 'Singleplayer', 'Character Action Game', 'Third Person'] │ ╘════════════════════════════════════════╧═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╛
 
 
+#### **Best Model**
+
+
+Dipilih  **Model adjusted hours based**  sebagai model terbaik karena mampu memprediksi dengan tingkat kesalahan paling minimal yaitu  **RMSE**  sebesar 0.0262 dari data pelatihan dan sebesar 0.0446 dalam pengujian. Selain itu model ini pula adalah gabungan dari dua fitur yang diuji sehingga didapat korelasi yang lebih kompleks antar game dan antar user di dalam model ini. Penjelasan lebih detail mengenai evaluasi akan dijelaskan di rubrik selanjutnya.
 
 ## **Evaluation**
 
@@ -3104,54 +3304,112 @@ Sekilas tentang `Confusion Matrix` dan Metrik Evaluasi
 
 ![png](gambar_files/gambar_188_0.png)
 
-### Metrik Evaluasi @k
 
-1. **Precision@k**  
-   Precision@k mengukur seberapa banyak rekomendasi yang relevan dalam top-k rekomendasi. Ini dihitung dengan rumus:
-   ```math
-   \text{Precision@k} = \frac{\text{Jumlah item relevan dalam top-k}}{k}
-   ```
-   Di mana:
-   - `k` adalah jumlah rekomendasi teratas yang diberikan oleh model.
+  
 
-2. **Recall@k**  
-   Recall@k mengukur seberapa baik model dalam menemukan semua item relevan dalam top-k rekomendasi dibandingkan dengan total item relevan yang ada. Rumusnya adalah:
-   ```math
-   \text{Recall@k} = \frac{\text{Jumlah item relevan dalam top-k}}{\text{Total item relevan yang tersedia}}
-   ```
+**Metrik Evaluasi @k**
 
-3. **F1@k**  
-   F1@k adalah rata-rata harmonik antara Precision@k dan Recall@k, yang memberikan keseimbangan antara keduanya. Rumusnya adalah:
-   ```math
-   F1@k = 2 \cdot \frac{\text{Precision@k} \cdot \text{Recall@k}}{\text{Precision@k} + \text{Recall@k}}
-   ```
+  
 
-4. **Accuracy@k**  
-   Accuracy@k adalah metrik yang digunakan untuk mengukur seberapa akurat model dalam memberikan rekomendasi terbaik. Metrik ini mengukur proporsi item relevan yang muncul dalam top-k rekomendasi dibandingkan dengan seluruh rekomendasi yang diprediksi oleh model. Accuracy@k memberi gambaran tentang seberapa sering item relevan muncul dalam daftar teratas rekomendasi.  
-   Rumus untuk menghitung Accuracy@k adalah:
-   ```math
-   \text{Accuracy@k} = \frac{\text{Jumlah item relevan dalam top-k}}{k}
-   ```
-   Di mana:
-   - `k` adalah jumlah rekomendasi teratas yang diberikan oleh model.
-   - Jumlah item relevan dalam **top-k** adalah jumlah item yang benar-benar relevan dan ada di dalam urutan rekomendasi teratas.
+1. **Precision@k**
 
-5. **MRR@k (Mean Reciprocal Rank)**  
-   MRR@k mengukur kualitas urutan rekomendasi berdasarkan posisi item relevan pertama yang ditemukan dalam top-k rekomendasi. Metrik ini sangat berguna ketika urutan rekomendasi memiliki peran penting, dan kita hanya tertarik pada posisi pertama dari item relevan yang ditemukan oleh model. Rumus MRR@k adalah:
-   ```math
-   \text{MRR@k} = \frac{1}{Q} \sum_{i=1}^Q \frac{1}{\text{Rank}_i}
-   ```
-   Di mana:
-   - `Q` adalah jumlah total query atau pengguna.
-   - `Rank_i` adalah posisi relevan pertama untuk pengguna ke-i.
+$Precision@k$ mengukur seberapa banyak rekomendasi yang relevan dalam $top-k$ rekomendasi. Ini dihitung dengan rumus:
 
-   Reciprocal Rank (RR) dihitung dengan rumus:
-   ```math
-   \text{RR} = \frac{1}{\text{Rank of first relevant item}}
-   ```
+  
 
+$$
+\text{Precision@k} = \frac{\text{Jumlah item relevan dalam top-k}}{k}
+$$
 
-Di dunia nyata, pengguna jarang melihat semua rekomendasi, biasanya hanya top-k (misalnya, 5 atau 10 teratas). Dengan menggunakan @k, fokus evaluasi dapat diarahkan pada rekomendasi terbaik yang diberikan model. Nilai k juga dapat disesuaikan dengan jumlah rekomendasi yang relevan untuk aplikasi tertentu. Selain itu, MRR@k memberikan perhatian khusus pada posisi item relevan pertama dalam urutan rekomendasi, yang penting dalam sistem yang mengutamakan urutan penyajian rekomendasi kepada pengguna.
+  
+
+Di mana:
+
+- $k$ adalah jumlah rekomendasi teratas yang diberikan oleh model.
+
+  
+
+2. **Recall@k**
+
+$Recall@k$ mengukur seberapa baik model dalam menemukan semua item relevan dalam $top-k$ rekomendasi dibandingkan dengan total item relevan yang ada. Rumusnya adalah:
+
+  
+
+$$
+\text{Recall@k} = \frac{\text{Jumlah item relevan dalam top-k}}{\text{Total item relevan yang tersedia}}
+$$
+
+  
+
+3. **F1@k**
+
+$F1@k$ adalah rata-rata harmonik antara $Precision@k$ dan $Recall@k$, yang memberikan keseimbangan antara keduanya. Rumusnya adalah:
+
+  
+
+$$
+F1@k = 2 \cdot \frac{\text{Precision@k} \cdot \text{Recall@k}}{\text{Precision@k} + \text{Recall@k}}
+$$
+
+  
+
+4. **Accuracy@k**
+
+$Accuracy@k$ adalah metrik yang digunakan untuk mengukur seberapa akurat model dalam memberikan rekomendasi terbaik. Metrik ini mengukur proporsi item relevan yang muncul dalam $top-k$ rekomendasi dibandingkan dengan seluruh rekomendasi yang diprediksi oleh model. $Accuracy@k$ memberi gambaran tentang seberapa sering item relevan muncul dalam daftar teratas rekomendasi.
+
+  
+
+Rumus untuk menghitung $Accuracy@k$ adalah:
+
+  
+
+$$
+\text{Accuracy@k} = \frac{\text{Jumlah item relevan dalam top-k}}{k}
+$$
+
+  
+
+Di mana:
+
+- $k$ adalah jumlah rekomendasi teratas yang diberikan oleh model.
+
+- Jumlah item relevan dalam $top-k$ adalah jumlah item yang benar-benar relevan dan ada di dalam urutan rekomendasi teratas.
+
+  
+
+5. **MRR@k (Mean Reciprocal Rank)**
+
+$MRR@k$ mengukur kualitas urutan rekomendasi berdasarkan posisi item relevan pertama yang ditemukan dalam $top-k$ rekomendasi. Metrik ini sangat berguna ketika urutan rekomendasi memiliki peran penting, dan kita hanya tertarik pada posisi pertama dari item relevan yang ditemukan oleh model.
+
+Rumus $MRR@k$ adalah:
+
+  
+
+$$
+\text{MRR@k} = \frac{1}{Q} \sum_{i=1}^Q \frac{1}{\text{Rank}_i}
+$$
+
+  
+
+Di mana:
+
+- $Q$ adalah jumlah total query atau pengguna.
+
+- $Rank_i$ adalah posisi relevan pertama untuk pengguna ke-i.
+
+  
+
+$Reciprocal Rank (RR)$ dihitung dengan rumus:
+
+  
+
+$$
+\text{RR} = \frac{1}{\text{Rank of first relevant item}}
+$$
+
+  
+
+Di dunia nyata, pengguna jarang melihat semua rekomendasi, biasanya hanya $top-k$ (misalnya, 5 atau 10 teratas). Dengan menggunakan $@k$, fokus evaluasi dapat diarahkan pada rekomendasi terbaik yang diberikan model. Nilai $k$ juga dapat disesuaikan dengan jumlah rekomendasi yang relevan untuk aplikasi tertentu. Selain itu, $MRR@k$ memberikan perhatian khusus pada posisi item relevan pertama dalam urutan rekomendasi, yang penting dalam sistem yang mengutamakan urutan penyajian rekomendasi kepada pengguna.
 
 **Model 1:** Cosine Similarity (descriptions)
     
