@@ -3122,7 +3122,7 @@ $$
 
 Di mana:
 - $P$ adalah matriks faktor pengguna (berukuran $m \times k$),
-- $Q$ adalah matriks faktor game(item) (berukuran $ n \times k $),
+- $Q$ adalah matriks faktor game(item) (berukuran $n \times k$),
 - $\hat{R}$ adalah prediksi rating.
 
 Untuk memperbarui $P$ dan $Q$, digunakan metode **gradient descent**, yang bertujuan meminimalkan kesalahan prediksi. Pembaruan dilakukan dengan rumus:
