@@ -663,270 +663,6 @@ Dataframe games_data memiliki 50872 entri rekod dan 15 kolom dengan 5 kolom nume
 
 Dataframe recommendations memiliki 41154794  entri data dan 8 kolom dengan 3 kolom numerik.
 
-## **Data Cleaning**
-
-### **Missing Value & Duplicate**
-    
-Jumlah missing value yang ada di dataframe `games_data` adalah sebagai berikut
-
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Nilai yang Kosong</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>app_id</th>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>description</th>
-      <td>10373</td>
-    </tr>
-    <tr>
-      <th>tags</th>
-      <td>1244</td>
-    </tr>
-    <tr>
-      <th>title</th>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>date_release</th>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>win</th>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>mac</th>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>linux</th>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>rating</th>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>positive_ratio</th>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>user_reviews</th>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>price_final</th>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>price_original</th>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>discount</th>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>steam_deck</th>
-      <td>0</td>
-    </tr>
-  </tbody>
-</table>
-
-Dilakukan drop pada baris yang memiliki _missing value_ sehingga mengahsilkan jumlah baris sebagai berikut.
-    
-    Total of rows: 40484
-    Total of column: 15
-
-selanjutnya diperiksa nilai numerik yang menghasilkan nilai 0 pada dataframe `games_data`.
-
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Nilai yang bernilai 0</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>app_id</th>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>description</th>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>tags</th>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>title</th>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>date_release</th>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>win</th>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>mac</th>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>linux</th>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>rating</th>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>positive_ratio</th>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>user_reviews</th>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>price_final</th>
-      <td>7799</td>
-    </tr>
-    <tr>
-      <th>price_original</th>
-      <td>7846</td>
-    </tr>
-    <tr>
-      <th>discount</th>
-      <td>36261</td>
-    </tr>
-    <tr>
-      <th>steam_deck</th>
-      <td>0</td>
-    </tr>
-  </tbody>
-</table>
-
-Terdapat nilai 0 di dalam kolom yang memiliki kepentingan yaitu kolom `price_final`. Maka baris yang memiliki nilai 0 tersebut dihilangkan, sedangkan nilai 0 di baris lainnya dibiarkan karena tidak relevan. 
-    
-    Total of rows: 32685
-    Total of column: 15
-
-Diperiksa juga _missing value_ pada dataframe `recommendations`
-
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Nilai yang Kosong</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>app_id</th>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>helpful</th>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>funny</th>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>date</th>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>is_recommended</th>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>hours</th>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>user_id</th>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>review_id</th>
-      <td>0</td>
-    </tr>
-  </tbody>
-</table>
-
-tidak ada _missing value_ yang harus dihilangkan
-
-
-Selanjutnya diperiksa data duplikat pada dataframe `games_data`    
-
-    Number of duplicates (excluding 'tags' column): 0
-
-
-Diperiksa juga data duplikat pada dataframe `recommendations`
-
-    Number of duplicates : 0
-
-Tidak terdeteksi data duplikat pada kedua dataframe sehingga tidak perlu dihilangkan.
-
-### **Data Reduction**
-
-melakukan filter game yang dianggap relevan di dataframe `recommendations` dengan menggunakan data dari dataframe `games_data` yang telah dihilangkan *missing value*-nya
-
-    Total of rows: 16337800
-    Total of column: 8
-    <class 'pandas.core.frame.DataFrame'>
-    Index: 16337800 entries, 66 to 41154792
-    Data columns (total 8 columns):
-     #   Column          Dtype  
-    ---  ------          -----  
-     0   app_id          int64  
-     1   helpful         int64  
-     2   funny           int64  
-     3   date            object 
-     4   is_recommended  bool   
-     5   hours           float64
-     6   user_id         int64  
-     7   review_id       int64  
-    dtypes: bool(1), float64(1), int64(5), object(1)
-    memory usage: 1012.8+ MB
-
-
-Karena ukuran data yang terlalu besar maka dilakukan sampling dengan kriteria seperti berikut: data tidak lebih lama dari tahun 2020, setiap interval dari total waktu dimainkan dari setiap game akan diambil 200 game relevan, setiap user relevan memiliki minimal 5 review game.
-
-Setelah dilakukan filter melalui data game setelah tahun 2020.
-
-    Number of rows after date filtering: 9024102
-
-Disampling 200 game pada setiap kelas data dari kolom 'hours' yang diagreasi dari setiap game lalu diurutkan dan dibuat 10 kelas interval.
-
-    Number of sampled games: 2000
-    Number of rows in the filtered dataset: 675275
-
-Dilakukan filter user dengan minimal 5 review.
-
-    Number of user with min reviews: 4235
-    Number of rows in the filtered dataset: 34586
-
-
-Jumlah entri data `games_data` setelah dibersihkan adalah 32685 dan jumlah baris setelah reduksi dari data `recommendations` adalah 34586.
-
-
-
-
 ## **Exploratory Data Analysis**
 
 ### **Unvariate Data Analysis**
@@ -1225,6 +961,271 @@ Terlihat ternyata game yang rilis di platform windows jauh lebih populer dari os
 Jika memperhitungkan jumlah game yang dirilis di setiap platform, malah linux yang memiliki popularitas leih tinggi.
 
 ## **Data Preparation**
+
+### **Data Cleaning**
+
+#### **Missing Value & Duplicate**
+    
+Jumlah missing value yang ada di dataframe `games_data` adalah sebagai berikut
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Nilai yang Kosong</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>app_id</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>description</th>
+      <td>10373</td>
+    </tr>
+    <tr>
+      <th>tags</th>
+      <td>1244</td>
+    </tr>
+    <tr>
+      <th>title</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>date_release</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>win</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>mac</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>linux</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>rating</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>positive_ratio</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>user_reviews</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>price_final</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>price_original</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>discount</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>steam_deck</th>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+
+Dilakukan drop pada baris yang memiliki _missing value_ sehingga mengahsilkan jumlah baris sebagai berikut.
+    
+    Total of rows: 40484
+    Total of column: 15
+
+selanjutnya diperiksa nilai numerik yang menghasilkan nilai 0 pada dataframe `games_data`.
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Nilai yang bernilai 0</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>app_id</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>description</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>tags</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>title</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>date_release</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>win</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>mac</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>linux</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>rating</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>positive_ratio</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>user_reviews</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>price_final</th>
+      <td>7799</td>
+    </tr>
+    <tr>
+      <th>price_original</th>
+      <td>7846</td>
+    </tr>
+    <tr>
+      <th>discount</th>
+      <td>36261</td>
+    </tr>
+    <tr>
+      <th>steam_deck</th>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+
+Terdapat nilai 0 di dalam kolom yang memiliki kepentingan yaitu kolom `price_final`. Maka baris yang memiliki nilai 0 tersebut dihilangkan, sedangkan nilai 0 di baris lainnya dibiarkan karena tidak relevan. 
+    
+    Total of rows: 32685
+    Total of column: 15
+
+Diperiksa juga _missing value_ pada dataframe `recommendations`
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Nilai yang Kosong</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>app_id</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>helpful</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>funny</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>date</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>is_recommended</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>hours</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>user_id</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>review_id</th>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+
+tidak ada _missing value_ yang harus dihilangkan
+
+
+Selanjutnya diperiksa data duplikat pada dataframe `games_data`    
+
+    Number of duplicates (excluding 'tags' column): 0
+
+
+Diperiksa juga data duplikat pada dataframe `recommendations`
+
+    Number of duplicates : 0
+
+Tidak terdeteksi data duplikat pada kedua dataframe sehingga tidak perlu dihilangkan.
+
+#### **Data Reduction**
+
+melakukan filter game yang dianggap relevan di dataframe `recommendations` dengan menggunakan data dari dataframe `games_data` yang telah dihilangkan *missing value*-nya
+
+    Total of rows: 16337800
+    Total of column: 8
+    <class 'pandas.core.frame.DataFrame'>
+    Index: 16337800 entries, 66 to 41154792
+    Data columns (total 8 columns):
+     #   Column          Dtype  
+    ---  ------          -----  
+     0   app_id          int64  
+     1   helpful         int64  
+     2   funny           int64  
+     3   date            object 
+     4   is_recommended  bool   
+     5   hours           float64
+     6   user_id         int64  
+     7   review_id       int64  
+    dtypes: bool(1), float64(1), int64(5), object(1)
+    memory usage: 1012.8+ MB
+
+
+Karena ukuran data yang terlalu besar maka dilakukan sampling dengan kriteria seperti berikut: data tidak lebih lama dari tahun 2020, setiap interval dari total waktu dimainkan dari setiap game akan diambil 200 game relevan, setiap user relevan memiliki minimal 5 review game.
+
+Setelah dilakukan filter melalui data game setelah tahun 2020.
+
+    Number of rows after date filtering: 9024102
+
+Disampling 200 game pada setiap kelas data dari kolom 'hours' yang diagreasi dari setiap game lalu diurutkan dan dibuat 10 kelas interval.
+
+    Number of sampled games: 2000
+    Number of rows in the filtered dataset: 675275
+
+Dilakukan filter user dengan minimal 5 review.
+
+    Number of user with min reviews: 4235
+    Number of rows in the filtered dataset: 34586
+
+
+Jumlah entri data `games_data` setelah dibersihkan adalah 32685 dan jumlah baris setelah reduksi dari data `recommendations` adalah 34586.
+
+
+
+
 
 ### **1. Content Based Filtering**
 
