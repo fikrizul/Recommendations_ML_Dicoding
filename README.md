@@ -3139,6 +3139,8 @@ Di mana:
 - $Q$ adalah matriks faktor game(item) (berukuran $n \times k$),
 - $\hat{R}$ adalah prediksi rating.
 
+RecommenderNet melakukan operasi perhitungan ini dengan menggunakan dot product `embedding layer` vector user terhadap fitur dan `embedding layer` vector app terhadap fitur.
+
 Untuk memperbarui $P$ dan $Q$, digunakan metode **gradient descent**, yang bertujuan meminimalkan kesalahan prediksi. Pembaruan dilakukan dengan rumus:
 
 $$
@@ -3149,7 +3151,7 @@ $$
 Q_j \leftarrow Q_j - \eta \frac{\partial L}{\partial Q_j}
 $$
 
-Di mana $\eta$ adalah laju pembelajaran (learning rate), dan $\frac{\partial L}{\partial P_i}$ dan $\frac{\partial L}{\partial Q_j}$ adalah turunan dari fungsi kerugian terhadap $P_i$ dan  $Q_j$, yang mengukur perubahan yang diperlukan untuk memperbaiki kesalahan prediksi. Dengan iterasi ini, model akan semakin akurat dalam memprediksi nilai fitur yang belum diketahui.
+Di mana $\eta$ adalah laju pembelajaran (learning rate), dan $\frac{\partial L}{\partial P_i}$ dan $\frac{\partial L}{\partial Q_j}$ adalah turunan dari fungsi kerugian terhadap $P_i$ dan  $Q_j$, yang mengukur perubahan yang diperlukan untuk memperbaiki kesalahan prediksi yang diimplementasikan dengan l2 regularizer pada model. Dengan iterasi ini, model akan semakin akurat dalam memprediksi nilai fitur yang belum diketahui.
 
 Algoritma **Matrix Factorization** menggunakan metode yang disebut "collaborative filtering",  yang berasumsi bahwa jika user 1 memiliki pendapat yang sama dengan user 2 tentang suatu hal, maka user 1 lebih mungkin memiliki pandangan yang sama dengan user 2 tentang hal lain.
 
@@ -3158,7 +3160,7 @@ Contohnya, jika user 1 dan user 2 memiliki waktu bermain yang serupa terhadap ga
 
 **Matrix Factorization** memiliki beberapa kelebihan, seperti mampu mengurangi kompleksitas model, fleksibel untuk digunakan dalam berbagai algoritma deep learning, dan efektif dalam menangkap hubungan semantik antara data. Namun, *matrix factorization* juga memiliki kelemahan, seperti membutuhkan data dalam jumlah besar untuk menghasilkan representasi yang baik, sensitivitas terhadap hyperparameter, serta rentan terhadap masalah *cold start*.
 
-#### **RecommenderNet**
+#### **RecommenderNet Model**
 
 Model dibuat dengan diwariskan dari class  `RecommenderNet`  dari  `keras`. Model dioptimasi dengan Adam dengan learning rate 0.001 untuk  `model hours`  dan  `model adjusted_hours`  dan 0.0001 untuk  `model is_recommended`. Model  `is_recomended`  agak sulit untuk konvergen pada tingkat kesalahan yang kecil sehingga dilakukan sedikit fine-tune. Digunakan  `l2 regularizer`  sebesar 0.01 yaitu nilai default dari  `keras`  dengan loss function Binary Crossentropy. Metrik yang digunakan untuk memonitor model adalah RMSE. Tidak digunakan callback pada model ini.
 
