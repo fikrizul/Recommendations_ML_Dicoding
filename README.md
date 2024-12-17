@@ -1131,8 +1131,13 @@ Terdapat nilai 0 di dalam kolom yang memiliki kepentingan yaitu kolom `price_fin
     
     Total of rows: 32685
     Total of column: 15
+    
+Dilakukan deteksi adanya data non-numerik di kolom-kolom numerik. Data yang terdeteksi akan diubah menjadi NaN untuk dihilangkan menggunakan dropna().
 
-Diperiksa juga _missing value_ pada dataframe `recommendations`
+    Total of rows: 32685
+    Total of column: 15
+
+Diperiksa juga missing value dan data invalid di kolom numerik pada dataframe recommendations
 
 <table border="1" class="dataframe">
   <thead>
@@ -1179,6 +1184,7 @@ Diperiksa juga _missing value_ pada dataframe `recommendations`
 
 tidak ada _missing value_ yang harus dihilangkan
 
+Penghilangan nilai 0 tidak dilakukan pada dataframe `recommendations` karena kolom penting `hours` berisi banyak data nilai 0 yang berarti user tidak memiliki cukup waktu bermain game yang user tersebut ulas.
 
 Selanjutnya diperiksa data duplikat pada dataframe `games_data`    
 
@@ -1191,9 +1197,16 @@ Diperiksa juga data duplikat pada dataframe `recommendations`
 
 Tidak terdeteksi data duplikat pada kedua dataframe sehingga tidak perlu dihilangkan.
 
+	Total rows of games_data: 32685
+	Total columns of games_data: 15
+	Total rows of recommendations: 41154794
+	Total columns of recommendations: 8
+
+Jumlah data di games_data setelah cleaning adalah 32685 dan di recommendations adalah 41154794
+
 #### **Data Reduction**
 
-melakukan filter game yang dianggap relevan di dataframe `recommendations` dengan menggunakan data dari dataframe `games_data` yang telah dihilangkan *missing value*-nya
+Dilakukan filter game yang dianggap relevan di dataframe `recommendations` dengan menggunakan data dari dataframe `games_data` yang telah dihilangkan *missing value*-nya. Hasilnya sebagai berikut
 
     Total of rows: 16337800
     Total of column: 8
@@ -1214,7 +1227,7 @@ melakukan filter game yang dianggap relevan di dataframe `recommendations` denga
     memory usage: 1012.8+ MB
 
 
-Karena ukuran data yang terlalu besar maka dilakukan sampling dengan kriteria seperti berikut: data tidak lebih lama dari tahun 2020, setiap interval dari total waktu dimainkan dari setiap game akan diambil 200 game relevan, setiap user relevan memiliki minimal 5 review game.
+Karena ukuran data yang masih terlalu besar maka dilakukan sampling dengan kriteria seperti berikut: data tidak lebih lama dari tahun 2020, setiap interval dari total waktu dimainkan dari setiap game akan diambil 200 game relevan, setiap user relevan memiliki minimal 5 review game.
 
 Setelah dilakukan filter melalui data game setelah tahun 2020.
 
