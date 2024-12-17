@@ -2646,13 +2646,15 @@ Data user_id dan app_id di-encode sebagai dataframe baru berisi nilai-nilai repr
 
 Data "hours" disesuaikan berdasarkan data game direkomendasikan atau tidak. Jika game direkomendasikan (is_recommended bernilai True), maka nilai  "hours" dengan dikalikan 1.25, dan jika tidak direkomendasikan, maka dikalikan dengan 0.75. Setelah itu dibuat kolom baru dalam dataframe sebagai `adjusted_hours`.
 
+
 ```math
-\text{adjusted_hours} =
+\mathrm{adjusted\_hours} =
 \begin{cases} 
-\text{hours} \times 1.25 & \text{jika } \text{is_recommended} = \text{True} \\
-\text{hours} \times 0.75 & \text{jika } \text{is_recommended} = \text{False}
+\mathrm{hours} \times 1.25 & \text{jika } \mathrm{is\_recommended} = \text{True} \\
+\mathrm{hours} \times 0.75 & \text{jika } \mathrm{is\_recommended} = \text{False}
 \end{cases}
 ```
+
 
 #### **Data Normalization**
 
