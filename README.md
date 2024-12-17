@@ -683,9 +683,9 @@ Dataframe recommendations memiliki 41154794  entri data dan 8 kolom dengan 3 kol
     
 
 
-    Mean Price: 10.194345112436897
-    Median Price: 6.99
-    Mode Price: 9.99
+	Mean Price: 8.620324933165593
+	Median Price: 4.99
+	Mode Price: 0.0
 
 
 Distribusi harga dari sebuah game ternyata sangat terjal ke kanan. Artinya sebagian besar data berada di bawah quartil bawah.
@@ -712,21 +712,21 @@ Sebagian besar `rating` berada ada kategori positive dengan berbagai derajatnya 
     
 
 
-    Top-rated games (positive_ratio > 90%):
-                                       title  positive_ratio
-    2           Monaco: What's Yours Is Mine              92
-    8      Hyperdimension Neptunia Re;Birth1              94
-    16                                  FORM              91
-    27           Take Command - 2nd Manassas              93
-    40                        Dreaming Sarah              92
-    ...                                  ...             ...
-    50811              Islands of the Caliph              91
-    50814          Dragon Princess is Hungry              96
-    50829   XENOTILT: HOSTILE PINBALL ACTION              98
-    50845                        Taboo Trial              94
-    50870                Forgive Me Father 2              95
-    
-    [8599 rows x 2 columns]
+	Top-rated games (positive_ratio > 90%):
+	                                           title  positive_ratio
+	2                   Monaco: What's Yours Is Mine              92
+	8              Hyperdimension Neptunia Re;Birth1              94
+	16                                          FORM              91
+	21      Sniper Elite 3 - Camouflage Weapons Pack              95
+	27                   Take Command - 2nd Manassas              93
+	...                                          ...             ...
+	50856                                   STANDBOX              91
+	50858                              Fortune's Run              94
+	50860                             Kill The Crows              96
+	50867  I Expect You To Die 3: Cog in the Machine              96
+	50870                        Forgive Me Father 2              95
+	
+	[13405 rows x 2 columns]
 
 
 Distribusi `Rasio Ulasan Positif` adalah normal dengan miring ke kiri. Sebagian besar data berada di atas rata-rata. Dengan Nilai di kisaran 90 memiliki frekuensi terbanyak.
@@ -742,22 +742,21 @@ Distribusi `Rasio Ulasan Positif` adalah normal dengan miring ke kiri. Sebagian 
     
 
 
-    Top-rated games (positive_ratio > 90%):
-                                 title  user_reviews
-    48718        鬼谷八荒 Tale of Immortal        185051
-    47653  Life is Strange - Episode 1        160660
-    47375               Counter-Strike        136118
-    47494                  Tomb Raider        136055
-    12573                  Half-Life 2        122230
-    ...                            ...           ...
-    14185                  Watch_Dogs™         31632
-    47597                         SOMA         31153
-    6098   Battlefield: Bad Company™ 2         30960
-    9139                       OneShot         30937
-    47675                Town of Salem         30853
-    
-    [100 rows x 2 columns]
-
+	Top-rated games (positive_ratio > 90%):
+	                                  title  user_reviews
+	14398  Counter-Strike: Global Offensive       7494460
+	47770               PUBG: BATTLEGROUNDS       2217226
+	13176                            Dota 2       2045628
+	12717                Grand Theft Auto V       1484122
+	14535   Tom Clancy's Rainbow Six® Siege        993312
+	...                                 ...           ...
+	47793                          Factorio        134384
+	11720              World of Tanks Blitz        131334
+	480                          Far Cry® 5        129943
+	15926                 World of Warships        129335
+	48601                Sons Of The Forest        128626
+	
+	[100 rows x 2 columns]
 
 Jumlah review seluruh game diurutkan dari yang terbesar dan ternyata distribusi jumlah review setiap game sangat timpang dengan hanya beberapa game saja yang memiliki jumlah review yang sangat besar.
 
@@ -772,35 +771,35 @@ Jumlah review seluruh game diurutkan dari yang terbesar dan ternyata distribusi 
     
 
 
-    date_release
-    1997       1
-    1998       1
-    1999       2
-    2000       2
-    2001       2
-    2002       1
-    2003       2
-    2004       4
-    2005       2
-    2006      50
-    2007      73
-    2008     128
-    2009     285
-    2010     219
-    2011     233
-    2012     288
-    2013     411
-    2014    1367
-    2015    1986
-    2016    2876
-    2017    3376
-    2018    3665
-    2019    3107
-    2020    3734
-    2021    4363
-    2022    4601
-    2023    1906
-    Name: count, dtype: int64
+	date_release
+	1997       2
+	1998       1
+	1999       3
+	2000       2
+	2001       2
+	2002       1
+	2003       2
+	2004       4
+	2005       3
+	2006      56
+	2007      82
+	2008     146
+	2009     322
+	2010     284
+	2011     376
+	2012     565
+	2013     822
+	2014    1921
+	2015    2963
+	2016    4209
+	2017    4989
+	2018    5461
+	2019    5057
+	2020    6135
+	2021    6774
+	2022    7265
+	2023    3425
+	Name: count, dtype: int64
 
 
 Setiap tahun jumlah game yang dirilis cenderung selalu meningkat kecuali di tahun 2018 dan 2023.
@@ -813,7 +812,7 @@ Setiap tahun jumlah game yang dirilis cenderung selalu meningkat kecuali di tahu
     
 
 
-Game yang memiliki Total Waktu Dimainkan tertinggi adalah Persona 4 Golden.
+Game yang memiliki Total Waktu Dimainkan tertinggi adalah **Team Fortress 2**.
 
 
 
@@ -822,7 +821,7 @@ Game yang memiliki Total Waktu Dimainkan tertinggi adalah Persona 4 Golden.
     
 
 
-Game yang paling banyak direkomendasikan adalah Far Cry 3.
+Game yang paling banyak direkomendasikan adalah **Team Fortress 2**.
 
 
     
@@ -830,7 +829,7 @@ Game yang paling banyak direkomendasikan adalah Far Cry 3.
     
 
 
-Game yang paling banyak di-review adalah Tale of Immortal.
+Game yang paling banyak di-review adalah **Counter-Strike: Global Offensive**.
 
 ### **Multivariate Data Analysis**
 
@@ -845,7 +844,7 @@ Game yang paling banyak di-review adalah Tale of Immortal.
     
 
 
- Rasio *feedback* positif yang rendah (10-50), terlihat fluktuasi harga yang cukup besar dengan kecenderungan meningkat. Namun, seiring dengan meningkatnya rasio, fluktuasi mulai berkurang, dan grafik menjadi lebih stabil. Yaitu pada rentang rasio *feedback* positif 50-100, harga rata-rata cenderung stabil dengan variasi yang minim. Ini menunjukkan bahwa rasio *feedback* positif akan meningkat seiring peningkatan harga, terutama pada kisaran yang lebih rendah.
+ Rasio *feedback* positif yang rendah (10-50), terlihat fluktuasi harga yang cukup besar dengan kecenderungan sedikit meningkat. Namun, seiring dengan meningkatnya rasio, fluktuasi mulai berkurang, dan grafik menjadi lebih stabil. Yaitu pada rentang rasio *feedback* positif 50-100, harga rata-rata cenderung stabil dengan variasi yang minim. Ini menunjukkan bahwa rasio *feedback* positif tidak memiliki kaitan signifikan dengan harga, hanya ada sedikit korelasi positif pada kisaran yang rendah.
 
 #### **Median Positive Feedback Ratio by Price Intervals**
 
@@ -854,7 +853,7 @@ Game yang paling banyak di-review adalah Tale of Immortal.
     
 
 
-Sejauh ini tidak signifikan pengaruh `harga game` terhadap `Rasio Ulasan Positif`. Artinya tidak selalu game yang mahal memiliki kualitas ulasan yang positif, karena game mahal memunculkan ekspektasi yang lebih tinggi.
+Sejauh ini tidak signifikan pengaruh harga game terhadap Rasio Ulasan Positif. Hanya ada sedikit penurunan rasio ulasan positif pada rentang harga yang rendah dan sedikit peningkatan pada rentang harga menengah ke tinggi.
 
 #### **Average Positive Ratio by Tag**
 
@@ -863,20 +862,20 @@ Sejauh ini tidak signifikan pengaruh `harga game` terhadap `Rasio Ulasan Positif
     
 
 
-    Top 10 Tags by Average Positive Ratio:
-    Indie           48.717302
-    Singleplayer    44.879364
-    Adventure       35.164754
-    Action          33.295610
-    Casual          32.384886
-    2D              24.086768
-    Simulation      17.702126
-    Atmospheric     17.074346
-    Strategy        16.999572
-    Puzzle          16.517332
-    dtype: float64
-    
-    Other tags aggregated average positive ratio: 1.83
+	Top 10 Tags by Average Positive Ratio:
+	Indie           42.558795
+	Singleplayer    35.419602
+	Action          32.794347
+	Adventure       30.567424
+	Casual          27.528994
+	2D              18.713850
+	Simulation      18.241567
+	Strategy        16.236043
+	RPG             15.084840
+	Atmospheric     13.605638
+	dtype: float64
+	
+	Other tags aggregated average positive ratio: 1.51
 
 
 Tags yang memiliki Rasio Ulasan Positif paling tinggi adalah Indie. Game indie banyak memiliki ulasan positif karena banyak dimaklumi oleh pemain juga harganya yang biasanya sangat murah.
@@ -892,29 +891,29 @@ Tags yang memiliki Rasio Ulasan Positif paling tinggi adalah Indie. Game indie b
     
 
 
-    Top 10 and Bottom 10 Genres:
-    Musou                   49.163913
-    360 Video               36.234643
-    Video Production        35.998972
-    Web Publishing          33.541905
-    Medical Sim             32.508636
-    Audio Production        31.348364
-    Baseball                31.048529
-    Animation & Modeling    30.400299
-    Photo Editing           29.409324
-    Rugby                   29.056667
-    Other                   12.177486
-    Electronic               5.602500
-    Solitaire                5.594941
-    Short                    5.352531
-    Sokoban                  5.117783
-    Abstract                 5.060271
-    Idler                    5.022164
-    Spelling                 4.712167
-    Minimalist               4.710232
-    Clicker                  4.498397
-    Tile-Matching            1.990000
-    dtype: float64
+	Top 10 and Bottom 10 Genres:
+	Musou               47.115417
+	Baseball            28.531081
+	Rugby               27.240625
+	BMX                 25.712222
+	Audio Production    24.915827
+	Medical Sim         24.242135
+	Photo Editing       22.773750
+	Cycling             22.528500
+	Web Publishing      21.339808
+	Video Production    20.850899
+	Other                9.947339
+	Abstract             4.193056
+	Short                4.132869
+	Mod                  4.104306
+	Minimalist           3.948958
+	Spelling             3.698846
+	Idler                3.383874
+	Clicker              3.328889
+	Documentary          2.906122
+	Free to Play         1.898432
+	Tile-Matching        1.592000
+	dtype: float64
 
 
 Tag game yang memiliki Harga rata-rata tertinggi adalah Musou. Game Musou banyak diminati penggemar fanatik yang rela keluar uang lebih banyak.
@@ -943,7 +942,7 @@ Game yang memiliki ulasan rating yang positif dimainkan lebih banyak daripada ya
     
 
 
-Jumlah Game yang rilis di platform windows mendominasi dengan 69.1%.
+Jumlah Game yang rilis di platform windows mendominasi dengan 69.4%.
 
 #### **Game Popularity per OS**
 
