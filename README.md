@@ -3174,7 +3174,7 @@ Di mana:
 - $Q$ adalah matriks faktor game(item) (berukuran $n \times k$),
 - $\hat{R}$ adalah prediksi rating.
 
-RecommenderNet melakukan operasi perhitungan ini dengan menggunakan dot product `embedding layer` vector user terhadap fitur dan `embedding layer` vector app terhadap fitur.
+**RecommenderNet** melakukan operasi perhitungan ini dengan menggunakan dot product `embedding layer` vector user terhadap fitur (user_vector) sebagai $P$ dan `embedding layer` vector game terhadap fitur (app_vector) sebagai $Q$. Hasilnya adalah matriks $\hat{R}$ berisi hasil prediksi.
 
 Untuk memperbarui $P$ dan $Q$, digunakan metode **gradient descent**, yang bertujuan meminimalkan kesalahan prediksi. Pembaruan dilakukan dengan rumus:
 
