@@ -1377,12 +1377,12 @@ Rating di- agar dapat dimengerti oleh cosine similarity dengan map seperti berik
 ```python
 # Convert the rating column (text to numeric)
 rating_mapping = {
-    'Overwhelmingly Positive': 5,
-    'Very Positive': 4,
-    'Positive': 3,
-    'Mildly Positive': 2,
-    'Mixed': 1,
-    'Mildly Negative': -1,
+    'Overwhelmingly Positive': 4,
+    'Very Positive': 3,
+    'Positive': 2,
+    'Mostly Positive': 1,
+    'Mixed': 0,
+    'Mostly Negative': -1,
     'Negative': -2,
     'Very Negative': -3,
     'Overwhelmingly Negative': -4
@@ -1425,1081 +1425,1072 @@ Vector Combined Features = Vector Tf-idf Descriptions  + Vactor Tf-idf Tags + Ve
 
 **Vector TF-IDF Descriptions**
 
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>2d</th>
-      <th>3d</th>
-      <th>action</th>
-      <th>adventure</th>
-      <th>adventure game</th>
-      <th>arcade</th>
-      <th>based</th>
-      <th>battle</th>
-      <th>beautiful</th>
-      <th>best</th>
-      <th>...</th>
-      <th>turn based</th>
-      <th>unique</th>
-      <th>use</th>
-      <th>using</th>
-      <th>visual</th>
-      <th>vr</th>
-      <th>war</th>
-      <th>way</th>
-      <th>weapons</th>
-      <th>world</th>
-    </tr>
-    <tr>
-      <th>title</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>Prince of Persia: Warrior Within™</th>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>...</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.00000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>Monaco: What's Yours Is Mine</th>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>...</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.00000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>Escape Dead Island</th>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.390487</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>...</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.00000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>Dungeon of the ENDLESS™</th>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>...</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.00000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.332654</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>METAL SLUG 3</th>
-      <td>0.531413</td>
-      <td>0.000000</td>
-      <td>0.413478</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>...</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.00000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>Dragon Princess is Hungry</th>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>...</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.00000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>XENOTILT: HOSTILE PINBALL ACTION</th>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>...</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.00000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>Taboo Trial</th>
-      <td>0.000000</td>
-      <td>0.429329</td>
-      <td>0.319287</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>...</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.38721</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.258898</td>
-    </tr>
-    <tr>
-      <th>Hometopia</th>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.576368</td>
-      <td>...</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.00000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.338987</td>
-    </tr>
-    <tr>
-      <th>Forgive Me Father 2</th>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.379338</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>...</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.00000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.401275</td>
-      <td>0.502638</td>
-      <td>0.000000</td>
-    </tr>
-  </tbody>
+<table class="dataframe" border="1">
+<thead>
+<tr>
+<th>&nbsp;</th>
+<th>2d</th>
+<th>3d</th>
+<th>action</th>
+<th>adventure</th>
+<th>adventure game</th>
+<th>arcade</th>
+<th>based</th>
+<th>battle</th>
+<th>beautiful</th>
+<th>best</th>
+<th>...</th>
+<th>turn</th>
+<th>turn based</th>
+<th>unique</th>
+<th>use</th>
+<th>using</th>
+<th>vr</th>
+<th>war</th>
+<th>way</th>
+<th>weapons</th>
+<th>world</th>
+</tr>
+<tr>
+<th>title</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>Prince of Persia: Warrior Within&trade;</th>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.00000</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>...</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+</tr>
+<tr>
+<th>Monaco: What's Yours Is Mine</th>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.00000</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>...</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+</tr>
+<tr>
+<th>Escape Dead Island</th>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.39422</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>...</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+</tr>
+<tr>
+<th>Dungeon of the ENDLESS&trade;</th>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.00000</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>...</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.334867</td>
+<td>0.000000</td>
+<td>0.000000</td>
+</tr>
+<tr>
+<th>METAL SLUG 3</th>
+<td>0.533932</td>
+<td>0.000000</td>
+<td>0.412735</td>
+<td>0.00000</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>...</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+</tr>
+<tr>
+<th>...</th>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<th>Welcome to Kowloon</th>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.00000</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>...</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+</tr>
+<tr>
+<th>Taboo Trial</th>
+<td>0.000000</td>
+<td>0.427918</td>
+<td>0.320664</td>
+<td>0.00000</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>...</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.390671</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.257031</td>
+</tr>
+<tr>
+<th>Hometopia</th>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.00000</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.579992</td>
+<td>...</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.337227</td>
+</tr>
+<tr>
+<th>Fading Afternoon</th>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.00000</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>...</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+</tr>
+<tr>
+<th>Forgive Me Father 2</th>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.379612</td>
+<td>0.00000</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>...</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.403275</td>
+<td>0.497654</td>
+<td>0.000000</td>
+</tr>
+</tbody>
 </table>
-<p>25806 rows × 100 columns</p>
+<p>32685 rows &times; 100 columns</p>
  
 **Vector TF-IDF Tags**
 
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>1980s</th>
-      <th>1990</th>
-      <th>2d</th>
-      <th>2d_fighter</th>
-      <th>2d_platformer</th>
-      <th>360_video</th>
-      <th>3d</th>
-      <th>3d_fighter</th>
-      <th>3d_platformer</th>
-      <th>3d_vision</th>
-      <th>...</th>
-      <th>well</th>
-      <th>werewolves</th>
-      <th>western</th>
-      <th>wholesome</th>
-      <th>word_game</th>
-      <th>world_war_i</th>
-      <th>world_war_ii</th>
-      <th>wrestling</th>
-      <th>written</th>
-      <th>zombies</th>
-    </tr>
-    <tr>
-      <th>title</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>Prince of Persia: Warrior Within™</th>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>...</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>Monaco: What's Yours Is Mine</th>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.110829</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>...</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>Escape Dead Island</th>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>...</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.275537</td>
-    </tr>
-    <tr>
-      <th>Dungeon of the ENDLESS™</th>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.133778</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>...</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>METAL SLUG 3</th>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.111907</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>...</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>Dragon Princess is Hungry</th>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>...</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>XENOTILT: HOSTILE PINBALL ACTION</th>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>...</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>Taboo Trial</th>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.185710</td>
-      <td>0.0</td>
-      <td>0.275645</td>
-      <td>0.0</td>
-      <td>...</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>Hometopia</th>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.159558</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>...</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>Forgive Me Father 2</th>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.186127</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>...</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-    </tr>
-  </tbody>
+<table class="dataframe" border="1">
+<thead>
+<tr>
+<th>&nbsp;</th>
+<th>1980s</th>
+<th>1990</th>
+<th>2d</th>
+<th>2d_fighter</th>
+<th>2d_platformer</th>
+<th>360_video</th>
+<th>3d</th>
+<th>3d_fighter</th>
+<th>3d_platformer</th>
+<th>3d_vision</th>
+<th>...</th>
+<th>well</th>
+<th>werewolves</th>
+<th>western</th>
+<th>wholesome</th>
+<th>word_game</th>
+<th>world_war_i</th>
+<th>world_war_ii</th>
+<th>wrestling</th>
+<th>written</th>
+<th>zombies</th>
+</tr>
+<tr>
+<th>title</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>Prince of Persia: Warrior Within&trade;</th>
+<td>0.000000</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>0.0</td>
+<td>...</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+</tr>
+<tr>
+<th>Monaco: What's Yours Is Mine</th>
+<td>0.000000</td>
+<td>0.0</td>
+<td>0.113716</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>0.0</td>
+<td>...</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+</tr>
+<tr>
+<th>Escape Dead Island</th>
+<td>0.000000</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>0.0</td>
+<td>...</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.272423</td>
+</tr>
+<tr>
+<th>Dungeon of the ENDLESS&trade;</th>
+<td>0.000000</td>
+<td>0.0</td>
+<td>0.137786</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>0.0</td>
+<td>...</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+</tr>
+<tr>
+<th>METAL SLUG 3</th>
+<td>0.000000</td>
+<td>0.0</td>
+<td>0.114235</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>0.0</td>
+<td>...</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+</tr>
+<tr>
+<th>...</th>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<th>Welcome to Kowloon</th>
+<td>0.000000</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.206379</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>0.0</td>
+<td>...</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+</tr>
+<tr>
+<th>Taboo Trial</th>
+<td>0.000000</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.186225</td>
+<td>0.0</td>
+<td>0.278652</td>
+<td>0.0</td>
+<td>...</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+</tr>
+<tr>
+<th>Hometopia</th>
+<td>0.000000</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.160494</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>0.0</td>
+<td>...</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+</tr>
+<tr>
+<th>Fading Afternoon</th>
+<td>0.283493</td>
+<td>0.0</td>
+<td>0.130473</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>0.0</td>
+<td>...</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+</tr>
+<tr>
+<th>Forgive Me Father 2</th>
+<td>0.000000</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.185446</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>0.0</td>
+<td>...</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+</tr>
+</tbody>
 </table>
-<p>25806 rows × 464 columns</p>
+<p>32685 rows &times; 464 columns</p>
 
 
 **Vector Numerical Features**
 
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>rating</th>
-      <th>positive_ratio</th>
-      <th>user_reviews</th>
-      <th>price_final</th>
-    </tr>
-    <tr>
-      <th>title</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>Prince of Persia: Warrior Within™</th>
-      <td>4.0</td>
-      <td>84.0</td>
-      <td>2199.0</td>
-      <td>9.99</td>
-    </tr>
-    <tr>
-      <th>Monaco: What's Yours Is Mine</th>
-      <td>4.0</td>
-      <td>92.0</td>
-      <td>3722.0</td>
-      <td>14.99</td>
-    </tr>
-    <tr>
-      <th>Escape Dead Island</th>
-      <td>1.0</td>
-      <td>61.0</td>
-      <td>873.0</td>
-      <td>14.99</td>
-    </tr>
-    <tr>
-      <th>Dungeon of the ENDLESS™</th>
-      <td>4.0</td>
-      <td>88.0</td>
-      <td>8784.0</td>
-      <td>11.99</td>
-    </tr>
-    <tr>
-      <th>METAL SLUG 3</th>
-      <td>4.0</td>
-      <td>90.0</td>
-      <td>5579.0</td>
-      <td>7.99</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>Dragon Princess is Hungry</th>
-      <td>4.0</td>
-      <td>96.0</td>
-      <td>85.0</td>
-      <td>16.00</td>
-    </tr>
-    <tr>
-      <th>XENOTILT: HOSTILE PINBALL ACTION</th>
-      <td>4.0</td>
-      <td>98.0</td>
-      <td>180.0</td>
-      <td>15.00</td>
-    </tr>
-    <tr>
-      <th>Taboo Trial</th>
-      <td>4.0</td>
-      <td>94.0</td>
-      <td>494.0</td>
-      <td>12.00</td>
-    </tr>
-    <tr>
-      <th>Hometopia</th>
-      <td>1.0</td>
-      <td>61.0</td>
-      <td>248.0</td>
-      <td>17.00</td>
-    </tr>
-    <tr>
-      <th>Forgive Me Father 2</th>
-      <td>4.0</td>
-      <td>95.0</td>
-      <td>82.0</td>
-      <td>17.00</td>
-    </tr>
-  </tbody>
+<table class="dataframe" border="1">
+<thead>
+<tr>
+<th>&nbsp;</th>
+<th>rating</th>
+<th>positive_ratio</th>
+<th>user_reviews</th>
+<th>price_final</th>
+</tr>
+<tr>
+<th>title</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>Prince of Persia: Warrior Within&trade;</th>
+<td>3.0</td>
+<td>84.0</td>
+<td>2199.0</td>
+<td>9.99</td>
+</tr>
+<tr>
+<th>Monaco: What's Yours Is Mine</th>
+<td>3.0</td>
+<td>92.0</td>
+<td>3722.0</td>
+<td>14.99</td>
+</tr>
+<tr>
+<th>Escape Dead Island</th>
+<td>0.0</td>
+<td>61.0</td>
+<td>873.0</td>
+<td>14.99</td>
+</tr>
+<tr>
+<th>Dungeon of the ENDLESS&trade;</th>
+<td>3.0</td>
+<td>88.0</td>
+<td>8784.0</td>
+<td>11.99</td>
+</tr>
+<tr>
+<th>METAL SLUG 3</th>
+<td>3.0</td>
+<td>90.0</td>
+<td>5579.0</td>
+<td>7.99</td>
+</tr>
+<tr>
+<th>...</th>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<th>Welcome to Kowloon</th>
+<td>1.0</td>
+<td>78.0</td>
+<td>499.0</td>
+<td>7.00</td>
+</tr>
+<tr>
+<th>Taboo Trial</th>
+<td>3.0</td>
+<td>94.0</td>
+<td>494.0</td>
+<td>12.00</td>
+</tr>
+<tr>
+<th>Hometopia</th>
+<td>0.0</td>
+<td>61.0</td>
+<td>248.0</td>
+<td>17.00</td>
+</tr>
+<tr>
+<th>Fading Afternoon</th>
+<td>1.0</td>
+<td>79.0</td>
+<td>358.0</td>
+<td>20.00</td>
+</tr>
+<tr>
+<th>Forgive Me Father 2</th>
+<td>3.0</td>
+<td>95.0</td>
+<td>82.0</td>
+<td>17.00</td>
+</tr>
+</tbody>
 </table>
-<p>25806 rows × 4 columns</p>
+<p>32685 rows &times; 4 columns</p>
 
 **Vector Combined Features**
 
 
-
-
-
-
-
-
-  
-    
-
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>2d</th>
-      <th>3d</th>
-      <th>action</th>
-      <th>adventure</th>
-      <th>adventure game</th>
-      <th>arcade</th>
-      <th>based</th>
-      <th>battle</th>
-      <th>beautiful</th>
-      <th>best</th>
-      <th>...</th>
-      <th>word_game</th>
-      <th>world_war_i</th>
-      <th>world_war_ii</th>
-      <th>wrestling</th>
-      <th>written</th>
-      <th>zombies</th>
-      <th>rating</th>
-      <th>positive_ratio</th>
-      <th>user_reviews</th>
-      <th>price_final</th>
-    </tr>
-    <tr>
-      <th>title</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>Prince of Persia: Warrior Within™</th>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>...</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>4.0</td>
-      <td>84.0</td>
-      <td>2199.0</td>
-      <td>9.99</td>
-    </tr>
-    <tr>
-      <th>Monaco: What's Yours Is Mine</th>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>...</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>4.0</td>
-      <td>92.0</td>
-      <td>3722.0</td>
-      <td>14.99</td>
-    </tr>
-    <tr>
-      <th>Escape Dead Island</th>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.390487</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>...</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.275537</td>
-      <td>1.0</td>
-      <td>61.0</td>
-      <td>873.0</td>
-      <td>14.99</td>
-    </tr>
-    <tr>
-      <th>Dungeon of the ENDLESS™</th>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>...</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>4.0</td>
-      <td>88.0</td>
-      <td>8784.0</td>
-      <td>11.99</td>
-    </tr>
-    <tr>
-      <th>METAL SLUG 3</th>
-      <td>0.531413</td>
-      <td>0.000000</td>
-      <td>0.413478</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>...</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>4.0</td>
-      <td>90.0</td>
-      <td>5579.0</td>
-      <td>7.99</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>Dragon Princess is Hungry</th>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>...</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>4.0</td>
-      <td>96.0</td>
-      <td>85.0</td>
-      <td>16.00</td>
-    </tr>
-    <tr>
-      <th>XENOTILT: HOSTILE PINBALL ACTION</th>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>...</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>4.0</td>
-      <td>98.0</td>
-      <td>180.0</td>
-      <td>15.00</td>
-    </tr>
-    <tr>
-      <th>Taboo Trial</th>
-      <td>0.000000</td>
-      <td>0.429329</td>
-      <td>0.319287</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>...</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>4.0</td>
-      <td>94.0</td>
-      <td>494.0</td>
-      <td>12.00</td>
-    </tr>
-    <tr>
-      <th>Hometopia</th>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.576368</td>
-      <td>...</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>1.0</td>
-      <td>61.0</td>
-      <td>248.0</td>
-      <td>17.00</td>
-    </tr>
-    <tr>
-      <th>Forgive Me Father 2</th>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.379338</td>
-      <td>0.000000</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>...</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.000000</td>
-      <td>4.0</td>
-      <td>95.0</td>
-      <td>82.0</td>
-      <td>17.00</td>
-    </tr>
-  </tbody>
+<table class="dataframe" border="1">
+<thead>
+<tr>
+<th>&nbsp;</th>
+<th>2d</th>
+<th>3d</th>
+<th>action</th>
+<th>adventure</th>
+<th>adventure game</th>
+<th>arcade</th>
+<th>based</th>
+<th>battle</th>
+<th>beautiful</th>
+<th>best</th>
+<th>...</th>
+<th>word_game</th>
+<th>world_war_i</th>
+<th>world_war_ii</th>
+<th>wrestling</th>
+<th>written</th>
+<th>zombies</th>
+<th>rating</th>
+<th>positive_ratio</th>
+<th>user_reviews</th>
+<th>price_final</th>
+</tr>
+<tr>
+<th>title</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>Prince of Persia: Warrior Within&trade;</th>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.00000</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>...</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>3.0</td>
+<td>84.0</td>
+<td>2199.0</td>
+<td>9.99</td>
+</tr>
+<tr>
+<th>Monaco: What's Yours Is Mine</th>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.00000</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>...</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>3.0</td>
+<td>92.0</td>
+<td>3722.0</td>
+<td>14.99</td>
+</tr>
+<tr>
+<th>Escape Dead Island</th>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.39422</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>...</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.272423</td>
+<td>0.0</td>
+<td>61.0</td>
+<td>873.0</td>
+<td>14.99</td>
+</tr>
+<tr>
+<th>Dungeon of the ENDLESS&trade;</th>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.00000</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>...</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>3.0</td>
+<td>88.0</td>
+<td>8784.0</td>
+<td>11.99</td>
+</tr>
+<tr>
+<th>METAL SLUG 3</th>
+<td>0.533932</td>
+<td>0.000000</td>
+<td>0.412735</td>
+<td>0.00000</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>...</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>3.0</td>
+<td>90.0</td>
+<td>5579.0</td>
+<td>7.99</td>
+</tr>
+<tr>
+<th>...</th>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<th>Welcome to Kowloon</th>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.00000</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>...</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>1.0</td>
+<td>78.0</td>
+<td>499.0</td>
+<td>7.00</td>
+</tr>
+<tr>
+<th>Taboo Trial</th>
+<td>0.000000</td>
+<td>0.427918</td>
+<td>0.320664</td>
+<td>0.00000</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>...</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>3.0</td>
+<td>94.0</td>
+<td>494.0</td>
+<td>12.00</td>
+</tr>
+<tr>
+<th>Hometopia</th>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.00000</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.579992</td>
+<td>...</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>0.0</td>
+<td>61.0</td>
+<td>248.0</td>
+<td>17.00</td>
+</tr>
+<tr>
+<th>Fading Afternoon</th>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.00000</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>...</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>1.0</td>
+<td>79.0</td>
+<td>358.0</td>
+<td>20.00</td>
+</tr>
+<tr>
+<th>Forgive Me Father 2</th>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>0.379612</td>
+<td>0.00000</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>...</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>0.000000</td>
+<td>3.0</td>
+<td>95.0</td>
+<td>82.0</td>
+<td>17.00</td>
+</tr>
+</tbody>
 </table>
-<p>25806 rows × 568 columns</p>
+<p>32685 rows &times; 568 columns</p>
 
 
 ### **2. Collaborative Filtering**
@@ -2726,41 +2717,41 @@ n   &\text{ adalah jumlah elemen dalam vektor } a \text{ dan } b
 
 
 
-    Cosine Similarity (Description):
-     [[1.         0.         0.         ... 0.         0.         0.        ]
-     [0.         1.         0.         ... 0.05592466 0.0732246  0.        ]
-     [0.         0.         1.         ... 0.         0.24206936 0.        ]
-     ...
-     [0.         0.05592466 0.         ... 1.         0.13331241 0.12111781]
-     [0.         0.0732246  0.24206936 ... 0.13331241 1.         0.        ]
-     [0.         0.         0.         ... 0.12111781 0.         1.        ]]
-    
-    Cosine Similarity (Tags):
-     [[1.         0.0969941  0.27189149 ... 0.20927786 0.08182288 0.10948213]
-     [0.0969941  1.         0.27368616 ... 0.05425411 0.00939756 0.027657  ]
-     [0.27189149 0.27368616 1.         ... 0.18099251 0.08476883 0.20874065]
-     ...
-     [0.20927786 0.05425411 0.18099251 ... 1.         0.10707272 0.15243276]
-     [0.08182288 0.00939756 0.08476883 ... 0.10707272 1.         0.12431625]
-     [0.10948213 0.027657   0.20874065 ... 0.15243276 0.12431625 1.        ]]
-    
-    Cosine Similarity (Numerical Features):
-     [[1.         0.9999089  0.99942202 ... 0.98859102 0.97759301 0.67598245]
-     [0.9999089  1.         0.99889986 ... 0.9864765  0.97476149 0.66607369]
-     [0.99942202 0.99889986 1.         ... 0.99297108 0.98415753 0.7000952 ]
-     ...
-     [0.98859102 0.9864765  0.99297108 ... 1.         0.99767602 0.7791299 ]
-     [0.97759301 0.97476149 0.98415753 ... 0.99767602 1.         0.81477287]
-     [0.67598245 0.66607369 0.7000952  ... 0.7791299  0.81477287 1.        ]]
-    
-    Cosine Similarity (Combined):
-     [[1.         0.27660266 0.99990864 ... 0.99893503 0.67594059 0.87221461]
-     [0.27660266 1.         0.26360998 ... 0.31598785 0.88763675 0.71123012]
-     [0.99990864 0.26360998 1.         ... 0.99828577 0.66603222 0.86553369]
-     ...
-     [0.99893503 0.31598785 0.99828577 ... 1.         0.70751706 0.89154594]
-     [0.67594059 0.88763675 0.66603222 ... 0.70751706 1.         0.94653221]
-     [0.87221461 0.71123012 0.86553369 ... 0.89154594 0.94653221 1.        ]]
+	    Cosine Similarity (Description):
+	 [[1.         0.         0.         ... 0.         0.         0.        ]
+	 [0.         1.         0.         ... 0.0742182  0.         0.        ]
+	 [0.         0.         1.         ... 0.24239257 0.         0.        ]
+	 ...
+	 [0.         0.0742182  0.24239257 ... 1.         0.         0.        ]
+	 [0.         0.         0.         ... 0.         1.         0.        ]
+	 [0.         0.         0.         ... 0.         0.         1.        ]]
+	
+	Cosine Similarity (Tags):
+	 [[1.         0.09845734 0.26812377 ... 0.07997012 0.1104218  0.10809628]
+	 [0.09845734 1.         0.27347163 ... 0.00967708 0.14930489 0.02757299]
+	 [0.26812377 0.27347163 1.         ... 0.0837894  0.12352083 0.21100701]
+	 ...
+	 [0.07997012 0.00967708 0.0837894  ... 1.         0.15551319 0.12310468]
+	 [0.1104218  0.14930489 0.12352083 ... 0.15551319 1.         0.10857035]
+	 [0.10809628 0.02757299 0.21100701 ... 0.12310468 0.10857035 1.        ]]
+	
+	Cosine Similarity (Numerical Features):
+	 [[1.         0.99990903 0.99942132 ... 0.97759408 0.98279593 0.67610525]
+	 [0.99990903 1.         0.99889954 ... 0.97476498 0.98028576 0.66620428]
+	 [0.99942132 0.99889954 1.         ... 0.98416122 0.98846778 0.70021227]
+	 ...
+	 [0.97759408 0.97476498 0.98416122 ... 1.         0.999638   0.81483341]
+	 [0.98279593 0.98028576 0.98846778 ... 0.999638   1.         0.79990442]
+	 [0.67610525 0.66620428 0.70021227 ... 0.81483341 0.79990442 1.        ]]
+	
+	Cosine Similarity (Combined):
+	 [[1.         0.99990876 0.99941995 ... 0.9775791  0.98278858 0.67606337]
+	 [0.99990876 1.         0.99889824 ... 0.97475012 0.98027853 0.66616278]
+	 [0.99941995 0.99889824 1.         ... 0.98414637 0.98845954 0.70016962]
+	 ...
+	 [0.9775791  0.97475012 0.98414637 ... 1.         0.99961698 0.814774  ]
+	 [0.98278858 0.98027853 0.98845954 ... 0.99961698 1.         0.79985098]
+	 [0.67606337 0.66616278 0.70016962 ... 0.814774   0.79985098 1.        ]]
 
 
 #### **Result**
@@ -2779,90 +2770,91 @@ Hasil prediksi dari model dilihat dengan cara pemilihan judul game secara acak u
     
     Recommendations based on Description:
 
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>app_id</th>
-      <th>title</th>
-      <th>description</th>
-      <th>similarity_score</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>9950</th>
-      <td>1082680</td>
-      <td>The Walking Dead Onslaught</td>
-      <td>There’s no rest when survival is on the line. ...</td>
-      <td>0.702973</td>
-    </tr>
-    <tr>
-      <th>10623</th>
-      <td>361670</td>
-      <td>STAR WARS™ - X-Wing Alliance™</td>
-      <td>A neutral family fights for its business - and...</td>
-      <td>0.673307</td>
-    </tr>
-    <tr>
-      <th>10723</th>
-      <td>1900</td>
-      <td>Earth 2160</td>
-      <td>After the destruction of the EARTH in 2150, th...</td>
-      <td>0.673307</td>
-    </tr>
-    <tr>
-      <th>14748</th>
-      <td>322980</td>
-      <td>Gods vs Humans</td>
-      <td>Humans are building a tower to reach the Kingd...</td>
-      <td>0.673307</td>
-    </tr>
-    <tr>
-      <th>20901</th>
-      <td>453730</td>
-      <td>Borstal</td>
-      <td>Survival roguelike novellas with meaningful ch...</td>
-      <td>0.673307</td>
-    </tr>
-    <tr>
-      <th>23911</th>
-      <td>2020460</td>
-      <td>Bring It On!</td>
-      <td>Bring It On! is a single-player auto-attacking...</td>
-      <td>0.664675</td>
-    </tr>
-    <tr>
-      <th>21674</th>
-      <td>1665490</td>
-      <td>Dead Survival</td>
-      <td>Dead Survival is a tactical survival FPS, in a...</td>
-      <td>0.642872</td>
-    </tr>
-    <tr>
-      <th>13037</th>
-      <td>2023800</td>
-      <td>The Blight</td>
-      <td>The Blight aims to evolve the open world survi...</td>
-      <td>0.639571</td>
-    </tr>
-    <tr>
-      <th>6491</th>
-      <td>935490</td>
-      <td>AREAZ</td>
-      <td>Survival cast away style game based on real su...</td>
-      <td>0.628692</td>
-    </tr>
-    <tr>
-      <th>20010</th>
-      <td>2072080</td>
-      <td>Super Demon Survivors</td>
-      <td>Super Demon Survivors is a homage to time surv...</td>
-      <td>0.624294</td>
-    </tr>
-  </tbody>
+<div class="stream output-id-1">
+<table class="dataframe" border="1">
+<thead>
+<tr>
+<th>&nbsp;</th>
+<th>app_id</th>
+<th>title</th>
+<th>description</th>
+<th>similarity_score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>11842</th>
+<td>1082680</td>
+<td>The Walking Dead Onslaught</td>
+<td>There&rsquo;s no rest when survival is on the line. ...</td>
+<td>0.703221</td>
+</tr>
+<tr>
+<th>31784</th>
+<td>2153780</td>
+<td>Survival Nation</td>
+<td>Survival Nation is an open-world online RPG su...</td>
+<td>0.694917</td>
+</tr>
+<tr>
+<th>12648</th>
+<td>361670</td>
+<td>STAR WARS&trade; - X-Wing Alliance&trade;</td>
+<td>A neutral family fights for its business - and...</td>
+<td>0.669261</td>
+</tr>
+<tr>
+<th>12764</th>
+<td>1900</td>
+<td>Earth 2160</td>
+<td>After the destruction of the EARTH in 2150, th...</td>
+<td>0.669261</td>
+</tr>
+<tr>
+<th>18118</th>
+<td>322980</td>
+<td>Gods vs Humans</td>
+<td>Humans are building a tower to reach the Kingd...</td>
+<td>0.669261</td>
+</tr>
+<tr>
+<th>26481</th>
+<td>453730</td>
+<td>Borstal</td>
+<td>Survival roguelike novellas with meaningful ch...</td>
+<td>0.669261</td>
+</tr>
+<tr>
+<th>30470</th>
+<td>2020460</td>
+<td>Bring It On!</td>
+<td>Bring It On! is a single-player auto-attacking...</td>
+<td>0.664698</td>
+</tr>
+<tr>
+<th>13023</th>
+<td>653940</td>
+<td>Zafehouse Diaries 2</td>
+<td>Zafehouse Diaries 2 is a game of survival, exp...</td>
+<td>0.657635</td>
+</tr>
+<tr>
+<th>25702</th>
+<td>1234240</td>
+<td>Last Farewell</td>
+<td>Last Farewell is a Survival Co-op game where y...</td>
+<td>0.652663</td>
+</tr>
+<tr>
+<th>27517</th>
+<td>1665490</td>
+<td>Dead Survival</td>
+<td>Dead Survival is a tactical survival FPS, in a...</td>
+<td>0.638971</td>
+</tr>
+</tbody>
 </table>
-
+</div>
 
 **Model 2:** Cosine Similarity (Tags)
 
@@ -2871,89 +2863,95 @@ Hasil prediksi dari model dilihat dengan cara pemilihan judul game secara acak u
     
     Recommendations based on Tags:
 
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>app_id</th>
-      <th>title</th>
-      <th>description</th>
-      <th>similarity_score</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>5495</th>
-      <td>2068280</td>
-      <td>Nordic Ashes: Survivors of Ragnarok</td>
-      <td>Nordic Ashes is a Norse inspired action-roguel...</td>
-      <td>0.729551</td>
-    </tr>
-    <tr>
-      <th>12409</th>
-      <td>2172190</td>
-      <td>Stickman's Arena</td>
-      <td>Stickman's Arena is a top-down arena shooter r...</td>
-      <td>0.726450</td>
-    </tr>
-    <tr>
-      <th>25748</th>
-      <td>2250250</td>
-      <td>Mighty Mage</td>
-      <td>Mighty Mage is a top-down arena shooter rogue-...</td>
-      <td>0.687197</td>
-    </tr>
-    <tr>
-      <th>24109</th>
-      <td>2331710</td>
-      <td>Sky Survivors</td>
-      <td>Sky Survivors is an arena shooter roguelite. C...</td>
-      <td>0.676234</td>
-    </tr>
-    <tr>
-      <th>23898</th>
-      <td>1290330</td>
-      <td>Time Wasters</td>
-      <td>Time Wasters is a space shooter bullet heaven ...</td>
-      <td>0.592407</td>
-    </tr>
-    <tr>
-      <th>21198</th>
-      <td>1355620</td>
-      <td>Mage Rage</td>
-      <td>Join the battle, use the fury of fire, unleash...</td>
-      <td>0.588922</td>
-    </tr>
-    <tr>
-      <th>6851</th>
-      <td>2218140</td>
-      <td>Alien Slayers</td>
-      <td>Alien Slayers is a roguelite time survival gam...</td>
-      <td>0.577523</td>
-    </tr>
-    <tr>
-      <th>14002</th>
-      <td>413830</td>
-      <td>Overdosed - A Trip To Hell</td>
-      <td>Take an experimental form of LSD and battle ag...</td>
-      <td>0.571962</td>
-    </tr>
-    <tr>
-      <th>25452</th>
-      <td>2126400</td>
-      <td>Super Kill-BOI 9000</td>
-      <td>A bullet heaven where you cooperate with Kill-...</td>
-      <td>0.570812</td>
-    </tr>
-    <tr>
-      <th>12980</th>
-      <td>2055500</td>
-      <td>Repetendium</td>
-      <td>Fight against an army of elemental creatures h...</td>
-      <td>0.569392</td>
-    </tr>
-  </tbody>
+<div class="stream output-id-1">
+<div class="stream output-id-1">
+<div class="output_subarea output_text">
+<table class="dataframe" border="1">
+<thead>
+<tr>
+<th>&nbsp;</th>
+<th>app_id</th>
+<th>title</th>
+<th>description</th>
+<th>similarity_score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>6519</th>
+<td>2068280</td>
+<td>Nordic Ashes: Survivors of Ragnarok</td>
+<td>Nordic Ashes is a Norse inspired action-roguel...</td>
+<td>0.729871</td>
+</tr>
+<tr>
+<th>14941</th>
+<td>2172190</td>
+<td>Stickman's Arena</td>
+<td>Stickman's Arena is a top-down arena shooter r...</td>
+<td>0.727932</td>
+</tr>
+<tr>
+<th>32614</th>
+<td>2250250</td>
+<td>Mighty Mage</td>
+<td>Mighty Mage is a top-down arena shooter rogue-...</td>
+<td>0.686939</td>
+</tr>
+<tr>
+<th>30709</th>
+<td>2331710</td>
+<td>Sky Survivors</td>
+<td>Sky Survivors is an arena shooter roguelite. C...</td>
+<td>0.676116</td>
+</tr>
+<tr>
+<th>20897</th>
+<td>2154890</td>
+<td>Survival Academy</td>
+<td>A dangerous class to survive begins! A 30-minu...</td>
+<td>0.658408</td>
+</tr>
+<tr>
+<th>504</th>
+<td>2077590</td>
+<td>Sidestep Legends</td>
+<td>Practise your sidestep skills as you dodge spe...</td>
+<td>0.609145</td>
+</tr>
+<tr>
+<th>3300</th>
+<td>1646790</td>
+<td>Striving for Light</td>
+<td>Striving for Light is a rogue-lite ARPG where ...</td>
+<td>0.596842</td>
+</tr>
+<tr>
+<th>30451</th>
+<td>1290330</td>
+<td>Time Wasters</td>
+<td>Time Wasters is a space shooter bullet heaven ...</td>
+<td>0.589939</td>
+</tr>
+<tr>
+<th>26879</th>
+<td>1355620</td>
+<td>Mage Rage</td>
+<td>Join the battle, use the fury of fire, unleash...</td>
+<td>0.585083</td>
+</tr>
+<tr>
+<th>8141</th>
+<td>2218140</td>
+<td>Alien Slayers</td>
+<td>Alien Slayers is a roguelite time survival gam...</td>
+<td>0.575405</td>
+</tr>
+</tbody>
 </table>
+</div>
+</div>
+</div>
 
 
 **Model 3:** Cosine Similarity (Numerical Features)
@@ -2964,89 +2962,93 @@ Hasil prediksi dari model dilihat dengan cara pemilihan judul game secara acak u
     Recommendations based on Numerical Features:
 
 
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>app_id</th>
-      <th>title</th>
-      <th>description</th>
-      <th>similarity_score</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>12594</th>
-      <td>1860370</td>
-      <td>Weapons Simulator</td>
-      <td>A Realistic Simulation with Manual Bolt Operat...</td>
-      <td>1.000000</td>
-    </tr>
-    <tr>
-      <th>23087</th>
-      <td>1567400</td>
-      <td>Yakyosho - Terror and escape at school</td>
-      <td>A simple Japanese horror game, with horrible c...</td>
-      <td>0.999999</td>
-    </tr>
-    <tr>
-      <th>20221</th>
-      <td>1894760</td>
-      <td>SnakeGame</td>
-      <td>Snake Game is an arena shooter about a huge sn...</td>
-      <td>0.999998</td>
-    </tr>
-    <tr>
-      <th>15724</th>
-      <td>695570</td>
-      <td>PyroMind</td>
-      <td>Arguably the most explosive and unforgiving li...</td>
-      <td>0.999997</td>
-    </tr>
-    <tr>
-      <th>17881</th>
-      <td>1367230</td>
-      <td>Neon Cyborg Cat Club</td>
-      <td>A relaxing and peaceful experience set in a po...</td>
-      <td>0.999997</td>
-    </tr>
-    <tr>
-      <th>19075</th>
-      <td>1392130</td>
-      <td>Game Of Puzzles: Slavic Mythology</td>
-      <td>A puzzle game where you need to assemble a com...</td>
-      <td>0.999997</td>
-    </tr>
-    <tr>
-      <th>19908</th>
-      <td>1200780</td>
-      <td>Mini Island: Night</td>
-      <td>Mini Island: Night is a one small hold &amp; Gun, ...</td>
-      <td>0.999997</td>
-    </tr>
-    <tr>
-      <th>21294</th>
-      <td>593680</td>
-      <td>Rocking Pilot</td>
-      <td>Shoot, blast and slash through hordes of enemi...</td>
-      <td>0.999997</td>
-    </tr>
-    <tr>
-      <th>23462</th>
-      <td>1631280</td>
-      <td>The Jean-Paul Software Screen Explosion</td>
-      <td>Modern, multi-monitor, customisable screensave...</td>
-      <td>0.999997</td>
-    </tr>
-    <tr>
-      <th>5487</th>
-      <td>1498940</td>
-      <td>Binky's Trash Service</td>
-      <td>Storm evil lairs... and take out the trash! Pl...</td>
-      <td>0.999995</td>
-    </tr>
-  </tbody>
+<div class="stream output-id-1">
+<div class="output_subarea output_text">
+<table class="dataframe" border="1">
+<thead>
+<tr>
+<th>&nbsp;</th>
+<th>app_id</th>
+<th>title</th>
+<th>description</th>
+<th>similarity_score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>15176</th>
+<td>1860370</td>
+<td>Weapons Simulator</td>
+<td>A Realistic Simulation with Manual Bolt Operat...</td>
+<td>1.000000</td>
+</tr>
+<tr>
+<th>29463</th>
+<td>1567400</td>
+<td>Yakyosho - Terror and escape at school</td>
+<td>A simple Japanese horror game, with horrible c...</td>
+<td>0.999999</td>
+</tr>
+<tr>
+<th>19461</th>
+<td>695570</td>
+<td>PyroMind</td>
+<td>Arguably the most explosive and unforgiving li...</td>
+<td>0.999998</td>
+</tr>
+<tr>
+<th>22389</th>
+<td>1367230</td>
+<td>Neon Cyborg Cat Club</td>
+<td>A relaxing and peaceful experience set in a po...</td>
+<td>0.999998</td>
+</tr>
+<tr>
+<th>23991</th>
+<td>1392130</td>
+<td>Game Of Puzzles: Slavic Mythology</td>
+<td>A puzzle game where you need to assemble a com...</td>
+<td>0.999998</td>
+</tr>
+<tr>
+<th>25140</th>
+<td>1200780</td>
+<td>Mini Island: Night</td>
+<td>Mini Island: Night is a one small hold &amp; Gun, ...</td>
+<td>0.999998</td>
+</tr>
+<tr>
+<th>27007</th>
+<td>593680</td>
+<td>Rocking Pilot</td>
+<td>Shoot, blast and slash through hordes of enemi...</td>
+<td>0.999998</td>
+</tr>
+<tr>
+<th>29945</th>
+<td>1631280</td>
+<td>The Jean-Paul Software Screen Explosion</td>
+<td>Modern, multi-monitor, customisable screensave...</td>
+<td>0.999998</td>
+</tr>
+<tr>
+<th>25556</th>
+<td>1894760</td>
+<td>SnakeGame</td>
+<td>Snake Game is an arena shooter about a huge sn...</td>
+<td>0.999998</td>
+</tr>
+<tr>
+<th>6509</th>
+<td>1498940</td>
+<td>Binky's Trash Service</td>
+<td>Storm evil lairs... and take out the trash! Pl...</td>
+<td>0.999995</td>
+</tr>
+</tbody>
 </table>
+</div>
+</div>
   
 **Model 4:** Cosine Similarity (Combined)
 
@@ -3056,89 +3058,97 @@ Hasil prediksi dari model dilihat dengan cara pemilihan judul game secara acak u
     Recommendations based on Combined Features:
 
 
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>app_id</th>
-      <th>title</th>
-      <th>description</th>
-      <th>similarity_score</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>16791</th>
-      <td>1013820</td>
-      <td>Stars and Snowdrops</td>
-      <td>Spend a day in a rainy castle and befriend, or...</td>
-      <td>0.999814</td>
-    </tr>
-    <tr>
-      <th>19075</th>
-      <td>1392130</td>
-      <td>Game Of Puzzles: Slavic Mythology</td>
-      <td>A puzzle game where you need to assemble a com...</td>
-      <td>0.999812</td>
-    </tr>
-    <tr>
-      <th>19447</th>
-      <td>1556160</td>
-      <td>Techno Tanks</td>
-      <td>Techno Tanks is an intense, fast-paced arcade-...</td>
-      <td>0.999811</td>
-    </tr>
-    <tr>
-      <th>21294</th>
-      <td>593680</td>
-      <td>Rocking Pilot</td>
-      <td>Shoot, blast and slash through hordes of enemi...</td>
-      <td>0.999811</td>
-    </tr>
-    <tr>
-      <th>14095</th>
-      <td>42950</td>
-      <td>Elven Legacy: Ranger</td>
-      <td>First addon for Elven Legacy wargame.</td>
-      <td>0.999809</td>
-    </tr>
-    <tr>
-      <th>19908</th>
-      <td>1200780</td>
-      <td>Mini Island: Night</td>
-      <td>Mini Island: Night is a one small hold &amp; Gun, ...</td>
-      <td>0.999808</td>
-    </tr>
-    <tr>
-      <th>19045</th>
-      <td>600330</td>
-      <td>CONTRACTED</td>
-      <td>The infection is spreading. Cases of outbreak ...</td>
-      <td>0.999807</td>
-    </tr>
-    <tr>
-      <th>15724</th>
-      <td>695570</td>
-      <td>PyroMind</td>
-      <td>Arguably the most explosive and unforgiving li...</td>
-      <td>0.999806</td>
-    </tr>
-    <tr>
-      <th>23868</th>
-      <td>2251540</td>
-      <td>IBIS AM</td>
-      <td>All I want you to do is catch fish and search ...</td>
-      <td>0.999804</td>
-    </tr>
-    <tr>
-      <th>22587</th>
-      <td>464120</td>
-      <td>Xcinerator</td>
-      <td>Introducing Xcinerator, the specialized privac...</td>
-      <td>0.999803</td>
-    </tr>
-  </tbody>
+<div class="stream output-id-1">
+<div class="output_subarea output_text">
+<div class="stream output-id-1">
+<div class="output_subarea output_text">
+<table class="dataframe" border="1">
+<thead>
+<tr>
+<th>&nbsp;</th>
+<th>app_id</th>
+<th>title</th>
+<th>description</th>
+<th>similarity_score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>20944</th>
+<td>1013820</td>
+<td>Stars and Snowdrops</td>
+<td>Spend a day in a rainy castle and befriend, or...</td>
+<td>0.999815</td>
+</tr>
+<tr>
+<th>23991</th>
+<td>1392130</td>
+<td>Game Of Puzzles: Slavic Mythology</td>
+<td>A puzzle game where you need to assemble a com...</td>
+<td>0.999813</td>
+</tr>
+<tr>
+<th>24501</th>
+<td>1556160</td>
+<td>Techno Tanks</td>
+<td>Techno Tanks is an intense, fast-paced arcade-...</td>
+<td>0.999812</td>
+</tr>
+<tr>
+<th>27007</th>
+<td>593680</td>
+<td>Rocking Pilot</td>
+<td>Shoot, blast and slash through hordes of enemi...</td>
+<td>0.999812</td>
+</tr>
+<tr>
+<th>25140</th>
+<td>1200780</td>
+<td>Mini Island: Night</td>
+<td>Mini Island: Night is a one small hold &amp; Gun, ...</td>
+<td>0.999809</td>
+</tr>
+<tr>
+<th>17247</th>
+<td>42950</td>
+<td>Elven Legacy: Ranger</td>
+<td>First addon for Elven Legacy wargame.</td>
+<td>0.999809</td>
+</tr>
+<tr>
+<th>23950</th>
+<td>600330</td>
+<td>CONTRACTED</td>
+<td>The infection is spreading. Cases of outbreak ...</td>
+<td>0.999809</td>
+</tr>
+<tr>
+<th>19461</th>
+<td>695570</td>
+<td>PyroMind</td>
+<td>Arguably the most explosive and unforgiving li...</td>
+<td>0.999806</td>
+</tr>
+<tr>
+<th>30416</th>
+<td>2251540</td>
+<td>IBIS AM</td>
+<td>All I want you to do is catch fish and search ...</td>
+<td>0.999805</td>
+</tr>
+<tr>
+<th>28782</th>
+<td>464120</td>
+<td>Xcinerator</td>
+<td>Introducing Xcinerator, the specialized privac...</td>
+<td>0.999805</td>
+</tr>
+</tbody>
 </table>
+</div>
+</div>
+</div>
+</div>
 
  
 #### **Best Model**
